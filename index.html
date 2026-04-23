@@ -3,12 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ZeroQuarry — Find. Exploit. Fix.</title>
-<meta name="description" content="ZeroQuarry uses AI agents to discover software vulnerabilities in source code, binaries, and live cloud assets — and automatically drafts patches to fix them." />
+<title>ZeroQuarry</title>
+<meta name="description" content="Mine your 0-days before someone else does. ZeroQuarry uses AI agents to find vulnerabilities in source code, binaries, and live cloud assets, and drafts patches to fix them." />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+</div>
 
 <header class="site-header">
   <div class="header-inner">
@@ -22,10 +28,10 @@
 <main>
   <section class="hero">
     <div class="container">
-      <h1>Find. Exploit. <span class="accent">Fix.</span></h1>
+      <h1>Mine your 0-days <span class="accent">before someone else does.</span></h1>
       <p class="tagline">
-        ZeroQuarry is an AI-powered security platform that hunts vulnerabilities across your source code,
-        compiled binaries, and live cloud assets — then drafts the patches to close them.
+        ZeroQuarry is an AI security platform that hunts vulnerabilities across your source code,
+        compiled binaries, and live cloud assets, then drafts the patches to close them.
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="https://console.zeroquarry.com">Get Started</a>
@@ -38,14 +44,14 @@
     <div class="container">
       <h2>One platform. Every attack surface.</h2>
       <p class="lede">
-        Most security tools only look at one layer. ZeroQuarry's AI agents work across all three —
+        Most tools only look at one layer. ZeroQuarry's AI agents work across all three:
         the code you write, the binaries you ship, and the systems your customers actually use.
       </p>
       <div class="grid">
         <div class="card">
           <div class="icon">&lt;/&gt;</div>
           <h3>Source Code Scanning</h3>
-          <p>Connect your Git repos and let ZeroQuarry continuously analyze every commit for vulnerabilities — from injection flaws to subtle logic bugs.</p>
+          <p>Connect your Git repos and let ZeroQuarry continuously analyze every commit for vulnerabilities, from injection flaws to subtle logic bugs.</p>
         </div>
         <div class="card">
           <div class="icon">0x</div>
@@ -53,9 +59,9 @@
           <p>Upload compiled artifacts and ZeroQuarry will reverse engineer them to surface memory safety issues, weak crypto, and embedded secrets.</p>
         </div>
         <div class="card">
-          <div class="icon">☁</div>
+          <div class="icon">&#9729;</div>
           <h3>Live Asset Testing</h3>
-          <p>Point ZeroQuarry at your running APIs, web apps, and cloud services. It probes them like a pentester would — safely and continuously.</p>
+          <p>Point ZeroQuarry at your running APIs, web apps, and cloud services. It probes them like a pentester would, safely and continuously.</p>
         </div>
       </div>
     </div>
@@ -66,8 +72,8 @@
       <h2>How it works</h2>
       <p class="lede">
         ZeroQuarry runs an adversarial multi-agent loop. A red team agent hunts for vulnerabilities.
-        A vendor team agent argues against them. Only findings that survive the debate reach your inbox —
-        dramatically reducing hallucinations and false positives.
+        A vendor team agent argues against them. Only findings that survive the debate reach your inbox,
+        which dramatically reduces hallucinations and false positives.
       </p>
       <div class="agents-row">
         <div class="card agent-card">
@@ -75,7 +81,7 @@
           <p>Thinks like an attacker. Probes for vulnerabilities, chains primitives into exploits, and builds proofs of concept.</p>
         </div>
         <div class="vs">VS</div>
-        <div class="card agent-card defender">
+        <div class="card agent-card">
           <h3>Vendor Team Agent</h3>
           <p>Thinks like a defender. Pokes holes in the red team's claims, flags false positives, and forces real evidence.</p>
         </div>
@@ -95,8 +101,8 @@
         </div>
         <div class="step">
           <div>
-            <h3>Get reports + patches</h3>
-            <p>Receive pentester-grade reports with CVSS scores and PoCs — plus drafted patches ready to review and merge.</p>
+            <h3>Get reports and patches</h3>
+            <p>Receive pentester-grade reports with CVSS scores and PoCs, plus drafted patches ready to review and merge.</p>
           </div>
         </div>
       </div>
@@ -110,15 +116,15 @@
       <div class="grid">
         <div class="card">
           <h3>Automatic Patch Drafting</h3>
-          <p>Every finding comes with a proposed fix you can review, tweak, and merge — turning hours of remediation into minutes.</p>
+          <p>Every finding comes with a proposed fix you can review, tweak, and merge, turning hours of remediation into minutes.</p>
         </div>
         <div class="card">
           <h3>Pentester-Grade Reports</h3>
-          <p>CVSS v4 scoring, reproduction steps, working proofs of concept, and remediation guidance — formatted for your stakeholders.</p>
+          <p>CVSS v4 scoring, reproduction steps, working proofs of concept, and remediation guidance, all formatted for your stakeholders.</p>
         </div>
         <div class="card">
           <h3>Bring Your Own LLM</h3>
-          <p>Use your own Anthropic, OpenAI, or Google API key to keep data in your account — or let ZeroQuarry handle inference for you.</p>
+          <p>Use your own Anthropic, OpenAI, or Google API key to keep data in your account, or let ZeroQuarry handle inference for you.</p>
         </div>
         <div class="card">
           <h3>Hallucination Guardrails</h3>
@@ -126,7 +132,7 @@
         </div>
         <div class="card">
           <h3>Continuous Coverage</h3>
-          <p>Scan on every push, every build, every deploy. New vulnerabilities don't wait for your quarterly pentest — and neither should you.</p>
+          <p>Scan on every push, every build, every deploy. New vulnerabilities don't wait for your quarterly pentest, and neither should you.</p>
         </div>
         <div class="card">
           <h3>Export Anywhere</h3>

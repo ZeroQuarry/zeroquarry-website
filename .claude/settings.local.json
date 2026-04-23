@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"/c/Users/eskib/Downloads/favicon.png\" /c/Users/eskib/git-repos/zeroquarry-website/assets/favicon.png)",
+      "Bash(cp \"/c/Users/eskib/Downloads/wordmark.png\" /c/Users/eskib/git-repos/zeroquarry-website/assets/wordmark.png)"
+    ]
+  }
+}

@@ -37,7 +37,50 @@ html, body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
+
+.bg-flair {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-grid {
+  position: absolute;
+  inset: -2px;
+  background-image:
+    linear-gradient(var(--color-divider) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-divider) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.12;
+  mask-image: radial-gradient(ellipse at 50% 20%, rgba(0,0,0,0.9), transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 20%, rgba(0,0,0,0.9), transparent 70%);
+}
+.bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+}
+.bg-glow-1 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, var(--color-accent), transparent 70%);
+  top: -160px;
+  left: -120px;
+}
+.bg-glow-2 {
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(circle, #1A3157, transparent 70%);
+  top: 280px;
+  right: -200px;
+  opacity: 0.5;
+}
+
+.site-header, main, .site-footer { position: relative; z-index: 1; }
 
 ::selection { background: var(--color-selection-bg); color: var(--color-selection-text); }
 
@@ -143,7 +186,7 @@ a:hover { color: var(--color-link-hover); }
   padding: 24px;
   transition: border-color 0.15s, background 0.15s;
 }
-.card:hover { border-color: var(--color-accent); background: var(--color-surface-elevated); }
+.card:hover { border-color: var(--color-accent); background: var(--color-surface-elevated); box-shadow: 0 0 0 1px var(--color-accent-soft); }
 .card h3 {
   margin: 0 0 8px;
   font-size: 18px;
@@ -184,8 +227,7 @@ a:hover { color: var(--color-link-hover); }
   .agents-row { grid-template-columns: 1fr; }
 }
 
-.agent-card { border-left: 3px solid var(--color-accent); }
-.agent-card.defender { border-left-color: var(--color-divider); }
+.agent-card { border-top: 3px solid var(--color-accent); }
 
 .steps { counter-reset: step; display: grid; gap: 16px; }
 .step {
