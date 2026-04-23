@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZeroQuarry — Find. Exploit. Fix.</title>
+<meta name="description" content="ZeroQuarry uses AI agents to discover software vulnerabilities in source code, binaries, and live cloud assets — and automatically drafts patches to fix them." />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="ZeroQuarry home">
+      <img src="assets/wordmark.png" alt="ZeroQuarry" />
+    </a>
+    <a class="btn btn-primary" href="https://console.zeroquarry.com">Cloud Console</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>Find. Exploit. <span class="accent">Fix.</span></h1>
+      <p class="tagline">
+        ZeroQuarry is an AI-powered security platform that hunts vulnerabilities across your source code,
+        compiled binaries, and live cloud assets — then drafts the patches to close them.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://console.zeroquarry.com">Get Started</a>
+        <a class="btn btn-secondary" href="#how-it-works">See How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="what">
+    <div class="container">
+      <h2>One platform. Every attack surface.</h2>
+      <p class="lede">
+        Most security tools only look at one layer. ZeroQuarry's AI agents work across all three —
+        the code you write, the binaries you ship, and the systems your customers actually use.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">&lt;/&gt;</div>
+          <h3>Source Code Scanning</h3>
+          <p>Connect your Git repos and let ZeroQuarry continuously analyze every commit for vulnerabilities — from injection flaws to subtle logic bugs.</p>
+        </div>
+        <div class="card">
+          <div class="icon">0x</div>
+          <h3>Binary Reverse Engineering</h3>
+          <p>Upload compiled artifacts and ZeroQuarry will reverse engineer them to surface memory safety issues, weak crypto, and embedded secrets.</p>
+        </div>
+        <div class="card">
+          <div class="icon">☁</div>
+          <h3>Live Asset Testing</h3>
+          <p>Point ZeroQuarry at your running APIs, web apps, and cloud services. It probes them like a pentester would — safely and continuously.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2>How it works</h2>
+      <p class="lede">
+        ZeroQuarry runs an adversarial multi-agent loop. A red team agent hunts for vulnerabilities.
+        A vendor team agent argues against them. Only findings that survive the debate reach your inbox —
+        dramatically reducing hallucinations and false positives.
+      </p>
+      <div class="agents-row">
+        <div class="card agent-card">
+          <h3>Red Team Agent</h3>
+          <p>Thinks like an attacker. Probes for vulnerabilities, chains primitives into exploits, and builds proofs of concept.</p>
+        </div>
+        <div class="vs">VS</div>
+        <div class="card agent-card defender">
+          <h3>Vendor Team Agent</h3>
+          <p>Thinks like a defender. Pokes holes in the red team's claims, flags false positives, and forces real evidence.</p>
+        </div>
+      </div>
+      <div class="steps" style="margin-top: 40px;">
+        <div class="step">
+          <div>
+            <h3>Connect your assets</h3>
+            <p>Link a Git repository, upload a binary, or register a URL for live scanning. ZeroQuarry handles the rest.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div>
+            <h3>Let the agents debate</h3>
+            <p>Red team and vendor team agents work through findings together. You can watch the reasoning or let it run.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div>
+            <h3>Get reports + patches</h3>
+            <p>Receive pentester-grade reports with CVSS scores and PoCs — plus drafted patches ready to review and merge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <h2>Built for security teams that ship</h2>
+      <p class="lede">Designed to plug into the way you already work.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Automatic Patch Drafting</h3>
+          <p>Every finding comes with a proposed fix you can review, tweak, and merge — turning hours of remediation into minutes.</p>
+        </div>
+        <div class="card">
+          <h3>Pentester-Grade Reports</h3>
+          <p>CVSS v4 scoring, reproduction steps, working proofs of concept, and remediation guidance — formatted for your stakeholders.</p>
+        </div>
+        <div class="card">
+          <h3>Bring Your Own LLM</h3>
+          <p>Use your own Anthropic, OpenAI, or Google API key to keep data in your account — or let ZeroQuarry handle inference for you.</p>
+        </div>
+        <div class="card">
+          <h3>Hallucination Guardrails</h3>
+          <p>The adversarial agent loop filters out spurious findings before you ever see them, so your queue stays signal-heavy.</p>
+        </div>
+        <div class="card">
+          <h3>Continuous Coverage</h3>
+          <p>Scan on every push, every build, every deploy. New vulnerabilities don't wait for your quarterly pentest — and neither should you.</p>
+        </div>
+        <div class="card">
+          <h3>Export Anywhere</h3>
+          <p>Send findings to Jira, GitHub Issues, Slack, or your SIEM. ZeroQuarry meets your workflow, not the other way around.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-banner">
+      <h2>Start hunting vulnerabilities today</h2>
+      <p>Spin up a ZeroQuarry workspace in under a minute and point it at your first repo.</p>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+    <nav class="footer-links" aria-label="Legal">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
