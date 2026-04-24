@@ -29,6 +29,8 @@
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -143,6 +145,13 @@ a:hover { color: var(--color-link-hover); }
 .hero {
   padding: 96px 0 72px;
   text-align: center;
+}
+.hero-wordmark {
+  display: block;
+  max-width: 560px;
+  width: 80%;
+  height: auto;
+  margin: 0 auto 32px;
 }
 .hero h1 {
   font-size: clamp(36px, 5vw, 56px);
