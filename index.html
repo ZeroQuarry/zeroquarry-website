@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ZeroQuarry</title>
+<title>ZeroQuarry · Mine your 0-days before someone else does.</title>
 <meta name="description" content="Mine your 0-days before someone else does. ZeroQuarry uses AI agents to find vulnerabilities in source code, binaries, and live cloud assets, and drafts patches to fix them." />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRT44MWJT1"></script>
 <script>
@@ -20,153 +23,389 @@
 
 <div class="bg-flair" aria-hidden="true">
   <div class="bg-grid"></div>
-  <div class="bg-glow bg-glow-1"></div>
-  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow-red"></div>
 </div>
 
-<header class="site-header">
-  <div class="header-inner">
-    <div></div>
-    <a class="btn btn-primary" href="https://console.zeroquarry.com">Cloud Console</a>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#surfaces">Platform</a>
+      <a href="#debate">How it works</a>
+      <a href="#report">Reports</a>
+      <a href="#features">Features</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com">Get started <span class="arr">→</span></a>
+    </div>
   </div>
 </header>
 
 <main>
+
+  <!-- ============================ HERO ============================ -->
   <section class="hero">
-    <div class="container">
-      <img class="hero-wordmark" src="assets/wordmark.png" alt="ZeroQuarry" />
-      <h1>Mine your 0-days <span class="accent">before someone else does.</span></h1>
-      <p class="tagline">
-        ZeroQuarry is an AI security platform that hunts vulnerabilities across your source code,
-        compiled binaries, and live cloud assets, then drafts the patches to close them.
-      </p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://console.zeroquarry.com">Get Started</a>
-        <a class="btn btn-secondary" href="#how-it-works">See How It Works</a>
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">
+          <span class="tag">● LIVE</span>
+          <span>Adversarial AI for offensive security</span>
+        </span>
+        <h1 class="headline">
+          <span class="block">Mine your <em>0-days</em></span>
+          <span class="block thin">before someone else does.</span>
+        </h1>
+        <p class="lede">
+          ZeroQuarry runs an adversarial multi-agent loop across your source, binaries, and live cloud assets. It finds real vulnerabilities, drafts the patches, and filters the noise.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">→</span></a>
+          <a class="btn btn-ghost" href="#debate">See the agents debate</a>
+        </div>
+        <div class="trust-row">
+          <div class="stat">
+            <div class="num"><em>3</em> layers</div>
+            <div class="lbl">Source · Binary · Live</div>
+          </div>
+          <div class="stat">
+            <div class="num">0 noise</div>
+            <div class="lbl">FILTERED BY DEBATE</div>
+          </div>
+          <div class="stat">
+            <div class="num">CVSS <em>3.1</em></div>
+            <div class="lbl">Pentester-grade reports</div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section" id="what">
-    <div class="container">
-      <h2>One platform. Every attack surface.</h2>
-      <p class="lede">
-        Most tools only look at one layer. ZeroQuarry's AI agents work across all three:
-        the code you write, the binaries you ship, and the systems your customers actually use.
-      </p>
-      <div class="grid">
-        <div class="card">
-          <div class="icon">&lt;/&gt;</div>
-          <h3>Source Code Scanning</h3>
-          <p>Connect your Git repos and let ZeroQuarry continuously analyze every commit for vulnerabilities, from injection flaws to subtle logic bugs.</p>
+      <!-- LIVE AGENT CONSOLE -->
+      <div class="console" id="console">
+        <div class="console-head">
+          <span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="console-title"><span class="tbl">session://</span>red-vs-vendor · target=<span class="amber">auth-svc</span></span>
+          <span class="console-meta"><span class="live">LIVE</span><span>turn 07</span></span>
         </div>
-        <div class="card">
-          <div class="icon">0x</div>
-          <h3>Binary Reverse Engineering</h3>
-          <p>Upload compiled artifacts and ZeroQuarry will reverse engineer them to surface memory safety issues, weak crypto, and embedded secrets.</p>
+        <div class="console-body" id="body">
+          <!-- lines injected by JS -->
         </div>
-        <div class="card">
-          <div class="icon">&#9729;</div>
-          <h3>Live Asset Testing</h3>
-          <p>Point ZeroQuarry at your running APIs, web apps, and cloud services. It probes them like a pentester would, safely and continuously.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="how-it-works">
-    <div class="container">
-      <h2>How it works</h2>
-      <p class="lede">
-        ZeroQuarry runs an adversarial multi-agent loop. A red team agent hunts for vulnerabilities.
-        A vendor team agent argues against them. Only findings that survive the debate reach your inbox,
-        which dramatically reduces hallucinations and false positives.
-      </p>
-      <div class="agents-row">
-        <div class="card agent-card">
-          <h3>Red Team Agent</h3>
-          <p>Thinks like an attacker. Probes for vulnerabilities, chains primitives into exploits, and builds proofs of concept.</p>
-        </div>
-        <div class="vs">VS</div>
-        <div class="card agent-card">
-          <h3>Vendor Team Agent</h3>
-          <p>Thinks like a defender. Pokes holes in the red team's claims, flags false positives, and forces real evidence.</p>
-        </div>
-      </div>
-      <div class="steps" style="margin-top: 40px;">
-        <div class="step">
-          <div>
-            <h3>Connect your assets</h3>
-            <p>Link a Git repository, upload a binary, or register a URL for live scanning. ZeroQuarry handles the rest.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div>
-            <h3>Let the agents debate</h3>
-            <p>Red team and vendor team agents work through findings together. You can watch the reasoning or let it run.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div>
-            <h3>Get reports and patches</h3>
-            <p>Receive pentester-grade reports with CVSS scores and PoCs, plus drafted patches ready to review and merge.</p>
-          </div>
+        <div class="console-foot">
+          <span class="chip">RED TEAM</span>
+          <span class="chip blue">VENDOR TEAM</span>
+          <span class="sp"></span>
+          <span id="verdict">awaiting verdict…</span>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ============================ TRIAD ============================ -->
+  <section class="section" id="surfaces">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">01 · Attack Surfaces</div>
+          <h2>One platform.<br>Every <em>attack surface.</em></h2>
+        </div>
+        <div class="aside">
+          Most tools look at only one layer. ZeroQuarry's agents work across the code you write, the binaries you ship, and the systems your customers actually use.
+        </div>
+      </div>
+
+      <div class="triad">
+        <div class="cell">
+          <div class="num-lbl"><span class="n">01</span> <span>Source</span></div>
+          <div class="vis">
+            <div class="flow-vis">
+              <div class="node node-tl">req.body.email</div>
+              <div class="node node-tr">Object.assign</div>
+              <div class="node t node-bl">user.role</div>
+              <div class="node s node-br">db.update()</div>
+              <svg width="100%" height="100%" viewBox="0 0 320 120" preserveAspectRatio="none">
+                <path d="M 70 25 C 130 60, 190 60, 250 25" stroke="rgba(106,168,255,0.4)" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+                <path d="M 70 95 C 130 60, 190 60, 250 95" stroke="rgba(244,30,34,0.5)" stroke-width="1" fill="none"/>
+              </svg>
+            </div>
+          </div>
+          <h3>Source code scanning</h3>
+          <p>Connect your Git repos; agents continuously analyze every commit, tracing data flows from user input to dangerous sinks.</p>
+          <ul class="bullets">
+            <li>taint & flow analysis</li>
+            <li>logic bugs, authZ drift</li>
+            <li>PR-level signal</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="num-lbl"><span class="n">02</span> <span>Binary</span></div>
+          <div class="vis">
+            <div class="hex-vis">
+              <div><span class="h">0x00400820</span> &nbsp; 48 89 e5 &nbsp; <mark>48 8b 7d f8</mark> &nbsp; e8 7c ff</div>
+              <div><span class="h">0x00400830</span> &nbsp; ff ff 89 &nbsp; c6 48 <mark>8d</mark> 3d &nbsp; 94 01</div>
+              <div><span class="h">0x00400840</span> &nbsp; 00 00 b8 &nbsp; 00 00 00 00 &nbsp; <mark>e8 6b</mark></div>
+              <div><span class="h">0x00400850</span> &nbsp; ff ff ff &nbsp; 90 <mark>c9 c3</mark> 55 &nbsp; 48 89</div>
+              <div><span class="h">0x00400860</span> &nbsp; e5 48 83 &nbsp; ec 20 48 8b &nbsp; 7d e8</div>
+            </div>
+          </div>
+          <h3>Binary reverse engineering</h3>
+          <p>Upload compiled artifacts. Agents lift to IR, chain primitives, and surface memory safety, weak crypto, and embedded secrets.</p>
+          <ul class="bullets">
+            <li>x86_64 · ARM64 · WASM</li>
+            <li>ROP / UAF detection</li>
+            <li>SBOM diffing</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="num-lbl"><span class="n">03</span> <span>Live</span></div>
+          <div class="vis">
+            <div class="probe-vis">
+              <div class="row"><span class="m">[14:02:18]</span> <span class="b">GET</span> <span class="w">/api/users/42</span> <span class="g">200</span></div>
+              <div class="row"><span class="m">[14:02:19]</span> <span class="b">GET</span> <span class="w">/api/users/43</span> <span class="r">401</span></div>
+              <div class="row"><span class="m">[14:02:19]</span> <span class="b">GET</span> <span class="w">/api/users/42?x=1</span> <span class="r">200</span> <span class="r">IDOR?</span></div>
+              <div class="row"><span class="m">[14:02:20]</span> <span class="b">POST</span> <span class="w">/api/auth</span> <span class="g">200</span> <span class="bar"></span></div>
+              <div class="row"><span class="m">[14:02:20]</span> <span class="r">⚑ rate-limit bypass via X-Forwarded-For</span></div>
+            </div>
+          </div>
+          <h3>Live asset testing</h3>
+          <p>Point ZeroQuarry at running APIs, web apps, and cloud services. It probes like a pentester would. Safely, continuously, only with your consent.</p>
+          <ul class="bullets">
+            <li>BOLA · SSRF · auth bypass</li>
+            <li>Rate-limit & tenancy checks</li>
+            <li>AWS · GCP · Azure scans</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ DEBATE ============================ -->
+  <section class="section" id="debate">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">02 · The Method</div>
+          <h2>Two agents.<br>One <em>debate.</em> No hallucinations.</h2>
+        </div>
+        <div class="aside">
+          A finding only reaches your inbox after a red-team agent proves it <em>and</em> a vendor-team agent fails to knock it down. Spurious claims die in the ring.
+        </div>
+      </div>
+
+      <div class="debate-stage">
+        <div class="team red">
+          <div class="team-eye">● Red Team Agent <span class="id">· agent_rt_0x91</span></div>
+          <h3>Thinks like an <em>attacker.</em></h3>
+          <p>Probes for vulnerabilities, chains primitives into working exploits, and builds reproducible proofs of concept.</p>
+          <div class="prompt">
+            <span class="label">system prompt · excerpt</span>
+            You are an offensive security researcher. Your goal is to prove exploitability, not merely to flag suspicious code. Every finding must include a minimal PoC. Assume the target is hardened; push past easy signatures.
+          </div>
+        </div>
+
+        <div class="vs-badge" aria-hidden="true">
+          <div class="ring">vs</div>
+          <div class="lbl">Adversarial Loop</div>
+        </div>
+
+        <div class="team blue">
+          <div class="team-eye">● Vendor Team Agent <span class="id">· agent_vt_0xA4</span></div>
+          <h3>Thinks like a <em>defender.</em></h3>
+          <p>Pokes holes in red-team claims, flags false positives, and forces concrete evidence before anything reaches a human.</p>
+          <div class="prompt">
+            <span class="label">system prompt · excerpt</span>
+            You are the vendor's senior engineer. Your job is to reject unsubstantiated claims. Demand working PoCs, reject speculative severity, and propose the narrowest fix that closes the actual class of bug.
+          </div>
+        </div>
+      </div>
+
+      <div class="process">
+        <div class="p">
+          <div class="step-n">STEP 01</div>
+          <h4>Connect your assets</h4>
+          <p>Link a Git repo, upload a binary, or register a URL. Most scans are done before you have time to return from the coffee machine.</p>
+        </div>
+        <div class="p">
+          <div class="step-n">STEP 02</div>
+          <h4>Agents deploy</h4>
+          <p>Red team launches reconnaissance. Vendor team spins up a parallel defensive model of your system.</p>
+        </div>
+        <div class="p">
+          <div class="step-n">STEP 03</div>
+          <h4>The debate runs</h4>
+          <p>Claims are proven, countered, or discarded. Watch the reasoning live, or check back later.</p>
+        </div>
+        <div class="p">
+          <div class="step-n">STEP 04</div>
+          <h4>Reports & patches</h4>
+          <p>Findings ship with a CVSS-style score, a working PoC, and a drafted patch. Review, tweak, merge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ REPORT ============================ -->
+  <section class="section" id="report">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">03 · The Output</div>
+          <h2>Reports you'd actually <em>ship to prod.</em></h2>
+        </div>
+        <div class="aside">
+          Not another dashboard full of "potential issues." Every ZeroQuarry finding comes with scoring, reproduction, and a candidate fix.
+        </div>
+      </div>
+
+      <div class="report-wrap">
+        <div class="report">
+          <div class="report-head">
+            <span class="id">ZQ-2042</span>
+            <span>auth-service/middleware/jwt.ts</span>
+            <span class="sev">Critical</span>
+          </div>
+          <div class="report-body">
+            <h4>Algorithm confusion in JWT verification enables <em>account takeover.</em></h4>
+            <p class="sum">
+              The service accepts tokens signed with HS256 <em>and</em> RS256 using the same verifier. An attacker can forge HS256 tokens by signing with the public key as the HMAC secret, bypassing signature validation entirely.
+            </p>
+            <div class="cvss">
+              <div><div class="k">Severity</div><div class="v"><em>Critical</em></div></div>
+              <div><div class="k">Attack</div><div class="v small">NETWORK</div></div>
+              <div><div class="k">Privileges</div><div class="v small">NONE</div></div>
+              <div><div class="k">Impact</div><div class="v small">C:H / I:H / A:L</div></div>
+            </div>
+            <div class="diff">
+              <div class="path">── patches/ZQ-2042.diff ──</div>
+              <div class="ctx">export function verify(token: string) {</div>
+              <div class="minus">&nbsp; return jwt.verify(token, key);</div>
+              <div class="plus">&nbsp; return jwt.verify(token, key, {</div>
+              <div class="plus">&nbsp; &nbsp; algorithms: ["RS256"],</div>
+              <div class="plus">&nbsp; });</div>
+              <div class="ctx">}</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <ul class="report-aside">
+            <li class="accent">
+              <div class="eye">PROVEN, NOT GUESSED</div>
+              <div class="hd">Every finding ships with a reproducible PoC and the exact request stream that triggered it.</div>
+            </li>
+            <li>
+              <div class="eye">PATCHES, NOT TICKETS</div>
+              <div class="body">The vendor-team agent drafts the narrowest fix. You review the diff, tweak, and merge.</div>
+            </li>
+            <li>
+              <div class="eye">EXPORT ANYWHERE</div>
+              <div class="body">Jira, GitHub Issues, Slack, your SIEM, or raw JSON / SARIF. ZeroQuarry meets your workflow, not the other way around.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FEATURES ============================ -->
   <section class="section" id="features">
     <div class="container">
-      <h2>Built for security teams that ship</h2>
-      <p class="lede">Designed to plug into the way you already work.</p>
-      <div class="grid">
-        <div class="card">
-          <h3>Automatic Patch Drafting</h3>
-          <p>Every finding comes with a proposed fix you can review, tweak, and merge, turning hours of remediation into minutes.</p>
+      <div class="section-head">
+        <div>
+          <div class="tag">04 · Built for teams that ship</div>
+          <h2>Plugs into the way you <em>already work.</em></h2>
         </div>
-        <div class="card">
-          <h3>Pentester-Grade Reports</h3>
-          <p>CVSS v4 scoring, reproduction steps, working proofs of concept, and remediation guidance, all formatted for your stakeholders.</p>
+        <div class="aside">
+          Opinionated where it matters, boring where it shouldn't surprise you. Ship ZeroQuarry alongside your existing stack.
         </div>
-        <div class="card">
-          <h3>Bring Your Own LLM</h3>
-          <p>Use your own Anthropic, OpenAI, or Google API key to keep data in your account, or let ZeroQuarry handle inference for you.</p>
+      </div>
+
+      <div class="features">
+        <div class="f">
+          <div class="glyph">◉</div>
+          <div class="fn">F.01</div>
+          <h3>Continuous coverage</h3>
+          <p>Scan on every push, every build, every deploy. New CVEs don't wait for your quarterly pentest.</p>
         </div>
-        <div class="card">
-          <h3>Hallucination Guardrails</h3>
-          <p>The adversarial agent loop filters out spurious findings before you ever see them, so your queue stays signal-heavy.</p>
+        <div class="f">
+          <div class="glyph">⌘</div>
+          <div class="fn">F.02</div>
+          <h3>Bring your own LLM</h3>
+          <p>Use your Anthropic, OpenAI, or Google key to keep data in your account. Or let ZeroQuarry host inference.</p>
         </div>
-        <div class="card">
-          <h3>Continuous Coverage</h3>
-          <p>Scan on every push, every build, every deploy. New vulnerabilities don't wait for your quarterly pentest, and neither should you.</p>
+        <div class="f">
+          <div class="glyph">∆</div>
+          <div class="fn">F.03</div>
+          <h3>Hallucination guardrails</h3>
+          <p>The adversarial loop filters spurious findings before they reach a human. Your queue stays signal-heavy.</p>
         </div>
-        <div class="card">
-          <h3>Export Anywhere</h3>
-          <p>Send findings to Jira, GitHub Issues, Slack, or your SIEM. ZeroQuarry meets your workflow, not the other way around.</p>
+        <div class="f">
+          <div class="glyph">⟐</div>
+          <div class="fn">F.04</div>
+          <h3>Patch drafting</h3>
+          <p>Every finding comes with a candidate fix formatted as a reviewable diff, ready to merge.</p>
+        </div>
+        <div class="f">
+          <div class="glyph">≡</div>
+          <div class="fn">F.05</div>
+          <h3>CVSS-style reports</h3>
+          <p>Pentester-grade write-ups with scoring, reproduction, and remediation formatted for your stakeholders.</p>
+        </div>
+        <div class="f">
+          <div class="glyph">↯</div>
+          <div class="fn">F.06</div>
+          <h3>Export anywhere</h3>
+          <p>Jira, GitHub Issues, Slack, SIEM, SARIF, JSON. Meet your team on the rails they already ride.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="container">
-    <div class="cta-banner">
-      <h2>Start hunting vulnerabilities today</h2>
-      <p>Spin up a ZeroQuarry workspace in under a minute and point it at your first repo.</p>
-      <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console</a>
+  <!-- ============================ CTA ============================ -->
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Start mining your <em>0-days.</em><br>Today.</h2>
+        <p>Spin up a ZeroQuarry workspace in under a minute and point it at your first repo, binary, or live endpoint.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">→</span></a>
+          <a class="btn btn-ghost" href="#debate">See the agents debate</a>
+        </div>
+        <div class="cta-note">No credit card required</div>
+      </div>
     </div>
   </section>
+
 </main>
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
-    <nav class="footer-links" aria-label="Legal">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-    </nav>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a href="#" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>Adversarial AI for offensive security. Mine your 0-days before someone else does.</p>
+      </div>
+      <div class="foot-col legal">
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <span>LAT 37.8409° S · LON 144.9464° E</span>
+        <span class="ok">● ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
   </div>
 </footer>
+
+<script src="index.js" defer></script>
 
 </body>
 </html>
