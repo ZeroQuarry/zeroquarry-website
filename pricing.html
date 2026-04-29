@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pricing · ZeroQuarry</title>
+<meta name="description" content="ZeroQuarry pricing for students, open source maintainers, solo security researchers, product teams, and enterprise security programs." />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#surfaces">Platform</a>
+      <a href="index.html#debate">How it works</a>
+      <a href="index.html#report">Reports</a>
+      <a href="index.html#features">Features</a>
+      <a href="pricing.html" aria-current="page">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com">Get started <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pricing-hero">
+    <div class="container pricing-hero-grid">
+      <div>
+        <span class="eyebrow">
+          <span class="tag">PRICING</span>
+          <span>Scale from public repos to private estates</span>
+        </span>
+        <h1 class="headline pricing-headline">
+          <span class="block">Start free.</span>
+          <span class="block thin">Scale when the</span>
+          <span class="block thin"><em>attack surface</em></span>
+          <span class="block thin">does.</span>
+        </h1>
+        <p class="lede">
+          ZeroQuarry plans are built around how security work actually expands: public source first, then private repos, binaries, live targets, team workflows, and controlled enterprise deployments.
+        </p>
+      </div>
+
+      <div class="pricing-terminal" aria-label="Pricing summary">
+        <div class="console-head">
+          <span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="console-title"><span class="tbl">plans://</span>zeroquarry</span>
+          <span class="console-meta"><span class="live">LIVE</span></span>
+        </div>
+        <div class="pricing-terminal-body">
+          <div><span class="muted">$</span> plan select free <span class="ok">--oss</span></div>
+          <div><span class="muted">ok</span> source scans + patch drafts + BYO model</div>
+          <div><span class="muted">$</span> plan upgrade pro <span class="ok">--researcher</span></div>
+          <div><span class="muted">ok</span> source + binary + remote + adversarial review</div>
+          <div><span class="muted">$</span> plan scale team <span class="ok">--seats 5+</span></div>
+          <div><span class="muted">ok</span> shared projects, private git, unlimited scans</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section" id="plans">
+    <div class="container">
+      <div class="pricing-grid">
+        <article class="price-card">
+          <div class="plan-kicker">Free</div>
+          <h2>Free OSS</h2>
+          <p class="plan-audience">For students and open source maintainers scanning public projects.</p>
+          <div class="price-row"><span class="price">$0</span><span class="cadence">/mo</span></div>
+          <a class="btn btn-ghost plan-btn" href="https://console.zeroquarry.com">Start free</a>
+          <ul class="plan-list">
+            <li><span></span>2 source-code scans per month</li>
+            <li><span></span>Public GitHub repositories</li>
+            <li><span></span>1 project and 3 account members</li>
+            <li><span></span>Patch generation</li>
+            <li><span></span>Bring your own LLM key</li>
+            <li><span></span>Batch API mode</li>
+          </ul>
+        </article>
+
+        <article class="price-card featured">
+          <div class="plan-ribbon">Most flexible</div>
+          <div class="plan-kicker">Pro</div>
+          <h2>Pro</h2>
+          <p class="plan-audience">For solo security researchers and consultants working across client targets.</p>
+          <div class="price-row"><span class="price">$100</span><span class="cadence">/mo</span></div>
+          <a class="btn btn-primary plan-btn" href="https://console.zeroquarry.com">Get Pro <span class="arr">-&gt;</span></a>
+          <ul class="plan-list">
+            <li><span></span>50 scans per month</li>
+            <li><span></span>Source, binary, and remote scans</li>
+            <li><span></span>4 concurrent scans</li>
+            <li><span></span>PoCs and disclosure drafts</li>
+            <li><span></span>HackerOne eligibility review</li>
+            <li><span></span>Adversarial review</li>
+            <li><span></span>SSH credentials for private git</li>
+          </ul>
+        </article>
+
+        <article class="price-card">
+          <div class="plan-kicker">Team</div>
+          <h2>Team</h2>
+          <p class="plan-audience">For product teams at enterprises shipping together across shared projects.</p>
+          <div class="price-row"><span class="price">$100</span><span class="cadence">/seat/mo</span></div>
+          <div class="price-note">5 seat minimum</div>
+          <a class="btn btn-ghost plan-btn" href="https://console.zeroquarry.com">Start a team</a>
+          <ul class="plan-list">
+            <li><span></span>Unlimited monthly scans</li>
+            <li><span></span>Source, binary, and remote scans</li>
+            <li><span></span>Unlimited projects</li>
+            <li><span></span>Up to 25 account members</li>
+            <li><span></span>Patch generation</li>
+            <li><span></span>Team invites and SSH git credentials</li>
+            <li><span></span>Batch API mode</li>
+          </ul>
+        </article>
+
+        <article class="price-card enterprise">
+          <div class="plan-kicker">Enterprise</div>
+          <h2>Enterprise</h2>
+          <p class="plan-audience">For security programs that need deployment control, network isolation, and procurement support.</p>
+          <div class="price-row"><span class="price contact">Contact us</span></div>
+          <a class="btn btn-ghost plan-btn" href="#enterprise-contact">Talk to sales</a>
+          <ul class="plan-list">
+            <li><span></span>Unlimited scans, projects, members, and storage</li>
+            <li><span></span>10 concurrent scans</li>
+            <li><span></span>Air-gapped deployments</li>
+            <li><span></span>Bring your own model</li>
+            <li><span></span>VPC peering</li>
+            <li><span></span>Custom branding and favicon</li>
+            <li><span></span>PoCs, disclosures, patches, and H1 review</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section compact">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">Included</div>
+          <h2>Every plan gets the <em>agent loop.</em></h2>
+        </div>
+        <div class="aside">
+          The paid plans open more surfaces and team controls. The core workflow stays the same from the first public repository.
+        </div>
+      </div>
+
+      <div class="included-grid">
+        <div class="included-item">
+          <div class="included-code">01</div>
+          <h3>Agent-written findings</h3>
+          <p>Scans produce findings with severity, evidence, source references, and remediation context.</p>
+        </div>
+        <div class="included-item">
+          <div class="included-code">02</div>
+          <h3>CVSS-style reports</h3>
+          <p>Reports are built for review, export, and handoff instead of another noisy dashboard queue.</p>
+        </div>
+        <div class="included-item">
+          <div class="included-code">03</div>
+          <h3>Finding chat</h3>
+          <p>Ask follow-up questions, challenge a finding, re-check evidence, or revise the report language.</p>
+        </div>
+        <div class="included-item">
+          <div class="included-code">04</div>
+          <h3>Project history</h3>
+          <p>Keep scan runs, findings, logs, and artifacts organized by project and account.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section compact" id="compare">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">Compare</div>
+          <h2>Plan limits at a <em>glance.</em></h2>
+        </div>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Free</th>
+              <th>Pro</th>
+              <th>Team</th>
+              <th>Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Monthly scans</td>
+              <td>2</td>
+              <td>50</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Concurrent scans</td>
+              <td>1</td>
+              <td>4</td>
+              <td>3</td>
+              <td>10</td>
+            </tr>
+            <tr>
+              <td>Projects</td>
+              <td>1</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Members</td>
+              <td>3</td>
+              <td>2</td>
+              <td>25</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <td>Source scans</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+            </tr>
+            <tr>
+              <td>Binary and remote scans</td>
+              <td class="no">Not included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+            </tr>
+            <tr>
+              <td>Private git over SSH</td>
+              <td class="no">Not included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+            </tr>
+            <tr>
+              <td>PoCs and disclosure tracking</td>
+              <td class="no">Not included</td>
+              <td class="yes">Included</td>
+              <td class="no">Not included</td>
+              <td class="yes">Included</td>
+            </tr>
+            <tr>
+              <td>Air-gapped or VPC deployment</td>
+              <td class="no">Not included</td>
+              <td class="no">Not included</td>
+              <td class="no">Not included</td>
+              <td class="yes">Included</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section compact" id="enterprise-contact">
+    <div class="container">
+      <div class="contact-panel">
+        <div>
+          <div class="tag">Enterprise</div>
+          <h2>Need ZeroQuarry inside your boundary?</h2>
+          <p>
+            Tell us what you need to protect, where ZeroQuarry needs to run, and which controls matter. We will follow up with deployment and procurement details.
+          </p>
+          <ul class="contact-points">
+            <li>Air-gapped and private network deployments</li>
+            <li>VPC peering and enterprise identity requirements</li>
+            <li>Bring-your-own-model and custom model routing</li>
+          </ul>
+        </div>
+
+        <form class="enterprise-form" name="enterprise-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="enterprise-contact">
+          <p class="hidden-field">
+            <label>Do not fill this out: <input name="bot-field"></label>
+          </p>
+
+          <label>
+            Work email
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+          <label>
+            Name
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label>
+            Company
+            <input type="text" name="company" autocomplete="organization" required>
+          </label>
+          <label>
+            Deployment needs
+            <select name="deployment">
+              <option value="cloud">Managed cloud</option>
+              <option value="vpc">VPC peering</option>
+              <option value="air-gapped">Air-gapped deployment</option>
+              <option value="byom">Bring your own model</option>
+            </select>
+          </label>
+          <label class="full">
+            What are you trying to scan?
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Submit request <span class="arr">-&gt;</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a href="index.html" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>Adversarial AI for offensive security. Mine your 0-days before someone else does.</p>
+      </div>
+      <div class="foot-col legal">
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Resources</h5>
+        <a href="pricing.html">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+        <a href="https://status.zeroquarry.com">Status Page</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <span>LAT 37.8409° S · LON 144.9464° E</span>
+        <span class="ok">● ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
