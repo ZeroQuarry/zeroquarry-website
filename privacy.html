@@ -28,42 +28,118 @@
 
 <main class="legal-page">
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: April 23, 2026</p>
+  <p class="updated">Last updated: May 8, 2026</p>
 
-  <p>This Privacy Policy describes how ZeroQuarry ("we", "us", or "our") collects, uses, and shares information when you use our website and services (the "Service").</p>
+  <p>This Privacy Policy explains how ZeroQuarry ("ZeroQuarry", "we", "us", or "our") collects, uses, discloses, stores, and protects information when you visit our website, use the ZeroQuarry cloud console, call our APIs, or otherwise interact with our products and services (the "Service").</p>
+  <p>ZeroQuarry is a security assessment platform. By design, the Service may process sensitive technical material such as source code, binaries, live application responses, vulnerability evidence, credentials used for authorized testing, generated proof-of-concept artifacts, and remediation drafts. Please only submit content that you are authorized to provide to us and to the configured model and integration providers.</p>
 
-  <h2>1. Information We Collect</h2>
-  <p>We collect information you provide directly, such as when you create an account, upload source code or binaries, register assets for scanning, or contact us. This may include your name, email address, payment information, and any data you submit to the Service.</p>
-  <p>We also collect information automatically, including IP address, browser type, device identifiers, and usage data.</p>
+  <h2>1. Scope and Roles</h2>
+  <p>This policy covers our handling of information as a website operator, product provider, account administrator, billing provider, and support contact. For personal information contained in source code, binaries, scan targets, reports, chats, logs, and other content you submit to the Service ("Customer Content"), we generally process that information on behalf of the customer account that submitted it. For account, billing, website, analytics, and marketing information, we generally determine why and how the information is processed.</p>
+  <p>If you use ZeroQuarry through your employer or another organization, that organization may control your account, workspace, scans, reports, users, integrations, retention choices, and access permissions. Please contact that organization first for questions about its handling of your information.</p>
 
-  <h2>2. How We Use Information</h2>
+  <h2>2. Information You Provide</h2>
+  <p>We collect information you provide directly, including:</p>
   <ul>
-    <li>To provide, maintain, and improve the Service.</li>
-    <li>To analyze assets you submit in order to identify potential vulnerabilities.</li>
-    <li>To communicate with you about the Service, including security alerts and updates.</li>
-    <li>To comply with legal obligations and enforce our Terms of Use.</li>
+    <li>Account information, such as name, email address, avatar, organization or account name, role, theme preference, and authentication provider.</li>
+    <li>Login and identity information from email magic links, Google OAuth, GitHub OAuth, invitations, sessions, and account administration actions.</li>
+    <li>Billing and plan information, such as account tier, payment status, Stripe customer identifiers, billing events, invoices, usage records, and related metadata.</li>
+    <li>Support, sales, and contact information, including information submitted through pricing or contact forms and messages sent to our support, privacy, or legal email addresses.</li>
+    <li>API key labels and metadata. We store API key hashes and display prefixes, not the plaintext API key after creation.</li>
+    <li>Integration settings, such as Slack webhook configuration, Jira and ServiceNow instance details, GitHub App settings, Git credentials, account LLM provider keys, and other connection details you choose to save.</li>
   </ul>
 
-  <h2>3. Your Code, Binaries, and Scan Targets</h2>
-  <p>Content you submit for scanning is processed to generate findings, reports, and draft patches. We do not use your submitted content to train third-party foundation models. If you provide your own LLM API key, inference occurs directly against that provider under your account.</p>
+  <h2>3. Customer Content and Security Scan Data</h2>
+  <p>Depending on the scan mode and features you use, we may process:</p>
+  <ul>
+    <li>Uploaded source files, archives, binaries, compiled artifacts, and related metadata.</li>
+    <li>Git repository URLs, cloned repository contents, commit identifiers, repository metadata, and saved private-repository credentials.</li>
+    <li>Remote scan targets, URLs, HTTP requests and responses, headers, cookies, form-login fields, basic-auth credentials, required bug-bounty headers, target metadata, and scan notes.</li>
+    <li>Extracted, decompiled, or transformed outputs produced during binary or source analysis.</li>
+    <li>Findings, non-issues, severity scores, CVSS vectors, vulnerability descriptions, evidence, proof-of-concept artifacts, disclosure drafts, patch drafts, deployment packages, and report exports.</li>
+    <li>Finding chats, report chats, scan logs, audit log events, model choices, token usage, cost usage, and worker status events.</li>
+    <li>Share-link data, including recipient email addresses, optional messages, shared finding identifiers, expiry dates, revocation status, token hashes, and password hashes.</li>
+    <li>Disclosure tracking information, such as vendor contacts, report URLs, acknowledgement dates, fix dates, bounty amounts, credit text, public advisory links, notes, and timeline events.</li>
+  </ul>
+  <p>Customer Content may incidentally include personal information, secrets, credentials, confidential business information, regulated data, or information about third parties. You are responsible for ensuring you have the necessary rights, permissions, notices, and authorizations before submitting it to the Service.</p>
 
-  <h2>4. Sharing</h2>
-  <p>We share information with service providers who help us operate the Service (such as cloud infrastructure and payment processors), with LLM providers when you opt to use ZeroQuarry-managed inference, and when required by law.</p>
+  <h2>4. Information Collected Automatically</h2>
+  <p>We collect technical and usage information automatically when you use the website, console, and APIs, including IP address, user agent, browser and device information, referring pages, pages viewed, timestamps, session activity, API request metadata, error details, scan lifecycle events, and feature usage.</p>
+  <p>The cloud console uses cookies and similar technologies for authentication, session management, CSRF protection, theme preferences, product analytics, and security. The marketing website uses Google Analytics. The console may use PostHog product analytics when enabled. Analytics tools may set their own cookies or device identifiers and receive pageview, event, device, and usage information.</p>
 
-  <h2>5. Security</h2>
-  <p>We implement administrative, technical, and physical safeguards designed to protect information. No system is perfectly secure, but we continuously work to reduce risk.</p>
+  <h2>5. How We Use Information</h2>
+  <p>We use information to:</p>
+  <ul>
+    <li>Provide, operate, secure, monitor, debug, and improve the Service.</li>
+    <li>Create and administer accounts, sessions, users, invitations, roles, projects, tiers, billing, and API access.</li>
+    <li>Run authorized security scans and generate findings, reports, PoCs, disclosure drafts, patch proposals, remediation artifacts, and related outputs.</li>
+    <li>Route Customer Content and prompts to the model provider selected for the relevant scan stage or account setting.</li>
+    <li>Clone repositories, run remote probes, process uploads, store scan artifacts, and maintain auditability of scan activity.</li>
+    <li>Send transactional emails, magic links, scan-completion notifications, share-link emails, service notices, support replies, and security alerts.</li>
+    <li>Operate integrations you configure, such as GitHub pull requests, Slack notifications, Jira tickets, ServiceNow records, and CRM or analytics workflows.</li>
+    <li>Calculate usage, enforce quotas, invoice accounts, prevent abuse, investigate security incidents, and enforce our Terms of Use.</li>
+    <li>Understand product adoption, reliability, conversion, and usage patterns.</li>
+    <li>Comply with legal obligations and respond to lawful requests.</li>
+  </ul>
 
-  <h2>6. Data Retention</h2>
-  <p>We retain information for as long as necessary to provide the Service and for legitimate business or legal purposes. You may request deletion at any time.</p>
+  <h2>6. AI and LLM Providers</h2>
+  <p>ZeroQuarry uses large language models and related tooling to analyze Customer Content, reason about vulnerabilities, generate summaries, draft artifacts, review findings, and produce remediation suggestions. Customer Content, prompts, tool results, logs, and generated outputs may be sent to the configured model provider as needed to provide the Service.</p>
+  <p>If you use ZeroQuarry-managed inference, we send relevant content to the model provider configured by ZeroQuarry for that scan or stage. If you bring your own LLM API key, relevant content is sent to that provider using your configured key and may be governed by your account, settings, and agreement with that provider. We do not use Customer Content to train third-party foundation models.</p>
+  <p>AI-generated output may be inaccurate or incomplete. You are responsible for reviewing, validating, and testing findings, PoCs, disclosure drafts, and patch proposals before relying on or sharing them.</p>
 
-  <h2>7. Your Rights</h2>
-  <p>Depending on your jurisdiction, you may have rights to access, correct, delete, or port your personal data. Contact us at privacy@zeroquarry.com to exercise these rights.</p>
+  <h2>7. Credentials and Secrets</h2>
+  <p>The Service may process credentials or secrets you provide for private repository access, remote authenticated probing, Slack webhooks, Jira, ServiceNow, GitHub App operation, LLM providers, and other integrations. Saved integration credentials are stored in encrypted form or hashed form where appropriate. Session tokens, API keys, magic-link tokens, and share tokens are designed so plaintext secrets are not stored after issuance or are stored only as needed to provide the feature.</p>
+  <p>Remote scan authentication values are attached to probes as configured and may be visible to the LLM agent when required for analysis or authenticated testing. Use least-privilege credentials, scoped test accounts, staging environments where possible, and short-lived tokens when appropriate. Do not submit secrets or production personal information that are not needed for the scan.</p>
 
-  <h2>8. Changes</h2>
-  <p>We may update this Privacy Policy from time to time. Material changes will be communicated through the Service or by email.</p>
+  <h2>8. Sharing and Disclosures</h2>
+  <p>We disclose information in the following circumstances:</p>
+  <ul>
+    <li>Service providers. We use vendors that help us host, store, secure, analyze, email, bill, support, and operate the Service.</li>
+    <li>Model providers. We send relevant Customer Content and prompts to configured LLM providers as described above.</li>
+    <li>Payment processing. We use Stripe for payment, billing, customer portal, and invoice-related workflows.</li>
+    <li>Email delivery. We use email providers such as Resend to send transactional messages.</li>
+    <li>Analytics and CRM. We may use Google Analytics, PostHog, and HubSpot to understand website and product usage, manage customer relationships, and improve the Service.</li>
+    <li>Authentication providers. If you sign in with Google or GitHub, those providers process authentication information under their own policies.</li>
+    <li>Configured integrations. When you connect or invoke integrations, we may send relevant information to GitHub, Slack, Jira, ServiceNow, Git hosting providers, or other services you configure.</li>
+    <li>Share recipients. If you create a share link, the recipient can access the findings and context included in that share until it expires or is revoked.</li>
+    <li>Account users and administrators. Users with access to the same account or project may be able to view Customer Content, reports, findings, integrations, billing, and audit records according to their role.</li>
+    <li>Legal, safety, and business transfers. We may disclose information when required by law, to protect rights and safety, to investigate abuse or security incidents, or in connection with a merger, acquisition, financing, reorganization, or sale of assets.</li>
+  </ul>
 
-  <h2>9. Contact</h2>
-  <p>Questions? Reach us at privacy@zeroquarry.com.</p>
+  <h2>9. No Sale of Customer Content</h2>
+  <p>We do not sell Customer Content. We do not use Customer Content for cross-context behavioral advertising. We do not sell personal information in the ordinary sense of exchanging it for money. Some privacy laws define "sale" or "sharing" broadly enough to include certain analytics or advertising technologies; if you wish to opt out of such use, contact us at privacy@zeroquarry.com.</p>
+
+  <h2>10. Cookies and Analytics Choices</h2>
+  <p>You can control cookies through your browser settings. Blocking necessary cookies may prevent login, session management, security protections, theme preferences, or parts of the Service from working. Browser-level privacy controls, ad blockers, and analytics opt-out tools may limit Google Analytics or PostHog tracking.</p>
+
+  <h2>11. Data Security</h2>
+  <p>We use administrative, technical, and organizational safeguards designed to protect information, including account-based access controls, server-side sessions, CSRF protections, secret hashing or encryption where appropriate, tenant scoping, audit logs, and operational monitoring. No system is perfectly secure, and we cannot guarantee that information will never be accessed, disclosed, altered, or destroyed. If you believe your account or Customer Content has been compromised, contact us immediately at privacy@zeroquarry.com.</p>
+
+  <h2>12. Retention and Deletion</h2>
+  <p>We retain information for as long as needed to provide the Service, maintain security and auditability, comply with legal obligations, resolve disputes, enforce agreements, and support legitimate business purposes.</p>
+  <p>Scans, uploaded materials, cloned repositories, reports, findings, chats, logs, artifacts, exports, credentials, integrations, shares, and disclosures remain available in the workspace until deleted through the console or API, expired, revoked, or removed as part of account deletion or operational cleanup. Deleting cloned repository material for a scan removes local clone material while preserving findings and report evidence unless you delete the scan or account.</p>
+  <p>Account owners may schedule account deletion. The product currently uses a 60-day grace period before hard purge, during which the owner can cancel deletion. When the purge runs, account-scoped data is deleted where technically supported, while limited billing, legal, security, backup, and audit records may be retained if necessary or required.</p>
+
+  <h2>13. International Processing</h2>
+  <p>We and our service providers may process information in countries other than where you live or where your organization is established. These countries may have different privacy and data protection laws. Where required, we rely on appropriate safeguards for cross-border transfers.</p>
+
+  <h2>14. Your Rights and Choices</h2>
+  <p>Depending on your location and relationship with us, you may have rights to request access, correction, deletion, portability, restriction, objection, withdrawal of consent, or information about how your personal information is processed. You may also have rights to complain to a privacy or data protection authority.</p>
+  <p>To make a request, contact privacy@zeroquarry.com. We may need to verify your identity and account authority before acting. If your information is controlled by your employer or another ZeroQuarry customer, we may direct your request to that customer.</p>
+
+  <h2>15. Australia, EEA, UK, and California Notices</h2>
+  <p>If Australian privacy law applies, you may request access to or correction of your personal information and may make a privacy complaint by contacting us. If you are in the EEA or UK, our legal bases may include performance of a contract, legitimate interests, consent, and compliance with legal obligations. If you are in California or another US state with privacy rights, you may have rights to know, access, correct, delete, or opt out of certain processing, subject to applicable exceptions.</p>
+
+  <h2>16. Children</h2>
+  <p>The Service is intended for business and professional security use and is not directed to children. We do not knowingly collect personal information from children under 16.</p>
+
+  <h2>17. Third-Party Services</h2>
+  <p>The Service may link to or integrate with third-party services. Their privacy practices are governed by their own policies and agreements. Your use of those services may expose information to them independently of ZeroQuarry.</p>
+
+  <h2>18. Changes</h2>
+  <p>We may update this Privacy Policy from time to time. If changes are material, we will provide notice through the Service, by email, or by other appropriate means. The "Last updated" date above shows when this policy was last revised.</p>
+
+  <h2>19. Contact</h2>
+  <p>Questions, requests, or privacy complaints? Contact us at privacy@zeroquarry.com.</p>
 </main>
 
 <footer class="site-footer">
@@ -71,7 +147,9 @@
     <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
     <nav class="footer-links" aria-label="Footer">
       <a href="https://docs.zeroquarry.com">Docs</a>
-      <a href="https://discord.gg/2qDgEUMc">Discord</a>
+      <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+      <a href="https://discord.gg/PygTTeuU">Discord</a>
+      <a href="https://github.com/ZeroQuarry/">GitHub</a>
       <a href="https://status.zeroquarry.com">Status Page</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="terms.html">Terms of Use</a>
