@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">RCE via Markdown in the Obsidian Tasks Plugin</title>
+  <desc id="desc">ZeroQuarry research social preview image for the Obsidian Tasks plugin RCE post.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05090f"/>
+      <stop offset="0.58" stop-color="#0b1524"/>
+      <stop offset="1" stop-color="#12080c"/>
+    </linearGradient>
+    <radialGradient id="redGlow" cx="74%" cy="12%" r="60%">
+      <stop offset="0" stop-color="#f41e22" stop-opacity="0.42"/>
+      <stop offset="0.5" stop-color="#f41e22" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#f41e22" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#1d2e48" stroke-width="1" opacity="0.42"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(0 285)">
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.48"/>
+  <rect width="1200" height="630" fill="url(#redGlow)"/>
+
+  <g opacity="0.18">
+    <circle cx="976" cy="120" r="218" fill="none" stroke="#f41e22" stroke-width="1"/>
+    <circle cx="976" cy="120" r="150" fill="none" stroke="#6aa8ff" stroke-width="1"/>
+    <circle cx="976" cy="120" r="82" fill="none" stroke="#f41e22" stroke-width="1"/>
+  </g>
+
+  <g transform="translate(72 66)">
+    <image href="../wordmark.png" x="0" y="0" width="282" height="73" preserveAspectRatio="xMinYMid meet"/>
+    <text x="0" y="112" fill="#f41e22" font-family="JetBrains Mono, Menlo, Consolas, monospace" font-size="20" font-weight="600" letter-spacing="3">ZEROQUARRY RESEARCH</text>
+  </g>
+
+  <g transform="translate(72 238)">
+    <text fill="#eef2f9" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="57" font-weight="700" letter-spacing="-1">
+      <tspan x="0" y="0">Opening a Markdown file</tspan>
+      <tspan x="0" y="74">could trigger RCE in</tspan>
+      <tspan x="0" y="148">an Obsidian plugin</tspan>
+    </text>
+    <text x="0" y="224" fill="#aebbd0" font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="28">
+      Tasks plugin: 3.4M+ downloads | fixed by default in 8.0.0
+    </text>
+  </g>
+
+  <g transform="translate(788 388)" filter="url(#shadow)">
+    <rect x="0" y="0" width="322" height="112" rx="10" fill="#0f1b2f" stroke="#1d2e48"/>
+    <text x="22" y="42" fill="#6c7b93" font-family="JetBrains Mono, Menlo, Consolas, monospace" font-size="16">markdown -> plugin</text>
+    <text x="22" y="76" fill="#f41e22" font-family="JetBrains Mono, Menlo, Consolas, monospace" font-size="16">JS execution path</text>
+    <text x="22" y="100" fill="#5ee39a" font-family="JetBrains Mono, Menlo, Consolas, monospace" font-size="16">mitigation shipped</text>
+  </g>
+
+  <g transform="translate(72 548)">
+    <rect width="264" height="38" rx="6" fill="#f41e22"/>
+    <text x="18" y="25" fill="#ffffff" font-family="JetBrains Mono, Menlo, Consolas, monospace" font-size="16" font-weight="600">zeroquarry.com/research</text>
+  </g>
+  </g>
+</svg>

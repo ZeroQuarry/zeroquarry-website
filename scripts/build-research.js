@@ -200,6 +200,19 @@ function slugify(value) {
 }
 
 function layout({ title, description, canonical, ogTitle, ogDescription, relativePrefix, body, active = 'Research' }) {
+  const socialImage = arguments[0].image;
+  const imageUrl = socialImage
+    ? socialImage.startsWith('http')
+      ? socialImage
+      : `https://zeroquarry.com${socialImage}`
+    : '';
+  const imageMeta = imageUrl
+    ? `<meta property="og:image" content="${escapeAttr(imageUrl)}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="${escapeAttr(imageUrl)}" />`
+    : '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -212,6 +225,7 @@ function layout({ title, description, canonical, ogTitle, ogDescription, relativ
 <meta property="og:description" content="${escapeAttr(ogDescription || description)}" />
 <meta property="og:type" content="${active === 'Research' ? 'article' : 'website'}" />
 <meta property="og:url" content="${escapeAttr(canonical)}" />
+${imageMeta}
 <link rel="icon" type="image/png" href="${relativePrefix}assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -375,6 +389,7 @@ ${rendered.html}
     canonical: `https://zeroquarry.com/research/${post.data.slug}`,
     ogTitle: post.data.ogTitle,
     ogDescription: post.data.ogDescription,
+    image: post.data.image,
     relativePrefix: '../../',
     body,
   });
@@ -450,6 +465,7 @@ function renderIndex(posts) {
     canonical: 'https://zeroquarry.com/research/',
     ogTitle: 'ZeroQuarry Research',
     ogDescription: 'Security findings, disclosure notes, and product-security analysis from the ZeroQuarry team.',
+    image: posts.find((post) => post.data.featured && post.data.image)?.data.image,
     relativePrefix: '../',
     body,
     active: 'Research Index',

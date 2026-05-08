@@ -7,6 +7,7 @@ status: "Mitigation available"
 description: "ZeroQuarry identified a critical RCE path in the Obsidian Tasks plugin and coordinated responsible disclosure with Obsidian and the maintainer. This writeup explains the impact, disclosure process, and product-security tradeoff."
 ogTitle: "Opening a Markdown file could trigger RCE in an Obsidian plugin"
 ogDescription: "ZeroQuarry found a critical RCE path in the Obsidian Tasks plugin. The maintainer shipped Tasks 8.0.0 with JavaScript execution disabled by default."
+image: "/assets/research/obsidian-tasks-rce-og.png"
 featured: true
 featuredSummary: "ZeroQuarry identified a critical RCE path in the Obsidian Tasks plugin and coordinated disclosure with Obsidian and the plugin maintainer. This writeup explains the impact, disclosure process, mitigation tradeoff, and lessons for plugin ecosystems."
 disclosureDetail: "Tasks 8.0.0 disables JavaScript execution in Tasks queries by default. We are limiting exploit detail to a minimal calc demonstration and avoiding weaponized payloads."
