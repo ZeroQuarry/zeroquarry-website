@@ -1421,6 +1421,208 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   }
 }
 
+/* ============ ABOUT ============ */
+
+/* Problem-cell visualizations (slot into .triad .vis) */
+.findings-vis,
+.cal-vis,
+.halluc-vis {
+  position: absolute;
+  inset: 0;
+  padding: 12px 14px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.findings-vis .id { color: var(--mute); margin-right: 6px; letter-spacing: 0.04em; }
+.findings-vis .sev-low,
+.findings-vis .sev-med {
+  display: inline-block;
+  padding: 0 4px;
+  border-radius: 2px;
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  margin-left: 4px;
+  vertical-align: 1px;
+}
+.findings-vis .sev-low { background: rgba(106,168,255,0.1); color: var(--mute); }
+.findings-vis .sev-med { background: rgba(255,194,92,0.12); color: var(--amber); }
+.findings-vis .more { color: var(--mute); margin-top: auto; font-size: 9px; letter-spacing: 0.06em; }
+
+.cal-vis { font-size: 10px; gap: 5px; }
+.cal-vis .row { display: flex; gap: 4px; }
+.cal-vis .row span {
+  flex: 1; padding: 4px 0; text-align: center;
+  border: 1px solid var(--line); border-radius: 3px;
+  color: var(--mute); letter-spacing: 0.08em;
+}
+.cal-vis .row span.hit {
+  background: rgba(244,30,34,0.18);
+  border-color: rgba(244,30,34,0.45);
+  color: var(--red); font-weight: 600;
+}
+.cal-vis .note { margin-top: auto; font-size: 9px; color: var(--mute); letter-spacing: 0.04em; }
+
+.halluc-vis { gap: 4px; }
+.halluc-vis .halluc {
+  color: var(--ink);
+  background: rgba(244,30,34,0.08);
+  padding: 0 4px;
+  border-radius: 2px;
+  border: 1px dashed rgba(244,30,34,0.4);
+}
+.halluc-vis .no { color: var(--mute); }
+.halluc-vis .red { color: var(--red); }
+.halluc-vis .note { margin-top: auto; font-size: 9px; color: var(--mute); letter-spacing: 0.04em; }
+
+/* Centered thesis-out callout below grids */
+.thesis-out {
+  margin: 56px auto 0;
+  max-width: 760px;
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-align: center;
+}
+.thesis-out em { font-style: italic; color: var(--red); }
+
+/* Founder card (team section) */
+.founder-card {
+  max-width: 880px;
+  margin: 0 auto;
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  position: relative;
+  overflow: hidden;
+  padding: 36px 36px 28px;
+}
+.founder-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+}
+
+.founder-eye {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px;
+}
+.founder-eye .id {
+  color: var(--mute);
+  letter-spacing: 0.15em;
+  margin-left: auto;
+}
+
+.founder-header {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.founder-photo {
+  width: 120px; height: 120px;
+  border-radius: 12px;
+  border: 1px solid var(--line-2);
+  background:
+    url('assets/about/shane.jpg') center/cover no-repeat,
+    repeating-linear-gradient(135deg, var(--surface-2) 0 8px, var(--surface) 8px 16px);
+  overflow: hidden;
+}
+.founder-name {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 36px; line-height: 1.02; letter-spacing: -0.015em;
+  margin: 0 0 6px;
+}
+.founder-name em { font-style: italic; color: var(--red); }
+.founder-title {
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--mute);
+  margin-bottom: 12px;
+}
+.founder-prev {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+.founder-bio {
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.65;
+}
+.founder-bio p { margin: 0; }
+.founder-bio p + p { margin-top: 14px; }
+
+.founder-note {
+  margin: 26px 0;
+  padding: 20px 22px;
+  border-radius: 8px;
+  border: 1px dashed var(--line-2);
+  background: rgba(0,0,0,0.25);
+}
+.founder-note .label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--mute);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.founder-note .quote {
+  display: block;
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.founder-links {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px dashed var(--line-2);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.founder-links a {
+  color: var(--red);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.founder-links a:hover { color: var(--ink); }
+.founder-links .arr { transition: transform .2s ease; }
+.founder-links a:hover .arr { transform: translateX(3px); }
+
+@media (max-width: 720px) {
+  .founder-card { padding: 26px 22px 22px; }
+  .founder-header { grid-template-columns: 1fr; gap: 18px; }
+  .founder-photo { width: 96px; height: 96px; }
+  .founder-name { font-size: 30px; }
+  .founder-note .quote { font-size: 17px; }
+  .founder-links { gap: 16px; }
+}
+@media (max-width: 680px) {
+  .thesis-out { margin-top: 36px; }
+}
+
 /* ============ FOOTER ============ */
 .site-footer {
   padding: 48px 0 40px;
