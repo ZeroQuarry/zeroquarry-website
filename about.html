@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About · ZeroQuarry</title>
+<meta name="description" content="ZeroQuarry was built where the disclosure emails land. Fifteen years of triaging vuln reports at Elastic, Kong, and Vectara shaped its adversarial agent loop — the scanner that finds 0-days other tools miss." />
+<link rel="canonical" href="https://zeroquarry.com/about" />
+<meta property="og:title" content="About · ZeroQuarry" />
+<meta property="og:description" content="The approach behind ZeroQuarry's adversarial agent loop — and the team building it." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/about" />
+<meta property="og:image" content="https://zeroquarry.com/assets/wordmark.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRT44MWJT1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZRT44MWJT1');
+</script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#surfaces">Platform</a>
+      <a href="index.html#debate">How it works</a>
+      <a href="index.html#report">Reports</a>
+      <a href="index.html#features">Features</a>
+      <a href="research/">Research</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com">Get started <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="pricing-hero">
+    <div class="container pricing-hero-grid">
+      <div>
+        <span class="eyebrow">
+          <span class="tag">ABOUT</span>
+          <span>The approach behind the agents</span>
+        </span>
+        <h1 class="headline pricing-headline">
+          <span class="block">Finding 0-days</span>
+          <span class="block thin">isn't a <em>checklist.</em></span>
+        </h1>
+        <p class="lede">
+          ZeroQuarry was built where the disclosure emails land. Fifteen years of triaging inbound vuln reports at companies like Elastic, Kong, and Vectara... plus a HackerOne payout going the other way... shaped its design. The agents inside reflect what those years taught: real findings carry working proof, real attackers don't follow patterns, and a scanner that can't be wrong won't ever find anything new.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#team">Meet the team <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="#method">See the method</a>
+        </div>
+      </div>
+
+      <div class="pricing-terminal" aria-label="Founder summary">
+        <div class="console-head">
+          <span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="console-title"><span class="tbl">about://</span>zeroquarry</span>
+          <span class="console-meta"><span class="live">LIVE</span></span>
+        </div>
+        <div class="pricing-terminal-body">
+          <div><span class="muted">$</span> whoami</div>
+          <div><span class="ok">ok</span> zeroquarry · adversarial agents · est. 2026</div>
+          <div><span class="muted">$</span> pedigree</div>
+          <div><span class="ok">ok</span> 15y · elastic · kong · vectara · hp · spread.ai</div>
+          <div><span class="muted">$</span> security-programs</div>
+          <div><span class="ok">ok</span> soc 2 x4 · pentest sows x3 · cve triage x3</div>
+          <div><span class="muted">$</span> disclosures --as-reporter</div>
+          <div><span class="ok">ok</span> h1 broken authn @ major travel · paid</div>
+          <div><span class="muted">$</span> mission</div>
+          <div><span class="ok">ok</span> build the scanner those years called for</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 01 · THE PROBLEM ============================ -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">01 · The problem</div>
+          <h2>Most scanners<br>cry <em>wolf.</em></h2>
+        </div>
+        <div class="aside">
+          Every scanner promises to find your bugs. Almost none of them prove the bugs exist. The result, for a generation of security teams: a queue of "potential issues" no one trusts, a pen-test that visits twice a year, and an LLM that hallucinates findings in between.
+        </div>
+      </div>
+
+      <div class="triad">
+        <div class="cell">
+          <div class="num-lbl"><span class="n">01</span> <span>Static scanners</span></div>
+          <div class="vis">
+            <div class="findings-vis">
+              <div><span class="id">SAST-0421</span> potential SQLi <span class="sev-low">LOW</span></div>
+              <div><span class="id">SAST-0422</span> hardcoded secret <span class="sev-low">LOW</span></div>
+              <div><span class="id">SAST-0423</span> potential XSS <span class="sev-med">MED</span></div>
+              <div><span class="id">SAST-0424</span> potential SQLi <span class="sev-low">LOW</span></div>
+              <div class="more">+1,847 more · 99% unread</div>
+            </div>
+          </div>
+          <h3>Pattern matching, not proof.</h3>
+          <p>Legacy SAST and DAST tools flag anything that looks suspicious. Severity is graded by guesswork. Engineers stop reading the queue by the third sprint, then learn to filter the whole tool out.</p>
+          <ul class="bullets">
+            <li>pattern-based, not behavioural</li>
+            <li>no exploit ever attempted</li>
+            <li>alert fatigue by week three</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="num-lbl"><span class="n">02</span> <span>Point-in-time pen tests</span></div>
+          <div class="vis">
+            <div class="cal-vis">
+              <div class="row"><span>JAN</span><span>FEB</span><span class="hit">MAR</span><span>APR</span><span>MAY</span><span>JUN</span></div>
+              <div class="row"><span>JUL</span><span>AUG</span><span class="hit">SEP</span><span>OCT</span><span>NOV</span><span>DEC</span></div>
+              <div class="note">2 windows · 10 days each · ship something else?</div>
+            </div>
+          </div>
+          <h3>Six-figure tests, twice a year.</h3>
+          <p>Pen tests are excellent and expensive. They cover what's deployed on the day they happen — not what shipped on Tuesday, not what merged last week, not what your fork of upstream just inherited.</p>
+          <ul class="bullets">
+            <li>point-in-time only</li>
+            <li>scope-limited by SOW</li>
+            <li>shipping continues without them</li>
+          </ul>
+        </div>
+
+        <div class="cell">
+          <div class="num-lbl"><span class="n">03</span> <span>Single-agent LLMs</span></div>
+          <div class="vis">
+            <div class="halluc-vis">
+              <div>finding: <span class="halluc">SSRF in /api/proxy</span></div>
+              <div>reproduces? <span class="no">no</span></div>
+              <div>code path exists? <span class="no">no</span></div>
+              <div>severity claimed: <span class="red">critical</span></div>
+              <div class="note">no counter-party to disprove</div>
+            </div>
+          </div>
+          <h3>Confident, frequently wrong.</h3>
+          <p>A single LLM with a security prompt will happily describe a vulnerability that doesn't exist, in code that doesn't behave the way it thinks. Without a counter-party to disprove it, every plausible claim ships.</p>
+          <ul class="bullets">
+            <li>no falsification step</li>
+            <li>hallucinated PoCs</li>
+            <li>noise as a feature</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="thesis-out">ZeroQuarry's bet: pair an adversarial red-team agent with a skeptical vendor-team agent, run them continuously, and ship only findings that <em>survive both.</em></p>
+    </div>
+  </section>
+
+  <!-- ============================ 02 · THE METHOD ============================ -->
+  <section class="section" id="method">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">02 · The method</div>
+          <h2>An exploit isn't a finding<br>until two agents <em>agree.</em></h2>
+        </div>
+        <div class="aside">
+          The homepage shows the agents debating. Here's what that actually means at each phase of a scan — and what survives to reach a human.
+        </div>
+      </div>
+
+      <div class="process">
+        <div class="p">
+          <div class="step-n">PHASE 01</div>
+          <h4>Reconnaissance</h4>
+          <p>The red agent maps the target. For source, that's call-graph and data-flow analysis. For binaries, lifting to IR and walking the control flow. For live targets, capturing the API surface, authentication model, and tenancy boundaries.</p>
+        </div>
+        <div class="p">
+          <div class="step-n">PHASE 02</div>
+          <h4>Exploit attempt</h4>
+          <p>The red agent isn't asked to identify suspicious code. It's asked to produce a working primitive. No primitive, no finding. This single constraint kills most of the noise other scanners generate before it ever reaches a triage queue.</p>
+        </div>
+        <div class="p">
+          <div class="step-n">PHASE 03</div>
+          <h4>Vendor rebuttal</h4>
+          <p>The vendor agent receives the claim and the PoC, and is rewarded for tearing it down. It re-runs the proof, checks for guards the red agent missed, and pushes back on speculative severity. False positives die here.</p>
+        </div>
+        <div class="p">
+          <div class="step-n">PHASE 04</div>
+          <h4>Survivor framing</h4>
+          <p>What reaches the human is a finding with a reproducible PoC, a severity that survived adversarial review, and the narrowest patch the vendor agent could draft. Reviewable, mergeable, defensible to leadership.</p>
+        </div>
+      </div>
+
+      <p class="thesis-out">The loop runs on every commit, every build, every endpoint change. Findings close when patches merge. Regressions get re-found if they come back.</p>
+    </div>
+  </section>
+
+  <!-- ============================ 03 · THE TEAM ============================ -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">03 · The team</div>
+          <h2>The <em>operators</em><br>behind the loop.</h2>
+        </div>
+        <div class="aside">
+          ZeroQuarry was built by people who've stood on every side of a vulnerability report: the engineer who shipped the bug, the manager triaging the disclosure, the HackerOne reporter going the other way, and the operator running the SOC 2 audit afterwards.
+        </div>
+      </div>
+
+      <div class="founder-card">
+        <div class="founder-eye">
+          <span>● Founder</span>
+        </div>
+
+        <div class="founder-header">
+          <div class="founder-photo" role="img" aria-label="Shane Connelly"></div>
+          <div>
+            <h3 class="founder-name">Shane <em>Connelly.</em></h3>
+            <div class="founder-title">Founder · ZeroQuarry</div>
+            <p class="founder-prev">Previously at Elastic, Kong, Vectara, HP, SPREAD.AI.</p>
+          </div>
+        </div>
+
+        <div class="founder-bio">
+          <p>
+            Fifteen years building developer infrastructure that handles a lot of trust: search at Elastic, the API gateway at Kong, RAG at Vectara, and developer platforms before and after. Security work shadowed every role.
+          </p>
+          <p>
+            Across those rooms: sat on the security mailing list deciding which inbound reports earned a CVE. Negotiated and reviewed pen-test SOWs with three external firms. Ran SOC 2 engagements end-to-end at four companies. And on the other side of the desk, a HackerOne payout for breaking authentication on a major travel platform.
+          </p>
+          <p>
+            The pattern across all of it: most inbound reports were noise, and the real ones always brought a working PoC. ZeroQuarry's agent loop is built around that pattern as a hard constraint.
+          </p>
+        </div>
+
+        <div class="founder-note">
+          <span class="label">field note · 2026</span>
+          <span class="quote">“Every product I've worked on shipped with bugs that a determined attacker would find in a week and that no scanner ever flagged. ZeroQuarry is built to be the scanner that would have flagged them. Not because it's smarter, but because it's allowed to be wrong, get caught, and try again.”</span>
+        </div>
+
+        <div class="founder-links">
+          <a href="https://connelly.casa">Personal site <span class="arr">-&gt;</span></a>
+          <a href="mailto:shane@zeroquarry.com">shane@zeroquarry.com <span class="arr">-&gt;</span></a>
+          <a href="research/">Research &amp; disclosures <span class="arr">-&gt;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Start mining your <em>0-days.</em><br>Today.</h2>
+        <p>Spin up a ZeroQuarry workspace in under a minute and point it at your first repo, binary, or live endpoint. Or <a href="pricing.html#enterprise-contact" style="color: var(--red); border-bottom: 1px solid rgba(244,30,34,0.4);">talk to us directly</a>.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="index.html#debate">See the agents debate</a>
+        </div>
+        <div class="cta-note">No credit card required</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a href="index.html" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>Adversarial AI for offensive security. Mine your 0-days before someone else does.</p>
+      </div>
+      <div class="foot-col legal">
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Resources</h5>
+        <a href="about.html">About</a>
+        <a href="research/">Research</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+        <a href="https://status.zeroquarry.com">Status Page</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Social</h5>
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://discord.gg/PygTTeuU">Discord</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <span>LAT 37.8409° S · LON 144.9464° E</span>
+        <span class="ok">● ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -297,6 +297,7 @@ function footer(prefix) {
       </div>
       <div class="foot-col legal">
         <h5>Resources</h5>
+        <a href="${prefix}about.html">About</a>
         <a href="${prefix}research/">Research</a>
         <a href="${prefix}pricing.html">Pricing</a>
         <a href="https://docs.zeroquarry.com">Docs</a>
