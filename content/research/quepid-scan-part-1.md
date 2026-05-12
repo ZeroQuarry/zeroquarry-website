@@ -78,13 +78,13 @@ The exploit shapes are textbook SSRF, with a credential-exfiltration twist:
 - A request targeting an internal address, like `http://localhost:3000/admin` or any RFC1918 host, lets an external attacker reach things that should never have been reachable from the public internet.
 - A request to an attacker-controlled URL with a known or guessed `search_endpoint_id` causes Quepid to forward the victim endpoint's Basic Auth credentials to the attacker's collector. The attacker gets the secret without ever touching the legitimate target.
 
-Worth dwelling on the third one. Even teams that scope their Quepid deployment to an internal network — so the cloud-metadata and internal-host vectors are mostly theoretical — were still exposed to credential exfiltration if any user with network access to Quepid could hit the proxy. The credentials being exfiltrated are exactly the credentials Quepid was designed to keep safe: the Basic Auth secrets that let it talk to production search clusters.
+Worth dwelling on the third one. Even teams that scope their Quepid deployment to an internal network (so the cloud-metadata and internal-host vectors are mostly theoretical) were still exposed to credential exfiltration if any user with network access to Quepid could hit the proxy. The credentials being exfiltrated are exactly the credentials Quepid was designed to keep safe: the Basic Auth secrets that let it talk to production search clusters.
 
 ## The hosted service was affected too
 
-OSC offers Quepid as a hosted service at [go.quepidapp.com](https://go.quepidapp.com), the way Discourse offers hosted Discourse or GitLab offers hosted GitLab. The codebase is the same. The vulnerability was the same. Anyone on the internet could have used `go.quepidapp.com` as their SSRF primitive, and exfiltrated the Basic Auth credentials of any search endpoint configured on that platform.
+OSC offers Quepid as a hosted service at [go.quepidapp.com](https://go.quepidapp.com), the way Discourse offers hosted Discourse or GitLab offers hosted GitLab. The codebase is the same. The vulnerability was the same. Anyone on the internet could have used `go.quepidapp.com` as their SSRF primitive.
 
-So the same scan that helped OSC ship a fix to the open-source project simultaneously closed a critical hole in their own production deployment. This is one of the cases where the math on free open-source scans gets very straightforward: the scan paid for itself the moment the proxy was unreachable for unauthenticated callers on `go.quepidapp.com`.
+So the same scan that helped OSC ship a fix to the open-source project simultaneously closed a critical hole in their own production deployment. This is one of the cases where the math on free open-source scans gets very straightforward: the scan showed value the moment the proxy was unreachable for unauthenticated callers on `go.quepidapp.com`.
 
 If you maintain an open-source project and also offer a hosted version of it, this dynamic applies to you too. Scanning the OSS repo is scanning your production environment, for free, before someone else does.
 
