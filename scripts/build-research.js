@@ -357,15 +357,15 @@ function renderPost(post) {
           <dl>
             <div>
               <dt>Class</dt>
-              <dd>Remote code execution</dd>
+              <dd>${escapeHtml(post.data.disclosureClass || 'Remote code execution')}</dd>
             </div>
             <div>
               <dt>Surface</dt>
-              <dd>Obsidian community plugin</dd>
+              <dd>${escapeHtml(post.data.disclosureSurface || 'Obsidian community plugin')}</dd>
             </div>
             <div>
               <dt>Posture</dt>
-              <dd>Disclosure-safe</dd>
+              <dd>${escapeHtml(post.data.disclosurePosture || 'Disclosure-safe')}</dd>
             </div>
           </dl>
         </aside>

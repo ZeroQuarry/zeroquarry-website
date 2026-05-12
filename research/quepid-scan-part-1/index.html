@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unauthenticated SSRF in Quepid (Part 1 of a series) | ZeroQuarry Research</title>
+<meta name="description" content="ZeroQuarry scanned Quepid, the open-source search-relevance tool from OpenSource Connections. Part 1: an unauthenticated open-proxy SSRF that was live both in the public repo and on the hosted go.quepidapp.com service. Fixed in commit 634aa4a." />
+<link rel="canonical" href="https://zeroquarry.com/research/quepid-scan-part-1" />
+<meta property="og:title" content="ZeroQuarry found an unauthenticated SSRF in Quepid — patched in OSS and on go.quepidapp.com" />
+<meta property="og:description" content="First in a series. ZeroQuarry&#39;s scan of Quepid surfaced an open-proxy SSRF reachable on the public repo and the hosted service. Patched in commit 634aa4a." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeroquarry.com/research/quepid-scan-part-1" />
+<meta property="og:image" content="https://zeroquarry.com/assets/research/quepid-scan-og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/research/quepid-scan-og.png" />
+<link rel="icon" type="image/png" href="../../assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index.css" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRT44MWJT1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZRT44MWJT1');
+</script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="../../index.html" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="../../assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../index.html#surfaces">Platform</a>
+      <a href="../../index.html#debate">How it works</a>
+      <a href="../../index.html#report">Reports</a>
+      <a href="../../index.html#features">Features</a>
+      <a href="../../research/" aria-current="page">Research</a>
+      <a href="../../pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="../../request-scan/">Request scan <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="research-article">
+    <header class="article-header">
+      <div class="container article-header-grid">
+        <div>
+          <a class="article-back" href="../">Research</a>
+          <div class="article-meta">
+            <span>ZeroQuarry Research</span>
+<span>May 12, 2026</span>
+<span>ssrf</span>
+<span>rails</span>
+          </div>
+          <h1>Unauthenticated SSRF in Quepid (Part 1 of a series)</h1>
+          <p class="article-dek">ZeroQuarry scanned Quepid, the open-source search-relevance tool from OpenSource Connections. Part 1: an unauthenticated open-proxy SSRF that was live both in the public repo and on the hosted go.quepidapp.com service. Fixed in commit 634aa4a.</p>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../../request-scan/">Request a private scan <span class="arr">-&gt;</span></a>
+            <a class="btn btn-ghost" href="#what-we-are-not-disclosing">What we are withholding</a>
+          </div>
+        </div>
+
+        <aside class="disclosure-panel" aria-label="Disclosure status">
+          <div class="disclosure-label">Disclosure status</div>
+          <div class="disclosure-state">Fixed in production and open source</div>
+          <p>Detail is published here because the SSRF is patched in OSS and in production. Other findings exist and are being held until their fixes ship.</p>
+          <dl>
+            <div>
+              <dt>Class</dt>
+              <dd>Server-side request forgery</dd>
+            </div>
+            <div>
+              <dt>Surface</dt>
+              <dd>Open-source Rails app + hosted service</dd>
+            </div>
+            <div>
+              <dt>Posture</dt>
+              <dd>Coordinated, ongoing</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </header>
+
+    <div class="container article-layout">
+      <aside class="article-toc" aria-label="Article sections">
+        <a href="#tl-dr">TL;DR</a>
+<a href="#why-we-scanned-quepid">Why we scanned Quepid</a>
+<a href="#the-vulnerability">The vulnerability</a>
+<a href="#impact">Impact</a>
+<a href="#the-hosted-service-was-affected-too">The hosted service was affected too</a>
+<a href="#what-the-patches-were">What the patches were</a>
+<a href="#lessons-for-similar-projects">Lessons for similar projects</a>
+<a href="#why-zeroquarry-exists">Why ZeroQuarry exists</a>
+<a href="#public-references">Public references</a>
+      </aside>
+
+      <div class="article-body">
+<p>In April 2026, ZeroQuarry scanned <a href="https://github.com/o19s/quepid">Quepid</a>, the open-source search-relevance tool maintained by OpenSource Connections (OSC). The scan surfaced multiple security issues. We reported them privately and shipped patch files with the report.</p>
+<blockquote>Disclosure status: Fixed in OSS and on the hosted service.</blockquote>
+<h2 id="tl-dr">TL;DR</h2>
+<p>Quepid shipped a <code>ProxyController</code> whose <code>fetch</code> action took a <code>url</code> parameter and made an outbound HTTP request to it on behalf of the caller. The action skipped authentication entirely and did no URL validation. Anyone on the internet could use a deployed Quepid as a server-side request forgery (SSRF) primitive: reading cloud-metadata services, reaching internal-only addresses, and exfiltrating stored Basic Auth credentials by passing a <code>search_endpoint_id</code> they did not own.</p>
+<p>The bug was reported on April 25, 2026 and <a href="https://github.com/o19s/quepid/commit/634aa4a5d9a217198ebfd9e9864333094ae3c25b">fixed in commit <code>634aa4a</code></a> on May 2.</p>
+<p>OSC also runs Quepid as a hosted service at <a href="https://go.quepidapp.com">go.quepidapp.com</a>. The same vulnerability was live there too. Patching the open-source repo simultaneously patched the production deployment.</p>
+<p><a href="/request-scan/">Request a private ZeroQuarry scan</a></p>
+<h2 id="why-we-scanned-quepid">Why we scanned Quepid</h2>
+<p>Quepid sits in the middle of how search relevance gets evaluated. If you&#39;ve ever tuned an Elasticsearch, Solr, or OpenSearch index, and you cared whether your tuning made things better or worse, there&#39;s a good chance you or your team may have run your judgments through Quepid. It&#39;s a Rails app. It stores cases, judgments, scorers, and curator variables. It acts as a control plane for the messy human-and-data work of search quality, and it is widely deployed.</p>
+<p>That makes it exactly the kind of project we wanted to scanning early at ZeroQuarry: small enough that a single team largely maintains it, important enough that a lot of other teams depend on it, and Rails-enough that the security patterns we look for are common in adjacent projects.</p>
+<p>ZeroQuarry scans are free for open-source projects. Quepid was one of the first we picked up after the <a href="/research/obsidian-tasks-rce/">Obsidian Tasks disclosure</a>.</p>
+<h2 id="the-vulnerability">The vulnerability</h2>
+<p>Quepid shipped a <code>ProxyController</code> whose job was to fetch a URL on behalf of the front-end and return the response. The pattern is common in tools that work with search backends, where the browser needs to read a response that&#39;s blocked by CORS or that sits behind authentication the backend already has. The Quepid version, before the fix, looked roughly like this:</p>
+<pre><code class="language-ruby">class ProxyController &lt; ApplicationController
+  skip_before_action :require_login
+  skip_before_action :verify_authenticity_token, only: [:fetch]
+
+  def fetch
+    url_param = params.require(:url)
+    # ...
+    search_endpoint = SearchEndpoint.find_by(id: params[:search_endpoint_id])
+    credentials    = search_endpoint&amp;.basic_auth_credential
+    client = HttpClientService.new(url_param,
+                                   headers: headers,
+                                   credentials: credentials)
+    # ... fetch and return the response to the caller
+  end
+end</code></pre>
+<p>Three things compound here:</p>
+<ol>
+<li><strong>No authentication.</strong> <code>skip_before_action :require_login</code> means anyone on the internet can hit the endpoint.</li>
+<li><strong>No URL allowlist or host validation.</strong> Whatever <code>url</code> the caller supplies is what gets fetched.</li>
+<li><strong>Credential attachment by unowned ID.</strong> The caller can pass any <code>search_endpoint_id</code> they like. The controller looks up that endpoint and attaches its stored Basic Auth credentials to the outbound request, without checking that the requester owns the endpoint.</li>
+</ol>
+<h2 id="impact">Impact</h2>
+<p>The exploit shapes are textbook SSRF, with a credential-exfiltration twist:</p>
+<ul>
+<li>A request to <code>/proxy/fetch?url=http://169.254.169.254/latest/meta-data/</code> returns the cloud instance metadata service response. On many EC2 and ECS deployments, that response includes temporary AWS credentials usable against the rest of the account.</li>
+<li>A request targeting an internal address, like <code>http://localhost:3000/admin</code> or any RFC1918 host, lets an external attacker reach things that should never have been reachable from the public internet.</li>
+<li>A request to an attacker-controlled URL with a known or guessed <code>search_endpoint_id</code> causes Quepid to forward the victim endpoint&#39;s Basic Auth credentials to the attacker&#39;s collector. The attacker gets the secret without ever touching the legitimate target.</li>
+</ul>
+<p>Worth dwelling on the third one. Even teams that scope their Quepid deployment to an internal network — so the cloud-metadata and internal-host vectors are mostly theoretical — were still exposed to credential exfiltration if any user with network access to Quepid could hit the proxy. The credentials being exfiltrated are exactly the credentials Quepid was designed to keep safe: the Basic Auth secrets that let it talk to production search clusters.</p>
+<h2 id="the-hosted-service-was-affected-too">The hosted service was affected too</h2>
+<p>OSC offers Quepid as a hosted service at <a href="https://go.quepidapp.com">go.quepidapp.com</a>, the way Discourse offers hosted Discourse or GitLab offers hosted GitLab. The codebase is the same. The vulnerability was the same. Anyone on the internet could have used <code>go.quepidapp.com</code> as their SSRF primitive, and exfiltrated the Basic Auth credentials of any search endpoint configured on that platform.</p>
+<p>So the same scan that helped OSC ship a fix to the open-source project simultaneously closed a critical hole in their own production deployment. This is one of the cases where the math on free open-source scans gets very straightforward: the scan paid for itself the moment the proxy was unreachable for unauthenticated callers on <code>go.quepidapp.com</code>.</p>
+<p>If you maintain an open-source project and also offer a hosted version of it, this dynamic applies to you too. Scanning the OSS repo is scanning your production environment, for free, before someone else does.</p>
+<h2 id="what-the-patches-were">What the patches were</h2>
+<p>The scan ZeroQuarry runs on a source-code surface doesn&#39;t just produce findings. It produces fixes: concrete unified <code>.patch</code> files that a maintainer can <code>git apply</code> (or attach as a GitHub App that opens pull requests directly). Each finding ships with the patch alongside it, so a maintainer triaging a report is looking at &quot;here is the issue, here is the proposed fix, here is the diff&quot; rather than at a description of a problem they then have to figure out how to solve.</p>
+<p>For Quepid, we sent the maintainer the report and the patch files together. OSC&#39;s response on those patches:</p>
+<blockquote>I really appreciate the patch files. So far they have all been accurate fixes.</blockquote>
+<p>The actual fix shipped in <a href="https://github.com/o19s/quepid/commit/634aa4a5d9a217198ebfd9e9864333094ae3c25b">commit 634aa4a</a> closes the endpoint to unauthenticated callers and scopes the credential attachment so a caller can only use credentials from endpoints they&#39;re entitled to. The shape of the fix matches the proposed patch; the maintainer&#39;s judgment about exact wording, surrounding refactors, and release timing is theirs.</p>
+<p>This is what we think coordinated disclosure should look like at the tool level. ZeroQuarry&#39;s job ends at a clear, reproducible finding and a working patch. The maintainer decides what to ship.</p>
+<h2 id="lessons-for-similar-projects">Lessons for similar projects</h2>
+<p>If you maintain a Rails application (or anything else) that exposes a proxy or fetch endpoint, three things worth checking on your own:</p>
+<ol>
+<li><strong>Authentication.</strong> Every controller action that makes outbound HTTP on behalf of a caller should require a real session. <code>skip_before_action :require_login</code> on a fetch endpoint is, almost without exception, a bug.</li>
+<li><strong>URL validation.</strong> Validate the target URL against an allowlist where possible, and at minimum block the metadata services (<code>169.254.169.254</code>, <code>fd00:ec2::254</code>), <code>localhost</code>, and RFC1918/RFC4193 ranges. Don&#39;t trust DNS: an attacker can stand up a name that resolves to <code>127.0.0.1</code>.</li>
+<li><strong>Scoped credential attachment.</strong> If your fetch endpoint attaches stored credentials to outbound requests, scope the credential lookup to records the current user is allowed to use. Looking the record up by attacker-controlled ID and then sending its secrets out is a credential-exfiltration primitive even when nothing else is wrong.</li>
+</ol>
+<p>None of these are novel. They are well-documented Rails-security advice. The reason scanners find them in real codebases anyway is drift: a feature that started life inside an authenticated UI flow gets exposed as an API endpoint, and the auth callback gets skipped because the existing one didn&#39;t fit. ZeroQuarry&#39;s job is to be the cold-eyed reviewer that catches the drift before someone less friendly does.</p>
+<h2 id="why-zeroquarry-exists">Why ZeroQuarry exists</h2>
+<p>Most companies already run scanners for known CVEs, dependency advisories, and common static-analysis patterns. Those tools are useful, but they do not answer the question:</p>
+<blockquote>What would an adversary find if they spent time looking for product-specific exploit paths in our software?</blockquote>
+<p>ZeroQuarry is built to answer that question. We help teams find serious vulnerabilities in their own products before adversaries do, especially the ones that emerge from the interaction between features, authentication flows, user content, plugin systems, AI workflows, and trust boundaries inside a non-trivial codebase: and we ship the proposed patches alongside the findings.</p>
+<p>ZeroQuarry is free for open-source projects. We want maintainers to find and fix these issues before bad actors scan the same code.</p>
+<h2 id="public-references">Public references</h2>
+<ul>
+<li><a href="https://github.com/o19s/quepid">Quepid repository</a></li>
+<li><a href="https://github.com/o19s/quepid/commit/634aa4a5d9a217198ebfd9e9864333094ae3c25b">Commit 634aa4a — proxy fetch fix</a></li>
+<li><a href="https://opensourceconnections.com/">OpenSource Connections</a></li>
+<li><a href="/research/obsidian-tasks-rce/">ZeroQuarry research: Obsidian Tasks RCE</a></li>
+</ul>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a href="../../index.html" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="../../assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>Adversarial AI for offensive security. Mine your 0-days before someone else does.</p>
+      </div>
+      <div class="foot-col legal">
+        <h5>Legal</h5>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="../../terms.html">Terms of Use</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Resources</h5>
+        <a href="../../about.html">About</a>
+        <a href="../../research/">Research</a>
+        <a href="../../pricing.html">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+        <a href="https://status.zeroquarry.com">Status Page</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Social</h5>
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://discord.gg/PygTTeuU">Discord</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <span>LAT 37.8409 S - LON 144.9464 E</span>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
