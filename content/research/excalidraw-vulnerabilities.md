@@ -16,155 +16,336 @@ tags:
   - plugin-security
   - responsible-disclosure
 ---
-# ZeroQuarry Found Dozens of Obsidian's Excalidraw Plugin
+# The Bugs SAST Misses: What ZeroQuarry Found in the Excalidraw Obsidian Plugin
 
-Developer tools are becoming one of the most important frontiers in application security.
+*How an agentic security workflow found high-impact issues in a multi-million-download developer tool -- and why we're offering ZeroQuarry free to open-source projects.*
 
-They are installed by technical users. They often run with broad local permissions. They sit close to source code, credentials, internal notes, architecture diagrams, API keys, and operational playbooks. They are trusted because they are used by builders.
+Most security tools are good at spotting code smells.
 
-That trust is powerful.
+They can flag `dangerouslySetInnerHTML`. They can complain about `new Function`. They can warn about outdated packages. They can tell you that a URL is being fetched, or that user input reaches a file path.
 
-It is also dangerous.
+But the hardest vulnerabilities are rarely just "bad function used here."
 
-We recently pointed ZeroQuarry at the Excalidraw plugin for Obsidian, one of the most popular plugins in the Obsidian ecosystem. Obsidian Hub currently lists the plugin at roughly 5.3 million downloads, and the plugin itself describes a feature-rich integration that lets users create, edit, embed, link, and automate drawings inside their Obsidian vaults.
+They are usually: **bad function used here, in this product workflow, after this kind of file is shared, with these permissions, inside this trust model, by this kind of user.**
 
-ZeroQuarry's original scan identified 75 findings: 41 high severity, 32 medium severity, and 2 low severity. The top issues were not simple dependency bumps or obvious grep-able mistakes. They were trust-boundary failures across an unusually rich product surface: drawing metadata, embedded content, plugin scripts, Obsidian command links, local files, remote images, AI-generated HTML, SVG previews, and third-party URL enrichment.
+That is where many static analysis tools struggle. And that is exactly the class of issue ZeroQuarry was built to find.
 
-After responsible disclosure, the plugin author fixed issues. A later re-scan showed a dramatically reduced set of findings. That is exactly what we want to see: automated research, useful reports, maintainer engagement, fixes, and safer software for everyone.
+In May 2026, ZeroQuarry scanned the Excalidraw plugin for Obsidian, a widely used visual thinking and whiteboarding plugin. The initial scan reported 41 high-severity, 32 medium-severity, and 2 low-severity findings. A later re-scan, after fixes, showed that the highest-risk surface had been substantially reduced.
 
-This post is not about shaming an open-source maintainer. It is the opposite. The Excalidraw Obsidian plugin is a sophisticated, widely used, deeply integrated developer tool. The maintainer took the findings seriously and improved the project. That is how the open-source security flywheel should work.
+The interesting part is not the count. The interesting part is the *type* of vulnerabilities ZeroQuarry found.
 
-The interesting part is how ZeroQuarry found the issues: it did it automatically.  And the original scan cost less than $30 in inference.
+These were not simple "regex found eval" findings. They were product-context findings: issues that only matter if you understand how Obsidian vaults are shared, how Excalidraw drawings are represented as Markdown, how plugin scripts work, how users install community scripts, how drawings embed links and images, and how people collaborate by passing around notes, vaults, and canvases.
 
-## Why this class of bug is hard for SAST
+That is the gap ZeroQuarry is designed to close.
 
-Most static analysis tools are good at finding certain classes of issue:
+## Developer tools are an unusually high-value target
 
-- a dangerous function called with user input
-- a known vulnerable dependency
-- a missing sanitizer around an obvious sink
-- hardcoded secrets
-- unsafe deserialization
-- injection patterns that match known templates
+Developer and power-user tools sit in a strange place in the security landscape.
 
-Those checks matter. They catch real bugs.
+They are often open source. They are often trusted deeply. They are often installed by technical users. They often run locally with broad access to files, credentials, notes, source code, SSH keys, API keys, browser-accessible sessions, and internal URLs.
 
-But the most interesting findings in the Excalidraw Obsidian plugin were not simply "the code calls a dangerous API." They required understanding what the product is, who uses it, what an Obsidian vault means, what content can be shared, which files are trusted, what a drawing element can control, how plugin scripts are installed, and which interactions feel normal to a user.
+They also tend to have rich extension systems: plugins, scripts, templates, Markdown processors, embedded webviews, custom protocol handlers, AI helpers, import/export pipelines, and sync workflows.
 
-A SAST tool can flag `dangerouslySetInnerHTML`, `new Function`, `srcDoc`, `file://`, or command execution. But the real question is not whether those APIs exist. The real question is whether an attacker can reach them through a realistic workflow.
+That richness is what makes them useful. It is also what makes them difficult to secure.
 
-For example:
+The Excalidraw Obsidian plugin is a good example. On the surface, it is a drawing plugin. In practice, it is a miniature application platform inside Obsidian:
 
-- A drawing file is not just a drawing. It can carry frontmatter, element links, embedded files, and app state.
-- A script icon is not just an icon. It may be a vault-controlled SVG rendered inside a privileged desktop app.
-- A link is not just a URL. In Obsidian, a `cmd://` or `obsidian://` link can cross from content into application behavior.
-- An image is not just an image. It may be a remote URL, a local `file://` path, a fetched resource, or a persisted data URL.
-- A cleanup script is not just maintenance code. If it trusts backlinks or marker files, it can become a deletion primitive.
-- AI-generated HTML is not just output. If embedded unsandboxed, it becomes active code inside a trusted workspace.
+- Drawings are Markdown files.
+- Drawings can contain frontmatter.
+- Drawings can embed images, files, links, HTML-like content, Mermaid diagrams, and script-driven behavior.
+- Scripts can automate the plugin and interact with Obsidian APIs.
+- Users share drawings and vaults with each other.
+- The plugin runs in an Electron/Obsidian environment, not a locked-down browser tab.
 
-That is product security work. It requires business context, attacker modeling, and an understanding of how users actually interact with the tool.
+That means the security question is not simply, "Is there an unsafe function?"
 
-This is exactly the gap ZeroQuarry is built to close.
+The real question is: **Can attacker-controlled vault content cross a trust boundary and become executable behavior?**
 
-## What ZeroQuarry found
+ZeroQuarry found multiple places where the answer was yes.
 
-The original scan surfaced a large number of issues, but the themes were more important than the raw count.
+## Example 1: A drawing file could execute script on open
 
-### 1. Content could become code
+One of the clearest examples was frontmatter-driven execution.
 
-Several findings involved attacker-controlled content becoming executable code. ZeroQuarry identified multiple variants of Excalidraw drawing frontmatter that could auto-execute JavaScript when a drawing was opened. The issue was high impact because the script execution path had access to ExcalidrawAutomate and Obsidian APIs, which meant 8a malicious drawing* could potentially read, modify, or delete vault content.
+Excalidraw drawings in Obsidian are stored as Markdown-like files. The plugin supported an `excalidraw-onload-script` frontmatter field. ZeroQuarry traced the path from a drawing file's frontmatter into the plugin's script engine.
 
-A traditional scanner might see a dynamic execution primitive. ZeroQuarry connected that primitive to the product reality: Excalidraw drawings are shareable vault artifacts. Opening a drawing is a normal user action. Users do not think of frontmatter as a code execution boundary.
+The issue was not merely that a script engine existed. Script engines are a legitimate feature. The issue was that a drawing file -- something a user might receive, sync, import, or open as content -- could carry executable code that ran automatically when the drawing opened.
 
-### 2. Rich embeds crossed trust boundaries
+Conceptually, the dangerous object looked like this:
 
-The plugin supported embeddables, data URLs, iframes, Electron webviews, HTML generated by AI scripts, and SVG preview paths. The original scan found cases where untrusted drawing-controlled content could be rendered as active web content without the expected sandboxing or scheme restrictions.
+```yaml
+---
+excalidraw-plugin: parsed
+excalidraw-onload-script: |
+  // attacker-controlled JavaScript executed when the drawing opens
+  // could read, modify, or delete vault files through plugin APIs
+---
+```
 
-Again, the finding was not just "iframe exists" or "srcDoc exists." The security issue was that a drawing could carry the payload, a user could open or interact with it naturally, and the plugin would treat that content as part of the trusted Obsidian/Excalidraw experience.
+The product-context problem is subtle:
 
-### 3. Obsidian command links became an application-control boundary
+- Users treat a drawing file as content.
+- The plugin treated a field inside that content as code.
+- The code ran automatically on open.
+- The execution context had access to Excalidraw automation and Obsidian plugin capabilities.
 
-The original scan identified several paths where attacker-controlled drawing links using command-style schemes could execute Obsidian commands. This is a subtle product-specific issue. In a normal browser app, a link parser might be mostly a navigation concern. In Obsidian, links and commands are part of the application model.
+A conventional scanner might flag the dynamic execution primitive. But it likely would not know whether this was a legitimate trusted script feature, a user-approved automation path, or an untrusted drawing-file execution path.
 
-That means link handling has to distinguish between "open this content" and "run this application behavior." Without that distinction, untrusted drawing data can cross into privileged command execution.
+ZeroQuarry connected those dots: **content file -> frontmatter -> script extraction -> script engine -> Obsidian-capable execution.**
 
-### 4. Script installation and updates carried supply-chain risk
+That is the difference between a lint warning and a vulnerability.
 
-The plugin's scripting ecosystem is one of the reasons it is powerful. It is also a security boundary. The original scan identified issues around script install code blocks, remote script store behavior, update flows, and filename/path handling.
+## Example 2: A pretty icon could become executable UI
 
-This is the kind of thing ordinary scanners struggle to prioritize because the risk depends on how the product works. A script installer is not inherently a vulnerability. A script installer that accepts remote content, writes into executable script locations, and makes trust decisions based on weak metadata can become a supply-chain risk.
+Another finding involved custom script icons.
 
-### 5. Local and remote resources were treated as drawings
+The plugin allowed scripts to have sibling `.svg` icon files. That is a useful feature: users can install scripts and have nice icons in menus or tool panels.
 
-Some findings involved remote image fetching, local `file://` paths, Iframely URL enrichment, and markdown/SVG preview paths. These are not always "critical" in isolation. But in a desktop knowledge-management tool, local files, private URLs, vault content, and internal links are all sensitive.
+But ZeroQuarry found that SVG icon text from the vault could be read and rendered as raw HTML in the Obsidian UI through `dangerouslySetInnerHTML`.
 
-ZeroQuarry treated those as part of the attack surface because it first researched the product landscape. It did not start with a generic checklist. It started with the question: "What can an attacker make this plugin do from a shared drawing, shared vault, pasted link, dropped file, script pack, or synced setting?"
+A simplified version of the trust failure:
 
-That is how a penetration tester thinks.
+```text
+Shared vault or script pack
+  -> SomeScript.md
+  -> SomeScript.svg
+  -> plugin reads SVG text
+  -> menu renders SVG as raw HTML
+  -> active SVG behavior can run before the user runs the script
+```
 
-## How ZeroQuarry works differently
+Why this matters: the user may think they are installing or previewing a harmless script pack. They may not even run the script. Merely rendering the menu icon could be enough to parse attacker-controlled markup.
 
-ZeroQuarry does not behave like a normal static scanner.
+A SAST tool can identify `dangerouslySetInnerHTML`. What it cannot easily know is that the input is not a developer-authored React component, but a vault-controlled SVG file that might arrive through a shared Obsidian vault or downloaded script bundle.
 
-It starts by researching the software and its surrounding ecosystem. It asks what the product does, who uses it, what the trust boundaries are, what file formats and extension points exist, what user workflows matter, and what an attacker could realistically control.
+That product-specific chain is the vulnerability:
 
-Then it builds a test plan.
+- The attacker controls the SVG file because vault content is shareable.
+- The plugin trusts the SVG because it sits next to a script.
+- The UI renders it as active markup.
+- The user may trigger it simply by opening a tools panel.
 
-For Excalidraw in Obsidian, that meant looking beyond ordinary web-app patterns and asking questions like:
+Again, the bug is not just the sink. It is the path and the misplaced trust.
 
-- What can a drawing file control?
-- What happens when a vault is shared or synced?
-- Which plugin features treat markdown, SVG, data URLs, or file paths as trusted?
-- Which workflows feel safe to a user but cross into code execution?
-- Which integrations turn content into commands, network requests, local file reads, or destructive actions?
-- Which AI-assisted features turn model output into active embedded content?
+## Example 3: A link in a drawing could become an Obsidian command
 
-After generating candidate findings, ZeroQuarry does not simply report everything it can imagine. It runs the ideas through adversarial review.
+Obsidian has internal command concepts. Excalidraw drawings have clickable links. The plugin also understood `cmd://` links.
 
-A researcher agent tries to strengthen and validate the finding: is the attack path realistic, is the source attacker-controlled, is the sink security-relevant, and is there a coherent exploit story?
+ZeroQuarry found paths where attacker-controlled drawing links could reach command execution without a strong trust boundary.
 
-A vendor agent tries to invalidate it: is this expected behavior, is there a missing prerequisite, is the impact overstated, does a guardrail exist elsewhere, is the code path actually reachable, or is the report confusing two different trust boundaries?
+A malicious drawing could contain an element that looked like an ordinary button or link, but whose target was conceptually:
 
-Only findings that survive that back-and-forth make it into the report.
+```text
+cmd://some-obsidian-or-plugin-command
+```
 
-That matters. LLMs are good at generating hypotheses. Security teams do not need more unfiltered hypotheses. They need validated, actionable findings.
+When the victim clicked the drawing element, the plugin could interpret that link as a command and dispatch it through Obsidian's command system.
 
-ZeroQuarry is designed to turn agentic reasoning into usable security output.
+This is the kind of issue that traditional tools frequently miss because each component looks reasonable in isolation:
 
-## Why this matters for open source
+- Drawing elements have links. Normal.
+- Obsidian has commands. Normal.
+- Plugins can execute commands. Normal.
+- `cmd://` is a supported internal convention. Normal.
 
-Open source maintainers are carrying an impossible load.
+The vulnerability appears only when you ask the product question:
 
-They are expected to build features, review issues, answer support questions, manage releases, maintain docs, triage dependencies, and act as unpaid security engineers for software that may be used by millions of people.
+**Should untrusted drawing content be able to trigger privileged application commands?**
 
-The Excalidraw Obsidian plugin is a perfect example. It is not a toy project. It is a rich local-first application environment inside a larger extensible platform. It has scripting, embeds, AI workflows, drawing formats, markdown rendering, file operations, and integrations with Obsidian itself.
+That requires understanding the user workflow. People share drawings. People click links in drawings. Those links should behave like content navigation, not like privileged automation.
 
-That kind of project deserves serious security review.
+ZeroQuarry's finding was not "there is a function call." It was "a shared drawing can turn a normal click into an application command."
 
-But most open-source projects cannot afford serious security review.
+## Example 4: A cleanup feature could delete the wrong files
 
-So I am offering ZeroQuarry for free to open-source projects.
+One of the more interesting findings was not about JavaScript execution at all.
 
-If you maintain an open-source project and want ZeroQuarry to take a serious look at your attack surface, reach out. The goal is not to create scary reports and walk away. The goal is to help maintainers find issues before attackers do, generate useful remediation guidance, and make the ecosystem safer.
+The Image Occlusion workflow included a cleanup mode for old generated cards and related images. Cleanup features are inherently dangerous because deletion is expected behavior. A scanner cannot simply say "this code deletes files" and call it a bug.
 
-## The takeaway
+The question is: **how does the plugin decide which files are safe to delete?**
 
-The headline is not "AI found bugs."
+ZeroQuarry found that the cleanup path trusted files named `batch-marker.md` that linked back to the active drawing. It then parsed linked files after a generated-cards marker and deleted those files and, in some cases, the marker's parent folder.
 
-The headline is that an automated system can now do meaningful, context-aware security research against real software: software with product-specific workflows, fuzzy trust boundaries, complex user interactions, and subtle exploit paths.
+A malicious shared vault could include something like:
 
-The Excalidraw Obsidian plugin had likely been downloaded millions of times. It is used by technical people. It lives in an ecosystem full of developers and power users. It almost certainly passed through plenty of dependency scanners, static checks, and community eyeballs before ZeroQuarry looked at it.
+```text
+ImportantProject/batch-marker.md
+  backlinks to the victim's drawing
+  contains a Generated Cards section
+  links to unrelated vault files
+```
 
-And yet ZeroQuarry still found meaningful issues for less than $30 of inference because it did not just scan the code.
+Then, when the victim ran what looked like a normal "delete old generated cards" cleanup, the plugin could treat the attacker's marker as authoritative state and delete unrelated vault content.
 
-It studied the product.
+This is a great example of a finding tied almost entirely to business logic.
 
-It mapped the attack surface.
+A generic scanner sees:
 
-It thought like a penetration tester.
+```text
+find backlinks -> parse links -> delete files
+```
 
-Then it argued with itself before reporting.
+That is not automatically wrong. In fact, it is the feature.
 
-That is the future of application security: not replacing maintainers, researchers, or security teams, but giving them leverage.
+The vulnerability is that the deletion manifest was not authenticated as plugin-created state, not scoped to the expected output folder, and not validated against the specific Image Occlusion batch.
 
-Especially the open-source maintainers who need that leverage most.
+ZeroQuarry had to understand the workflow well enough to ask: "What if the backlinking marker was attacker-supplied?"
+
+That is pen-tester reasoning, not syntax matching.
+
+## Example 5: A convenience preview leaked private URLs
+
+Another example involved URL enrichment.
+
+When a user dragged a link into Excalidraw, the plugin could call an Iframely-style title resolver to fetch metadata. The original scan found flows where full dropped URLs could be sent to a third-party endpoint over plaintext HTTP.
+
+That sounds modest until you think about what developer and knowledge-work URLs often contain:
+
+- private issue tracker links
+- pre-signed cloud storage URLs
+- internal wiki pages
+- OAuth callback URLs
+- local development URLs
+- URLs with embedded tokens or reset parameters
+
+A convenience feature becomes a data exposure issue when it silently sends sensitive URLs off-device.
+
+Again, this is difficult for a generic scanner to judge. Sending a URL to a metadata service can be an intended product behavior. The security issue depends on defaults, user expectations, transport security, whether the full query string is sent, and what kinds of URLs users are likely to drag into a developer note-taking tool.
+
+ZeroQuarry's approach is to model that context before judging the finding.
+
+## Example 6: AI-generated HTML became active content
+
+The plugin also included AI-assisted workflows that could generate HTML from drawings or prompts. That is a powerful feature. It is also a new kind of trust boundary.
+
+ZeroQuarry found cases where AI-generated HTML could be converted into an embeddable document and rendered without a strong sandbox.
+
+The risk here is not "AI is bad." The risk is that model output is untrusted input.
+
+A malicious collaborator, prompt injection inside a drawing, or simply an unexpected model response could cause generated HTML to include active script. If the plugin then persists and renders that HTML as active embedded content, the output stops being a preview and becomes executable UI inside the user's workspace.
+
+This is a class of vulnerability most older SAST tools were never designed to reason about:
+
+```text
+user drawing / prompt
+  -> AI provider
+  -> generated HTML
+  -> persisted Excalidraw embeddable
+  -> rendered in Obsidian
+```
+
+The security question is not whether HTML generation is useful. It is whether generated content is treated as untrusted, sandboxed output.
+
+## Why SAST usually misses this
+
+Static analysis is valuable. We use it. Everyone should use it.
+
+But SAST typically struggles with findings like these because the vulnerability is not contained in one function. It lives across the product model.
+
+For Excalidraw, the important context included:
+
+- Obsidian vaults can be shared, synced, cloned, and imported.
+- Markdown files are both user content and plugin state.
+- Drawings are not inert images; they can contain links, metadata, embeddables, and generated content.
+- Script automation is a legitimate feature, so the hard part is deciding when script execution is user-intended.
+- Electron/plugin contexts have more power than a normal web page.
+- Developer tools routinely handle private URLs, local files, API keys, diagrams, scripts, and internal documents.
+
+A SAST tool can say:
+
+> `dangerouslySetInnerHTML` is used here.
+
+ZeroQuarry tries to answer:
+
+> Can an attacker get a file into a shared vault such that opening a menu parses their SVG as active UI before the user runs anything?
+
+A SAST tool can say:
+
+> `new Function` appears here.
+
+ZeroQuarry tries to answer:
+
+> Is the string passed to `new Function` coming from a file the user believes is just a drawing?
+
+A SAST tool can say:
+
+> This function deletes files.
+
+ZeroQuarry tries to answer:
+
+> Is the deletion list controlled by plugin-created state, or can an attacker plant a backlinking marker that tricks cleanup into deleting unrelated vault content?
+
+That is the difference.
+
+## How ZeroQuarry found these for less than $30 of inference
+
+The scan cost less than $30 in inference.
+
+The reason it worked is that ZeroQuarry does not start by blindly grepping for dangerous APIs. It starts by trying to understand the product.
+
+For this scan, that meant researching the attack surface first:
+
+- What is Obsidian's trust model?
+- How are plugins installed and executed?
+- What does an Excalidraw drawing look like on disk?
+- What kinds of files and metadata can be embedded in drawings?
+- What script and automation features exist?
+- How do users share vaults, notes, drawings, scripts, and templates?
+- Which features cross from content into execution, rendering, filesystem access, network access, or command dispatch?
+
+From there, ZeroQuarry builds a plan like a penetration tester would:
+
+1. Identify trust boundaries.
+2. Look for attacker-controlled content that crosses those boundaries.
+3. Trace source-to-sink paths.
+4. Construct plausible exploitation scenarios based on real product workflows.
+5. Ask whether the issue survives scrutiny.
+
+That last step matters.
+
+ZeroQuarry does not just have one agent produce findings. It bounces candidate findings off of a researcher agent that tries to deepen and sharpen the case, and a vendor agent that tries to invalidate it. The vendor agent asks the uncomfortable questions maintainers would ask:
+
+- Is this really attacker-controlled?
+- Is this actually reachable?
+- Is this intended functionality?
+- Is user interaction required?
+- Is there an existing trust prompt?
+- Is the impact overstated?
+- Is this a duplicate of another finding?
+- Is the exploit scenario realistic for this product?
+
+Only findings that survive that adversarial review make it into the report.
+
+That is why the final output can include the thing maintainers actually need: not just "unsafe API used," but a concrete explanation of source, sink, reachability, impact, and a product-realistic exploit scenario.
+
+## The maintainer response matters
+
+The other important part of this story is that the maintainer fixed issues.
+
+Security work is only useful if it helps maintainers improve the software. The initial scan surfaced a large number of high- and medium-severity issues. After remediation, a re-scan showed a much smaller remaining set.
+
+That is the loop we want ZeroQuarry to enable:
+
+1. Find the issues.
+2. Explain them in maintainer language.
+3. Generate patches where possible.
+4. Re-scan to confirm what changed.
+5. Help the project get safer without turning maintainers into full-time security triage teams.
+
+Open-source maintainers already carry too much. The goal is not to dump a pile of vague alerts on them. The goal is to deliver specific, actionable, validated findings that are worth their time.
+
+## ZeroQuarry is free for open-source projects
+
+We are offering ZeroQuarry for free to open-source projects.
+
+If you maintain an open-source project, especially one with plugins, scripting, local file access, developer workflows, AI features, complex import/export paths, or rich user-generated content, we would love to help.
+
+You do not need another scanner that produces 1,000 low-confidence warnings.
+
+You need something closer to an always-on security researcher: something that studies how your product works, reasons about how attackers would actually use it, tests its own assumptions, and gives you findings that are concrete enough to fix.
+
+That is what we are building with ZeroQuarry.
+
+And the Excalidraw Obsidian plugin is exactly the kind of case that shows why it matters.
+
+
