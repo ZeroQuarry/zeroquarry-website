@@ -16,9 +16,6 @@ tags:
   - plugin-security
   - responsible-disclosure
 ---
-# The Bugs SAST Misses: What ZeroQuarry Found in the Excalidraw Obsidian Plugin
-
-*How an agentic security workflow found high-impact issues in a multi-million-download developer tool -- and why we're offering ZeroQuarry free to open-source projects.*
 
 Most security tools are good at spotting code smells.
 
