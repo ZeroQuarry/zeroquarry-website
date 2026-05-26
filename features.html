@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Features · ZeroQuarry</title>
+<meta name="description" content="ZeroQuarry features: adversarial multi-agent review, CI/CD scanning and auto-fix workflows, token-optimized model routing, delta scans, and vulnerability disclosure tracking." />
+<link rel="canonical" href="https://zeroquarry.com/features" />
+<meta property="og:title" content="Features · ZeroQuarry" />
+<meta property="og:description" content="Adversarial agents, pipeline hooks, token-optimized model routing, scheduled delta scans, auto-fix workflows, and disclosure tracking for modern security teams." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/features" />
+<meta property="og:image" content="https://zeroquarry.com/assets/wordmark.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRT44MWJT1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZRT44MWJT1');
+</script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#surfaces">Platform</a>
+      <a href="index.html#debate">How it works</a>
+      <a href="index.html#report">Reports</a>
+      <a href="features.html" aria-current="page">Features</a>
+      <a href="research/">Research</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com">Get started <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="features-hero">
+    <div class="container pricing-hero-grid">
+      <div>
+        <span class="eyebrow">
+          <span class="tag">FEATURES</span>
+          <span>The operating system for continuous vuln discovery</span>
+        </span>
+        <h1 class="headline pricing-headline">
+          <span class="block">Find more real bugs.</span>
+          <span class="block thin">Spend less time</span>
+          <span class="block thin"><em>triaging noise.</em></span>
+        </h1>
+        <p class="lede">
+          ZeroQuarry combines multi-agent vulnerability research with the workflows security teams already use: commits, pull requests, scheduled jobs, disclosure inboxes, and patch review.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="#pipeline">See pipeline hooks</a>
+        </div>
+      </div>
+
+      <div class="feature-map" aria-label="ZeroQuarry feature map">
+        <div class="feature-map-head">
+          <span>scan://zeroquarry/features</span>
+          <span class="live">ACTIVE</span>
+        </div>
+        <div class="feature-map-body">
+          <div class="map-node strong">multi-agent triage</div>
+          <div class="map-rail"></div>
+          <div class="map-row">
+            <span>red team</span>
+            <span>vendor review</span>
+            <span>human control</span>
+          </div>
+          <div class="map-node">github action + bot PRs</div>
+          <div class="map-node">scheduled delta scans</div>
+          <div class="map-node">model routing by phase</div>
+          <div class="map-node">disclosure inbox automation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-deep" id="agents">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">01 · Agent guardrails</div>
+          <h2>Multi-agent review<br>that can keep <em>arguing.</em></h2>
+        </div>
+        <div class="aside">
+          ZeroQuarry does not stop at a single plausible finding. It uses adversarial review to force evidence, rebuttals, and tighter severity before a result reaches your team.
+        </div>
+      </div>
+
+      <div class="feature-split">
+        <div class="feature-copy">
+          <h3>Red team finds. Vendor team falsifies. You stay in control.</h3>
+          <p>
+            The red-team agent hunts for exploit chains and working proofs. The vendor-team agent tries to disprove each claim, challenge impact, and narrow remediation. That debate acts as guardrails against hallucinated or over-scored findings.
+          </p>
+          <p>
+            When the first pass is not enough, tell the agents to continue the debate. Push on a premise, ask for a better PoC, request an alternative patch, or keep triage running until the evidence is strong enough for your security bar.
+          </p>
+        </div>
+        <div class="debate-control">
+          <div class="control-line red"><span>red</span> BOLA chain survives auth model check</div>
+          <div class="control-line blue"><span>vendor</span> tenant guard only covers list endpoint</div>
+          <div class="control-line sys"><span>you</span> continue debate: prove write impact</div>
+          <div class="control-line red"><span>red</span> PoC mutates invoice owner via PATCH</div>
+          <div class="control-line good"><span>verdict</span> exploitable · patch drafted · severity adjusted</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-deep" id="pipeline">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">02 · Development pipeline</div>
+          <h2>Hooks into commits,<br>PRs, schedules, and <em>fixes.</em></h2>
+        </div>
+        <div class="aside">
+          Run ZeroQuarry where code already changes. It can scan automatically, propose fixes, and keep checking the parts of the estate that moved.
+        </div>
+      </div>
+
+      <div class="pipeline-grid">
+        <article class="pipeline-card">
+          <div class="pipeline-code">CI.01</div>
+          <h3>Commit and PR scans</h3>
+          <p>Install the GitHub Action to scan on commit or pull request and return findings while the code is still in review.</p>
+        </article>
+        <article class="pipeline-card">
+          <div class="pipeline-code">CI.02</div>
+          <h3>Auto-fix workflows</h3>
+          <p>Let ZeroQuarry draft narrow patches for confirmed issues, ready for engineering review instead of another ticket handoff.</p>
+        </article>
+        <article class="pipeline-card">
+          <div class="pipeline-code">CI.03</div>
+          <h3>Bot-authored PRs</h3>
+          <p>Install the bot to suggest pull requests directly, with context from the finding and the remediation debate attached.</p>
+        </article>
+        <article class="pipeline-card">
+          <div class="pipeline-code">CI.04</div>
+          <h3>Scheduled delta scans</h3>
+          <p>Run periodically and efficiently scan what changed since the last pull, so repeated coverage does not mean repeated waste.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-deep" id="model-routing">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">03 · Token optimization</div>
+          <h2>Route the expensive model<br>only where it <em>matters.</em></h2>
+        </div>
+        <div class="aside">
+          Different scan phases need different reasoning budgets. ZeroQuarry lets you pick the model for triage, validation, and PoC generation separately.
+        </div>
+      </div>
+
+      <div class="routing-panel">
+        <div class="route-step">
+          <span class="route-kicker">Triage</span>
+          <h3>Cheap, broad search</h3>
+          <p>Use lower-cost models to fan out over repositories, endpoints, binaries, and suspicious paths.</p>
+        </div>
+        <div class="route-arrow">-&gt;</div>
+        <div class="route-step">
+          <span class="route-kicker">Validation</span>
+          <h3>Skeptical review</h3>
+          <p>Promote only promising candidates into adversarial validation and evidence checking.</p>
+        </div>
+        <div class="route-arrow">-&gt;</div>
+        <div class="route-step accent">
+          <span class="route-kicker">PoC</span>
+          <h3>Premium reasoning</h3>
+          <p>Spend stronger models on exploit construction, impact analysis, and patch quality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section feature-deep" id="disclosures">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">04 · Disclosure tracking</div>
+          <h2>Your vulnerability inbox<br>becomes <em>actionable.</em></h2>
+        </div>
+        <div class="aside">
+          Track the disclosures you send and the disclosures you receive. ZeroQuarry keeps the record, the evidence, and the follow-up work together.
+        </div>
+      </div>
+
+      <div class="disclosure-grid">
+        <div class="inbox-card">
+          <div class="inbox-head">forwarded email</div>
+          <div class="inbox-subject">Possible IDOR in invoice export</div>
+          <div class="inbox-meta">from: researcher@example.com · status: queued</div>
+          <div class="inbox-body">
+            ZeroQuarry extracts the claim, maps affected assets, launches the appropriate scans, and prepares the response context your team needs.
+          </div>
+        </div>
+        <div class="feature-copy">
+          <h3>Forward a disclosure. Let the agents do the first pass.</h3>
+          <p>
+            When you receive a vulnerability report, forward the email to ZeroQuarry. The system analyzes the disclosure, identifies relevant repos or live targets, runs appropriate scans, and helps separate valid reports from vague or non-reproducible claims.
+          </p>
+          <p>
+            For outbound work, keep a history of disclosures you have made: affected product, timeline, status, evidence, PoCs, and communications. The same agent loop that validates findings can help prepare clearer disclosure packages.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Put ZeroQuarry<br>on your <em>critical paths.</em></h2>
+        <p>Start with a repo scan, then add PR automation, scheduled delta scans, model routing, and disclosure tracking as your program grows.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="pricing.html">Compare plans</a>
+        </div>
+        <div class="cta-note">Source, binary, live, and disclosure workflows in one loop</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a href="index.html" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>Adversarial AI for offensive security. Mine your 0-days before someone else does.</p>
+      </div>
+      <div class="foot-col legal">
+        <h5>Legal</h5>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Resources</h5>
+        <a href="about.html">About</a>
+        <a href="features.html">Features</a>
+        <a href="research/">Research</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+        <a href="https://status.zeroquarry.com">Status Page</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Social</h5>
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://discord.gg/PygTTeuU">Discord</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <span>LAT 37.8409° S · LON 144.9464° E</span>
+        <span class="ok">● ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

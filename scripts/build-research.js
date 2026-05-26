@@ -268,7 +268,7 @@ function nav(prefix) {
       <a href="${prefix}index.html#surfaces">Platform</a>
       <a href="${prefix}index.html#debate">How it works</a>
       <a href="${prefix}index.html#report">Reports</a>
-      <a href="${prefix}index.html#features">Features</a>
+      <a href="${prefix}features.html">Features</a>
       <a href="${prefix}research/" aria-current="page">Research</a>
       <a href="${prefix}pricing.html">Pricing</a>
     </nav>
@@ -298,6 +298,7 @@ function footer(prefix) {
       <div class="foot-col legal">
         <h5>Resources</h5>
         <a href="${prefix}about.html">About</a>
+        <a href="${prefix}features.html">Features</a>
         <a href="${prefix}research/">Research</a>
         <a href="${prefix}pricing.html">Pricing</a>
         <a href="https://docs.zeroquarry.com">Docs</a>
