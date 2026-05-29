@@ -1,0 +1,99 @@
+.cookie-consent {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  width: min(560px, calc(100vw - 40px));
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--line-2, #1D2E48);
+  border-radius: 8px;
+  background: rgba(11, 21, 36, 0.96);
+  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.42);
+  color: var(--ink, #EEF2F9);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+
+.cookie-consent__copy h2 {
+  margin: 0 0 4px;
+  font: 600 14px/1.25 var(--mono, ui-monospace, Menlo, monospace);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cookie-consent__copy p {
+  margin: 0;
+  color: var(--ink-2, #AEBBD0);
+  font: 400 13.5px/1.5 var(--sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+
+.cookie-consent__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cookie-consent__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 13px;
+  border-radius: 6px;
+  border: 1px solid var(--line-2, #1D2E48);
+  font: 500 12px/1 var(--mono, ui-monospace, Menlo, monospace);
+  color: var(--ink, #EEF2F9);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cookie-consent__button:hover {
+  border-color: #2a4060;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cookie-consent__button--primary {
+  border-color: var(--red, #F41E22);
+  background: var(--red, #F41E22);
+  color: #fff;
+}
+
+.cookie-consent__button--primary:hover {
+  border-color: #ff3a3e;
+  background: #ff3a3e;
+}
+
+.cookie-consent__link {
+  color: var(--ink-2, #AEBBD0);
+  font: 500 12px/1 var(--mono, ui-monospace, Menlo, monospace);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cookie-consent__link:hover {
+  color: var(--ink, #EEF2F9);
+}
+
+@media (max-width: 680px) {
+  .cookie-consent {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100vw - 24px);
+    grid-template-columns: 1fr;
+  }
+
+  .cookie-consent__actions {
+    justify-content: stretch;
+  }
+
+  .cookie-consent__button {
+    flex: 1 1 auto;
+  }
+}
