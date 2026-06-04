@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Continuous Testing · ZeroQuarry</title>
+<meta name="description" content="Run ZeroQuarry continuously with PR scans, scheduled delta scans, API-triggered scans, Slack notifications, and evidence history between audits." />
+<link rel="canonical" href="https://zeroquarry.com/continuous-testing" />
+<meta property="og:title" content="Continuous Testing · ZeroQuarry" />
+<meta property="og:description" content="Find vulnerabilities more frequently with PR scans, scheduled delta rescans, and recurring evidence for AppSec and SOC 2 programs." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/continuous-testing" />
+<meta property="og:image" content="https://zeroquarry.com/assets/wordmark.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="cookie-consent.css" />
+<script src="cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Why ZeroQuarry</a>
+      <a href="platform.html">Platform</a>
+      <a href="continuous-testing.html" aria-current="page">Continuous Testing</a>
+      <a href="evidence-reports.html">Evidence &amp; Reports</a>
+      <a href="research/">Research</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com">Get started <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pricing-hero">
+    <div class="container pricing-hero-grid">
+      <div>
+        <span class="eyebrow">
+          <span class="tag">CONTINUOUS TESTING</span>
+          <span>Find issues between audit windows</span>
+        </span>
+        <h1 class="headline pricing-headline">
+          <span class="block">Scan when code</span>
+          <span class="block thin"><em>actually changes.</em></span>
+        </h1>
+        <p class="lede">
+          ZeroQuarry turns vulnerability discovery into a recurring product workflow: commit scans, scheduled rescans, API-triggered jobs, delta focus, notifications, and project history that security teams can review later.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Configure a scan <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="#cadence">See cadence options</a>
+        </div>
+      </div>
+
+      <div class="pricing-terminal" aria-label="Continuous testing summary">
+        <div class="console-head">
+          <span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span>
+          <span class="console-title"><span class="tbl">schedule://</span>appsec</span>
+          <span class="console-meta"><span class="live">RUNNING</span></span>
+        </div>
+        <div class="pricing-terminal-body">
+          <div><span class="muted">$</span> scan --on push --auto-delta true</div>
+          <div><span class="ok">ok</span> changed files promoted to review</div>
+          <div><span class="muted">$</span> schedule --weekly sunday 00:00</div>
+          <div><span class="ok">ok</span> no-change runs skipped</div>
+          <div><span class="muted">$</span> notify --slack --email</div>
+          <div><span class="ok">ok</span> findings routed to team workflow</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cadence">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">01 · Cadence</div>
+          <h2>Move from annual review<br>to recurring <em>coverage.</em></h2>
+        </div>
+        <div class="aside">
+          Traditional scans are usually scoped around compliance moments. ZeroQuarry is designed to run when risk changes: a push, a release candidate, a new binary, a reported issue, or a scheduled control check.
+        </div>
+      </div>
+
+      <div class="workflow-strip">
+        <div class="workflow-step"><span>PR</span><h3>Commit and PR scans</h3><p>Run scans from CI while the code is still close to the developer review loop.</p></div>
+        <div class="workflow-step"><span>DELTA</span><h3>Changed-file focus</h3><p>Subsequent git scans can focus on diffs and follow adjacent data flow only where needed.</p></div>
+        <div class="workflow-step"><span>SCHED</span><h3>Daily, weekly, monthly</h3><p>Schedule recurring scans by local timezone and skip clean runs when nothing changed.</p></div>
+        <div class="workflow-step"><span>API</span><h3>Programmatic starts</h3><p>Use API keys to create scans, poll status, fetch reports, and wire ZeroQuarry into internal tooling.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="soc2">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">02 · SOC 2 and AppSec</div>
+          <h2>Evidence should not wait<br>for the next <em>audit.</em></h2>
+        </div>
+        <div class="aside">
+          SOC 2 asks whether your organization has a vulnerability management process. ZeroQuarry gives teams a way to operate that process more often than a quarterly scanner or annual penetration test.
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <article class="compare-card muted-card">
+          <div class="compare-code">AUDIT SCAN</div>
+          <h3>Point-in-time evidence</h3>
+          <p>A useful checkpoint, but it only reflects the system at the moment of testing. New code and shipped artifacts keep moving.</p>
+        </article>
+        <article class="compare-card strong-card">
+          <div class="compare-code">ZEROQUARRY</div>
+          <h3>Recurring evidence</h3>
+          <p>Scan histories, confidence, validation signals, exports, patch records, and project timelines show how the control operates over time.</p>
+        </article>
+        <article class="compare-card muted-card">
+          <div class="compare-code">APPSEC TEAM</div>
+          <h3>Fewer handoffs</h3>
+          <p>Security teams can route only the findings that survived review into tickets, PRs, and reports instead of re-triaging every scanner alert.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="workflow">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">03 · Handoff</div>
+          <h2>Continuous does not mean<br>constantly <em>interrupting.</em></h2>
+        </div>
+        <div class="aside">
+          A scan is only useful if the output lands where work happens. ZeroQuarry connects scan completion, issue creation, patch review, and external sharing without forcing teams into another dashboard.
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="f"><div class="glyph">S</div><div class="fn">SLACK</div><h3>Completion summaries</h3><p>Post scan summaries to a configured Slack channel when a run completes.</p></div>
+        <div class="f"><div class="glyph">J</div><div class="fn">JIRA</div><h3>Issue creation</h3><p>Create Jira work items from findings with deep context and links back to the report.</p></div>
+        <div class="f"><div class="glyph">N</div><div class="fn">SERVICENOW</div><h3>ServiceNow records</h3><p>Open records on the right table for enterprise vulnerability management workflows.</p></div>
+        <div class="f"><div class="glyph">G</div><div class="fn">GITHUB</div><h3>Patch proposals</h3><p>Stage patch diffs and open GitHub bot PRs only after human approval and safety checks.</p></div>
+        <div class="f"><div class="glyph">E</div><div class="fn">EMAIL</div><h3>Incoming report triage</h3><p>Forward security reports to project addresses so approved senders can trigger target-matched scans.</p></div>
+        <div class="f"><div class="glyph">A</div><div class="fn">API</div><h3>Automation surface</h3><p>Drive projects, scans, reports, disclosures, schedules, shares, and patches through JSON endpoints.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Make vulnerability discovery<br>a standing <em>control.</em></h2>
+        <p>Start with a CI scan, then add schedules, Slack, ticketing, and evidence exports as the process becomes part of normal engineering.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="evidence-reports.html">Review the evidence layer</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col"><a href="index.html" class="brand" aria-label="ZeroQuarry home"><img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry"></a><p>Continuous adversarial vulnerability research for product teams.</p></div>
+      <div class="foot-col legal"><h5>Legal</h5><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+      <div class="foot-col legal"><h5>Resources</h5><a href="index.html">Why ZeroQuarry</a><a href="platform.html">Platform</a><a href="continuous-testing.html">Continuous Testing</a><a href="evidence-reports.html">Evidence &amp; Reports</a><a href="research/">Research</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="https://docs.zeroquarry.com">Docs</a><a href="https://status.zeroquarry.com">Status Page</a></div>
+      <div class="foot-col legal"><h5>Social</h5><a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a><a href="https://discord.gg/PygTTeuU">Discord</a><a href="https://github.com/ZeroQuarry/">GitHub</a></div>
+    </div>
+    <div class="foot-bottom"><div>&copy; 2026 ZeroQuarry. All rights reserved.</div><div class="right"><span>LAT 37.8409 S - LON 144.9464 E</span><span class="ok">ALL SYSTEMS OPERATIONAL</span></div></div>
+  </div>
+</footer>
+
+</body>
+</html>

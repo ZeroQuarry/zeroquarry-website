@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pricing · ZeroQuarry</title>
-<meta name="description" content="ZeroQuarry pricing for students, open source maintainers, solo security researchers, product teams, and enterprise security programs." />
+<meta name="description" content="ZeroQuarry pricing for continuous adversarial vulnerability testing, validated findings, evidence packets, and enterprise security programs." />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,10 +26,10 @@
       <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="index.html#surfaces">Platform</a>
-      <a href="index.html#debate">How it works</a>
-      <a href="index.html#report">Reports</a>
-      <a href="features.html">Features</a>
+      <a href="index.html">Why ZeroQuarry</a>
+      <a href="platform.html">Platform</a>
+      <a href="continuous-testing.html">Continuous Testing</a>
+      <a href="evidence-reports.html">Evidence &amp; Reports</a>
       <a href="research/">Research</a>
       <a href="pricing.html" aria-current="page">Pricing</a>
     </nav>
@@ -46,16 +46,15 @@
       <div>
         <span class="eyebrow">
           <span class="tag">PRICING</span>
-          <span>Scale from public repos to private estates</span>
+          <span>Continuous testing without scanner noise</span>
         </span>
         <h1 class="headline pricing-headline">
-          <span class="block">Start free.</span>
-          <span class="block thin">Scale when the</span>
-          <span class="block thin"><em>attack surface</em></span>
-          <span class="block thin">does.</span>
+          <span class="block">Buy proof.</span>
+          <span class="block thin">Not another queue</span>
+          <span class="block thin">of <em>alerts.</em></span>
         </h1>
         <p class="lede">
-          ZeroQuarry plans are built around how security work actually expands: public source first, then private repos, binaries, live targets, team workflows, and controlled enterprise deployments.
+          ZeroQuarry plans scale by how often you want adversarial testing, how many surfaces you need covered, and how much evidence your team needs to ship, remediate, and satisfy customer or audit requests.
         </p>
       </div>
 
@@ -66,13 +65,54 @@
           <span class="console-meta"><span class="live">LIVE</span></span>
         </div>
         <div class="pricing-terminal-body">
-          <div><span class="muted">$</span> plan select free <span class="ok">--oss</span></div>
-          <div><span class="muted">ok</span> source scans + patch drafts + BYO model</div>
-          <div><span class="muted">$</span> plan upgrade pro <span class="ok">--researcher</span></div>
-          <div><span class="muted">ok</span> source + binary + remote + adversarial review</div>
-          <div><span class="muted">$</span> plan scale team <span class="ok">--seats 5+</span></div>
-          <div><span class="muted">ok</span> shared projects, private git, unlimited scans</div>
+          <div><span class="muted">$</span> test --surface source,binary,remote</div>
+          <div><span class="muted">ok</span> agents attempt exploitation before reporting</div>
+          <div><span class="muted">$</span> evidence build --for engineering,audit,customers</div>
+          <div><span class="muted">ok</span> finding packets include proof, context, and retest status</div>
+          <div><span class="muted">$</span> cadence set --mode continuous</div>
+          <div><span class="muted">ok</span> scan on demand, on schedule, and after important changes</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section compact">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">Buying path</div>
+          <h2>Pick the plan by the <em>security motion.</em></h2>
+        </div>
+        <div class="aside">
+          Most scanners price by seats or scan count. ZeroQuarry is easier to evaluate by the job you need done: exploratory research, continuous product testing, or controlled enterprise deployment.
+        </div>
+      </div>
+
+      <div class="pricing-path-grid">
+        <article class="pricing-path-card">
+          <div class="pricing-path-code">01</div>
+          <h3>Explore a public repo</h3>
+          <p>Use Free OSS when you want to see the agent loop on public source and understand the shape of the findings.</p>
+          <a href="#plans">Free OSS</a>
+        </article>
+        <article class="pricing-path-card">
+          <div class="pricing-path-code">02</div>
+          <h3>Run adversarial research</h3>
+          <p>Use Pro when you need source, binary, and remote testing with PoCs, disclosure drafts, and adversarial review.</p>
+          <a href="#plans">Pro</a>
+        </article>
+        <article class="pricing-path-card">
+          <div class="pricing-path-code">03</div>
+          <h3>Continuously test a product</h3>
+          <p>Use Team when engineering and security need private git, shared projects, repeated scans, and retestable findings.</p>
+          <a href="#plans">Team</a>
+        </article>
+        <article class="pricing-path-card">
+          <div class="pricing-path-code">04</div>
+          <h3>Control deployment boundaries</h3>
+          <p>Use Enterprise when procurement, model routing, VPC access, or air-gapped deployment are part of the requirement.</p>
+          <a href="#enterprise-contact">Enterprise</a>
+        </article>
       </div>
     </div>
   </section>
@@ -83,7 +123,7 @@
         <article class="price-card">
           <div class="plan-kicker">Free</div>
           <h2>Free OSS</h2>
-          <p class="plan-audience">For students and open source maintainers scanning public projects.</p>
+          <p class="plan-audience">For students, maintainers, and evaluators who want to test public source before rolling ZeroQuarry into private work.</p>
           <div class="price-row"><span class="price">$0</span><span class="cadence">/mo</span></div>
           <a class="btn btn-ghost plan-btn" href="https://console.zeroquarry.com">Start free</a>
           <ul class="plan-list">
@@ -100,7 +140,7 @@
           <div class="plan-ribbon">Most flexible</div>
           <div class="plan-kicker">Pro</div>
           <h2>Pro</h2>
-          <p class="plan-audience">For solo security researchers and consultants working across client targets.</p>
+          <p class="plan-audience">For security researchers and consultants who need validated findings across code, binaries, and reachable targets.</p>
           <div class="price-row"><span class="price">$100</span><span class="cadence">/mo</span></div>
           <a class="btn btn-primary plan-btn" href="https://console.zeroquarry.com">Get Pro <span class="arr">-&gt;</span></a>
           <ul class="plan-list">
@@ -117,10 +157,10 @@
         <article class="price-card">
           <div class="plan-kicker">Team</div>
           <h2>Team</h2>
-          <p class="plan-audience">For product teams at enterprises shipping together across shared projects.</p>
+          <p class="plan-audience">For B2B product teams that want frequent vulnerability testing inside engineering and security workflows.</p>
           <div class="price-row"><span class="price">$100</span><span class="cadence">/seat/mo</span></div>
           <div class="price-note">5 seat minimum</div>
-          <a class="btn btn-ghost plan-btn" href="https://console.zeroquarry.com">Start a team</a>
+          <a class="btn btn-ghost plan-btn" href="request-scan/">Request team scan</a>
           <ul class="plan-list">
             <li><span></span>Unlimited monthly scans</li>
             <li><span></span>Source, binary, and remote scans</li>
@@ -135,7 +175,7 @@
         <article class="price-card enterprise">
           <div class="plan-kicker">Enterprise</div>
           <h2>Enterprise</h2>
-          <p class="plan-audience">For security programs that need deployment control, network isolation, and procurement support.</p>
+          <p class="plan-audience">For security programs that need continuous testing, deployment control, network isolation, and procurement support.</p>
           <div class="price-row"><span class="price contact">Contact us</span></div>
           <a class="btn btn-ghost plan-btn" href="#enterprise-contact">Talk to sales</a>
           <ul class="plan-list">
@@ -157,33 +197,33 @@
       <div class="section-head">
         <div>
           <div class="tag">Included</div>
-          <h2>Every plan gets the <em>agent loop.</em></h2>
+          <h2>What you are really buying is <em>confidence.</em></h2>
         </div>
         <div class="aside">
-          The paid plans open more surfaces and team controls. The core workflow stays the same from the first public repository.
+          The paid plans open more surfaces, concurrency, and team controls. The core value stays the same: findings have to survive adversarial review before they become security work.
         </div>
       </div>
 
       <div class="included-grid">
         <div class="included-item">
           <div class="included-code">01</div>
-          <h3>Agent-written findings</h3>
-          <p>Scans produce findings with severity, evidence, source references, and remediation context.</p>
+          <h3>Validated findings</h3>
+          <p>Reports separate suspicious behavior from issues with evidence, severity, source references, and remediation context.</p>
         </div>
         <div class="included-item">
           <div class="included-code">02</div>
-          <h3>CVSS-style reports</h3>
-          <p>Reports are built for review, export, and handoff instead of another noisy dashboard queue.</p>
+          <h3>Evidence packets</h3>
+          <p>Give engineers, auditors, and customers the proof chain: what was tested, what worked, and what changed after retest.</p>
         </div>
         <div class="included-item">
           <div class="included-code">03</div>
-          <h3>Finding chat</h3>
-          <p>Ask follow-up questions, challenge a finding, re-check evidence, or revise the report language.</p>
+          <h3>Finding review</h3>
+          <p>Challenge findings, ask follow-up questions, re-check evidence, or revise report language before it leaves security.</p>
         </div>
         <div class="included-item">
           <div class="included-code">04</div>
-          <h3>Project history</h3>
-          <p>Keep scan runs, findings, logs, and artifacts organized by project and account.</p>
+          <h3>Scan lineage</h3>
+          <p>Keep runs, findings, logs, artifacts, and retest outcomes organized by project, release, and account.</p>
         </div>
       </div>
     </div>
@@ -253,6 +293,27 @@
               <td class="yes">Included</td>
             </tr>
             <tr>
+              <td>Evidence packets</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+            </tr>
+            <tr>
+              <td>Continuous testing cadence</td>
+              <td class="no">Manual</td>
+              <td class="yes">Available</td>
+              <td class="yes">Included</td>
+              <td class="yes">Custom</td>
+            </tr>
+            <tr>
+              <td>Retest and scan lineage</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+              <td class="yes">Included</td>
+            </tr>
+            <tr>
               <td>Private git over SSH</td>
               <td class="no">Not included</td>
               <td class="yes">Included</td>
@@ -284,14 +345,14 @@
       <div class="contact-panel">
         <div>
           <div class="tag">Enterprise</div>
-          <h2>Need ZeroQuarry inside your boundary?</h2>
+          <h2>Need continuous testing inside your boundary?</h2>
           <p>
-            Tell us what you need to protect, where ZeroQuarry needs to run, and which controls matter. We will follow up with deployment and procurement details.
+            Tell us what you need to protect, where ZeroQuarry needs to run, and which evidence or controls matter for your customers, auditors, and engineering teams.
           </p>
           <ul class="contact-points">
-            <li>Air-gapped and private network deployments</li>
-            <li>VPC peering and enterprise identity requirements</li>
-            <li>Bring-your-own-model and custom model routing</li>
+            <li>Continuous testing cadence for private products and APIs</li>
+            <li>Air-gapped, private network, and VPC deployment options</li>
+            <li>Bring-your-own-model, custom model routing, and procurement support</li>
           </ul>
         </div>
 
@@ -349,8 +410,11 @@
       </div>
       <div class="foot-col legal">
         <h5>Resources</h5>
+        <a href="index.html">Why ZeroQuarry</a>
+        <a href="platform.html">Platform</a>
+        <a href="continuous-testing.html">Continuous Testing</a>
+        <a href="evidence-reports.html">Evidence &amp; Reports</a>
         <a href="about.html">About</a>
-        <a href="features.html">Features</a>
         <a href="research/">Research</a>
         <a href="pricing.html">Pricing</a>
         <a href="https://docs.zeroquarry.com">Docs</a>

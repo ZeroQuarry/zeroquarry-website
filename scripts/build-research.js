@@ -259,10 +259,10 @@ function nav(prefix) {
       <img class="wordmark" src="${prefix}assets/wordmark.png" alt="ZeroQuarry">
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="${prefix}index.html#surfaces">Platform</a>
-      <a href="${prefix}index.html#debate">How it works</a>
-      <a href="${prefix}index.html#report">Reports</a>
-      <a href="${prefix}features.html">Features</a>
+      <a href="${prefix}index.html">Why ZeroQuarry</a>
+      <a href="${prefix}platform.html">Platform</a>
+      <a href="${prefix}continuous-testing.html">Continuous Testing</a>
+      <a href="${prefix}evidence-reports.html">Evidence &amp; Reports</a>
       <a href="${prefix}research/" aria-current="page">Research</a>
       <a href="${prefix}pricing.html">Pricing</a>
     </nav>
@@ -291,10 +291,13 @@ function footer(prefix) {
       </div>
       <div class="foot-col legal">
         <h5>Resources</h5>
-        <a href="${prefix}about.html">About</a>
-        <a href="${prefix}features.html">Features</a>
+        <a href="${prefix}index.html">Why ZeroQuarry</a>
+        <a href="${prefix}platform.html">Platform</a>
+        <a href="${prefix}continuous-testing.html">Continuous Testing</a>
+        <a href="${prefix}evidence-reports.html">Evidence &amp; Reports</a>
         <a href="${prefix}research/">Research</a>
         <a href="${prefix}pricing.html">Pricing</a>
+        <a href="${prefix}about.html">About</a>
         <a href="https://docs.zeroquarry.com">Docs</a>
         <a href="https://status.zeroquarry.com">Status Page</a>
       </div>
@@ -419,14 +422,15 @@ function renderIndex(posts) {
       <div>
         <span class="eyebrow">
           <span class="tag">RESEARCH</span>
-          <span>Security findings and disclosure notes</span>
+          <span>Published findings and disclosure-safe analysis</span>
         </span>
         <h1 class="headline research-headline">
-          <span class="block">ZeroQuarry</span>
-          <span class="block thin"><em>Research.</em></span>
+          <span class="block">Research-backed</span>
+          <span class="block thin"><em>vulnerability</em></span>
+          <span class="block thin">testing.</span>
         </h1>
         <p class="lede">
-          Security findings, disclosure notes, and product-security analysis from the ZeroQuarry team.
+          ZeroQuarry research is where validated findings become public lessons. We publish after responsible disclosure, with enough technical detail to be useful and enough restraint to protect users still updating.
         </p>
       </div>
 
@@ -438,19 +442,161 @@ function renderIndex(posts) {
         </div>
         <div class="research-terminal-body">
           <div><span class="muted">$</span> publish --mode responsible-disclosure</div>
-          <div><span class="ok">ok</span> exploit details limited while users update</div>
-          <div><span class="muted">$</span> focus --surface plugin-ecosystems</div>
-          <div><span class="ok">ok</span> markdown, local files, extensions, trust boundaries</div>
-          <div><span class="muted">$</span> cta --single "request private scan"</div>
-          <div><span class="ok">ok</span> useful first, conversion second</div>
+          <div><span class="ok">ok</span> unpublished findings stay unnamed until fixes ship</div>
+          <div><span class="muted">$</span> derive --signals platform</div>
+          <div><span class="ok">ok</span> patterns feed scanner prompts, checks, and reports</div>
+          <div><span class="muted">$</span> queue --status coordinated</div>
+          <div><span class="ok">ok</span> active disclosures awaiting maintainer responses</div>
         </div>
       </div>
     </div>
   </section>
 
+  <section class="pricing-section compact">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">Credibility</div>
+          <h2>The platform is shaped by <em>real findings.</em></h2>
+        </div>
+        <div class="aside">
+          The research feed is intentionally conservative. It only includes issues that are safe to discuss publicly, while the private disclosure queue continues behind the scenes.
+        </div>
+      </div>
+
+      <div class="compare-grid">
+        <article class="compare-card muted-card">
+          <div class="compare-code">Scanner output</div>
+          <h3>Suspicion is cheap</h3>
+          <p>Generic tools can flag odd code paths, dangerous APIs, or broad classes of risk without proving the issue matters in the product.</p>
+        </article>
+        <article class="compare-card strong-card">
+          <div class="compare-code">ZeroQuarry research</div>
+          <h3>Exploitability is earned</h3>
+          <p>Research starts with agent discovery, then pushes toward reachable impact, disclosure evidence, patch context, and safe public explanation.</p>
+        </article>
+        <article class="compare-card">
+          <div class="compare-code">Platform feedback</div>
+          <h3>Findings become coverage</h3>
+          <p>Every validated pattern informs future testing: prompts, scanners, report language, confidence scoring, and evidence packet structure.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="research-list-section">
-    <div class="container research-list">
-      ${cards}
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">Published research</div>
+          <h2>Disclosure-safe <em>writeups.</em></h2>
+        </div>
+        <div class="aside">
+          ${posts.length} published ${posts.length === 1 ? 'post' : 'posts'} so far. Additional findings are in coordinated disclosure and will be added after fixes or maintainer guidance make publication appropriate.
+        </div>
+      </div>
+
+      <div class="research-list">
+        ${cards}
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section compact">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">Responsible disclosure</div>
+          <h2>There is a public feed and a <em>private queue.</em></h2>
+        </div>
+        <div class="aside">
+          Not every finding belongs on the website immediately. ZeroQuarry is useful because it finds real issues quickly; publishing still follows the slower rhythm of disclosure, fixes, and user protection.
+        </div>
+      </div>
+
+      <div class="workflow-strip research-workflow">
+        <article class="workflow-step">
+          <span>01</span>
+          <h3>Find</h3>
+          <p>Agents explore source, binaries, reachable services, trust boundaries, and product-specific behavior.</p>
+        </article>
+        <article class="workflow-step">
+          <span>02</span>
+          <h3>Validate</h3>
+          <p>Findings are challenged for reachability, impact, affected versions, and evidence quality before disclosure.</p>
+        </article>
+        <article class="workflow-step">
+          <span>03</span>
+          <h3>Coordinate</h3>
+          <p>Maintainers get scoped reports, patch context, and time to investigate or ship mitigations.</p>
+        </article>
+        <article class="workflow-step">
+          <span>04</span>
+          <h3>Publish</h3>
+          <p>Writeups become public only when the disclosure posture is appropriate and the detail level is safe.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section compact">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">Hunting patterns</div>
+          <h2>Where ZeroQuarry keeps finding <em>weird edges.</em></h2>
+        </div>
+        <div class="aside">
+          These are the surfaces showing up repeatedly in our research and private disclosures. They are also the areas B2B product teams tend to under-test between annual scans.
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+        <article class="evidence-card">
+          <div class="evidence-code">Plugins</div>
+          <h3>Extension ecosystems</h3>
+          <p>Community plugins, app extensions, and integration points often inherit powerful permissions with inconsistent review.</p>
+        </article>
+        <article class="evidence-card">
+          <div class="evidence-code">Content</div>
+          <h3>Markdown and templates</h3>
+          <p>Rich content formats can cross from document parsing into script execution, file access, and trusted UI behavior.</p>
+        </article>
+        <article class="evidence-card">
+          <div class="evidence-code">Local</div>
+          <h3>Desktop and local apps</h3>
+          <p>Local file systems, embedded browsers, sync features, and convenience APIs create unusual trust boundaries.</p>
+        </article>
+        <article class="evidence-card">
+          <div class="evidence-code">APIs</div>
+          <h3>Product-specific backends</h3>
+          <p>The interesting bugs often live in business logic, authorization edges, request routing, and stored credentials.</p>
+        </article>
+        <article class="evidence-card">
+          <div class="evidence-code">AI</div>
+          <h3>Agent workflows</h3>
+          <p>AI features connect prompts, tools, files, secrets, and users in ways traditional scanners rarely model well.</p>
+        </article>
+        <article class="evidence-card">
+          <div class="evidence-code">Supply chain</div>
+          <h3>Dependencies and build paths</h3>
+          <p>Open-source packages, generated artifacts, and release automation become attack surface as soon as products depend on them.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <div class="tag">Private scan</div>
+        <h2>Have a product surface that looks like this?</h2>
+        <p>ZeroQuarry can run the same adversarial research loop against your application, APIs, plugins, local app, or AI workflow before an annual compliance scan ever sees it.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="../request-scan/">Request a private scan <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="../evidence-reports.html">See evidence packets</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>`;
@@ -475,6 +621,7 @@ function loadPosts() {
       const raw = fs.readFileSync(path.join(contentDir, file), 'utf8');
       return parseFrontmatter(raw);
     })
+    .filter((post) => post.data.published !== false && post.data.draft !== true)
     .sort((a, b) => String(b.data.date).localeCompare(String(a.data.date)));
 }
 

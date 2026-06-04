@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Evidence &amp; Reports · ZeroQuarry</title>
+<meta name="description" content="ZeroQuarry reports carry exploit evidence, confidence, adversarial review history, PoCs, patches, audit logs, and exports for security teams, auditors, vendors, and engineers." />
+<link rel="canonical" href="https://zeroquarry.com/evidence-reports" />
+<meta property="og:title" content="Evidence &amp; Reports · ZeroQuarry" />
+<meta property="og:description" content="Reports built around evidence: PoCs, confidence, adversarial review, patch context, audit logs, and workflow exports." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/evidence-reports" />
+<meta property="og:image" content="https://zeroquarry.com/assets/wordmark.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="cookie-consent.css" />
+<script src="cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html">Why ZeroQuarry</a>
+      <a href="platform.html">Platform</a>
+      <a href="continuous-testing.html">Continuous Testing</a>
+      <a href="evidence-reports.html" aria-current="page">Evidence &amp; Reports</a>
+      <a href="research/">Research</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com">Get started <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pricing-hero">
+    <div class="container pricing-hero-grid">
+      <div>
+        <span class="eyebrow">
+          <span class="tag">EVIDENCE &amp; REPORTS</span>
+          <span>Output your team can defend</span>
+        </span>
+        <h1 class="headline pricing-headline">
+          <span class="block">Reports for review,</span>
+          <span class="block thin">not alert <em>queues.</em></span>
+        </h1>
+        <p class="lede">
+          Every ZeroQuarry finding can carry severity, CVSS, PoC artifacts, source references, adversarial review history, confidence, human validation, patch context, and exports for the people who need to act.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open a report <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="#finding-record">See the finding record</a>
+        </div>
+      </div>
+
+      <div class="report">
+        <div class="report-head">
+          <span class="id">ZQ-2042</span>
+          <span>invoice-api/routes.patch</span>
+          <span class="sev">High</span>
+        </div>
+        <div class="report-body">
+          <h4>Tenant boundary bypass enables <em>cross-account write.</em></h4>
+          <p class="sum">A user-controlled tenant value reaches invoice update without an ownership check. The red-team agent proved write impact; vendor review challenged scope; rebuttal sustained with a file-line trace.</p>
+          <div class="cvss">
+            <div><div class="k">Confidence</div><div class="v"><em>90%</em></div></div>
+            <div><div class="k">State</div><div class="v small">SUSTAINED</div></div>
+            <div><div class="k">Attack</div><div class="v small">NETWORK</div></div>
+            <div><div class="k">Output</div><div class="v small">POC + PATCH</div></div>
+          </div>
+          <div class="diff">
+            <div class="path">evidence/adversarial-review.md</div>
+            <div class="ctx">vendor: prove write impact beyond read-only IDOR</div>
+            <div class="plus">red: PATCH /invoices/42 changes owner_id at routes.py:88</div>
+            <div class="plus">final: exploitable · confidence verified</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="finding-record">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">01 · Finding record</div>
+          <h2>Evidence stays attached<br>to the <em>claim.</em></h2>
+        </div>
+        <div class="aside">
+          Findings should not collapse into a title and severity. ZeroQuarry keeps the proof, debate, score, patch, and operator decisions together so reviewers can understand why the issue matters.
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+        <article class="evidence-card"><div class="evidence-code">SEVERITY</div><h3>CVSS and impact</h3><p>Findings include normalized severity, score, and CVSS vector when enough evidence exists to derive one.</p></article>
+        <article class="evidence-card"><div class="evidence-code">PROOF</div><h3>PoC artifacts</h3><p>Artifacts can include proof-of-concept code, request streams, notes, or deployment packages for review.</p></article>
+        <article class="evidence-card"><div class="evidence-code">SOURCE</div><h3>References</h3><p>Source findings link back to files and lines; remote findings preserve the URL or request chain that triggered the issue.</p></article>
+        <article class="evidence-card"><div class="evidence-code">REVIEW</div><h3>Adversarial discussion</h3><p>Vendor challenges, red-team rebuttals, revisions, and retractions remain visible in the report.</p></article>
+        <article class="evidence-card"><div class="evidence-code">CONF</div><h3>Confidence state</h3><p>Confidence is recomputed from review outcomes, repeated appearances, and human validation or invalidation signals.</p></article>
+        <article class="evidence-card"><div class="evidence-code">FIX</div><h3>Patch context</h3><p>Patch proposals, GitHub PRs, Jira issues, and ServiceNow records link back to the original finding.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="exports">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">02 · Exports</div>
+          <h2>Different reviewers<br>need different <em>formats.</em></h2>
+        </div>
+        <div class="aside">
+          Engineers, executives, customers, auditors, and vendors do not consume evidence the same way. ZeroQuarry makes the same finding available in the channels they already use.
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="f"><div class="glyph">P</div><div class="fn">PDF</div><h3>Pentester-style PDF</h3><p>Export executive summaries, finding overviews, per-asset lists, and branded report covers.</p></div>
+        <div class="f"><div class="glyph">M</div><div class="fn">MARKDOWN</div><h3>Markdown</h3><p>Move detailed findings into internal docs, disclosure packages, or engineering review notes.</p></div>
+        <div class="f"><div class="glyph">H</div><div class="fn">HTML</div><h3>Single-file HTML</h3><p>Share a self-contained report view without giving recipients access to the full workspace.</p></div>
+        <div class="f"><div class="glyph">J</div><div class="fn">JIRA</div><h3>Jira</h3><p>Create issues from findings and preserve a deep link back to ZeroQuarry evidence.</p></div>
+        <div class="f"><div class="glyph">S</div><div class="fn">SNOW</div><h3>ServiceNow</h3><p>Create enterprise records on the configured table for vulnerability operations teams.</p></div>
+        <div class="f"><div class="glyph">L</div><div class="fn">SHARE</div><h3>Secure share links</h3><p>Send password-protected, expiring finding bundles to vendors, auditors, customers, or external reviewers.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="audit">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="tag">03 · Review trail</div>
+          <h2>Show what happened,<br>not just what was <em>found.</em></h2>
+        </div>
+        <div class="aside">
+          A mature vulnerability program needs traceability. ZeroQuarry records the scan, review, artifact, patch, and human-decision events that shape a finding's final state.
+        </div>
+      </div>
+
+      <div class="workflow-strip">
+        <div class="workflow-step"><span>SCAN</span><h3>Run history</h3><p>Track queued, running, failed, completed, and batch-finalized scan states.</p></div>
+        <div class="workflow-step"><span>REVIEW</span><h3>Agent outcome</h3><p>Record vendor verdict, rebuttal result, retractions, revisions, and confidence.</p></div>
+        <div class="workflow-step"><span>HUMAN</span><h3>Validation signals</h3><p>Accept or invalidate findings with reason codes and notes for later review.</p></div>
+        <div class="workflow-step"><span>FIX</span><h3>Remediation trail</h3><p>Connect patch versions, PR links, ticket records, and disclosure state to the finding.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Turn scanner output<br>into reviewable <em>evidence.</em></h2>
+        <p>Use ZeroQuarry when your team needs to prove what is real, explain why it matters, and show how it moved toward remediation.</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="platform.html">Explore the platform</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col"><a href="index.html" class="brand" aria-label="ZeroQuarry home"><img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry"></a><p>Continuous adversarial vulnerability research for product teams.</p></div>
+      <div class="foot-col legal"><h5>Legal</h5><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+      <div class="foot-col legal"><h5>Resources</h5><a href="index.html">Why ZeroQuarry</a><a href="platform.html">Platform</a><a href="continuous-testing.html">Continuous Testing</a><a href="evidence-reports.html">Evidence &amp; Reports</a><a href="research/">Research</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="https://docs.zeroquarry.com">Docs</a><a href="https://status.zeroquarry.com">Status Page</a></div>
+      <div class="foot-col legal"><h5>Social</h5><a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a><a href="https://discord.gg/PygTTeuU">Discord</a><a href="https://github.com/ZeroQuarry/">GitHub</a></div>
+    </div>
+    <div class="foot-bottom"><div>&copy; 2026 ZeroQuarry. All rights reserved.</div><div class="right"><span>LAT 37.8409 S - LON 144.9464 E</span><span class="ok">ALL SYSTEMS OPERATIONAL</span></div></div>
+  </div>
+</footer>
+
+</body>
+</html>
