@@ -351,6 +351,7 @@ function renderPost(post) {
         <aside class="disclosure-panel" aria-label="Disclosure status">
           <div class="disclosure-label">Disclosure status</div>
           <div class="disclosure-state">${escapeHtml(post.data.status || 'Research note')}</div>
+          ` + (post.data.disclosureDetail) ? `
           <p>${escapeHtml(post.data.disclosureDetail || '')}</p>
           <dl>
             <div>
@@ -366,6 +367,7 @@ function renderPost(post) {
               <dd>${escapeHtml(post.data.disclosurePosture || 'Disclosure-safe')}</dd>
             </div>
           </dl>
+          ` : '' + `
         </aside>
       </div>
     </header>

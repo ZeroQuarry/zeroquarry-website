@@ -50,29 +50,7 @@
   </div>
 </header>
 
-<main>
-  <article class="research-article">
-    <header class="article-header">
-      <div class="container article-header-grid">
-        <div>
-          <a class="article-back" href="../">Research</a>
-          <div class="article-meta">
-            <span>Shane Connnelly</span>
-<span>May 8, 2026</span>
-<span>rce</span>
-<span>obsidian</span>
-          </div>
-          <h1>RCE via Markdown in the Obsidian Tasks Plugin</h1>
-          <p class="article-dek">ZeroQuarry identified a critical RCE path in the Obsidian Tasks plugin and coordinated responsible disclosure with Obsidian and the maintainer. This writeup explains the impact, disclosure process, and product-security tradeoff.</p>
-          <div class="article-actions">
-            <a class="btn btn-primary" href="../../request-scan/">Request a private scan <span class="arr">-&gt;</span></a>
-            <a class="btn btn-ghost" href="#what-we-are-not-disclosing">What we are withholding</a>
-          </div>
-        </div>
 
-        <aside class="disclosure-panel" aria-label="Disclosure status">
-          <div class="disclosure-label">Disclosure status</div>
-          <div class="disclosure-state">Mitigation available</div>
           <p>Tasks 8.0.0 disables JavaScript execution in Tasks queries by default. We are limiting exploit detail to a minimal calc demonstration and avoiding weaponized payloads.</p>
           <dl>
             <div>
@@ -88,100 +66,7 @@
               <dd>Disclosure-safe</dd>
             </div>
           </dl>
-        </aside>
-      </div>
-    </header>
-
-    <div class="container article-layout">
-      <aside class="article-toc" aria-label="Article sections">
-        <a href="#tl-dr">TL;DR</a>
-<a href="#why-this-matters">Why this matters</a>
-<a href="#impact-summary">Impact summary</a>
-<a href="#disclosure-timeline">Disclosure timeline</a>
-<a href="#the-product-security-tradeoff">The product/security tradeoff</a>
-<a href="#what-we-are-not-disclosing">What we are not disclosing</a>
-<a href="#lessons-for-plugin-ecosystems">Lessons for plugin ecosystems</a>
-<a href="#why-zeroquarry-exists">Why ZeroQuarry exists</a>
-<a href="#public-references">Public references</a>
-<a href="#request-a-private-scan">Request a private scan</a>
-      </aside>
-
-      <div class="article-body">
-<p>ZeroQuarry identified a critical remote-code-execution path in the Obsidian Tasks plugin and coordinated responsible disclosure with Obsidian and the plugin maintainer.</p>
-<blockquote>Disclosure status: Mitigation available. Tasks 8.0.0 disables JavaScript execution in Tasks queries by default. We are limiting exploit detail to a minimal demonstration and avoiding weaponized payloads.</blockquote>
-<h2 id="tl-dr">TL;DR</h2>
-<p>During research with ZeroQuarry, we identified a critical RCE path in the Obsidian Tasks plugin, a top Obsidian community plugin with more than 3.4 million downloads as of May 8, 2026.</p>
-<p>With the Tasks plugin installed and the risky behavior enabled, opening a malicious Markdown file in Obsidian could trigger code execution.</p>
-<p>The simplest demonstration was a Tasks query embedded in Markdown:</p>
-<pre><code class="language-tasks">not done
-filter by function require(&#39;child_process&#39;).execSync(&#39;calc&#39;) || true</code></pre>
-<p>On Windows, that launches Calculator. The point is not Calculator. The point is that a Markdown document, normally treated as content, could become an execution path inside a popular local application.</p>
-<p>We reported the issue to the plugin maintainer on April 17, 2026. The maintainer asked to meet immediately, joined a Zoom call, and was consistently responsive. On May 8, 2026, the maintainer released Tasks 8.0.0, a new major version that disables JavaScript execution in Tasks queries by default and requires users to explicitly enable it.</p>
-<p><a href="/request-scan/">Request a private ZeroQuarry scan</a></p>
-<h2 id="why-this-matters">Why this matters</h2>
-<p>Plugin ecosystems are becoming serious attack surfaces.</p>
-<p>Modern applications increasingly allow users to install plugins, render Markdown, sync user-generated content, run extensions, invoke local behavior, and customize workflows. Those features are powerful. They also blur trust boundaries.</p>
-<p>A Markdown file is often treated as content. A plugin can turn that content into behavior. When content, local execution, and trusted plugin APIs interact, surprising exploit paths can emerge.</p>
-<p>This is why security scanning needs to go beyond known CVEs and dependency signatures. Some of the most serious bugs live in the product-specific interaction between a feature, an input format, and a trust boundary.</p>
-<h2 id="impact-summary">Impact summary</h2>
-<p>At a high level, the finding involved Tasks query features that could execute user-supplied JavaScript. The dangerous behavior was reachable from Markdown content through query instructions such as custom filters.</p>
-<p>That meant a malicious note could carry behavior that looked mundane on the surface. To a user, it was a Markdown document. To the plugin runtime, it could become JavaScript execution.</p>
-<p>This was not simply a known dependency issue or a generic static-analysis finding. The risk emerged from the interaction between product behavior, user-authored content, plugin functionality, Obsidian&#39;s plugin model, and local execution.</p>
-<p>We are intentionally not publishing weaponized payloads or step-by-step exploitation guidance.</p>
-<h2 id="disclosure-timeline">Disclosure timeline</h2>
-<ul>
-<li>April 17, 2026: ZeroQuarry reported the issue to the Tasks plugin maintainer.</li>
-<li>April 17, 2026: The maintainer responded quickly and asked to meet over Zoom.</li>
-<li>April 2026: ZeroQuarry and the maintainer discussed impact and mitigation.</li>
-<li>May 7, 2026 UTC: PR #3860 was merged.</li>
-<li>May 8, 2026: Tasks 8.0.0 became available to users with JavaScript execution in Tasks queries disabled by default.</li>
-<li>May 8, 2026: ZeroQuarry published this writeup.</li>
-</ul>
-<h2 id="the-product-security-tradeoff">The product/security tradeoff</h2>
-<p>The most interesting part of this finding was not only the RCE path. It was the mitigation.</p>
-<p>The risky behavior existed because Tasks supported advanced user workflows. Custom filters, sorting, grouping, and related JavaScript-powered features can be useful for sophisticated users. Removing the capability entirely would reduce risk, but it would also break real workflows.</p>
-<p>The deeper platform issue is that Obsidian plugins are not strongly sandboxed from the local environment, and plugin authors do not have a simple, universal way to sandbox arbitrary JavaScript safely. As a result, &quot;advanced developer functionality&quot; can appear in plugins in ways that are useful and inherently dangerous at the same time.</p>
-<p>The maintainer was responsive and thoughtful. The fix shipped in Tasks 8.0.0 changes the default: Tasks instructions that require arbitrary user-supplied JavaScript now refuse to run unless the user explicitly enables JavaScript execution for that vault and machine.</p>
-<p>This is often what real product security looks like. The answer is not always &quot;delete the feature.&quot; Sometimes the right answer is to change the default, add friction, expose the risk, and give users or administrators control.</p>
-<p><a href="/request-scan/">Request a private ZeroQuarry scan</a></p>
-<h2 id="what-we-are-not-disclosing">What we are not disclosing</h2>
-<p>We are not publishing:</p>
-<ul>
-<li>Weaponized payloads</li>
-<li>Step-by-step exploitation instructions</li>
-<li>Guidance for persistence, exfiltration, or post-exploitation</li>
-<li>Details that would make copy-paste abuse easier</li>
-</ul>
-<p>The <code>calc</code> example is included because it demonstrates impact without giving attackers a complete playbook.</p>
-<h2 id="lessons-for-plugin-ecosystems">Lessons for plugin ecosystems</h2>
-<ol>
-<li>User-controlled content should not be able to trigger execution by default.</li>
-<li>Markdown should be treated as an input format, not as a trusted execution boundary.</li>
-<li>Dangerous capabilities should be explicit, opt-in, and clearly explained.</li>
-<li>Plugin maintainers need practical mitigation paths that preserve legitimate utility.</li>
-<li>Security tools need to reason about product behavior, not only known CVEs.</li>
-</ol>
-<h2 id="why-zeroquarry-exists">Why ZeroQuarry exists</h2>
-<p>Most companies already have scanners for known vulnerabilities, dependency issues, and common static-analysis patterns.</p>
-<p>Those tools are useful, but they do not answer the question:</p>
-<blockquote>What would an adversary find if they spent time looking for product-specific exploit paths in our software?</blockquote>
-<p>ZeroQuarry is built to answer that question.</p>
-<p>We help teams find serious vulnerabilities in their own products before adversaries do, especially vulnerabilities that emerge from the interaction between features, user content, plugin systems, AI workflows, internal tools, and trust boundaries.</p>
-<p>Right now, ZeroQuarry is free for open source projects. We want maintainers to find and fix these issues before bad actors scan the same code.</p>
-<h2 id="public-references">Public references</h2>
-<ul>
-<li><a href="https://github.com/obsidian-tasks-group/obsidian-tasks">Obsidian Tasks repository</a></li>
-<li><a href="https://github.com/obsidian-tasks-group/obsidian-tasks/pull/3860">PR #3860: JavaScript search features disabled by default</a></li>
-<li><a href="https://github.com/obsidian-tasks-group/obsidian-tasks/releases/tag/8.0.0">Tasks 8.0.0 release</a></li>
-<li><a href="https://www.obsidianstats.com/plugins/obsidian-tasks-plugin">Obsidian Stats page for Tasks</a></li>
-</ul>
-<h2 id="request-a-private-scan">Request a private scan</h2>
-<p>If your open source project or product supports plugins, extensions, Markdown, templates, local execution, AI-authored workflows, or complex user-generated content, ZeroQuarry can help you understand where serious vulnerabilities may exist.</p>
-<p><a href="/request-scan/">Request a private ZeroQuarry scan</a></p>
-      </div>
-    </div>
-  </article>
-</main>
+          
 
 <footer class="site-footer">
   <div class="container">
