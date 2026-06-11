@@ -331,7 +331,7 @@ function renderPost(post) {
     .map((item) => `<span>${escapeHtml(item)}</span>`)
     .join('\n');
 
-  const body = `<main>
+  var body = `<main>
   <article class="research-article">
     <header class="article-header">
       <div class="container article-header-grid">
@@ -351,7 +351,8 @@ function renderPost(post) {
         <aside class="disclosure-panel" aria-label="Disclosure status">
           <div class="disclosure-label">Disclosure status</div>
           <div class="disclosure-state">${escapeHtml(post.data.status || 'Research note')}</div>
-          ` + (post.data.disclosureDetail) ? `
+          `;
+if (post.data.disclosureDetail) { body = body + `
           <p>${escapeHtml(post.data.disclosureDetail || '')}</p>
           <dl>
             <div>
@@ -367,8 +368,8 @@ function renderPost(post) {
               <dd>${escapeHtml(post.data.disclosurePosture || 'Disclosure-safe')}</dd>
             </div>
           </dl>
-          ` : '' + `
-        </aside>
+          ` }
+body = body + `</aside>
       </div>
     </header>
 
