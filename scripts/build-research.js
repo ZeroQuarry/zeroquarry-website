@@ -344,7 +344,6 @@ function renderPost(post) {
           <p class="article-dek">${escapeHtml(post.data.description)}</p>
           <div class="article-actions">
             <a class="btn btn-primary" href="../../request-scan/">Request a private scan <span class="arr">-&gt;</span></a>
-            <a class="btn btn-ghost" href="#what-we-are-not-disclosing">What we are withholding</a>
           </div>
         </div>
 
