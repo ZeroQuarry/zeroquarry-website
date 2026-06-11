@@ -2,7 +2,7 @@
 title: "RCE via Markdown in the Obsidian Tasks Plugin"
 slug: "obsidian-tasks-rce"
 date: "2026-05-08"
-author: "ZeroQuarry Research"
+author: "Shane Connnelly"
 status: "Mitigation available"
 description: "ZeroQuarry identified a critical RCE path in the Obsidian Tasks plugin and coordinated responsible disclosure with Obsidian and the maintainer. This writeup explains the impact, disclosure process, and product-security tradeoff."
 ogTitle: "Opening a Markdown file could trigger RCE in an Obsidian plugin"

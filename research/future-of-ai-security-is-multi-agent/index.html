@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Future of AI Security Scanning Is Multi-Agent | ZeroQuarry Research</title>
+<meta name="description" content="In the battle of the &#39;frontier models&#39; and &#39;bad actors&#39;, most software shops are getting caught in the middle. Multi-agent orchestration is the only viable solution to modern product security" />
+<link rel="canonical" href="https://zeroquarry.com/research/future-of-ai-security-is-multi-agent" />
+<meta property="og:title" content="If you&#39;re 1-shotting product security, you&#39;re probably wrong" />
+<meta property="og:description" content="In the battle of the &#39;frontier models&#39; and &#39;bad actors&#39;, most software shops are getting caught in the middle. Multi-agent orchestration is the only viable solution to modern product security" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeroquarry.com/research/future-of-ai-security-is-multi-agent" />
+<meta property="og:image" content="https://zeroquarry.com/assets/research/obsidian-tasks-rce-og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/research/obsidian-tasks-rce-og.png" />
+<link rel="icon" type="image/png" href="../../assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index.css" />
+<link rel="stylesheet" href="../../cookie-consent.css" />
+<script src="../../cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="../../index.html" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="../../assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../../index.html">Why ZeroQuarry</a>
+      <a href="../../platform.html">Platform</a>
+      <a href="../../continuous-testing.html">Continuous Testing</a>
+      <a href="../../evidence-reports.html">Evidence &amp; Reports</a>
+      <a href="../../research/" aria-current="page">Research</a>
+      <a href="../../pricing.html">Pricing</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="../../request-scan/">Request scan <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <article class="research-article">
+    <header class="article-header">
+      <div class="container article-header-grid">
+        <div>
+          <a class="article-back" href="../">Research</a>
+          <div class="article-meta">
+            <span>Shane Connnelly</span>
+<span>June 11, 2026</span>
+<span>architecture</span>
+<span>model-comparison</span>
+          </div>
+          <h1>The Future of AI Security Scanning Is Multi-Agent</h1>
+          <p class="article-dek">In the battle of the &#39;frontier models&#39; and &#39;bad actors&#39;, most software shops are getting caught in the middle. Multi-agent orchestration is the only viable solution to modern product security</p>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="../../request-scan/">Request a private scan <span class="arr">-&gt;</span></a>
+            <a class="btn btn-ghost" href="#what-we-are-not-disclosing">What we are withholding</a>
+          </div>
+        </div>
+
+        <aside class="disclosure-panel" aria-label="Disclosure status">
+          <div class="disclosure-label">Disclosure status</div>
+          <div class="disclosure-state">Research note</div>
+          <p></p>
+          <dl>
+            <div>
+              <dt>Class</dt>
+              <dd>Remote code execution</dd>
+            </div>
+            <div>
+              <dt>Surface</dt>
+              <dd>Obsidian community plugin</dd>
+            </div>
+            <div>
+              <dt>Posture</dt>
+              <dd>Disclosure-safe</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </header>
+
+    <div class="container article-layout">
+      <aside class="article-toc" aria-label="Article sections">
+        <a href="#one-shot-ai-vulnerability-scanning-is-the-wrong-mental-model">One-shot AI vulnerability scanning is the wrong mental model</a>
+<a href="#guardrails-do-not-make-ai-useless-for-security">Guardrails do not make AI useless for security</a>
+<a href="#the-useful-architecture-is-a-review-team-not-a-hacker-bot">The useful architecture is a review team, not a hacker bot</a>
+<a href="#hallucination-is-not-an-edge-case">Hallucination is not an edge case</a>
+<a href="#different-models-behave-differently">Different models behave differently</a>
+<a href="#the-real-shift">The real shift</a>
+      </aside>
+
+      <div class="article-body">
+<p>A lot of the current conversation about LLMs and cybersecurity is stuck between two extremes.</p>
+<p>On one side, Mythos clearly inspires (and its release gating takes inspiration from) concerns that frontier LLMs are about to make vulnerability discovery dramatically easier for attackers.  If a model can reason through complex codebases, identify exploitable flaws, and help produce an attack/PoC, then the obvious fear is that product security is about to get pretty dicey.  So due to fear (or maybe to drive marketing or maybe somewhere in between.. who knows), we now have models that refuse to do *some* types of security work.  For example, if you ask an LLM too directly to &quot;find vulnerabilities in this code,&quot; there is a good chance it will either refuse, give you a vague answer, or avoid the details that would actually let you fix the security of your code.</p>
+<p>There&#39;s some good justification here, but it misses the practical point.</p>
+<p>The software most exposed by this shift is not the ones with mature security teams, formal AppSec programs, and dedicated bug bounty operations.  Instead, it&#39;s the sub-300 person companies where there is no CISO yet, no large security team, and no clean separation between engineering/architects/product management/security.  At those companies, security is often something the CTO, VP Engineering, software architects, and technical product leaders all wear as an extra hat.</p>
+<p>For them, the question is not whether AI will replace &quot;the mythical security team&quot;: they do not have a full security team to replace.  The better question for them is: can AI help me build a lightweight, repeatable, cost-effective security review process before attackers get there first?</p>
+<p>I think the answer is yes... but not with a single prompt/one giant autonomous hacker agent/AI code quality review agents.  The future of AI security scanning is multi-agent.  That may sound *more* expensive and complicated, but hear me out.</p>
+<h2 id="one-shot-ai-vulnerability-scanning-is-the-wrong-mental-model">One-shot AI vulnerability scanning is the wrong mental model</h2>
+<p>A lot of AI security tooling is still implicitly built around the idea of a &quot;single magic scan.&quot;  The idea is that you point an AI at a repository and ask it to find vulnerabilities. Maybe you ask it to fix them too.  Or you use an AI agent to help build your code or act as a reviewer (or maybe both).  nThose paradigms sound attractive, but they fall apart quickly in practice.</p>
+<p>First, the most direct prompts often collide with model guardrails. &quot;Find exploitable vulnerabilities in this codebase&quot; can look very similar to an offensive cyber request, even when the user owns the codebase and the intent is defensive.</p>
+<p>Second, even when the model does answer, the output is often too shallow. It may produce generic security advice, vague hardening suggestions, or plausible-sounding findings that do not actually have a valid source-to-sink path.</p>
+<p>Third, if you try to solve the problem by sending everything to the most expensive, highest-reasoning model available, the economics get ugly *fast*. A full security review involves architecture analysis, threat modeling, code research, evidence gathering, skeptical review, deduplication, severity scoring, proof-of-concept validation, and patch drafting. Treating all of that as one giant inference task is both expensive and brittle.</p>
+<p>Fourth, the &quot;code assistant&quot; agents operate in isolation: they&#39;re reviewing the PRs from a code quality perspective, but not from a business perspective of &quot;what&#39;s the real use case here and where does a possible source-to-sync vulnerability lie?&quot;  They&#39;re *intentionally* designed as too isolated for looking at that.</p>
+<p>But fundamentally, security review is not one task.  Because it never has been!  It&#39;s a chain of tasks that require different kinds of reasoning, different levels of skepticism, and different kinds of evidence.  That&#39;s why one-shot AI vulnerability scanning is the wrong mental model.</p>
+<h2 id="guardrails-do-not-make-ai-useless-for-security">Guardrails do not make AI useless for security</h2>
+<p>There is a tempting (but lazy) conclusion people draw from LLM safety guardrails: if a model refuses to help find vulnerabilities, then it cannot be useful for security.  That has not been my experience.  Guardrails change the *shape* of the required workflow: they do not eliminate the workflow.</p>
+<p>As mentioned above, if you ask a model to &quot;find exploitable vulnerabilities,&quot; you&#39;ll likely get a refusal or an over-cautious answer.  But instead, if you ask it to review a codebase from an architectural perspective, map trust boundaries, identify risky flows, and highlight areas worth hardening, you can often can get it to give you a useful signal.  What&#39;s interesting in my experience here is that you can get *most* models to provide useful signals, even if they have pretty good and hardened guardrails.</p>
+<p>That signal can then become a set of narrower research questions and then those questions can be investigated by specialized researcher agents.  The resulting findings can be challenged by skeptical reviewer agents.  Only the findings that survive that process need deeper validation, proof-of-concept work, or patch drafting.</p>
+<p>This is much closer to how real security work happens: a good security researcher does not walk into a codebase and immediately produce a perfect bug report.  They build a model of the system, then they form hypotheses, then they test those hypotheses.  They revise. They throw away weak findings.  They argue with maintainers, triagers, and other engineers, etc.  They refine the severity and only once they&#39;re fully confident in their approach: they produce evidence.</p>
+<p>The same *must* be true for AI security systems.</p>
+<h2 id="the-useful-architecture-is-a-review-team-not-a-hacker-bot">The useful architecture is a review team, not a hacker bot</h2>
+<p>At a high level, the correct workflow for AI-based security triage and analysis looks something like this:</p>
+<pre><code class="language-text">Coordinator / Architect
+        ↓
+Risk Areas + Research Hypotheses
+        ↓
+Researcher Agent ⇄ Vendor Skeptic Agent
+        ↓
+Validated Candidate Findings
+        ↓
+HackerOne-Style Reviewer
+        ↓
+Deduplication + Consolidation
+        ↓
+PoC Agent
+        ↓
+Patch Drafting Agent
+        ↓
+Human Review + Remediation</code></pre>
+<ol>
+<li>The coordinator or architect agent looks across the codebase and thinks about the system structurally. Where are the trust boundaries?  Where does user input enter?  Where does authorization happen?  Where are tenant boundaries enforced?  Where are external calls made?  Where are secrets handled?  Where are assumptions encoded?</li>
+<li>The researcher agent does not try to solve the whole codebase at once: it investigates a specific hypothesis or risk area.</li>
+<li>The vendor skeptic agent plays the role of a maintainer, vendor, or bug bounty triager who is trying to reject the finding.  It asks the annoying but essential questions: is there actually a valid source-to-sink path?  Is the vulnerable function reachable?  Is the attacker-controlled input real?  Is the impact overstated?  Is this just theoretical?  Is there already a mitigation somewhere else in the stack?</li>
+<li>The researcher and vendor skeptic then loop until they reach consensus (or hit a maximum number of turns, to keep the inference costs from running away).</li>
+</ol>
+<p>The researcher/vendor loop matters a lot, and how they&#39;re prompted matters even more.  2 arguing agents won&#39;t magically &quot;create truth&quot; but if you allow them to revise their approach with each pass, then the pressure testing can force revisions and yield high quality areas to investigate.</p>
+<h2 id="hallucination-is-not-an-edge-case">Hallucination is not an edge case</h2>
+<p>I spent a few years as Head of Product at Vectara from the company’s launch, so I have probably thought more than most people should about hallucination benchmarks.  One thing that experience made clear is that hallucination is not a vague philosophical complaint about LLMs: it is measurable behavior.</p>
+<p>The exact rate of hallucinations depends heavily on the task, model, and evaluation method. (Summarization faithfulness is not the same as vulnerability research, factual recall is not the same as source-to-sink validation, etc). But across benchmarks, the pattern is consistent: even the frontier models still produce plausible false claims in the <a href="https://huggingface.co/spaces/vectara/leaderboard">2-20%</a> or <a href="https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/">higher</a> range.</p>
+<p>In security review, a hallucination often looks like a false vulnerability finding: the model sees a risky-looking pattern, infers exploitability, and writes a convincing report. (Or maybe it just churns on tokens until it gets something less scary looking in your code, never having looked at the whole architecture.)  But when challenged, the source-to-sink path is missing, the vulnerable function is not reachable, authorization is enforced elsewhere, or the attacker-controlled input is not actually attacker-controlled.</p>
+<p>That is not a minor problem... for a small engineering team, a false vulnerability report is not free.  I&#39;ve talked with a few maintainers of open source projects that have told me that they are considering giving up maintenance on their projects because they&#39;re being flooded by false vulnerability reports and slop AI-generated PRs.</p>
+<p>In my testing while building ZeroQuarry, *all* frontier models still produce false security findings often enough that the workflow *has to* assume the first answer may be wrong.  As a specific note: MiniMax (M2.7 and now M3) has been especially interesting: it has produced some of the most useful high-level *research *in my testing, but it has also had a *noticeably* higher false-positive rate than the best frontier models.</p>
+<p>Eventually, I expect we will need security-specific hallucination benchmarks, because summarization and factuality benchmarks do not perfectly map to vulnerability research. But they are already enough to show the broader point: model error rates are too high to ignore in workflows that create engineering work.</p>
+<h2 id="different-models-behave-differently">Different models behave differently</h2>
+<p>This is where a lot of current AI security products are too simplistic: they assume one model should do everything.  Here are some of the finding&#39;s I&#39;ve had:</p>
+<ol>
+<li>Claude and Gemini models have generally been the most reluctant to produce PoCs, even in defensive contexts</li>
+<li>MiniMax models have often been most willing to produce PoCs... unfortunately, they&#39;re also the most willing to produce non-working code and hallucinate security findings</li>
+<li>GPT-5.5 operates very well as a coordinator, validator, and reviewer, but only if you prompt it very well.  You can often use different levels of thinking for different tasks</li>
+<li>Gemma is quite good from a locally hosted coordinator, but often produces very broken code</li>
+<li>Some models seem to *highly* prefer one language over another.  It&#39;s *very* difficult to get Qwen to think about a Python project from an architect/coordinator role: it really seems to insist on Javscript/Typescript.  Meanwhile, OpenAI&#39;s and Google&#39;s models seem to prefer Python, and operate fine in Typescript as well.  Claude is somewhere in between.</li>
+<li>Some models seem reluctant to perform remote security scans (e.g. against a live SaaS asset), some flat-out refuse, and some seem willing.</li>
+</ol>
+<p>So far, my recommendation for *most* projects is to use MiniMax for research (because it&#39;s very cheap, relatively), GPT-5.5 or Claude for review tasks with thinking set to medium to high,  Claude (or GPT-5.5) with thinking set to low-to-medium for patch generation</p>
+<p>I know that these observations will change as models change and this is not meant to be an announcement as a formal benchmark.  But I suspect part of why there are so many different &quot;feelings&quot; on which models are best/worse comes down to both prompting and how you&#39;re using the models.</p>
+<h2 id="the-real-shift">The real shift</h2>
+<p>The AI security debate is often framed today as a battle between attackers and guardrails: attackers will use LLMs to find and exploit vulnerabilities, model providers will add restrictions and defenders will be stuck somewhere in the middle or be forced to pay up the wazzoo in inference.  I think this is incomplete.</p>
+<p>The practical future of AI security is not about one unconstrained model doing everything: it is about workflow orchestration.  And I actually think this extrapolates to many AI applications beyond AI security as well: that there&#39;s enormous value to be locked in orchestrating the right models with the right prompts for the right tasks at the right time.</p>
+<p>Those that understand this will be able to review *far* more code, *far* more often, for *far* less money, with *far* better signal.  Those that keep looking for a one-shot &quot;find and fix everything&quot; button will either run into guardrails, drown in false positives, burn too much inference budget, or all three.</p>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <a href="../../index.html" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="../../assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>Adversarial AI for offensive security. Mine your 0-days before someone else does.</p>
+      </div>
+      <div class="foot-col legal">
+        <h5>Legal</h5>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="../../terms.html">Terms of Use</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Resources</h5>
+        <a href="../../index.html">Why ZeroQuarry</a>
+        <a href="../../platform.html">Platform</a>
+        <a href="../../continuous-testing.html">Continuous Testing</a>
+        <a href="../../evidence-reports.html">Evidence &amp; Reports</a>
+        <a href="../../research/">Research</a>
+        <a href="../../pricing.html">Pricing</a>
+        <a href="../../about.html">About</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+        <a href="https://status.zeroquarry.com">Status Page</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Social</h5>
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://discord.gg/PygTTeuU">Discord</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <span>LAT 37.8409 S - LON 144.9464 E</span>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
