@@ -6,7 +6,7 @@ author: "Shane Connnelly"
 description: "In the battle of the 'frontier models' and 'bad actors', most software shops are getting caught in the middle. Multi-agent orchestration is the only viable solution to modern product security"
 ogTitle: "If you're 1-shotting product security, you're probably wrong"
 ogDescription: "In the battle of the 'frontier models' and 'bad actors', most software shops are getting caught in the middle. Multi-agent orchestration is the only viable solution to modern product security"
-image: "/assets/research/obsidian-tasks-rce-og.png"
+image: "/assets/research/multi-agent-orchestration.png"
 featured: true
 featuredSummary: "In the battle of the 'frontier models' and 'bad actors', most software shops are getting caught in the middle. Multi-agent orchestration is the only viable solution to modern product security"
 tags:
