@@ -2,7 +2,7 @@
 title: "The Future of AI Security Scanning Is Multi-Agent"
 slug: "future-of-ai-security-is-multi-agent"
 date: "2026-06-11"
-author: "Shane Connnelly"
+author: "Shane Connelly"
 description: "In the battle of the 'frontier models' and 'bad actors', most software shops are getting caught in the middle. Multi-agent orchestration is the only viable solution to modern product security"
 ogTitle: "If you're 1-shotting product security, you're probably wrong"
 ogDescription: "In the battle of the 'frontier models' and 'bad actors', most software shops are getting caught in the middle. Multi-agent orchestration is the only viable solution to modern product security"
@@ -16,7 +16,7 @@ tags:
 
 A lot of the current conversation about LLMs and cybersecurity is stuck between two extremes.
 
-On one side, Mythos clearly inspires (and its release gating takes inspiration from) concerns that frontier LLMs are about to make vulnerability discovery dramatically easier for attackers.  If a model can reason through complex codebases, identify exploitable flaws, and help produce an attack/PoC, then the obvious fear is that product security is about to get pretty dicey.  So due to fear (or maybe to drive marketing or maybe somewhere in between.. who knows), we now have models that refuse to do *some* types of security work.  For example, if you ask an LLM too directly to "find vulnerabilities in this code," there is a good chance it will either refuse, give you a vague answer, or avoid the details that would actually let you fix the security of your code.
+On one side, Mythos/Fable clearly inspires (and its release gating takes inspiration from) concerns that frontier LLMs are about to make vulnerability discovery dramatically easier for attackers.  If a model can reason through complex codebases, identify exploitable flaws, and help produce an attack/PoC, then the obvious fear is that product security is about to get pretty dicey.  So due to fear (or maybe to drive marketing or maybe somewhere in between.. who knows), we now have models that refuse to do *some* types of security work.  For example, if you ask an LLM too directly to "find vulnerabilities in this code," there is a good chance it will either refuse, give you a vague answer, or avoid the details that would actually let you fix the security of your code.
 
 There's some good justification here, but it misses the practical point.
 

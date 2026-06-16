@@ -2,7 +2,7 @@
 title: "Many serious vulnerabilities found in Obsidian's Excalidraw plugin"
 slug: "excalidraw-vulnerabilities"
 date: "2026-05-20"
-author: "Shane Connnelly"
+author: "Shane Connelly"
 status: "Mitigation available"
 description: "ZeroQuarry identified and helped fix a large number of vulnerabilities in the Excalidraw plugin for Obsidian."
 ogTitle: "Opening a malicious Markdown file could trigger serious security vulnerabilities"
