@@ -1,6 +1,7 @@
 {
   "scripts": {
     "build": "node scripts/build-research.js",
-    "build:research": "node scripts/build-research.js"
+    "build:research": "node scripts/build-research.js",
+    "generate:sitemap": "node scripts/generate-sitemap.js"
   }
 }
