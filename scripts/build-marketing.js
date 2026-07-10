@@ -651,7 +651,7 @@ function renderDetail(page, type) {
 }
 
 function renderCta(title, text) {
-  return `<section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>${escapeHtml(title)}</h2><p>${escapeHtml(text)}</p></div><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Request a working session <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="https://console.zeroquarry.com">Open the console</a></div></div></div></section>`;
+  return `<section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>${escapeHtml(title)}</h2><p>${escapeHtml(text)}</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>`;
 }
 
 function homePage() {
@@ -668,7 +668,7 @@ function homePage() {
     operatingSystem: "Web",
     description: "AI security operations for application security testing, vulnerability validation, remediation, retesting, and evidence reporting.",
     url: `${siteUrl}/platform`,
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD", category: "30-day trial" },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD", category: "permanent free plan" },
   }, {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -789,38 +789,39 @@ function pricingPage() {
   ];
   const comparisonGroups = [
     { name: "Capacity", rows: [
-      ["Protected products", "1", "3", "10", "Custom"],
-      ["Security runs / month", "25", "100", "300", "Custom"],
-      ["Concurrent assessments", "2", "4", "10", "Custom"],
-      ["Collaborators", "10", "25", "75", "Custom"],
+      ["Protected products", "1", "1", "5", "15", "Custom"],
+      ["Security runs / month", "10", "50", "200", "600", "Custom"],
+      ["Concurrent assessments", "1", "3", "8", "20", "Custom"],
+      ["Collaborators", "3", "15", "50", "150", "Custom"],
     ] },
     { name: "Assessment coverage", rows: [
-      ["Source-code and private-repository review", "Included", "Included", "Included", "Included"],
-      ["Release artifact and binary review", "Included", "Included", "Included", "Included"],
-      ["Authorized live-application testing", "Included", "Included", "Included", "Included"],
-      ["Scheduled and pull-request review", "Included", "Included", "Included", "Included"],
-      ["Proof generation and adversarial validation", "Included", "Included", "Included", "Included"],
+      ["Public and private source review", "Included", "Included", "Included", "Included", "Included"],
+      ["Scheduled and pull-request review", "Included", "Included", "Included", "Included", "Included"],
+      ["Release artifact and binary review", "—", "Included", "Included", "Included", "Included"],
+      ["Authorized live-application testing", "—", "Included", "Included", "Included", "Included"],
+      ["Proof generation and adversarial validation", "Included", "Included", "Included", "Included", "Included"],
     ] },
     { name: "Security operations", rows: [
-      ["Patch proposals and finding retests", "Included", "Included", "Included", "Included"],
-      ["Jira issue creation", "Included", "Included", "Included", "Included"],
-      ["ServiceNow issue creation", "—", "Included", "Included", "Included"],
-      ["Inbound researcher-report email triage", "—", "Included", "Included", "Included"],
-      ["GitHub autofix with human approval", "—", "Included", "Included", "Included"],
+      ["Patch proposals and finding retests", "Included", "Included", "Included", "Included", "Included"],
+      ["Jira issue creation", "—", "Included", "Included", "Included", "Included"],
+      ["ServiceNow issue creation", "—", "—", "Included", "Included", "Included"],
+      ["Inbound researcher-report email triage", "—", "—", "Included", "Included", "Included"],
+      ["GitHub autofix with human approval", "—", "—", "Included", "Included", "Included"],
     ] },
     { name: "Evidence and rollout", rows: [
-      ["Controlled evidence shares", "10", "50", "200", "Custom"],
-      ["Maximum share expiry", "30 days", "90 days", "365 days", "Custom"],
-      ["Custom report branding", "—", "Included", "Included", "Included"],
-      ["Workspace appearance controls", "—", "—", "Included", "Included"],
-      ["Rollout and procurement support", "Standard", "Guided", "Priority", "Custom"],
+      ["Controlled evidence shares", "5", "25", "100", "500", "Custom"],
+      ["Maximum share expiry", "30 days", "60 days", "180 days", "365 days", "Custom"],
+      ["Custom report branding", "—", "—", "Included", "Included", "Included"],
+      ["Workspace appearance controls", "—", "—", "—", "Included", "Included"],
+      ["Rollout and procurement support", "Self-serve", "Standard", "Guided", "Priority", "Custom"],
     ] },
   ];
   const faqs = [
     ["What counts as a protected product?", "One customer-facing product or service with a coherent codebase, release boundary, and evidence history. A monorepo can still be one product; unrelated products with separate owners and risk decisions count separately."],
     ["What consumes a security run?", "A focused pull-request or changed-file review consumes 1 security run. A full source, binary, or authorized live assessment consumes 5. Reports, lifecycle decisions, evidence sharing, and rerunning a pipeline stage inside the same assessment do not consume more. Any newly started scan is metered by its scope."],
-    ["Why is pricing not per seat?", "Security value comes from product coverage, investigation depth, and decisions completed—not how many people view a report. Collaborator limits protect operational scale without turning healthy cross-functional participation into a tax."],
-    ["Is model usage included?", "No. Model input and output are metered separately at the posted rates below, so you can match model depth to the decision and see the cost by scan. The annual platform fee pays for the security operating system and reserved assessment capacity."],
+    ["Is this priced per seat?", "No. Each listed price covers the whole account and includes multiple collaborators. Developer includes 3 people and Startup includes 15, so inviting engineering, product, or leadership does not multiply the subscription bill."],
+    ["Why does this cost more than one coding-agent seat?", "A coding agent helps one developer produce code. ZeroQuarry independently tests the product, challenges vulnerability claims, retains risk decisions, moves remediation, verifies fixes, and produces evidence for customers and auditors. The entry price stays in developer-tool territory; the product outcome is a continuous security operation."],
+    ["Is model usage included?", "No. Model input and output are metered separately at the posted rates below, so you can match model depth to the decision and see the cost by scan. Keeping it visible also lets ZeroQuarry price the platform aggressively without hiding a usage assumption in every subscription."],
     ["Can we add capacity without changing plans?", "Yes. Add protected products or bundles of 25 monthly security runs. If that becomes a recurring pattern, moving to the next plan will usually provide better economics and more operating controls."],
     ["Does this replace a human pentest?", "ZeroQuarry creates continuous assessment and evidence between point-in-time tests. Some regulations, customers, or insurance policies may still require a named independent human assessor; we will scope those requirements honestly rather than treating every report as interchangeable."],
   ];
@@ -828,14 +829,14 @@ function pricingPage() {
   <section class="pricing-hero">
     <div class="container pricing-hero-grid">
       <div>
-        <span class="eyebrow"><span class="tag">PRICING</span><span>Plans for seed through Series E</span></span>
-        <h1 class="headline pricing-headline"><span class="block">Buy security capacity.</span><span class="block thin">Not seats. Not</span><span class="block thin"><em>scanner noise.</em></span></h1>
-        <p class="lede">Annual plans reserve the product coverage and assessment capacity your team can actually operate. Model usage stays separate and visible, so routine reviews and deep investigations do not hide behind the same black-box fee.</p>
-        <div class="hero-ctas"><a class="btn btn-primary" href="/request-scan/">Choose a rollout <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="https://console.zeroquarry.com">Start the trial</a></div>
+        <span class="eyebrow"><span class="tag">PRICING</span><span>Account pricing. Not per-seat pricing.</span></span>
+        <h1 class="headline pricing-headline"><span class="block">Security leverage</span><span class="block thin">at developer-tool</span><span class="block thin"><em>prices.</em></span></h1>
+        <p class="lede">Start free, cover a private product from $40 per month on annual billing, and invite the people who need the outcome. ZeroQuarry costs like a developer tool while doing the continuous testing, validation, remediation, and evidence work a coding assistant does not.</p>
+        <div class="hero-ctas"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#plans">Compare plans</a></div>
       </div>
       <div class="pricing-terminal" aria-label="ZeroQuarry pricing model">
-        <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">package://</span>security-capacity</span><span class="console-meta"><span class="live">LEGIBLE</span></span></div>
-        <div class="pricing-terminal-body"><div><span class="muted">$</span> measure --unit security-run</div><div><span class="ok">1 run</span> focused PR or changed-file review</div><div><span class="ok">5 runs</span> full source, binary, or live assessment</div><div><span class="muted">$</span> include validation,decisions,reports,retests</div><div><span class="ok">ok</span> operate the finding without a click tax</div><div><span class="muted">$</span> meter model-usage --visible true</div></div>
+        <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">compare://</span>developer-tool</span><span class="console-meta"><span class="live">DIFFERENT</span></span></div>
+        <div class="pricing-terminal-body"><div><span class="muted">$</span> plan select developer --annual</div><div><span class="ok">$40/mo</span> one account · three collaborators</div><div><span class="muted">$</span> run security-review --scope pr</div><div><span class="ok">validated</span> finding · proof · patch · retest</div><div><span class="muted">$</span> export evidence --audience customer</div><div><span class="ok">ready</span> this is security operations, not autocomplete</div></div>
       </div>
     </div>
   </section>
@@ -843,31 +844,40 @@ function pricingPage() {
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">The value metric</div><h2>One unit buyers can <em>forecast.</em></h2></div><div class="aside">A security run represents reserved investigation capacity. It makes a five-minute PR check economically different from a full product assessment without turning every finding, report, or teammate into a surcharge.</div></div>
     <div class="run-metric-grid"><article><div class="run-number">1</div><div><h3>Focused review</h3><p>A pull request or changed-file assessment scoped to the code that moved.</p></div></article><article><div class="run-number">5</div><div><h3>Full assessment</h3><p>A complete source, release artifact, binary, or authorized live target review.</p></div></article><article><div class="run-number included">0</div><div><h3>Operational follow-through</h3><p>Review stages, decisions, reports, evidence sharing, and in-assessment reruns.</p></div></article></div>
-    <div class="trial-strip"><div><span class="plan-kicker">30-day evaluation</span><h3>Trial · $0</h3><p>Five public source assessments, one operator, no card required, and watermarked reports. Enough to prove the workflow on a real repository.</p></div><a class="btn btn-ghost" href="https://console.zeroquarry.com">Start the trial</a></div>
+    <div class="trial-strip"><div><span class="plan-kicker">Free forever</span><h3>Free · $0</h3><p>One public product, 5 security runs every month, one operator, and watermarked reports. No card, countdown, or procurement conversation.</p></div><a class="btn btn-ghost" href="https://console.zeroquarry.com">Create free account</a></div>
   </div></section>
 
   <section class="pricing-section" id="plans"><div class="container">
-    <div class="section-head"><div><div class="tag">Annual plans</div><h2>Match coverage to the <em>company you are becoming.</em></h2></div><div class="aside">Prices show the monthly equivalent and are billed annually. Every plan includes the complete assessment-to-evidence loop; higher plans expand products, run capacity, automation, and external-facing controls.</div></div>
+    <div class="section-head"><div><div class="tag">Public plans</div><h2>Land small. Expand when the <em>security work expands.</em></h2></div><div class="aside">Annual billing is exactly 20% less than monthly. Prices cover the account—not each seat—and model usage remains visible and separate.</div></div>
+    <input class="billing-choice" type="radio" name="billing-period" id="billing-annual" checked>
+    <input class="billing-choice" type="radio" name="billing-period" id="billing-monthly">
+    <div class="billing-toggle" role="group" aria-label="Billing period"><label for="billing-annual">Annual <strong>save 20%</strong></label><label for="billing-monthly">Monthly</label></div>
     <div class="pricing-grid">
-      <article class="price-card"><div class="plan-kicker">Establish</div><h2>Foundation</h2><p class="plan-audience">For a seed or early Series A company establishing a credible security baseline around one product.</p><div class="price-row"><span class="price">$1,250</span><span class="cadence">/ month</span></div><div class="price-note">$15,000 billed annually</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Scope Foundation</a><ul class="plan-list"><li><span></span>1 protected product</li><li><span></span>25 security runs each month</li><li><span></span>10 collaborators, 2 concurrent assessments</li><li><span></span>Source, binary, and authorized live testing</li><li><span></span>Adversarial validation, patches, and retests</li><li><span></span>Jira routing and 10 controlled shares</li></ul></article>
-      <article class="price-card featured"><div class="plan-ribbon">Most common</div><div class="plan-kicker">Operate</div><h2>Growth</h2><p class="plan-audience">For Series A–C teams making security part of delivery while researcher reports and customer pressure increase.</p><div class="price-row"><span class="price">$3,000</span><span class="cadence">/ month</span></div><div class="price-note">$36,000 billed annually</div><a class="btn btn-primary plan-btn" href="/request-scan/">Scope Growth <span class="arr">-&gt;</span></a><ul class="plan-list"><li><span></span>3 protected products</li><li><span></span>100 security runs each month</li><li><span></span>25 collaborators, 4 concurrent assessments</li><li><span></span>Inbound security-report email triage</li><li><span></span>GitHub autofix with human approval</li><li><span></span>Jira, ServiceNow, custom reports, 50 shares</li></ul></article>
-      <article class="price-card"><div class="plan-kicker">Standardize</div><h2>Scale</h2><p class="plan-audience">For Series C–E companies coordinating a portfolio of products, evidence consumers, and engineering teams.</p><div class="price-row"><span class="price">$7,500</span><span class="cadence">/ month</span></div><div class="price-note">$90,000 billed annually</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Scope Scale</a><ul class="plan-list"><li><span></span>10 protected products</li><li><span></span>300 security runs each month</li><li><span></span>75 collaborators, 10 concurrent assessments</li><li><span></span>Portfolio-wide inbound triage and autofix</li><li><span></span>Custom report and workspace appearance</li><li><span></span>200 controlled shares, up to 365 days</li></ul></article>
-      <article class="price-card enterprise"><div class="plan-kicker">Control</div><h2>Enterprise</h2><p class="plan-audience">For complex portfolios, higher assurance requirements, tailored capacity, or a reviewed deployment architecture.</p><div class="price-row"><span class="price contact">Custom</span></div><div class="price-note">Annual agreement</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Design Enterprise</a><ul class="plan-list"><li><span></span>Custom products, runs, concurrency, and storage</li><li><span></span>Custom collaborator and evidence-sharing limits</li><li><span></span>Security, privacy, and procurement review</li><li><span></span>Deployment architecture review</li><li><span></span>Rollout design across engineering groups</li><li><span></span>Commercial terms aligned to the program</li></ul></article>
+      <article class="price-card"><div class="plan-kicker">Build securely</div><h2>Developer</h2><p class="plan-audience">For a founder or security-minded engineer adding independent review to one private product.</p><div class="price-row"><span class="price annual-price">$40</span><span class="price monthly-price">$50</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$480 billed yearly · save $120</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Choose Developer</a><ul class="plan-list"><li><span></span>1 private product</li><li><span></span>10 security runs each month</li><li><span></span>3 collaborators</li><li><span></span>Source, scheduled, and PR review</li><li><span></span>Adversarial validation and patch proposals</li><li><span></span>5 controlled evidence shares</li></ul></article>
+      <article class="price-card featured"><div class="plan-ribbon">Startup default</div><div class="plan-kicker">Establish coverage</div><h2>Startup</h2><p class="plan-audience">For a seed or Series A team covering the product it ships without starting a security procurement cycle.</p><div class="price-row"><span class="price annual-price">$160</span><span class="price monthly-price">$200</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$1,920 billed yearly · save $480</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-primary plan-btn" href="/request-scan/">Choose Startup <span class="arr">-&gt;</span></a><ul class="plan-list"><li><span></span>1 protected product</li><li><span></span>50 security runs each month</li><li><span></span>15 collaborators, 3 concurrent assessments</li><li><span></span>Source, binary, and authorized live testing</li><li><span></span>Jira routing, patches, and retests</li><li><span></span>25 controlled evidence shares</li></ul></article>
+      <article class="price-card"><div class="plan-kicker">Operate continuously</div><h2>Growth</h2><p class="plan-audience">For Series A–C teams moving recurring review, inbound reports, and remediation through engineering.</p><div class="price-row"><span class="price annual-price">$400</span><span class="price monthly-price">$500</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$4,800 billed yearly · save $1,200</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Choose Growth</a><ul class="plan-list"><li><span></span>5 protected products</li><li><span></span>200 security runs each month</li><li><span></span>50 collaborators, 8 concurrent assessments</li><li><span></span>Inbound report triage and GitHub autofix</li><li><span></span>Jira, ServiceNow, and custom reports</li><li><span></span>100 controlled evidence shares</li></ul></article>
+      <article class="price-card"><div class="plan-kicker">Standardize</div><h2>Scale</h2><p class="plan-audience">For Series C–E companies coordinating security operations across a growing product portfolio.</p><div class="price-row"><span class="price annual-price">$800</span><span class="price monthly-price">$1,000</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$9,600 billed yearly · save $2,400</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Choose Scale</a><ul class="plan-list"><li><span></span>15 protected products</li><li><span></span>600 security runs each month</li><li><span></span>150 collaborators, 20 concurrent assessments</li><li><span></span>Portfolio-wide triage, autofix, and reporting</li><li><span></span>Workspace appearance and priority rollout</li><li><span></span>500 controlled shares, up to 365 days</li></ul></article>
     </div>
+    <div class="enterprise-strip"><div><span class="plan-kicker">Enterprise</span><h3>Need custom capacity, assurance, or deployment review?</h3><p>Custom products, runs, controls, storage, procurement, and rollout terms—without forcing smaller customers into enterprise packaging.</p></div><a class="btn btn-ghost" href="/request-scan/">Design Enterprise</a></div>
+  </div></section>
+
+  <section class="pricing-section compact"><div class="container">
+    <div class="section-head"><div><div class="tag">The difference</div><h2>A coding agent produces code. ZeroQuarry <em>holds security accountable.</em></h2></div><div class="aside">The pricing is intentionally comparable to developer AI. The job is not. ZeroQuarry maintains an independent product-security record from first test through external evidence.</div></div>
+    <div class="included-grid"><div class="included-item"><div class="included-code">TEST</div><h3>Find what ships</h3><p>Review source, release artifacts, binaries, and authorized live behavior—not only the file currently open in an editor.</p></div><div class="included-item"><div class="included-code">CHALLENGE</div><h3>Pressure-test claims</h3><p>Separate discovery from skeptical review, proof, confidence, and explicit human risk decisions.</p></div><div class="included-item"><div class="included-code">REMEDIATE</div><h3>Carry the outcome</h3><p>Generate controlled patches, route ownership, preserve approvals, and verify the actual fix.</p></div><div class="included-item"><div class="included-code">PROVE</div><h3>Answer outsiders</h3><p>Turn the same operating history into reports and controlled evidence for customers, auditors, and leadership.</p></div></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">Compare plans</div><h2>The whole package, <em>line by line.</em></h2></div><div class="aside">No plan withholds the core analysis loop. Packaging expands operating scale and automation where the value—and the coordination burden—actually grows.</div></div>
-    <div class="compare-wrap"><table class="compare-table plan-comparison"><thead><tr><th>Capability</th><th>Foundation</th><th>Growth</th><th>Scale</th><th>Enterprise</th></tr></thead><tbody>${comparisonGroups.map(group => `<tr class="compare-group"><th colspan="5">${group.name}</th></tr>${group.rows.map(([feature, foundation, growth, scale, enterprise]) => `<tr><th scope="row">${feature}</th><td>${foundation}</td><td>${growth}</td><td>${scale}</td><td>${enterprise}</td></tr>`).join("")}`).join("")}</tbody></table></div>
+    <div class="compare-wrap"><table class="compare-table plan-comparison"><thead><tr><th>Capability</th><th>Developer</th><th>Startup</th><th>Growth</th><th>Scale</th><th>Enterprise</th></tr></thead><tbody>${comparisonGroups.map(group => `<tr class="compare-group"><th colspan="6">${group.name}</th></tr>${group.rows.map(([feature, developer, startup, growth, scale, enterprise]) => `<tr><th scope="row">${feature}</th><td>${developer}</td><td>${startup}</td><td>${growth}</td><td>${scale}</td><td>${enterprise}</td></tr>`).join("")}`).join("")}</tbody></table></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">Add capacity</div><h2>Expand the constraint you <em>actually hit.</em></h2></div><div class="aside">Add-ons support temporary launch, diligence, or portfolio pressure without forcing an immediate repackage. Persistent overage is a signal that the next plan will be more economical.</div></div>
-    <div class="pricing-addon-grid"><article><span>Product coverage</span><h3>+$500 / month</h3><p>One additional protected product, billed annually alongside the platform plan.</p></article><article><span>Assessment capacity</span><h3>+$500 / month</h3><p>Twenty-five additional security runs each month, billed annually.</p></article><article><span>Guided baseline</span><h3>$2,500 once</h3><p>Scope, onboarding, first baseline assessment, and a working session around the resulting operating plan.</p></article></div>
+    <div class="pricing-addon-grid"><article><span>Product coverage</span><h3>+$80 / month</h3><p>One additional protected product on annual billing; $100 when billed monthly.</p></article><article><span>Assessment capacity</span><h3>+$40 / month</h3><p>Twenty-five additional security runs on annual billing; $50 when billed monthly.</p></article><article><span>Guided baseline</span><h3>$1,000 once</h3><p>Scope, onboarding, first baseline assessment, and a working session around the resulting operating plan.</p></article></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
-    <div class="section-head"><div><div class="tag">Model usage</div><h2>Depth stays visible <em>on the invoice.</em></h2></div><div class="aside">Model input and output are billed separately from the annual platform plan. Choose efficient models for routine change review and deeper models where the risk or decision warrants it.</div></div>
+    <div class="section-head"><div><div class="tag">Model usage</div><h2>Depth stays visible <em>on the invoice.</em></h2></div><div class="aside">Model input and output are billed separately from the subscription. Choose efficient models for routine change review and deeper models where the risk or decision warrants it.</div></div>
     <div class="compare-wrap"><table class="compare-table"><thead><tr><th>Model</th><th>Input / 1M tokens</th><th>Output / 1M tokens</th></tr></thead><tbody>${rates.map(([model, input, output]) => `<tr><td><code>${model}</code></td><td>${input}</td><td>${output}</td></tr>`).join("")}</tbody></table></div>
     <p class="usage-rate-note">Rates shown in USD reflect the current product configuration. Your account shows active rates, scan-level token history, and monthly usage. Cached-input discounts, when configured for a model, are applied separately.</p>
   </div></section>
@@ -876,10 +886,10 @@ function pricingPage() {
     <div class="section-head"><div><div class="tag">Pricing FAQ</div><h2>Questions a serious buyer <em>should ask.</em></h2></div><div class="aside">The aim is a predictable commercial model with honest boundaries—not an artificially simple number that becomes surprising in production.</div></div>
     <div class="faq-list">${faqs.map(([question, answer]) => `<details><summary>${question}</summary><p>${answer}</p></details>`).join("")}</div>
   </div></section>
-  ${renderCta("Price the workflow that is costing you time.", "Bring one current security motion—release review, inbound reports, customer evidence, or remediation—and we will map the smallest useful ZeroQuarry rollout.")}
+  ${renderCta("Start with the product you are shipping now.", "Use the permanent free plan on public source, or cover one private product from $40 per month with annual billing. Expand only when the security operation expands.")}
   </main>`;
-  const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Pricing", href: "/pricing" }]), { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "ZeroQuarry", applicationCategory: "SecurityApplication", operatingSystem: "Web", url: `${siteUrl}/pricing`, offers: [{ "@type": "Offer", name: "Foundation", price: "15000", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "15000", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Growth", price: "36000", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "36000", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Scale", price: "90000", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "90000", priceCurrency: "USD", unitText: "YEAR" } }] }];
-  return layout({ title: "AI Pentesting and Security Operations Pricing | ZeroQuarry", description: "Compare ZeroQuarry plans for AI pentesting, continuous application security, pull-request review, vulnerability operations, remediation, and security evidence.", canonical: `${siteUrl}/pricing`, active: "pricing", body, schemas });
+  const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Pricing", href: "/pricing" }]), { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "ZeroQuarry", applicationCategory: "SecurityApplication", operatingSystem: "Web", url: `${siteUrl}/pricing`, offers: [{ "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD" }, { "@type": "Offer", name: "Developer", price: "480", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "480", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Startup", price: "1920", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "1920", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Growth", price: "4800", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "4800", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Scale", price: "9600", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "9600", priceCurrency: "USD", unitText: "YEAR" } }] }];
+  return layout({ title: "AI Security Review Pricing from $40 per Month | ZeroQuarry", description: "Start ZeroQuarry free or protect a private product from $40 per month annually. Compare AI security review, pentesting, remediation, and evidence plans without per-seat pricing.", canonical: `${siteUrl}/pricing`, active: "pricing", body, schemas });
 }
 
 function requestScanPage() {
