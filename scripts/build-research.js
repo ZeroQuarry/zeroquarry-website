@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { siteFooter, siteNav } = require('./site-shell');
 
 const root = path.resolve(__dirname, '..');
 const contentDir = path.join(root, 'content', 'research');
@@ -231,6 +232,7 @@ ${imageMeta}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${relativePrefix}index.css" />
+<link rel="stylesheet" href="${relativePrefix}marketing.css" />
 <link rel="stylesheet" href="${relativePrefix}cookie-consent.css" />
 <script src="${relativePrefix}cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
 </head>
@@ -241,82 +243,15 @@ ${imageMeta}
   <div class="bg-glow-red"></div>
 </div>
 
-${nav(relativePrefix, active)}
+${siteNav(active === 'Research' || active === 'Research Index' ? 'research' : '')}
 
 ${body}
 
-${footer(relativePrefix)}
+${siteFooter()}
 
 </body>
 </html>
 `;
-}
-
-function nav(prefix) {
-  return `<header class="nav">
-  <div class="nav-inner">
-    <a href="${prefix}index.html" class="brand" aria-label="ZeroQuarry home">
-      <img class="wordmark" src="${prefix}assets/wordmark.png" alt="ZeroQuarry">
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="${prefix}index.html">Why ZeroQuarry</a>
-      <a href="${prefix}platform.html">Platform</a>
-      <a href="${prefix}continuous-testing.html">Continuous Testing</a>
-      <a href="${prefix}evidence-reports.html">Evidence &amp; Reports</a>
-      <a href="${prefix}research/" aria-current="page">Research</a>
-      <a href="${prefix}pricing.html">Pricing</a>
-    </nav>
-    <div class="nav-cta">
-      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
-      <a class="btn btn-primary" href="${prefix}request-scan/">Request scan <span class="arr">-&gt;</span></a>
-    </div>
-  </div>
-</header>`;
-}
-
-function footer(prefix) {
-  return `<footer class="site-footer">
-  <div class="container">
-    <div class="foot-grid">
-      <div class="foot-col">
-        <a href="${prefix}index.html" class="brand" aria-label="ZeroQuarry home">
-          <img class="wordmark" src="${prefix}assets/wordmark.png" alt="ZeroQuarry">
-        </a>
-        <p>Adversarial AI for offensive security. Mine your 0-days before someone else does.</p>
-      </div>
-      <div class="foot-col legal">
-        <h5>Legal</h5>
-        <a href="${prefix}privacy.html">Privacy Policy</a>
-        <a href="${prefix}terms.html">Terms of Use</a>
-      </div>
-      <div class="foot-col legal">
-        <h5>Resources</h5>
-        <a href="${prefix}index.html">Why ZeroQuarry</a>
-        <a href="${prefix}platform.html">Platform</a>
-        <a href="${prefix}continuous-testing.html">Continuous Testing</a>
-        <a href="${prefix}evidence-reports.html">Evidence &amp; Reports</a>
-        <a href="${prefix}research/">Research</a>
-        <a href="${prefix}pricing.html">Pricing</a>
-        <a href="${prefix}about.html">About</a>
-        <a href="https://docs.zeroquarry.com">Docs</a>
-        <a href="https://status.zeroquarry.com">Status Page</a>
-      </div>
-      <div class="foot-col legal">
-        <h5>Social</h5>
-        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
-        <a href="https://discord.gg/PygTTeuU">Discord</a>
-        <a href="https://github.com/ZeroQuarry/">GitHub</a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
-      <div class="right">
-        <span>LAT 37.8409 S - LON 144.9464 E</span>
-        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
-      </div>
-    </div>
-  </div>
-</footer>`;
 }
 
 function renderPost(post) {
@@ -343,7 +278,7 @@ function renderPost(post) {
           <h1>${escapeHtml(post.data.title)}</h1>
           <p class="article-dek">${escapeHtml(post.data.description)}</p>
           <div class="article-actions">
-            <a class="btn btn-primary" href="../../request-scan/">Request a private scan <span class="arr">-&gt;</span></a>
+            <a class="btn btn-primary" href="../../request-scan/">Request a working session <span class="arr">-&gt;</span></a>
           </div>
         </div>
 
@@ -591,12 +526,12 @@ function renderIndex(posts) {
   <section class="section">
     <div class="container">
       <div class="cta-banner">
-        <div class="tag">Private scan</div>
+        <div class="tag">Working session</div>
         <h2>Have a product surface that looks like this?</h2>
-        <p>ZeroQuarry can run the same adversarial research loop against your application, APIs, plugins, local app, or AI workflow before an annual compliance scan ever sees it.</p>
+        <p>Bring a repository, release artifact, authorized target, or current security workflow. We will map how ZeroQuarry can investigate it and carry the outcome through validation, remediation, retesting, and evidence.</p>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="../request-scan/">Request a private scan <span class="arr">-&gt;</span></a>
-          <a class="btn btn-ghost" href="../evidence-reports.html">See evidence packets</a>
+          <a class="btn btn-primary" href="../request-scan/">Request a working session <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="../platform/evidence-reporting/">See evidence and reporting</a>
         </div>
       </div>
     </div>

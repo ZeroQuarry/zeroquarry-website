@@ -3,410 +3,230 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Why ZeroQuarry · Continuous adversarial vulnerability research</title>
-<meta name="description" content="ZeroQuarry is continuous adversarial vulnerability research for product teams. It finds exploitable bugs across source, binaries, and live targets, validates findings with skeptical agent review, and produces evidence, reports, and fixes." />
+<title>AI Security Operations for Product Teams | ZeroQuarry</title>
+<meta name="description" content="ZeroQuarry is an AI security operations platform for continuous application security testing, vulnerability validation, remediation, retesting, and customer evidence." />
 <link rel="canonical" href="https://zeroquarry.com/" />
-<meta property="og:title" content="Why ZeroQuarry · Continuous adversarial vulnerability research" />
-<meta property="og:description" content="ZeroQuarry finds exploitable vulnerabilities, challenges weak findings, and turns evidence into reports, tickets, and fixes." />
+<meta property="og:title" content="AI Security Operations for Product Teams | ZeroQuarry" />
+<meta property="og:description" content="ZeroQuarry is an AI security operations platform for continuous application security testing, vulnerability validation, remediation, retesting, and customer evidence." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zeroquarry.com/" />
-<meta property="og:image" content="https://zeroquarry.com/assets/wordmark.png" />
+<meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" type="image/png" href="assets/favicon.png" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="index.css" />
-<link rel="stylesheet" href="cookie-consent.css" />
-<script src="cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<link rel="stylesheet" href="/index.css" />
+<link rel="stylesheet" href="/marketing.css" />
+<link rel="stylesheet" href="/cookie-consent.css" />
+<script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ZeroQuarry","url":"https://zeroquarry.com/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ZeroQuarry","applicationCategory":"SecurityApplication","operatingSystem":"Web","description":"AI security operations for application security testing, vulnerability validation, remediation, retesting, and evidence reporting.","url":"https://zeroquarry.com/platform","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","category":"30-day trial"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ZeroQuarry","url":"https://zeroquarry.com/","logo":"https://zeroquarry.com/assets/wordmark.png","sameAs":["https://www.linkedin.com/company/zeroquarry/","https://github.com/ZeroQuarry/"]}</script>
 </head>
 <body>
-
-<div class="bg-flair" aria-hidden="true">
-  <div class="bg-grid"></div>
-  <div class="bg-glow-red"></div>
-</div>
-
-<header class="nav">
+<div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
+<header class="nav site-nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand" aria-label="ZeroQuarry home">
-      <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="index.html" aria-current="page">Why ZeroQuarry</a>
-      <a href="platform.html">Platform</a>
-      <a href="continuous-testing.html">Continuous Testing</a>
-      <a href="evidence-reports.html">Evidence &amp; Reports</a>
-      <a href="research/">Research</a>
-      <a href="pricing.html">Pricing</a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/" aria-current="page">Why ZeroQuarry</a>
+      <details class="nav-cluster">
+        <summary>Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
     </nav>
     <div class="nav-cta">
       <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
-      <a class="btn btn-primary" href="https://console.zeroquarry.com">Get started <span class="arr">-&gt;</span></a>
+      <a class="btn btn-primary" href="/request-scan/">Evaluate a workflow <span class="arr">-&gt;</span></a>
     </div>
   </div>
 </header>
-
-<main>
-  <section class="hero">
-    <div class="container hero-grid">
+<main class="marketing-main">
+  <section class="buyer-hero">
+    <div class="container buyer-hero-grid">
       <div>
-        <span class="eyebrow">
-          <span class="tag">WHY ZEROQUARRY</span>
-          <span>Continuous adversarial vulnerability research</span>
-        </span>
-        <h1 class="headline">
-          <span class="block">Not another</span>
-          <span class="block thin"><em>AI scanner.</em></span>
-        </h1>
-        <p class="lede">
-          ZeroQuarry runs adversarial agents across your source, binaries, and live targets to find exploitable vulnerabilities, challenge weak claims, generate proof, and move fixes into your existing security workflow.
-        </p>
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">-&gt;</span></a>
-          <a class="btn btn-ghost" href="#difference">See what is different</a>
-        </div>
-        <div class="trust-row">
-          <div class="stat">
-            <div class="num"><em>3</em> surfaces</div>
-            <div class="lbl">Source · Binary · Live</div>
-          </div>
-          <div class="stat">
-            <div class="num"><em>2</em> sides</div>
-            <div class="lbl">Red team · Vendor review</div>
-          </div>
-          <div class="stat">
-            <div class="num">1 <em>loop</em></div>
-            <div class="lbl">Evidence · fix · retest</div>
-          </div>
-        </div>
+        <div class="buyer-kicker">AI security operations for software companies</div>
+        <h1 class="buyer-title">Run product security like you already <em>staffed the team.</em></h1>
+        <p class="buyer-lede">ZeroQuarry receives security work, tests source, binaries, and live applications, challenges weak findings, opens fixes, verifies remediation, and packages the evidence customers ask for.</p>
+        <div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">See it on your workflow <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
+        <div class="buyer-proofline"><span>AI penetration testing</span><span>Application security operations</span><span>Evidence and remediation</span></div>
       </div>
-
-      <div class="console" id="console">
-        <div class="console-head">
-          <span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span>
-          <span class="console-title"><span class="tbl">session://</span>red-vs-vendor · target=<span class="amber">auth-svc</span></span>
-          <span class="console-meta"><span class="live">LIVE</span><span>turn 07</span></span>
+      <div class="hero-system" aria-label="ZeroQuarry security operating loop">
+        <div class="system-head"><span>security-ops://product</span><span class="system-status">loop active</span></div>
+        <div class="loop-map">
+          <div class="loop-node"><span>01 / RECEIVE</span><strong>Code change or report</strong><p>PR, schedule, manual review, API, or forwarded researcher email.</p></div>
+          <div class="loop-node"><span>02 / ASSESS</span><strong>Source, binary, live</strong><p>Specialist agents investigate the surface that can change the decision.</p></div>
+          <div class="loop-node wide"><span>03 / VALIDATE</span><strong>Red team claim vs. vendor challenge</strong><p>Evidence must survive skeptical review before it becomes expensive work.</p></div>
+          <div class="loop-node"><span>04 / REMEDIATE</span><strong>Patch, PR, or ticket</strong><p>Route accepted work through GitHub, Jira, ServiceNow, and engineering controls.</p></div>
+          <div class="loop-node"><span>05 / PROVE</span><strong>Retest and evidence</strong><p>Preserve decisions, verification, reports, controlled shares, and asset history.</p></div>
         </div>
-        <div class="console-body" id="body"></div>
-        <div class="console-foot">
-          <span class="chip">RED TEAM</span>
-          <span class="chip blue">VENDOR TEAM</span>
-          <span class="sp"></span>
-          <span id="verdict">awaiting verdict...</span>
-        </div>
+        <div class="system-foot"><span class="pulse-dot"></span><span>authorization and risk ownership remain human</span></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="difference">
+  <section class="buyer-section soft">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="tag">01 · The gap</div>
-          <h2>Most tools stop<br>at <em>suspicion.</em></h2>
-        </div>
-        <div class="aside">
-          Security teams do not need another queue of plausible alerts. They need evidence that a vulnerability is real, enough context to prioritize it, and a path to fix it before the next audit window.
-        </div>
+      <div class="buyer-section-head"><div><div class="section-label">The buying moments</div><h2>Security becomes urgent in <em>recognizable moments.</em></h2></div><p class="section-intro">ZeroQuarry is designed around the decisions buyers actually face—not a generic inventory of scanner features.</p></div>
+      <div class="moment-grid">
+        <a class="moment-card" href="/use-cases/customer-security-reviews/"><div class="card-code">01</div><h3>Enterprise deal</h3><p>A buyer asks for current test evidence and how findings are remediated.</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>
+<a class="moment-card" href="/use-cases/release-security-review/"><div class="card-code">02</div><h3>Risky release</h3><p>A change crosses identity, tenant, billing, upload, webhook, or runtime boundaries.</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>
+<a class="moment-card" href="/use-cases/inbound-vulnerability-reports/"><div class="card-code">03</div><h3>Researcher report</h3><p>An external claim arrives and someone must resolve the target, reproduce it, and respond.</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>
+<a class="moment-card" href="/use-cases/pr-security-review/"><div class="card-code">04</div><h3>Fast-moving codebase</h3><p>Security review must happen in PR and scheduled workflows without becoming a noisy gate.</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>
+<a class="moment-card" href="/use-cases/startup-security/"><div class="card-code">05</div><h3>Lean security team</h3><p>The company needs real coverage before it can hire every AppSec and security-operations specialty.</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>
+<a class="moment-card" href="/use-cases/vulnerability-disclosure/"><div class="card-code">06</div><h3>External disclosure</h3><p>A serious claim needs stronger proof, controlled delivery, remediation, and timeline tracking.</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>
       </div>
-
-      <div class="compare-grid">
-        <article class="compare-card muted-card">
-          <div class="compare-code">SAST / DAST</div>
-          <h3>Pattern or probe</h3>
-          <p>Finds suspicious code paths or endpoint behavior, then leaves your team to decide whether the claim matters in your application.</p>
-        </article>
-        <article class="compare-card muted-card">
-          <div class="compare-code">AI AUTOFIX</div>
-          <h3>Patch after alert</h3>
-          <p>Suggests a fix for a known alert, but often inherits the scanner's uncertainty and does not prove the underlying exploit.</p>
-        </article>
-        <article class="compare-card strong-card">
-          <div class="compare-code">ZEROQUARRY</div>
-          <h3>Adversarial research loop</h3>
-          <p>Investigates like a red team, challenges findings like a skeptical vendor, and ships the surviving evidence into reports, tickets, and patches.</p>
-        </article>
-      </div>
-
-      <p class="thesis-out">ZeroQuarry is built for teams that want vulnerability discovery to happen <em>continuously</em>, without turning every sprint into alert triage.</p>
     </div>
   </section>
 
-  <section class="section" id="validation">
+  <section class="buyer-section">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="tag">02 · Validation</div>
-          <h2>Findings must survive<br>a skeptical <em>counter-party.</em></h2>
-        </div>
-        <div class="aside">
-          A single agent can be confident and wrong. ZeroQuarry makes the claim work harder: the red-team side proves exploitability, the vendor-review side tries to reject it, and rebuttal must answer with evidence or concede.
-        </div>
-      </div>
-
-      <div class="debate-stage">
-        <div class="team red">
-          <div class="team-eye">Red Team Agent <span class="id">· proves</span></div>
-          <h3>Builds the exploit story.</h3>
-          <p>Traces source-to-sink paths, probes live behavior, reads decompiled artifacts, and records findings with impact, severity, and reproduction context.</p>
-          <div class="prompt">
-            <span class="label">output</span>
-            Vulnerability claim, source reference, CVSS vector, reproduction path, proof-of-concept artifact, and candidate remediation.
-          </div>
-        </div>
-
-        <div class="vs-badge" aria-hidden="true">
-          <div class="ring">vs</div>
-          <div class="lbl">Adversarial Review</div>
-        </div>
-
-        <div class="team blue">
-          <div class="team-eye">Vendor Review Agent <span class="id">· falsifies</span></div>
-          <h3>Challenges weak claims.</h3>
-          <p>Reviews findings as if defending the product: checking reachability, context mitigations, false-positive categories, and whether the evidence actually proves impact.</p>
-          <div class="prompt">
-            <span class="label">verdict</span>
-            Accepted, needs more information, rejected, revised, sustained, or retracted. Confidence updates from the outcome.
-          </div>
-        </div>
-      </div>
-
-      <div class="process">
-        <div class="p">
-          <div class="step-n">STEP 01</div>
-          <h4>Investigate</h4>
-          <p>Agents search source, binaries, or live targets for exploitable behavior, not just risky patterns.</p>
-        </div>
-        <div class="p">
-          <div class="step-n">STEP 02</div>
-          <h4>Challenge</h4>
-          <p>A vendor-style reviewer tries to reject unsupported claims before they reach your team.</p>
-        </div>
-        <div class="p">
-          <div class="step-n">STEP 03</div>
-          <h4>Rebut</h4>
-          <p>The red-team side must sustain, revise, or retract with concrete evidence.</p>
-        </div>
-        <div class="p">
-          <div class="step-n">STEP 04</div>
-          <h4>Score</h4>
-          <p>Confidence reflects adversarial outcome, human signals, and repeat appearances across scan versions.</p>
-        </div>
+      <div class="buyer-section-head"><div><div class="section-label">One operating loop</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">Point tools find alerts. ZeroQuarry connects the security work that begins before the alert and continues after the report.</p></div>
+      <div class="operation-rail">
+        <div class="operation-step"><small>01</small><h3>Receive</h3><p>Change, schedule, API, or report</p></div>
+<div class="operation-step"><small>02</small><h3>Assess</h3><p>Source, binary, or live target</p></div>
+<div class="operation-step"><small>03</small><h3>Validate</h3><p>Proof, challenge, rebuttal</p></div>
+<div class="operation-step"><small>04</small><h3>Decide</h3><p>State, reason, accountable owner</p></div>
+<div class="operation-step"><small>05</small><h3>Remediate</h3><p>Patch, PR, Jira, ServiceNow</p></div>
+<div class="operation-step"><small>06</small><h3>Retest</h3><p>Mitigated, verified, or regression</p></div>
+<div class="operation-step"><small>07</small><h3>Prove</h3><p>Reports, shares, Evidence Room</p></div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="surfaces">
+  <section class="buyer-section soft">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="tag">03 · Coverage</div>
-          <h2>Real bugs hide across<br>more than <em>source.</em></h2>
-        </div>
-        <div class="aside">
-          ZeroQuarry follows the system you actually ship: application code, compiled artifacts, and authenticated live behavior. Each surface gets the same evidence-first review loop.
-        </div>
-      </div>
-
-      <div class="triad">
-        <div class="cell">
-          <div class="num-lbl"><span class="n">01</span> <span>Source</span></div>
-          <div class="vis">
-            <div class="flow-vis">
-              <div class="node node-tl">req.body.tenant</div>
-              <div class="node node-tr">invoice.patch()</div>
-              <div class="node t node-bl">owner_id</div>
-              <div class="node s node-br">db.update()</div>
-            </div>
-          </div>
-          <h3>Source code review</h3>
-          <p>Connect repos or upload archives. Agents inspect auth logic, data flow, deserialization, business rules, and changed files in delta rescans.</p>
-          <ul class="bullets">
-            <li>private git and CI hooks</li>
-            <li>diff-scoped rescans</li>
-            <li>logic bugs and authZ drift</li>
-          </ul>
-        </div>
-
-        <div class="cell">
-          <div class="num-lbl"><span class="n">02</span> <span>Binary</span></div>
-          <div class="vis">
-            <div class="hex-vis">
-              <div><span class="h">classes.dex</span> exported Activity <mark>auth=false</mark></div>
-              <div><span class="h">AndroidManifest</span> deep link <mark>admin</mark></div>
-              <div><span class="h">libnative.so</span> strcpy sink <mark>argv</mark></div>
-              <div><span class="h">strings</span> update_url <mark>http://</mark></div>
-            </div>
-          </div>
-          <h3>Shipped artifact analysis</h3>
-          <p>Upload APKs, JARs, firmware images, installers, and archives. ZeroQuarry expands, decompiles, and reviews what customers actually receive.</p>
-          <ul class="bullets">
-            <li>mobile and packaged apps</li>
-            <li>manifests and embedded secrets</li>
-            <li>update and signature flows</li>
-          </ul>
-        </div>
-
-        <div class="cell">
-          <div class="num-lbl"><span class="n">03</span> <span>Live</span></div>
-          <div class="vis">
-            <div class="probe-vis">
-              <div class="row"><span class="m">[14:02:18]</span> <span class="b">GET</span> <span class="w">/api/invoices/42</span> <span class="g">200</span></div>
-              <div class="row"><span class="m">[14:02:19]</span> <span class="b">PATCH</span> <span class="w">tenant=43</span> <span class="r">200</span></div>
-              <div class="row"><span class="m">[14:02:20]</span> <span class="r">BOLA write impact confirmed</span></div>
-              <div class="row"><span class="m">scope</span> <span class="w">api.example.com</span></div>
-            </div>
-          </div>
-          <h3>Authorized live testing</h3>
-          <p>Point ZeroQuarry at running apps and APIs. Scope hosts, required headers, redacted auth, and explicit authorization controls keep active testing bounded.</p>
-          <ul class="bullets">
-            <li>authenticated API probing</li>
-            <li>BOLA, SSRF, rate-limit checks</li>
-            <li>safe active-test guardrails</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="inline-cta">
-        <span>Want the full capability map?</span>
-        <a class="btn btn-ghost" href="platform.html">Explore the platform <span class="arr">-&gt;</span></a>
+      <div class="buyer-section-head"><div><div class="section-label">Platform</div><h2>Six capabilities. One <em>security record.</em></h2></div><p class="section-intro">Use the whole loop or begin with the security motion creating the most operational drag today.</p></div>
+      <div class="capability-grid">
+        <a class="capability-card" href="/platform/security-testing/"><div class="card-code">01 / Platform</div><h3>AI security testing</h3><p>Run AI penetration testing and application security reviews across source code, shipped binaries, and authorized live targets in one project history.</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>
+<a class="capability-card" href="/platform/adversarial-validation/"><div class="card-code">02 / Platform</div><h3>Adversarial validation</h3><p>Challenge AI security findings with skeptical vendor-style review, rebuttal, confidence scoring, evidence, and accountable human decisions.</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>
+<a class="capability-card" href="/platform/continuous-security/"><div class="card-code">03 / Platform</div><h3>Continuous application security</h3><p>Run continuous application security with PR scans, GitHub Actions, scheduled rescans, changed-code analysis, APIs, Slack, and scan lineage.</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>
+<a class="capability-card" href="/platform/security-operations/"><div class="card-code">04 / Platform</div><h3>AI security operations</h3><p>Automate lean security operations with vulnerability-report intake, finding lifecycle, Jira, ServiceNow, GitHub, Slack, search, and audit history.</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>
+<a class="capability-card" href="/platform/remediation/"><div class="card-code">05 / Platform</div><h3>Vulnerability remediation</h3><p>Move validated vulnerabilities into patches, GitHub auto-fix pull requests, Jira, ServiceNow, GitHub Issues, and focused security retests.</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>
+<a class="capability-card" href="/platform/evidence-reporting/"><div class="card-code">06 / Platform</div><h3>Security evidence and reporting</h3><p>Create pentest-style PDF reports, asset evidence packs, controlled finding shares, disclosure records, and audit trails for customers and auditors.</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="workflow">
+  <section class="buyer-section">
+    <div class="container split-proof">
+      <div class="proof-copy"><div class="section-label">Why the workflow matters</div><h2>AI speed needs an <em>evidence bar.</em></h2><p>Autonomous pentesting is becoming a crowded claim. ZeroQuarry’s differentiation is what happens around the model: separate investigator and reviewer roles, human lifecycle decisions, controlled remediation, retesting, and evidence that remains useful after the scan finishes.</p><div class="proof-list"><div><span>01</span><p>Severity describes impact. Confidence describes whether the claim is likely to survive review.</p></div><div><span>02</span><p>Disputed and accepted-risk decisions retain reasons instead of disappearing from the record.</p></div><div><span>03</span><p>Generated fixes remain proposals under repository access, approval, CI, and merge controls.</p></div></div><a class="card-link" href="/platform/adversarial-validation/">How adversarial validation works <span aria-hidden="true">-&gt;</span></a></div>
+      <figure class="product-frame"><img src="/assets/product/finding-detail.png" alt="ZeroQuarry finding with evidence, review state, and decision controls" width="1440" height="1000" loading="lazy"></figure>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="tag">04 · Operations</div>
-          <h2>From scan to fix<br>without another <em>queue.</em></h2>
-        </div>
-        <div class="aside">
-          B2B teams need recurring coverage and clean handoff. ZeroQuarry connects scans to projects, schedules, Slack, Jira, ServiceNow, GitHub patches, share links, and evidence exports.
-        </div>
-      </div>
-
-      <div class="workflow-strip">
-        <div class="workflow-step">
-          <span>01</span>
-          <h3>Run continuously</h3>
-          <p>Scan on push, schedule, or API. Delta runs focus agents on what changed.</p>
-        </div>
-        <div class="workflow-step">
-          <span>02</span>
-          <h3>Validate evidence</h3>
-          <p>Adversarial review records what survived, changed, or got retracted.</p>
-        </div>
-        <div class="workflow-step">
-          <span>03</span>
-          <h3>Route the work</h3>
-          <p>Create Jira or ServiceNow records, share findings, notify Slack, or export reports.</p>
-        </div>
-        <div class="workflow-step">
-          <span>04</span>
-          <h3>Patch and retest</h3>
-          <p>Generate focused diffs, open GitHub PRs with approval gates, and rescan the lineage.</p>
-        </div>
-      </div>
+      <div class="buyer-section-head"><div><div class="section-label">Use cases</div><h2>Start from the decision <em>in front of you.</em></h2></div><p class="section-intro">Each playbook combines the relevant assessment, review, remediation, and evidence capabilities into an operating outcome.</p></div>
+      <div class="use-case-grid"><a class="use-case-card" href="/use-cases/startup-security/"><div class="card-code">01 / Use case</div><h3>Security for growing companies</h3><p>Build a credible startup security program with AI security testing, vulnerability triage, remediation, retesting, and customer evidence before hiring a large team.</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a>
+<a class="use-case-card" href="/use-cases/pr-security-review/"><div class="card-code">02 / Use case</div><h3>Pull request security review</h3><p>Run AI pull request security reviews in GitHub Actions, focus on changed code, validate findings, open remediation work, and retest merged fixes.</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a>
+<a class="use-case-card" href="/use-cases/release-security-review/"><div class="card-code">03 / Use case</div><h3>Release security review</h3><p>Review release source, shipped artifacts, and authorized staging behavior with AI penetration testing, adversarial validation, remediation, and evidence.</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a>
+<a class="use-case-card" href="/use-cases/inbound-vulnerability-reports/"><div class="card-code">04 / Use case</div><h3>Inbound vulnerability reports</h3><p>Forward researcher and customer vulnerability reports into bounded AI triage that maps targets, starts assessments, preserves evidence, and routes remediation.</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a>
+<a class="use-case-card" href="/use-cases/customer-security-reviews/"><div class="card-code">05 / Use case</div><h3>Customer and audit evidence</h3><p>Answer customer security reviews and audit evidence requests with current asset reports, pentest PDFs, controlled finding shares, audit history, and retests.</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a>
+<a class="use-case-card" href="/use-cases/vulnerability-disclosure/"><div class="card-code">06 / Use case</div><h3>Vulnerability disclosure</h3><p>Validate vulnerability disclosures, generate proof and draft reports, share findings securely, track vendor timelines, and preserve remediation evidence.</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a></div>
     </div>
   </section>
 
-  <section class="section" id="evidence">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="tag">05 · Audit-ready output</div>
-          <h2>SOC 2 proves process.<br>ZeroQuarry helps you <em>run it.</em></h2>
-        </div>
-        <div class="aside">
-          A quarterly scan tells auditors you checked a box. Continuous evidence tells your team what changed, what was verified, what was fixed, and what still needs attention.
-        </div>
-      </div>
-
-      <div class="evidence-grid">
-        <article class="evidence-card">
-          <div class="evidence-code">REPORT</div>
-          <h3>Defensible findings</h3>
-          <p>CVSS vectors, proof-of-concept artifacts, source references, confidence, final state, and agent discussion travel together.</p>
-        </article>
-        <article class="evidence-card">
-          <div class="evidence-code">HISTORY</div>
-          <h3>Continuous record</h3>
-          <p>Projects keep scan versions, tags, lineage, prior appearances, human validation signals, logs, and remediation context.</p>
-        </article>
-        <article class="evidence-card">
-          <div class="evidence-code">HANDOFF</div>
-          <h3>Workflow exports</h3>
-          <p>Send the result to Jira, ServiceNow, GitHub Issues, Slack, Markdown, HTML, PDF, or the JSON API.</p>
-        </article>
-      </div>
-
-      <div class="inline-cta">
-        <span>Need report detail?</span>
-        <a class="btn btn-ghost" href="evidence-reports.html">See evidence &amp; reports <span class="arr">-&gt;</span></a>
-      </div>
+  <section class="buyer-section">
+    <div class="container split-proof">
+      <div class="proof-copy"><div class="section-label">Research-backed</div><h2>Built where real vulnerability reports <em>land.</em></h2><p>ZeroQuarry’s workflows come from finding, validating, coordinating, and fixing real product vulnerabilities—not from wrapping a chat interface around a pattern scanner.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability-triage experience across Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>Validated research patterns feed future prompts, coverage, report language, and evidence structure.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
+      <div class="hero-system"><div class="system-head"><span>research://evidence</span><span class="system-status">coordinated</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Opening untrusted Markdown reaches executable behavior</strong><p>Trace the plugin path, prove reachability, and identify the affected configuration.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>Is execution actually reachable?</strong><p>Test default state, permissions, versions, and realistic user action.</p></div><div class="loop-node"><span>OUTCOME</span><strong>Fix, disclose, publish</strong><p>Coordinate the maintainer response before turning the finding into public research.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>public writeups follow responsible disclosure</span></div></div>
     </div>
   </section>
-
-  <section>
-    <div class="container">
-      <div class="cta-banner">
-        <h2>Find the vulnerabilities<br>your audit window <em>misses.</em></h2>
-        <p>Start with one repo, then add delta scans, adversarial review, live targets, patch workflows, and evidence exports as your program grows.</p>
-        <div class="cta-actions">
-          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">-&gt;</span></a>
-          <a class="btn btn-ghost" href="continuous-testing.html">Plan continuous testing</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Start with one real product boundary.</h2><p>Give ZeroQuarry a repository, release artifact, or authorized target and see the full path from investigation to a reviewed operating decision.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Request a working session <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="https://console.zeroquarry.com">Open the console</a></div></div></div></section>
+  </main>
+<footer class="site-footer buyer-footer">
   <div class="container">
-    <div class="foot-grid">
-      <div class="foot-col">
-        <a href="index.html" class="brand" aria-label="ZeroQuarry home">
-          <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
         </a>
-        <p>Continuous adversarial vulnerability research for product teams.</p>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="/request-scan/">Evaluate a workflow <span aria-hidden="true">-&gt;</span></a>
       </div>
       <div class="foot-col legal">
-        <h5>Legal</h5>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
       </div>
       <div class="foot-col legal">
-        <h5>Resources</h5>
-        <a href="index.html">Why ZeroQuarry</a>
-        <a href="platform.html">Platform</a>
-        <a href="continuous-testing.html">Continuous Testing</a>
-        <a href="evidence-reports.html">Evidence &amp; Reports</a>
-        <a href="research/">Research</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-        <a href="https://docs.zeroquarry.com">Docs</a>
-        <a href="https://status.zeroquarry.com">Status Page</a>
+        <h5>Use cases</h5>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
       </div>
       <div class="foot-col legal">
-        <h5>Social</h5>
-        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
-        <a href="https://discord.gg/PygTTeuU">Discord</a>
-        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
       </div>
     </div>
     <div class="foot-bottom">
       <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
       <div class="right">
-        <span>LAT 37.8409 S - LON 144.9464 E</span>
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
         <span class="ok">ALL SYSTEMS OPERATIONAL</span>
       </div>
     </div>
   </div>
 </footer>
-
-<script src="index.js" defer></script>
-
 </body>
 </html>

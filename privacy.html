@@ -4,19 +4,70 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Privacy Policy | ZeroQuarry</title>
+<meta name="description" content="ZeroQuarry's privacy policy explains how ZeroQuarry Pty Ltd collects, uses, stores, and protects personal information." />
+<link rel="canonical" href="https://zeroquarry.com/privacy" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="marketing.css" />
 <link rel="stylesheet" href="cookie-consent.css" />
 <script src="cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="/" aria-label="ZeroQuarry home">
-      <img src="assets/wordmark.png" alt="ZeroQuarry" />
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
     </a>
-    <a class="btn btn-primary" href="https://console.zeroquarry.com">Cloud Console</a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster">
+        <summary>Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="/request-scan/">Evaluate a workflow <span class="arr">-&gt;</span></a>
+    </div>
   </div>
 </header>
 
@@ -207,24 +258,54 @@
   <p>If you remain dissatisfied with the outcome, you may refer the matter to the Office of the Australian Information Commissioner (OAIC): www.oaic.gov.au.</p>
 </main>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
-    <nav class="footer-links" aria-label="Footer">
-      <a href="index.html">Why ZeroQuarry</a>
-      <a href="platform.html">Platform</a>
-      <a href="continuous-testing.html">Continuous Testing</a>
-      <a href="evidence-reports.html">Evidence &amp; Reports</a>
-      <a href="research/">Research</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="https://docs.zeroquarry.com">Docs</a>
-      <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
-      <a href="https://discord.gg/PygTTeuU">Discord</a>
-      <a href="https://github.com/ZeroQuarry/">GitHub</a>
-      <a href="https://status.zeroquarry.com">Status Page</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Use</a>
-    </nav>
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="/request-scan/">Evaluate a workflow <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
   </div>
 </footer>
 

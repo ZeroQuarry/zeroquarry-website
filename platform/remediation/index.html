@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Vulnerability Remediation, Auto-Fix Pull Requests, and Retesting | ZeroQuarry</title>
+<meta name="description" content="Move validated vulnerabilities into patches, GitHub auto-fix pull requests, Jira, ServiceNow, GitHub Issues, and focused security retests." />
+<link rel="canonical" href="https://zeroquarry.com/platform/remediation/" />
+<meta property="og:title" content="AI Vulnerability Remediation, Auto-Fix Pull Requests, and Retesting | ZeroQuarry" />
+<meta property="og:description" content="Move validated vulnerabilities into patches, GitHub auto-fix pull requests, Jira, ServiceNow, GitHub Issues, and focused security retests." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/platform/remediation/" />
+<meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css" />
+<link rel="stylesheet" href="/marketing.css" />
+<link rel="stylesheet" href="/cookie-consent.css" />
+<script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Vulnerability remediation","item":"https://zeroquarry.com/platform/remediation/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does ZeroQuarry auto-merge security fixes?","acceptedAnswer":{"@type":"Answer","text":"No. ZeroQuarryBot opens pull requests; your repository’s reviewers, CI, branch protection, and merge policy remain in control."}},{"@type":"Question","name":"Do we have to install the GitHub App to get a patch?","acceptedAnswer":{"@type":"Answer","text":"No. Patch generation can produce a downloadable or revisable diff without repository write access. The GitHub App is only needed for the pull-request workflow."}},{"@type":"Question","name":"How do we stop the bot quickly?","acceptedAnswer":{"@type":"Answer","text":"An account-wide kill switch stops all pushes, and each repository has its own kill switch. Repository enrollment and GitHub App access add separate permission gates."}}]}</script>
+</head>
+<body>
+<div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster">
+        <summary aria-current="page">Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="/request-scan/">Evaluate a workflow <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+<main class="marketing-main">
+  <section class="buyer-hero detail-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/platform">Platform</a><span>/</span><span>Vulnerability remediation</span></nav>
+      <div class="buyer-hero-grid">
+        <div>
+          <div class="buyer-kicker">Vulnerability remediation</div>
+          <h1 class="buyer-title detail-title">Close the distance between <em>evidence and a reviewed fix.</em></h1>
+          <p class="buyer-lede">Generate focused diffs, stage audited auto-fix proposals, open pull requests through ZeroQuarryBot, or hand findings into the team’s ticketing system—then retest in the same lineage.</p>
+          <div class="buyer-actions">
+            <a class="btn btn-primary" href="/request-scan/">See it on your product <span class="arr">-&gt;</span></a>
+            <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
+          </div>
+          <div class="buyer-proofline"><span>Generated patch revisions</span><span>Approval-gated GitHub PRs</span><span>Focused retesting</span></div>
+        </div>
+        <figure class="product-frame hero-image">
+          <img src="/assets/product/github-autofix.png" alt="ZeroQuarryBot installation and kill-switch controls for auto-fix pull requests" width="1440" height="1000" loading="eager">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>A patch is a proposal. The workflow makes that <em>explicit.</em></h2></div><p class="section-intro">Security automation should reduce translation work without silently approving production changes. ZeroQuarry separates generation, repository permission, operator approval, CI, and merge.</p></div>
+      <div class="capability-grid"><article class="capability-card">
+    <div class="card-code">01</div>
+    <h3>Generated patch revisions</h3>
+    <p>Create a unified diff, review it, give feedback, and generate a new revision without granting repository write access.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">02</div>
+    <h3>ZeroQuarryBot pull requests</h3>
+    <p>Install a GitHub App on selected repositories and open audited PRs from approved proposals.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">03</div>
+    <h3>Layered safety controls</h3>
+    <p>Use account and repository kill switches, explicit enrollment, base-branch settings, file deny-lists, size limits, and push caps.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">04</div>
+    <h3>Optional auto-push</h3>
+    <p>After a successful manual workflow, selected repositories can send qualifying proposals straight to PR review without auto-merging.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">05</div>
+    <h3>Ticket handoff</h3>
+    <p>Create Jira or ServiceNow work, or open a prefilled GitHub Issue when code changes are not the right first step.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">06</div>
+    <h3>Retest and regression history</h3>
+    <p>Re-run focused assessments, record mitigation and retest decisions, and surface a later recurrence as regression.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="workflow-grid"><article class="workflow-card">
+    <span>STEP 01</span>
+    <h3>Validate</h3>
+    <p>Confirm the vulnerability applies to the product before generating or filing remediation work.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 02</span>
+    <h3>Propose</h3>
+    <p>Generate a patch, auto-fix proposal, or ticket with source, impact, proof, and expected outcome.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 03</span>
+    <h3>Review</h3>
+    <p>Use normal engineering ownership, CI, branch protection, and code-review controls.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 04</span>
+    <h3>Retest</h3>
+    <p>Verify the risk after merge and record retested or regression state in the original history.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>Engineer-ready work</h3><p>Reduce the manual translation from vulnerability narrative to code path, reproduction, and candidate change.</p></article>
+<article class="outcome-card"><h3>Controlled automation</h3><p>Get the speed of generated fixes while preserving explicit repository gates and human merge authority.</p></article>
+<article class="outcome-card"><h3>Verified closure</h3><p>Differentiate “a fix was merged” from “the security risk was actually retested.”</p></article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="faq-list"><details>
+    <summary>Does ZeroQuarry auto-merge security fixes?</summary>
+    <p>No. ZeroQuarryBot opens pull requests; your repository’s reviewers, CI, branch protection, and merge policy remain in control.</p>
+  </details>
+<details>
+    <summary>Do we have to install the GitHub App to get a patch?</summary>
+    <p>No. Patch generation can produce a downloadable or revisable diff without repository write access. The GitHub App is only needed for the pull-request workflow.</p>
+  </details>
+<details>
+    <summary>How do we stop the bot quickly?</summary>
+    <p>An account-wide kill switch stops all pushes, and each repository has its own kill switch. Repository enrollment and GitHub App access add separate permission gates.</p>
+  </details></div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continue through the <em>operating loop.</em></h2></div></div>
+      <div class="related-grid"><a class="related-card" href="/use-cases/pr-security-review/">
+    <div class="card-code">Continue</div>
+    <h3>Pull request security review</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/platform/adversarial-validation/">
+    <div class="card-code">Continue</div>
+    <h3>Adversarial validation</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/platform/continuous-security/">
+    <div class="card-code">Continue</div>
+    <h3>Continuous security</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a></div>
+    </div>
+  </section>
+
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Request a working session <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="https://console.zeroquarry.com">Open the console</a></div></div></div></section>
+  </main>
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="/request-scan/">Evaluate a workflow <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

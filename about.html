@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About · ZeroQuarry</title>
-<meta name="description" content="ZeroQuarry was built where the disclosure emails land. Fifteen years of triaging vuln reports at Elastic, Kong, and Vectara shaped its adversarial agent loop — the scanner that finds 0-days other tools miss." />
+<title>About ZeroQuarry | Product Security Operations Built by Operators</title>
+<meta name="description" content="ZeroQuarry was built from 15 years of vulnerability triage, engineering, pentest procurement, disclosure, and customer assurance work." />
 <link rel="canonical" href="https://zeroquarry.com/about" />
-<meta property="og:title" content="About · ZeroQuarry" />
-<meta property="og:description" content="The approach behind ZeroQuarry's adversarial agent loop — and the team building it." />
+<meta property="og:title" content="About ZeroQuarry | Product Security Operations Built by Operators" />
+<meta property="og:description" content="Why ZeroQuarry treats security as an operating loop—not a scanner queue." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zeroquarry.com/about" />
-<meta property="og:image" content="https://zeroquarry.com/assets/wordmark.png" />
+<meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="marketing.css" />
 <link rel="stylesheet" href="cookie-consent.css" />
 <script src="cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
 </head>
@@ -27,22 +28,58 @@
   <div class="bg-glow-red"></div>
 </div>
 
-<header class="nav">
+<header class="nav site-nav">
   <div class="nav-inner">
-    <a href="index.html" class="brand" aria-label="ZeroQuarry home">
-      <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
     </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="index.html">Why ZeroQuarry</a>
-      <a href="platform.html">Platform</a>
-      <a href="continuous-testing.html">Continuous Testing</a>
-      <a href="evidence-reports.html">Evidence &amp; Reports</a>
-      <a href="research/">Research</a>
-      <a href="pricing.html">Pricing</a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster">
+        <summary>Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
     </nav>
     <div class="nav-cta">
       <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
-      <a class="btn btn-primary" href="https://console.zeroquarry.com">Get started <span class="arr">-&gt;</span></a>
+      <a class="btn btn-primary" href="/request-scan/">Evaluate a workflow <span class="arr">-&gt;</span></a>
     </div>
   </div>
 </header>
@@ -55,14 +92,15 @@
       <div>
         <span class="eyebrow">
           <span class="tag">ABOUT</span>
-          <span>The approach behind the agents</span>
+          <span>Why the product is an operating loop</span>
         </span>
         <h1 class="headline pricing-headline">
-          <span class="block">Finding 0-days</span>
-          <span class="block thin">isn't a <em>checklist.</em></span>
+          <span class="block">Security is a team</span>
+          <span class="block thin">of workflows, not</span>
+          <span class="block thin">a <em>scanner.</em></span>
         </h1>
         <p class="lede">
-          ZeroQuarry was built where the disclosure emails land. Fifteen years of triaging inbound vuln reports at companies like Elastic, Kong, and Vectara... plus a HackerOne payout going the other way... shaped its design. The agents inside reflect what those years taught: real findings carry working proof, real attackers don't follow patterns, and a scanner that can't be wrong won't ever find anything new.
+          ZeroQuarry was built where security work actually lands: in disclosure inboxes, engineering backlogs, pentest statements of work, audit evidence folders, and customer conversations. Fifteen years across companies including Elastic, Kong, and Vectara shaped a product that can investigate deeply while keeping the decisions, handoffs, fixes, retests, and proof connected.
         </p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#team">Meet the team <span class="arr">-&gt;</span></a>
@@ -86,7 +124,7 @@
           <div><span class="muted">$</span> disclosures --as-reporter</div>
           <div><span class="ok">ok</span> h1 broken authn @ major travel · paid</div>
           <div><span class="muted">$</span> mission</div>
-          <div><span class="ok">ok</span> build the scanner those years called for</div>
+          <div><span class="ok">ok</span> make rigorous product security operational for lean teams</div>
         </div>
       </div>
     </div>
@@ -98,10 +136,10 @@
       <div class="section-head">
         <div>
           <div class="tag">01 · The problem</div>
-          <h2>Most scanners<br>cry <em>wolf.</em></h2>
+          <h2>Security work fragments<br>before it <em>scales.</em></h2>
         </div>
         <div class="aside">
-          Every scanner promises to find your bugs. Almost none of them prove the bugs exist. The result, for a generation of security teams: a queue of "potential issues" no one trusts, a pen-test that visits twice a year, and an LLM that hallucinates findings in between.
+          A finding can start in a scanner, a consultant PDF, a researcher email, a pull request, or a customer questionnaire. The expensive part is turning that signal into a trusted decision, owned remediation, a verified fix, and evidence someone else can understand.
         </div>
       </div>
 
@@ -135,8 +173,8 @@
               <div class="note">2 windows · 10 days each · ship something else?</div>
             </div>
           </div>
-          <h3>Six-figure tests, twice a year.</h3>
-          <p>Pen tests are excellent and expensive. They cover what's deployed on the day they happen — not what shipped on Tuesday, not what merged last week, not what your fork of upstream just inherited.</p>
+          <h3>Excellent tests, isolated in time.</h3>
+          <p>Consultant-led penetration tests remain valuable. They cover a defined scope and moment—not what shipped on Tuesday, merged last week, arrived through a researcher, or changed while the report moved through remediation.</p>
           <ul class="bullets">
             <li>point-in-time only</li>
             <li>scope-limited by SOW</li>
@@ -145,27 +183,27 @@
         </div>
 
         <div class="cell">
-          <div class="num-lbl"><span class="n">03</span> <span>Single-agent LLMs</span></div>
+          <div class="num-lbl"><span class="n">03</span> <span>Manual security operations</span></div>
           <div class="vis">
             <div class="halluc-vis">
-              <div>finding: <span class="halluc">SSRF in /api/proxy</span></div>
-              <div>reproduces? <span class="no">no</span></div>
-              <div>code path exists? <span class="no">no</span></div>
-              <div>severity claimed: <span class="red">critical</span></div>
-              <div class="note">no counter-party to disprove</div>
+              <div>finding: <span class="halluc">security-inbox/184</span></div>
+              <div>owner? <span class="no">unknown</span></div>
+              <div>fix verified? <span class="no">unknown</span></div>
+              <div>customer evidence: <span class="red">manual</span></div>
+              <div class="note">context lost between systems</div>
             </div>
           </div>
-          <h3>Confident, frequently wrong.</h3>
-          <p>A single LLM with a security prompt will happily describe a vulnerability that doesn't exist, in code that doesn't behave the way it thinks. Without a counter-party to disprove it, every plausible claim ships.</p>
+          <h3>Context lost at every handoff.</h3>
+          <p>Inbox threads, scanner consoles, tickets, pull requests, retest notes, and assurance folders each hold part of the truth. Lean teams spend their limited security time reconstructing the record.</p>
           <ul class="bullets">
-            <li>no falsification step</li>
-            <li>hallucinated PoCs</li>
-            <li>noise as a feature</li>
+            <li>ownership lives in another system</li>
+            <li>retest evidence is detached</li>
+            <li>buyer proof is rebuilt by hand</li>
           </ul>
         </div>
       </div>
 
-      <p class="thesis-out">ZeroQuarry's bet: pair an adversarial red-team agent with a skeptical vendor-team agent, run them continuously, and ship only findings that <em>survive both.</em></p>
+      <p class="thesis-out">ZeroQuarry's bet: combine investigative agents with skeptical review, then keep the finding, human decision, remediation, retest, and external proof in one <em>operating record.</em></p>
     </div>
   </section>
 
@@ -175,37 +213,37 @@
       <div class="section-head">
         <div>
           <div class="tag">02 · The method</div>
-          <h2>An exploit isn't a finding<br>until two agents <em>agree.</em></h2>
+          <h2>A finding is useful when<br>the next decision is <em>clear.</em></h2>
         </div>
         <div class="aside">
-          The homepage shows the agents debating. Here's what that actually means at each phase of a scan — and what survives to reach a human.
+          Adversarial review is one part of a broader method. Each stage should reduce ambiguity for the next person without silently taking authority away from them.
         </div>
       </div>
 
       <div class="process">
         <div class="p">
           <div class="step-n">PHASE 01</div>
-          <h4>Reconnaissance</h4>
-          <p>The red agent maps the target. For source, that's call-graph and data-flow analysis. For binaries, lifting to IR and walking the control flow. For live targets, capturing the API surface, authentication model, and tenancy boundaries.</p>
+          <h4>Receive and scope</h4>
+          <p>Work can begin from a repository, release artifact, authorized live target, pull request, scheduled review, API request, or forwarded researcher report. Authorization and boundaries remain explicit.</p>
         </div>
         <div class="p">
           <div class="step-n">PHASE 02</div>
-          <h4>Exploit attempt</h4>
-          <p>The red agent isn't asked to identify suspicious code. It's asked to produce a working primitive. No primitive, no finding. This single constraint kills most of the noise other scanners generate before it ever reaches a triage queue.</p>
+          <h4>Investigate and prove</h4>
+          <p>Coordinator and specialist agents map the target, follow high-value attack paths, gather source references and runtime evidence, and push toward reproducible impact where the environment permits it.</p>
         </div>
         <div class="p">
           <div class="step-n">PHASE 03</div>
-          <h4>Vendor rebuttal</h4>
-          <p>The vendor agent receives the claim and the PoC, and is rewarded for tearing it down. It re-runs the proof, checks for guards the red agent missed, and pushes back on speculative severity. False positives die here.</p>
+          <h4>Challenge and decide</h4>
+          <p>Vendor-style review pressure-tests reachability, severity, assumptions, and evidence. A human can validate, dispute, accept risk, assign ownership, or request deeper analysis with the reason preserved.</p>
         </div>
         <div class="p">
           <div class="step-n">PHASE 04</div>
-          <h4>Survivor framing</h4>
-          <p>What reaches the human is a finding with a reproducible PoC, a severity that survived adversarial review, and the narrowest patch the vendor agent could draft. Reviewable, mergeable, defensible to leadership.</p>
+          <h4>Remediate and prove</h4>
+          <p>Generate a patch, stage a GitHub pull request, create an engineering ticket, or coordinate an external disclosure. Retesting updates the same lineage, and controlled evidence can be shared with the people who need it.</p>
         </div>
       </div>
 
-      <p class="thesis-out">The loop runs on every commit, every build, every endpoint change. Findings close when patches merge. Regressions get re-found if they come back.</p>
+      <p class="thesis-out">The loop can begin on a pull request, schedule, release, inbound report, or assurance request. It ends when the team has a defensible decision—not when a scanner finishes.</p>
     </div>
   </section>
 
@@ -244,13 +282,13 @@
             Across those rooms: sat on the security mailing list deciding which inbound reports earned a CVE. Negotiated and reviewed pen-test SOWs with three external firms. Ran SOC 2 engagements end-to-end at four companies. And on the other side of the desk, a HackerOne payout for breaking authentication on a major travel platform.
           </p>
           <p>
-            The pattern across all of it: most inbound reports were noise, and the real ones always brought a working PoC. ZeroQuarry's agent loop is built around that pattern as a hard constraint.
+            The pattern across all of it: finding a plausible issue was rarely the whole job. Teams still had to validate it, choose an owner, move a fix, prove the fix worked, and explain the result externally. ZeroQuarry is built around that complete operating loop.
           </p>
         </div>
 
         <div class="founder-note">
           <span class="label">field note · 2026</span>
-          <span class="quote">“Every product I've worked on shipped with bugs that a determined attacker would find in a week and that no scanner ever flagged. ZeroQuarry is built to be the scanner that would have flagged them. Not because it's smarter, but because it's allowed to be wrong, get caught, and try again.”</span>
+          <span class="quote">“The security team is not one job. It is a chain of investigations, decisions, handoffs, and proof. ZeroQuarry is built to make that chain rigorous before a growing company can staff every specialty itself.”</span>
         </div>
 
         <div class="founder-links">
@@ -266,57 +304,65 @@
   <section>
     <div class="container">
       <div class="cta-banner">
-        <h2>Start mining your <em>0-days.</em><br>Today.</h2>
-        <p>Spin up a ZeroQuarry workspace in under a minute and point it at your first repo, binary, or live endpoint. Or <a href="pricing.html#enterprise-contact" style="color: var(--red); border-bottom: 1px solid rgba(244,30,34,0.4);">talk to us directly</a>.</p>
+        <h2>Run product security with<br>the team you <em>have.</em></h2>
+        <p>Start with a repository, release, application, inbound report, or customer evidence request and follow one real decision through the complete loop.</p>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="https://console.zeroquarry.com">Open the Cloud Console <span class="arr">-&gt;</span></a>
-          <a class="btn btn-ghost" href="index.html#validation">See the validation loop</a>
+          <a class="btn btn-primary" href="request-scan/">Request a working session <span class="arr">-&gt;</span></a>
+          <a class="btn btn-ghost" href="/platform">Explore the platform</a>
         </div>
-        <div class="cta-note">No credit card required</div>
+        <div class="cta-note">Authorization and scope are confirmed before testing</div>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer buyer-footer">
   <div class="container">
-    <div class="foot-grid">
-      <div class="foot-col">
-        <a href="index.html" class="brand" aria-label="ZeroQuarry home">
-          <img class="wordmark" src="assets/wordmark.png" alt="ZeroQuarry">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
         </a>
-        <p>Adversarial AI for offensive security. Mine your 0-days before someone else does.</p>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="/request-scan/">Evaluate a workflow <span aria-hidden="true">-&gt;</span></a>
       </div>
       <div class="foot-col legal">
-        <h5>Legal</h5>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
       </div>
       <div class="foot-col legal">
-        <h5>Resources</h5>
-        <a href="index.html">Why ZeroQuarry</a>
-        <a href="platform.html">Platform</a>
-        <a href="continuous-testing.html">Continuous Testing</a>
-        <a href="evidence-reports.html">Evidence &amp; Reports</a>
-        <a href="about.html">About</a>
-        <a href="research/">Research</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="https://docs.zeroquarry.com">Docs</a>
-        <a href="https://status.zeroquarry.com">Status Page</a>
+        <h5>Use cases</h5>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
       </div>
       <div class="foot-col legal">
-        <h5>Social</h5>
-        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
-        <a href="https://discord.gg/PygTTeuU">Discord</a>
-        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <div>© 2026 ZeroQuarry. All rights reserved.</div>
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
       <div class="right">
-        <span>LAT 37.8409° S · LON 144.9464° E</span>
-        <span class="ok">● ALL SYSTEMS OPERATIONAL</span>
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
       </div>
     </div>
   </div>

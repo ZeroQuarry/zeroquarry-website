@@ -4,7 +4,7 @@ const path = require("path");
 const SITE_URL = (process.env.SITE_URL || "https://zeroquarry.com").replace(/\/$/, "");
 const ROOT_DIR = path.resolve(__dirname, "..");
 const OUTPUT_FILE = path.join(ROOT_DIR, "sitemap.xml");
-const SKIPPED_DIRS = new Set([".git", ".agents", ".codex", "assets", "node_modules"]);
+const SKIPPED_DIRS = new Set([".git", ".agents", ".codex", "assets", "dist", "node_modules"]);
 
 function escapeXml(value) {
   return value
@@ -35,12 +35,15 @@ function filePathToUrl(filePath) {
   const relativePath = path.relative(ROOT_DIR, filePath).split(path.sep).join("/");
   const cleanPath = relativePath
     .replace(/(^|\/)index\.html$/, "$1")
-    .replace(/\.html$/, "/");
+    .replace(/\.html$/, "");
 
   return cleanPath === "" ? "/" : `/${cleanPath.replace(/^\/+/, "")}`;
 }
 
-const urls = findHtmlFiles(ROOT_DIR).map(filePathToUrl).sort();
+const urls = findHtmlFiles(ROOT_DIR)
+  .filter((filePath) => !fs.readFileSync(filePath, "utf8").match(/<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i))
+  .map(filePathToUrl)
+  .sort();
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((url) => `  <url><loc>${escapeXml(`${SITE_URL}${url}`)}</loc></url>`).join("\n")}

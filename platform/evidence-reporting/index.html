@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Security Evidence, Pentest Reports, and Customer Assurance | ZeroQuarry</title>
+<meta name="description" content="Create pentest-style PDF reports, asset evidence packs, controlled finding shares, disclosure records, and audit trails for customers and auditors." />
+<link rel="canonical" href="https://zeroquarry.com/platform/evidence-reporting/" />
+<meta property="og:title" content="Security Evidence, Pentest Reports, and Customer Assurance | ZeroQuarry" />
+<meta property="og:description" content="Create pentest-style PDF reports, asset evidence packs, controlled finding shares, disclosure records, and audit trails for customers and auditors." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/platform/evidence-reporting/" />
+<meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css" />
+<link rel="stylesheet" href="/marketing.css" />
+<link rel="stylesheet" href="/cookie-consent.css" />
+<script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Security evidence and reporting","item":"https://zeroquarry.com/platform/evidence-reporting/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does the Evidence Room prove compliance?","acceptedAnswer":{"@type":"Answer","text":"No. It packages assessment evidence and history. Your organization still determines control scope, test frequency, reviewer requirements, and framework assertions."}},{"@type":"Question","name":"Can a recipient see the rest of our scan?","acceptedAnswer":{"@type":"Answer","text":"A secure share exposes only the selected findings. It does not grant the recipient access to the rest of the report, project, or account."}},{"@type":"Question","name":"What is included in a PDF report?","acceptedAnswer":{"@type":"Answer","text":"The pentest-style layout can include target context, executive summary, finding overview, per-finding evidence, and configured report definitions, branding, and disclaimers."}}]}</script>
+</head>
+<body>
+<div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster">
+        <summary aria-current="page">Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="/request-scan/">Evaluate a workflow <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+<main class="marketing-main">
+  <section class="buyer-hero detail-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/platform">Platform</a><span>/</span><span>Security evidence and reporting</span></nav>
+      <div class="buyer-hero-grid">
+        <div>
+          <div class="buyer-kicker">Security evidence and reporting</div>
+          <h1 class="buyer-title detail-title">Make security work <em>provable</em> when someone asks.</h1>
+          <p class="buyer-lede">Package current evidence by asset, export reviewed reports, share only the findings a recipient needs, and retain the decision history behind remediation, retest, and accepted risk.</p>
+          <div class="buyer-actions">
+            <a class="btn btn-primary" href="/request-scan/">See it on your product <span class="arr">-&gt;</span></a>
+            <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
+          </div>
+          <div class="buyer-proofline"><span>Asset-level Evidence Room</span><span>Pentest-style PDF exports</span><span>Expiring finding shares</span></div>
+        </div>
+        <figure class="product-frame hero-image">
+          <img src="/assets/product/evidence-room.png" alt="ZeroQuarry Evidence Room with target-level security reports and PDF export" width="1440" height="1000" loading="eager">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>Evidence should be a by-product of the <em>operating process.</em></h2></div><p class="section-intro">Waiting for a customer questionnaire or audit to reconstruct security history from tickets and chat is expensive—and often produces an incomplete story.</p></div>
+      <div class="capability-grid"><article class="capability-card">
+    <div class="card-code">01</div>
+    <h3>Evidence Room</h3>
+    <p>See completed work by actual Git repository, URL, upload, or path and export the latest report for selected assets.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">02</div>
+    <h3>Report and finding exports</h3>
+    <p>Create Markdown, single-file HTML, or pentest-style PDF outputs with confidence and review filters.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">03</div>
+    <h3>Controlled secure shares</h3>
+    <p>Give a named recipient read-only access to selected findings through a password-protected, expiring, revocable link.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">04</div>
+    <h3>Disclosure tracking</h3>
+    <p>Preserve reported, acknowledged, fixed, advisory, bounty, credit, and closure milestones for external issues.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">05</div>
+    <h3>Audit history</h3>
+    <p>Show investigation stages, model resolution, human actors, outcomes, lifecycle changes, and reasons.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">06</div>
+    <h3>Branding and disclaimers</h3>
+    <p>Apply account and tier settings to customer-facing reports without rewriting historical evidence.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="workflow-grid"><article class="workflow-card">
+    <span>STEP 01</span>
+    <h3>Build</h3>
+    <p>Create evidence continuously through projects, scan versions, finding states, tickets, and retests.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 02</span>
+    <h3>Select</h3>
+    <p>Choose the exact assets, reports, sections, findings, and confidence boundary relevant to the request.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 03</span>
+    <h3>Review</h3>
+    <p>Remove irrelevant or sensitive context and confirm important findings have current decisions.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 04</span>
+    <h3>Deliver</h3>
+    <p>Export a static pack or use a time-bounded share, then revoke access when the review ends.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>Faster assurance responses</h3><p>Answer customer, audit, investor, insurance, and internal governance requests from current product history.</p></article>
+<article class="outcome-card"><h3>Smaller disclosure surface</h3><p>Share selected findings instead of granting access to the workspace or sending the full internal report.</p></article>
+<article class="outcome-card"><h3>Defensible risk narratives</h3><p>Connect the technical issue to validation, ownership, mitigation, and retest rather than presenting a static scan snapshot.</p></article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="faq-list"><details>
+    <summary>Does the Evidence Room prove compliance?</summary>
+    <p>No. It packages assessment evidence and history. Your organization still determines control scope, test frequency, reviewer requirements, and framework assertions.</p>
+  </details>
+<details>
+    <summary>Can a recipient see the rest of our scan?</summary>
+    <p>A secure share exposes only the selected findings. It does not grant the recipient access to the rest of the report, project, or account.</p>
+  </details>
+<details>
+    <summary>What is included in a PDF report?</summary>
+    <p>The pentest-style layout can include target context, executive summary, finding overview, per-finding evidence, and configured report definitions, branding, and disclaimers.</p>
+  </details></div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continue through the <em>operating loop.</em></h2></div></div>
+      <div class="related-grid"><a class="related-card" href="/use-cases/customer-security-reviews/">
+    <div class="card-code">Continue</div>
+    <h3>Customer and audit evidence</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/use-cases/vulnerability-disclosure/">
+    <div class="card-code">Continue</div>
+    <h3>Vulnerability disclosure</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/platform/security-operations/">
+    <div class="card-code">Continue</div>
+    <h3>Security operations</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a></div>
+    </div>
+  </section>
+
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Request a working session <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="https://console.zeroquarry.com">Open the console</a></div></div></div></section>
+  </main>
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="/request-scan/">Evaluate a workflow <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

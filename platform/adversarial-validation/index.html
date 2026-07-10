@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adversarial Vulnerability Validation and False-Positive Reduction | ZeroQuarry</title>
+<meta name="description" content="Challenge AI security findings with skeptical vendor-style review, rebuttal, confidence scoring, evidence, and accountable human decisions." />
+<link rel="canonical" href="https://zeroquarry.com/platform/adversarial-validation/" />
+<meta property="og:title" content="Adversarial Vulnerability Validation and False-Positive Reduction | ZeroQuarry" />
+<meta property="og:description" content="Challenge AI security findings with skeptical vendor-style review, rebuttal, confidence scoring, evidence, and accountable human decisions." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/platform/adversarial-validation/" />
+<meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css" />
+<link rel="stylesheet" href="/marketing.css" />
+<link rel="stylesheet" href="/cookie-consent.css" />
+<script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Adversarial validation","item":"https://zeroquarry.com/platform/adversarial-validation/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does adversarial review guarantee a finding is correct?","acceptedAnswer":{"@type":"Answer","text":"No automated review can remove the need for product context and human judgment. It makes the validation process explicit and creates stronger evidence for that decision."}},{"@type":"Question","name":"What happens to rejected findings?","acceptedAnswer":{"@type":"Answer","text":"They are not silently deleted. Review verdicts, rebuttals, confidence, and human lifecycle decisions remain visible so the outcome can be audited or revisited."}},{"@type":"Question","name":"Can we ask the system to explain a finding differently?","acceptedAnswer":{"@type":"Answer","text":"Yes. Finding and report discussions can request a shorter engineer handoff, safer reproduction path, alternative PoC, or challenge to a specific assumption."}}]}</script>
+</head>
+<body>
+<div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster">
+        <summary aria-current="page">Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="/request-scan/">Evaluate a workflow <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+<main class="marketing-main">
+  <section class="buyer-hero detail-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/platform">Platform</a><span>/</span><span>Adversarial validation</span></nav>
+      <div class="buyer-hero-grid">
+        <div>
+          <div class="buyer-kicker">Adversarial validation</div>
+          <h1 class="buyer-title detail-title">Make every finding survive a <em>skeptical counterparty.</em></h1>
+          <p class="buyer-lede">A confident AI can still be wrong. ZeroQuarry separates discovery from validation: researcher agents build the claim, vendor-style reviewers try to reject it, and rebuttal must answer with evidence or concede.</p>
+          <div class="buyer-actions">
+            <a class="btn btn-primary" href="/request-scan/">See it on your product <span class="arr">-&gt;</span></a>
+            <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
+          </div>
+          <div class="buyer-proofline"><span>Evidence-first findings</span><span>Vendor-style challenge</span><span>Human decision history</span></div>
+        </div>
+        <figure class="product-frame hero-image">
+          <img src="/assets/product/finding-detail.png" alt="ZeroQuarry finding detail with validation state and decision controls" width="1440" height="1000" loading="eager">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>False positives become a <em>process problem</em>, not a filter setting.</h2></div><p class="section-intro">Instead of hiding uncertain alerts at an arbitrary score, ZeroQuarry records why a claim survived, changed, or was disputed.</p></div>
+      <div class="capability-grid"><article class="capability-card">
+    <div class="card-code">01</div>
+    <h3>Adversarial vendor review</h3>
+    <p>A separate review pass checks reachability, context mitigations, intended behavior, evidence quality, and practical exploitability.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">02</div>
+    <h3>Researcher rebuttal</h3>
+    <p>The original side responds to the challenge with more evidence, revises the claim, or retracts it.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">03</div>
+    <h3>Confidence separate from severity</h3>
+    <p>See how likely a finding is to survive review without confusing that judgment with potential impact.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">04</div>
+    <h3>Proofs and reproducible context</h3>
+    <p>Attach PoCs, source locations, HTTP sequences, or deployable test packages when the assessment supports them.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">05</div>
+    <h3>Finding discussion</h3>
+    <p>Ask follow-up questions, request different reproduction steps, or challenge assumptions over several rounds.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">06</div>
+    <h3>Lifecycle decisions</h3>
+    <p>Record candidate, validated, disputed, mitigated, retested, regression, accepted-risk, and archived states with reasons.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="workflow-grid"><article class="workflow-card">
+    <span>STEP 01</span>
+    <h3>Claim</h3>
+    <p>The assessment records technical impact, severity, affected surface, evidence, and reproduction context.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 02</span>
+    <h3>Challenge</h3>
+    <p>A skeptical reviewer attempts to disprove the issue in the product&#39;s actual context.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 03</span>
+    <h3>Rebut</h3>
+    <p>The researcher sustains, revises, or retracts instead of merely repeating the conclusion.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 04</span>
+    <h3>Decide</h3>
+    <p>A human records the operating state and routes accepted work to the correct owner.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>Less alert fatigue</h3><p>Engineering sees reviewed claims with a visible evidence trail, not a raw queue of model suggestions.</p></article>
+<article class="outcome-card"><h3>Defensible decisions</h3><p>Disputes and accepted risks carry reasons that can be understood later.</p></article>
+<article class="outcome-card"><h3>Safer external sharing</h3><p>Challenge high-impact findings before they reach customers, vendors, or bounty programs.</p></article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="faq-list"><details>
+    <summary>Does adversarial review guarantee a finding is correct?</summary>
+    <p>No automated review can remove the need for product context and human judgment. It makes the validation process explicit and creates stronger evidence for that decision.</p>
+  </details>
+<details>
+    <summary>What happens to rejected findings?</summary>
+    <p>They are not silently deleted. Review verdicts, rebuttals, confidence, and human lifecycle decisions remain visible so the outcome can be audited or revisited.</p>
+  </details>
+<details>
+    <summary>Can we ask the system to explain a finding differently?</summary>
+    <p>Yes. Finding and report discussions can request a shorter engineer handoff, safer reproduction path, alternative PoC, or challenge to a specific assumption.</p>
+  </details></div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continue through the <em>operating loop.</em></h2></div></div>
+      <div class="related-grid"><a class="related-card" href="/use-cases/pr-security-review/">
+    <div class="card-code">Continue</div>
+    <h3>Pull request security review</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/use-cases/vulnerability-disclosure/">
+    <div class="card-code">Continue</div>
+    <h3>Vulnerability disclosure</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/platform/remediation/">
+    <div class="card-code">Continue</div>
+    <h3>Remediation</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a></div>
+    </div>
+  </section>
+
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Request a working session <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="https://console.zeroquarry.com">Open the console</a></div></div></div></section>
+  </main>
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="/request-scan/">Evaluate a workflow <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,7 +1,11 @@
 {
   "scripts": {
-    "build": "node scripts/build-research.js",
+    "build": "node scripts/build-marketing.js && node scripts/build-research.js && node scripts/sync-static-shell.js && node scripts/generate-sitemap.js",
+    "build:marketing": "node scripts/build-marketing.js",
     "build:research": "node scripts/build-research.js",
-    "generate:sitemap": "node scripts/generate-sitemap.js"
+    "build:sites": "npm run build && node scripts/build-sites-dist.js",
+    "sync:shell": "node scripts/sync-static-shell.js",
+    "generate:sitemap": "node scripts/generate-sitemap.js",
+    "validate": "node scripts/validate-site.js"
   }
 }

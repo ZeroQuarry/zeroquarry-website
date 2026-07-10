@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Security Operations: Intake, Triage, Tickets, and Audit History | ZeroQuarry</title>
+<meta name="description" content="Automate lean security operations with vulnerability-report intake, finding lifecycle, Jira, ServiceNow, GitHub, Slack, search, and audit history." />
+<link rel="canonical" href="https://zeroquarry.com/platform/security-operations/" />
+<meta property="og:title" content="AI Security Operations: Intake, Triage, Tickets, and Audit History | ZeroQuarry" />
+<meta property="og:description" content="Automate lean security operations with vulnerability-report intake, finding lifecycle, Jira, ServiceNow, GitHub, Slack, search, and audit history." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/platform/security-operations/" />
+<meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css" />
+<link rel="stylesheet" href="/marketing.css" />
+<link rel="stylesheet" href="/cookie-consent.css" />
+<script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"AI security operations","item":"https://zeroquarry.com/platform/security-operations/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ZeroQuarry a SIEM or incident-response platform?","acceptedAnswer":{"@type":"Answer","text":"No. ZeroQuarry focuses on product-security assessment and the operating workflow around vulnerabilities, not production threat telemetry or incident containment."}},{"@type":"Question","name":"Can external email trigger arbitrary scans?","acceptedAnswer":{"@type":"Answer","text":"No. Email processing requires an assigned project address, an allowed sender, approved repositories, and an explicit setting for remote targets. Auto-start can remain off while rules are tuned."}},{"@type":"Question","name":"Does ZeroQuarry sync ticket status back automatically?","acceptedAnswer":{"@type":"Answer","text":"Current integrations create or prefill work and preserve the creation record. The finding lifecycle remains the explicit source of truth for the security decision."}}]}</script>
+</head>
+<body>
+<div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster">
+        <summary aria-current="page">Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com">Sign in</a>
+      <a class="btn btn-primary" href="/request-scan/">Evaluate a workflow <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+<main class="marketing-main">
+  <section class="buyer-hero detail-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/platform">Platform</a><span>/</span><span>AI security operations</span></nav>
+      <div class="buyer-hero-grid">
+        <div>
+          <div class="buyer-kicker">AI security operations</div>
+          <h1 class="buyer-title detail-title">Turn security work into an <em>operating loop</em>, not an inbox.</h1>
+          <p class="buyer-lede">ZeroQuarry receives work, investigates it, records accountable decisions, routes accepted findings into the systems teams already use, and preserves the evidence needed later.</p>
+          <div class="buyer-actions">
+            <a class="btn btn-primary" href="/request-scan/">See it on your product <span class="arr">-&gt;</span></a>
+            <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
+          </div>
+          <div class="buyer-proofline"><span>Bounded report intake</span><span>Finding lifecycle</span><span>Ticket and chat integrations</span></div>
+        </div>
+        <figure class="product-frame hero-image">
+          <img src="/assets/product/integrations-overview.png" alt="ZeroQuarry integrations for notifications, ticketing, automation, and email intake" width="1440" height="1000" loading="eager">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>The missing layer between a finding and a <em>security program.</em></h2></div><p class="section-intro">Security operations fail when intake, technical validation, ownership, and evidence live in separate systems with no durable connection.</p></div>
+      <div class="capability-grid"><article class="capability-card">
+    <div class="card-code">01</div>
+    <h3>Incoming email triage</h3>
+    <p>Forward researcher or customer security reports into project-specific inboxes with sender allowlists and approved target boundaries.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">02</div>
+    <h3>Finding lifecycle</h3>
+    <p>Move work through candidate, validation, mitigation, retest, regression, accepted risk, dispute, and archive states.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">03</div>
+    <h3>Jira and ServiceNow</h3>
+    <p>Create or prefill engineering and IT work directly from validated finding context.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">04</div>
+    <h3>GitHub Issues and Slack</h3>
+    <p>Route developer work and completion signals without requiring teams to monitor another dashboard all day.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">05</div>
+    <h3>Audit history</h3>
+    <p>Retain actors, models, stages, outcomes, errors, lifecycle changes, and reasons at report and finding level.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">06</div>
+    <h3>Account-wide search</h3>
+    <p>Find projects, scans, findings, repositories, and disclosures across the operating record.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="workflow-grid"><article class="workflow-card">
+    <span>STEP 01</span>
+    <h3>Receive</h3>
+    <p>Start from a code change, schedule, manual assessment, API request, or forwarded report.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 02</span>
+    <h3>Assess</h3>
+    <p>Map the work to the owning product and the appropriate source, binary, or live target.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 03</span>
+    <h3>Decide</h3>
+    <p>Validate or dispute the claim and record the reason rather than silently dropping it.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 04</span>
+    <h3>Route</h3>
+    <p>Create remediation work, monitor the lifecycle, retest, and preserve evidence.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>More security capacity</h3><p>Automate repeatable investigation and coordination while keeping authorization and business judgment human.</p></article>
+<article class="outcome-card"><h3>Clear accountability</h3><p>Give each important finding a current decision, a reason, and an owner in the existing system of work.</p></article>
+<article class="outcome-card"><h3>Less reconstruction</h3><p>Answer later questions from one connected record instead of tickets, inboxes, exports, and chat fragments.</p></article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="faq-list"><details>
+    <summary>Is ZeroQuarry a SIEM or incident-response platform?</summary>
+    <p>No. ZeroQuarry focuses on product-security assessment and the operating workflow around vulnerabilities, not production threat telemetry or incident containment.</p>
+  </details>
+<details>
+    <summary>Can external email trigger arbitrary scans?</summary>
+    <p>No. Email processing requires an assigned project address, an allowed sender, approved repositories, and an explicit setting for remote targets. Auto-start can remain off while rules are tuned.</p>
+  </details>
+<details>
+    <summary>Does ZeroQuarry sync ticket status back automatically?</summary>
+    <p>Current integrations create or prefill work and preserve the creation record. The finding lifecycle remains the explicit source of truth for the security decision.</p>
+  </details></div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continue through the <em>operating loop.</em></h2></div></div>
+      <div class="related-grid"><a class="related-card" href="/use-cases/startup-security/">
+    <div class="card-code">Continue</div>
+    <h3>Security for growing companies</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/use-cases/inbound-vulnerability-reports/">
+    <div class="card-code">Continue</div>
+    <h3>Inbound vulnerability reports</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/platform/evidence-reporting/">
+    <div class="card-code">Continue</div>
+    <h3>Evidence and reporting</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a></div>
+    </div>
+  </section>
+
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Request a working session <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="https://console.zeroquarry.com">Open the console</a></div></div></div></section>
+  </main>
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="/request-scan/">Evaluate a workflow <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
