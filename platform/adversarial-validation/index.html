@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/marketing.css" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="/index.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Adversarial validation","item":"https://zeroquarry.com/platform/adversarial-validation/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does adversarial review guarantee a finding is correct?","acceptedAnswer":{"@type":"Answer","text":"No automated review can remove the need for product context and human judgment. It makes the validation process explicit and creates stronger evidence for that decision."}},{"@type":"Question","name":"What happens to rejected findings?","acceptedAnswer":{"@type":"Answer","text":"They are not silently deleted. Review verdicts, rebuttals, confidence, and human lifecycle decisions remain visible so the outcome can be audited or revisited."}},{"@type":"Question","name":"Can we ask the system to explain a finding differently?","acceptedAnswer":{"@type":"Answer","text":"Yes. Finding and report discussions can request a shorter engineer handoff, safer reproduction path, alternative PoC, or challenge to a specific assumption."}}]}</script>
 </head>
@@ -98,16 +99,25 @@
           </div>
           <div class="buyer-proofline"><span>Evidence-first findings</span><span>Vendor-style challenge</span><span>Human decision history</span></div>
         </div>
-        <figure class="product-frame hero-image">
-          <img src="/assets/product/finding-detail.png" alt="ZeroQuarry finding detail with validation state and decision controls" width="1440" height="1000" loading="eager">
-        </figure>
+        <div class="motion-system motion-adversarial-validation" role="img" aria-label="Animated adversarial validation of a vulnerability claim using context and proof">
+    <div class="motion-head"><span>review://claim-challenge</span><span class="motion-live">processing</span></div>
+    <div class="motion-canvas">
+      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>CLAIM</span><strong>tenant boundary bypass</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>CONTEXT</span><strong>role and deployment state</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>PROOF</span><strong>reproduction request</strong></div></div>
+      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-core"><small>ZEROQUARRY</small><strong>Skeptical finding review</strong><span>A separate reviewer tries to break the claim</span><b>active</b></div>
+      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>VERDICT</span><strong>sustained</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>CONFIDENCE</span><strong>0.91</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>DECISION</span><strong>ready for owner</strong></div></div>
+    </div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>severity says how bad; confidence says how likely the claim is to hold</span></div>
+  </div>
       </div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>False positives become a <em>process problem</em>, not a filter setting.</h2></div><p class="section-intro">Instead of hiding uncertain alerts at an arbitrary score, ZeroQuarry records why a claim survived, changed, or was disputed.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>False positives need a <em>review process.</em></h2></div><p class="section-intro">Instead of hiding uncertain alerts at an arbitrary score, ZeroQuarry records why a claim survived, changed, or was disputed.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
     <h3>Adversarial vendor review</h3>
@@ -143,7 +153,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Claim</h3>
@@ -169,8 +179,8 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
-      <div class="outcome-grid"><article class="outcome-card"><h3>Less alert fatigue</h3><p>Engineering sees reviewed claims with a visible evidence trail, not a raw queue of model suggestions.</p></article>
+      <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>Less alert fatigue</h3><p>Engineering sees reviewed claims with a visible evidence trail. Unsupported suggestions are filtered out earlier.</p></article>
 <article class="outcome-card"><h3>Defensible decisions</h3><p>Disputes and accepted risks carry reasons that can be understood later.</p></article>
 <article class="outcome-card"><h3>Safer external sharing</h3><p>Challenge high-impact findings before they reach customers, vendors, or bounty programs.</p></article></div>
     </div>
@@ -178,7 +188,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
       <div class="faq-list"><details>
     <summary>Does adversarial review guarantee a finding is correct?</summary>
     <p>No automated review can remove the need for product context and human judgment. It makes the validation process explicit and creates stronger evidence for that decision.</p>
@@ -215,7 +225,7 @@
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision. The evaluation follows the result through review and decision.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">

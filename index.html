@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/marketing.css" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="/index.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ZeroQuarry","url":"https://zeroquarry.com/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ZeroQuarry","applicationCategory":"SecurityApplication","operatingSystem":"Web","description":"AI security operations for application security testing, vulnerability validation, remediation, retesting, and evidence reporting.","url":"https://zeroquarry.com/platform","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","category":"permanent free plan"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ZeroQuarry","url":"https://zeroquarry.com/","logo":"https://zeroquarry.com/assets/wordmark.png","sameAs":["https://www.linkedin.com/company/zeroquarry/","https://github.com/ZeroQuarry/"]}</script>
@@ -94,23 +95,17 @@
         <div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">See it on your workflow <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
         <div class="buyer-proofline"><span>AI penetration testing</span><span>Application security operations</span><span>Evidence and remediation</span></div>
       </div>
-      <div class="hero-system" aria-label="ZeroQuarry security operating loop">
-        <div class="system-head"><span>security-ops://product</span><span class="system-status">loop active</span></div>
-        <div class="loop-map">
-          <div class="loop-node"><span>01 / RECEIVE</span><strong>Code change or report</strong><p>PR, schedule, manual review, API, or forwarded researcher email.</p></div>
-          <div class="loop-node"><span>02 / ASSESS</span><strong>Source, binary, live</strong><p>Specialist agents investigate the surface that can change the decision.</p></div>
-          <div class="loop-node wide"><span>03 / VALIDATE</span><strong>Red team claim vs. vendor challenge</strong><p>Evidence must survive skeptical review before it becomes expensive work.</p></div>
-          <div class="loop-node"><span>04 / REMEDIATE</span><strong>Patch, PR, or ticket</strong><p>Route accepted work through GitHub, Jira, ServiceNow, and engineering controls.</p></div>
-          <div class="loop-node"><span>05 / PROVE</span><strong>Retest and evidence</strong><p>Preserve decisions, verification, reports, controlled shares, and asset history.</p></div>
-        </div>
-        <div class="system-foot"><span class="pulse-dot"></span><span>authorization and risk ownership remain human</span></div>
+      <div class="console buyer-live-console" aria-label="Illustrative adversarial vulnerability review">
+        <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">example://</span>red-vs-vendor · target=<span class="amber">billing-api</span></span><span class="console-meta"><span class="live">illustrative</span></span></div>
+        <div class="console-body" id="zq-debate-body"><div class="line sys"><div class="ts">14:02:01</div><div class="agent">SYSTEM</div><div class="msg">review opened for billing-api</div></div><div class="line red"><div class="ts">14:02:05</div><div class="agent">RED</div><div class="msg">tracing tenant ownership into invoice update</div></div><div class="line blue"><div class="ts">14:02:11</div><div class="agent">VENDOR</div><div class="msg">challenge: prove the route lacks an earlier ownership check</div></div></div>
+        <div class="console-foot"><span class="chip">RED TEAM</span><span class="chip blue">VENDOR REVIEW</span><span class="sp"></span><span id="zq-debate-verdict">review in progress</span></div>
       </div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">The buying moments</div><h2>Security becomes urgent in <em>recognizable moments.</em></h2></div><p class="section-intro">ZeroQuarry is designed around the decisions buyers actually face—not a generic inventory of scanner features.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">The buying moments</div><h2>Security becomes urgent in <em>recognizable moments.</em></h2></div><p class="section-intro">ZeroQuarry starts with the decisions buyers actually face. Scanner categories come later.</p></div>
       <div class="moment-grid">
         <a class="moment-card" href="/use-cases/customer-security-reviews/"><div class="card-code">01</div><h3>Enterprise deal</h3><p>A buyer asks for current test evidence and how findings are remediated.</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>
 <a class="moment-card" href="/use-cases/release-security-review/"><div class="card-code">02</div><h3>Risky release</h3><p>A change crosses identity, tenant, billing, upload, webhook, or runtime boundaries.</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>
@@ -172,7 +167,7 @@
 
   <section class="buyer-section">
     <div class="container split-proof">
-      <div class="proof-copy"><div class="section-label">Research-backed</div><h2>Built where real vulnerability reports <em>land.</em></h2><p>ZeroQuarry’s workflows come from finding, validating, coordinating, and fixing real product vulnerabilities—not from wrapping a chat interface around a pattern scanner.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability-triage experience across Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>Validated research patterns feed future prompts, coverage, report language, and evidence structure.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
+      <div class="proof-copy"><div class="section-label">Research-backed</div><h2>Built where real vulnerability reports <em>land.</em></h2><p>ZeroQuarry’s workflows come from finding, validating, coordinating, and fixing real product vulnerabilities. That work shapes the product more than generic scanner patterns do.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability-triage experience across Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>Validated research patterns feed future prompts, coverage, report language, and evidence structure.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
       <div class="hero-system"><div class="system-head"><span>research://evidence</span><span class="system-status">coordinated</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Opening untrusted Markdown reaches executable behavior</strong><p>Trace the plugin path, prove reachability, and identify the affected configuration.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>Is execution actually reachable?</strong><p>Test default state, permissions, versions, and realistic user action.</p></div><div class="loop-node"><span>OUTCOME</span><strong>Fix, disclose, publish</strong><p>Coordinate the maintainer response before turning the finding into public research.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>public writeups follow responsible disclosure</span></div></div>
     </div>
   </section>

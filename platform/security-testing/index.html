@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/marketing.css" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="/index.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"AI security testing","item":"https://zeroquarry.com/platform/security-testing/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ZeroQuarry a SAST or DAST scanner?","acceptedAnswer":{"@type":"Answer","text":"ZeroQuarry covers source, binary, and authorized live targets, but its workflow is closer to agent-led security research than a deterministic rule scanner. It investigates product-specific behavior and produces evidence for review."}},{"@type":"Question","name":"Can it test private repositories?","acceptedAnswer":{"@type":"Answer","text":"Yes. Accounts can configure scoped HTTPS or SSH Git credentials, and CI workflows can reference the saved credential without placing it in the scan payload."}},{"@type":"Question","name":"Can ZeroQuarry test production?","acceptedAnswer":{"@type":"Answer","text":"Remote testing requires explicit authorization and scope. Use a staging or production-like environment when active probes could create risk, and keep the allowed host boundary narrow."}}]}</script>
 </head>
@@ -90,7 +91,7 @@
       <div class="buyer-hero-grid">
         <div>
           <div class="buyer-kicker">AI security testing</div>
-          <h1 class="buyer-title detail-title">Test the product you ship, not just the <em>code you wrote.</em></h1>
+          <h1 class="buyer-title detail-title">Test source, artifacts, and live behavior as <em>one product.</em></h1>
           <p class="buyer-lede">ZeroQuarry combines AI code security review, binary analysis, and authorized live application testing so teams can follow vulnerabilities across build, packaging, and runtime boundaries.</p>
           <div class="buyer-actions">
             <a class="btn btn-primary" href="/request-scan/">See it on your product <span class="arr">-&gt;</span></a>
@@ -98,16 +99,25 @@
           </div>
           <div class="buyer-proofline"><span>Source repositories</span><span>Binary artifacts</span><span>Authorized live targets</span></div>
         </div>
-        <figure class="product-frame hero-image">
-          <img src="/assets/product/report-overview.png" alt="ZeroQuarry security assessment report showing findings and review controls" width="1440" height="1000" loading="eager">
-        </figure>
+        <div class="motion-system motion-security-testing" role="img" aria-label="Animated assessment of source code, a release binary, and a live application producing a finding and proof">
+    <div class="motion-head"><span>assessment://surface-map</span><span class="motion-live">processing</span></div>
+    <div class="motion-canvas">
+      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>SOURCE</span><strong>auth/middleware.ts</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>BINARY</span><strong>release/app.apk</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>LIVE</span><strong>api.product.com</strong></div></div>
+      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-core"><small>ZEROQUARRY</small><strong>Multi-surface assessment</strong><span>Follow risk across build and runtime boundaries</span><b>active</b></div>
+      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>FINDING</span><strong>cross-tenant read</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>PROOF</span><strong>request replay</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>SCOPE</span><strong>product / release 42</strong></div></div>
+    </div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>the target surface changes, the evidence standard stays the same</span></div>
+  </div>
       </div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>Three assessment surfaces. One <em>evidence chain.</em></h2></div><p class="section-intro">A source finding can disappear during packaging—or only become exploitable at runtime. Keeping every surface in one project makes those differences visible.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Three assessment surfaces. One <em>evidence chain.</em></h2></div><p class="section-intro">A source finding can disappear during packaging. Another issue may only become exploitable at runtime. Keeping every surface in one project makes those differences visible.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
     <h3>Source code review</h3>
@@ -143,7 +153,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Scope</h3>
@@ -169,7 +179,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
       <div class="outcome-grid"><article class="outcome-card"><h3>Broader product coverage</h3><p>Review code, shipped artifacts, and live behavior without splitting history across unrelated tools.</p></article>
 <article class="outcome-card"><h3>More useful findings</h3><p>Prioritize evidence, reachability, impact, and product context over pattern matches.</p></article>
 <article class="outcome-card"><h3>A repeatable assessment record</h3><p>Keep every target, version, decision, and retest connected to the product it belongs to.</p></article></div>
@@ -178,7 +188,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
       <div class="faq-list"><details>
     <summary>Is ZeroQuarry a SAST or DAST scanner?</summary>
     <p>ZeroQuarry covers source, binary, and authorized live targets, but its workflow is closer to agent-led security research than a deterministic rule scanner. It investigates product-specific behavior and produces evidence for review.</p>
@@ -215,7 +225,7 @@
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision. The evaluation follows the result through review and decision.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">

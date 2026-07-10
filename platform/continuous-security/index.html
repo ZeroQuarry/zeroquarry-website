@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/marketing.css" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="/index.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Continuous application security","item":"https://zeroquarry.com/platform/continuous-security/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should every pull request block on ZeroQuarry?","acceptedAnswer":{"@type":"Answer","text":"Usually not at first. Start with report-only visibility, learn the finding profile, then introduce a reviewed threshold for the branches and changes that justify it."}},{"@type":"Question","name":"What is the difference between CI and scheduled scans?","acceptedAnswer":{"@type":"Answer","text":"CI associates security review with an engineering event. Schedules provide independent baseline coverage and only run a new scan when the repository commit changes."}},{"@type":"Question","name":"Does a delta scan inspect only the edited lines?","acceptedAnswer":{"@type":"Answer","text":"No. Changed files define the focus, but agents can follow nearby calls and data flow when the security impact crosses the diff boundary."}}]}</script>
 </head>
@@ -98,16 +99,25 @@
           </div>
           <div class="buyer-proofline"><span>PR and push triggers</span><span>Scheduled rescans</span><span>Changed-code focus</span></div>
         </div>
-        <figure class="product-frame hero-image">
-          <img src="/assets/product/scheduled-rescan.png" alt="ZeroQuarry scheduled rescan controls for changed-code and full reviews" width="1440" height="1000" loading="eager">
-        </figure>
+        <div class="motion-system motion-continuous-security" role="img" aria-label="Animated pull-request, scheduled, and release security reviews producing checks and product history">
+    <div class="motion-head"><span>automation://change-review</span><span class="motion-live">processing</span></div>
+    <div class="motion-canvas">
+      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>PULL REQUEST</span><strong>PR 248 / 7 files</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>SCHEDULE</span><strong>nightly baseline</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>RELEASE</span><strong>candidate 1.14.0</strong></div></div>
+      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-core"><small>ZEROQUARRY</small><strong>Continuous review coordinator</strong><span>Use the smallest useful scope for each trigger</span><b>active</b></div>
+      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>CHECK</span><strong>focused review</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>HISTORY</span><strong>lineage v12</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>SIGNAL</span><strong>actionable change</strong></div></div>
+    </div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>delta review keeps routine coverage fast without losing the baseline</span></div>
+  </div>
       </div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>Continuous testing without turning CI into an <em>alert machine.</em></h2></div><p class="section-intro">The right cadence is not a full pentest on every commit. It is a reliable security signal around high-risk changes, plus a path to deeper review when the signal warrants it.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Continuous testing without turning CI into an <em>alert machine.</em></h2></div><p class="section-intro">A full pentest on every commit would be wasteful. Teams need a reliable signal around high-risk changes, plus a path to deeper review when the signal warrants it.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
     <h3>GitHub Actions workflow</h3>
@@ -143,7 +153,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Baseline</h3>
@@ -169,7 +179,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
       <div class="outcome-grid"><article class="outcome-card"><h3>Shorter feedback loops</h3><p>Catch authorization, webhook, parser, billing, and tenant-boundary regressions before context disappears.</p></article>
 <article class="outcome-card"><h3>Controlled scan spend</h3><p>Use change focus, no-change skips, deduplication, and stage-specific models to match depth to risk.</p></article>
 <article class="outcome-card"><h3>Security history by product</h3><p>Keep repeated assessments and retests in one project instead of burying evidence in CI logs.</p></article></div>
@@ -178,7 +188,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
       <div class="faq-list"><details>
     <summary>Should every pull request block on ZeroQuarry?</summary>
     <p>Usually not at first. Start with report-only visibility, learn the finding profile, then introduce a reviewed threshold for the branches and changes that justify it.</p>
@@ -215,7 +225,7 @@
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision. The evaluation follows the result through review and decision.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">

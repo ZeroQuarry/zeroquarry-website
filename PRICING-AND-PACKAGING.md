@@ -12,7 +12,7 @@ The aggressive package now does three things:
 
 1. A permanent Free plan removes time pressure and creates an open-source adoption loop.
 2. Developer and Startup plans sit close enough to coding-agent subscriptions to be bought from a software budget or company card.
-3. Growth, Scale, and Enterprise monetize portfolio coverage, automation, external evidence, coordination, and assurance—not access to the underlying AI.
+3. Growth, Scale, and Enterprise monetize portfolio coverage, automation, external evidence, coordination, and assurance. Model access is not the product.
 
 The positioning is: **developer-tool price, independent security-operation outcome.**
 
@@ -25,7 +25,7 @@ Developer AI has trained buyers to expect low-friction, self-serve pricing:
 - [GitHub Copilot lists Free, $10 Pro, $39 Pro+, and $100 Max individual plans](https://github.com/features/copilot/plans).
 - [Claude Pro is $17 per month annually or $20 monthly and includes Claude Code](https://claude.com/pricing).
 
-ZeroQuarry cannot win that comparison by saying “we are more valuable” while asking for 30–60 times the entry price. It can win by making the first paid plan comparable to a power-user coding tool while clearly showing that the job is different.
+ZeroQuarry cannot win that comparison by saying “we are more valuable” while asking for 30 to 60 times the entry price. It can win by making the first paid plan comparable to a power-user coding tool while clearly showing that the job is different.
 
 A coding agent helps a developer produce code. ZeroQuarry independently:
 
@@ -35,7 +35,7 @@ A coding agent helps a developer produce code. ZeroQuarry independently:
 - generates controlled fixes and verifies remediation; and
 - turns the same history into customer, audit, and leadership evidence.
 
-Those workflows—not model access—are the differentiation.
+Those workflows are the differentiation. Model access is not.
 
 ## Value metrics
 
@@ -63,7 +63,7 @@ Monthly purchase is available. Annual billing is exactly 20% less:
 | Scale | $1,000 | $9,600 | $800 | 15 | 600 | 150 | 20 |
 | Enterprise | Custom | Custom | Custom | Custom | Custom | Custom | Custom |
 
-### Free — create the habit
+### Free: create the habit
 
 - Permanent, not a trial
 - One public product
@@ -74,7 +74,7 @@ Monthly purchase is available. Annual billing is exactly 20% less:
 
 Free should create public-repository adoption, workflow familiarity, product feedback, and organic proof. It should be useful but not sufficient for a private commercial product.
 
-### Developer — enter the developer-tool budget
+### Developer: enter the developer-tool budget
 
 - One private product
 - Ten security runs each month
@@ -85,7 +85,7 @@ Free should create public-repository adoption, workflow familiarity, product fee
 
 At $40 per month annually, Developer is comparable to a single premium developer-AI seat while covering an account and producing an independent security result.
 
-### Startup — the default commercial plan
+### Startup: the default commercial plan
 
 - One protected product
 - Fifty security runs each month
@@ -95,7 +95,7 @@ At $40 per month annually, Developer is comparable to a single premium developer
 
 At $160 per month annually, Startup should be cheap enough for a founder to buy without a security procurement process and broad enough to become the product-security record for a seed or Series A company.
 
-### Growth — automate the operating loop
+### Growth: automate the operating loop
 
 Everything in Startup, plus:
 
@@ -107,7 +107,7 @@ Everything in Startup, plus:
 - Custom report branding
 - 100 controlled shares with up to 180-day expiry
 
-### Scale — standardize across a portfolio
+### Scale: standardize across a portfolio
 
 Everything in Growth, plus:
 
@@ -117,7 +117,7 @@ Everything in Growth, plus:
 - 500 controlled shares with up to 365-day expiry
 - Priority rollout support
 
-### Enterprise — sell assurance and coordination
+### Enterprise: sell assurance and coordination
 
 - Custom products, runs, users, concurrency, storage, and sharing
 - Security, privacy, procurement, and deployment architecture review
@@ -132,7 +132,7 @@ Use **$24,000 annual contract value** as the internal starting anchor. Expand fr
 |---|---:|---:|---|
 | Additional protected product | $100 | $80 | Add a product without immediately repackaging |
 | Additional 25 monthly runs | $50 | $40 | Absorb launch, diligence, or temporary change volume |
-| Guided baseline | $1,000 once | — | Scope, onboarding, first baseline, and operating-plan workshop |
+| Guided baseline | $1,000 once | Not applicable | Scope, onboarding, first baseline, and operating-plan workshop |
 
 If both recurring add-ons would cost more than the next plan, quote the next plan instead.
 

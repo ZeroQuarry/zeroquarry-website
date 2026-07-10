@@ -376,6 +376,341 @@
   border-radius: 999px;
   background: var(--red);
   box-shadow: 0 0 18px rgba(244,30,34,0.8);
+  animation: motionPulse 2.2s ease-in-out infinite;
+}
+
+.motion-system {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 510px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 52% 48%, rgba(244,30,34,0.09), transparent 28%),
+    linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.012)),
+    #080d15;
+  box-shadow: 0 28px 90px rgba(0,0,0,0.42);
+}
+
+.motion-system::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(244,30,34,0.46), transparent 34%, transparent 70%, rgba(58,134,255,0.24));
+  filter: blur(12px);
+  opacity: 0.42;
+}
+
+.motion-head,
+.motion-foot {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 18px;
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.motion-head {
+  border-bottom: 1px solid var(--line);
+  background: rgba(0,0,0,0.2);
+}
+
+.motion-foot {
+  justify-content: flex-start;
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  text-transform: none;
+}
+
+.motion-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--green);
+}
+
+.motion-live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 4px rgba(94,227,154,0.1);
+  animation: motionPulse 2.2s ease-in-out infinite;
+}
+
+.motion-canvas {
+  position: relative;
+  display: grid;
+  min-height: 410px;
+  grid-template-columns: minmax(110px, 1fr) 42px minmax(138px, 0.95fr) 42px minmax(110px, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding: 38px 16px;
+  overflow: hidden;
+}
+
+.motion-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(rgba(106,168,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(106,168,255,0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle at center, #000 22%, transparent 78%);
+}
+
+.motion-scanline {
+  position: absolute;
+  top: 6%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244,30,34,0.7), transparent);
+  box-shadow: 0 0 18px rgba(244,30,34,0.38);
+  animation: motionScan 7s ease-in-out infinite;
+}
+
+.motion-column {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+}
+
+.motion-node {
+  min-width: 0;
+  padding: 11px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: rgba(6,11,19,0.82);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  animation: motionNodeRead 6.8s ease-in-out infinite;
+  animation-delay: var(--node-delay);
+}
+
+.motion-outputs .motion-node {
+  border-color: rgba(94,227,154,0.19);
+  animation-name: motionNodeResolve;
+}
+
+.motion-node span {
+  display: block;
+  overflow: hidden;
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.motion-outputs .motion-node span {
+  color: var(--green);
+}
+
+.motion-node strong {
+  display: block;
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.motion-rail {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  background: var(--line-2);
+}
+
+.motion-rail i {
+  position: absolute;
+  top: -2px;
+  left: -7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 13px rgba(244,30,34,0.85);
+  animation: motionPacket 3.2s linear infinite;
+}
+
+.motion-rail i:nth-child(2) { animation-delay: 1.05s; }
+.motion-rail i:nth-child(3) { animation-delay: 2.1s; }
+.rail-out i {
+  background: var(--green);
+  box-shadow: 0 0 13px rgba(94,227,154,0.72);
+}
+
+.motion-core {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 178px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 15px;
+  overflow: hidden;
+  border: 1px solid rgba(244,30,34,0.46);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(244,30,34,0.15), transparent 52%),
+    rgba(11,18,31,0.96);
+  text-align: center;
+  box-shadow: 0 0 0 8px rgba(244,30,34,0.025), 0 24px 60px rgba(0,0,0,0.34);
+  animation: motionCore 5s ease-in-out infinite;
+}
+
+.motion-core::after {
+  content: "";
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border: 1px solid rgba(244,30,34,0.15);
+  border-radius: 50%;
+  animation: motionOrbit 12s linear infinite;
+}
+
+.motion-core small,
+.motion-core b {
+  position: relative;
+  z-index: 1;
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+
+.motion-core strong {
+  position: relative;
+  z-index: 1;
+  margin-top: 12px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.2vw, 29px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.motion-core span {
+  position: relative;
+  z-index: 1;
+  margin-top: 9px;
+  color: var(--ink-3);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.motion-core b {
+  margin-top: 15px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: rgba(94,227,154,0.08);
+  color: var(--green);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.buyer-live-console {
+  min-width: 0;
+}
+
+.buyer-live-console .console-body {
+  min-height: 438px;
+  max-height: 438px;
+}
+
+.console-enter {
+  animation: consoleLineIn 360ms ease-out both;
+}
+
+.operation-rail {
+  position: relative;
+  overflow: hidden;
+}
+
+.operation-rail::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -90px;
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  box-shadow: 0 0 14px rgba(244,30,34,0.55);
+  animation: operationSignal 8s linear infinite;
+}
+
+@keyframes motionPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.78); }
+}
+
+@keyframes motionScan {
+  0%, 100% { transform: translateY(0); opacity: 0; }
+  12% { opacity: 1; }
+  50% { transform: translateY(350px); opacity: 0.6; }
+  62% { opacity: 0; }
+}
+
+@keyframes motionNodeRead {
+  0%, 52%, 100% { border-color: var(--line); transform: translateX(0); }
+  8%, 22% { border-color: rgba(244,30,34,0.48); transform: translateX(2px); }
+}
+
+@keyframes motionNodeResolve {
+  0%, 52%, 100% { border-color: rgba(94,227,154,0.19); transform: translateX(0); }
+  8%, 22% { border-color: rgba(94,227,154,0.54); transform: translateX(-2px); }
+}
+
+@keyframes motionPacket {
+  from { transform: translateX(0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  to { transform: translateX(50px); opacity: 0; }
+}
+
+@keyframes motionCore {
+  0%, 100% { border-color: rgba(244,30,34,0.4); }
+  50% { border-color: rgba(244,30,34,0.75); box-shadow: 0 0 0 8px rgba(244,30,34,0.04), 0 24px 70px rgba(244,30,34,0.12); }
+}
+
+@keyframes motionOrbit {
+  from { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.08); }
+  to { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes consoleLineIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes operationSignal {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw + 180px)); }
 }
 
 .buyer-section {
@@ -1258,6 +1593,51 @@
     padding: 14px;
   }
 
+  .motion-system {
+    min-height: 0;
+  }
+
+  .motion-canvas {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 22px 14px;
+  }
+
+  .motion-column {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .motion-node {
+    padding: 8px 7px;
+  }
+
+  .motion-node strong {
+    font-size: 8px;
+  }
+
+  .motion-rail {
+    justify-self: center;
+    width: 2px;
+    height: 24px;
+  }
+
+  .motion-rail i {
+    top: -6px;
+    left: -2px;
+    animation-name: motionPacketVertical;
+  }
+
+  .motion-core {
+    min-height: 150px;
+  }
+
+  .buyer-live-console .console-body {
+    min-height: 390px;
+    max-height: 390px;
+  }
+
   .loop-map {
     grid-template-columns: 1fr;
   }
@@ -1281,6 +1661,13 @@
   .buyer-cta {
     padding: 66px 0;
   }
+}
+
+@keyframes motionPacketVertical {
+  from { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  to { transform: translateY(32px); opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,73 +1,53 @@
-// Live agent debate simulation shown in the hero console.
+// Illustrative adversarial review shown on the marketing homepage.
 (function () {
-  const body = document.getElementById('body');
-  const verdict = document.getElementById('verdict');
+  const body = document.getElementById("zq-debate-body");
+  const verdict = document.getElementById("zq-debate-verdict");
   if (!body || !verdict) return;
 
-  const script = [
-    { who: 'sys',  name: 'SYSTEM', ts: '14:02:01', text: 'session opened · target: <span class="k">auth-svc/middleware/jwt.ts</span>' },
-    { who: 'red',  name: 'RED',    ts: '14:02:03', text: 'scanning signature-verification path…' },
-    { who: 'red',  name: 'RED',    ts: '14:02:07', text: 'observed: verifier accepts <span class="k">HS256</span> + <span class="k">RS256</span> with the same key param.' },
-    { who: 'red',  name: 'RED',    ts: '14:02:09', text: 'hypothesis: <span class="f">algorithm confusion</span>. sign HS256 with public key as HMAC secret.' },
-    { who: 'blue', name: 'VENDOR', ts: '14:02:12', text: 'skepticism: public key may not be reachable by attacker. Prove it.' },
-    { who: 'red',  name: 'RED',    ts: '14:02:14', text: 'GET <span class="b">/.well-known/jwks.json</span> → <span class="g">200</span> · key <span class="k">exposed</span>.' },
-    { who: 'red',  name: 'RED',    ts: '14:02:17', text: 'forging token: <span class="m">eyJhbGciOi…HS256.[admin].[sig]</span>' },
-    { who: 'red',  name: 'RED',    ts: '14:02:18', text: 'POST <span class="b">/api/account</span> → <span class="g">200 OK</span> · role=<span class="f">admin</span>' },
-    { who: 'blue', name: 'VENDOR', ts: '14:02:20', text: 'reproduced in staging. conceding vulnerability.' },
-    { who: 'blue', name: 'VENDOR', ts: '14:02:21', text: 'proposed patch: restrict <span class="k">algorithms</span> to <span class="k">["RS256"]</span> explicitly.' },
-    { who: 'good', name: 'VERDICT', ts: '14:02:24', text: '<span class="g">CONFIRMED</span> · severity <span class="f">critical</span> · patch drafted · report <span class="k">ZQ-2042</span>' },
+  const entries = [
+    { who: "sys", name: "SYSTEM", time: "14:02:01", text: "review opened · target: <span class=\"k\">billing-api/invoices</span>" },
+    { who: "red", name: "RED", time: "14:02:04", text: "tracing tenant ownership into the invoice update path" },
+    { who: "red", name: "RED", time: "14:02:07", text: "request body <span class=\"k\">invoice_id</span> reaches <span class=\"f\">invoices.update()</span>" },
+    { who: "blue", name: "VENDOR", time: "14:02:10", text: "challenge: an earlier middleware check may enforce account ownership" },
+    { who: "red", name: "RED", time: "14:02:14", text: "middleware verifies session role; controller query has <span class=\"f\">no account filter</span>" },
+    { who: "red", name: "RED", time: "14:02:18", text: "cross-tenant invoice update returns <span class=\"g\">200 OK</span> in the authorized test environment" },
+    { who: "blue", name: "VENDOR", time: "14:02:21", text: "reproduced. claim sustained with high confidence" },
+    { who: "blue", name: "VENDOR", time: "14:02:23", text: "patch path: scope invoice lookup by <span class=\"k\">account_id</span> before update" },
+    { who: "good", name: "VERDICT", time: "14:02:26", text: "<span class=\"g\">CONFIRMED</span> · owner assigned · patch proposal ready" },
   ];
 
-  function addLine(entry) {
-    const row = document.createElement('div');
-    row.className = 'line ' + entry.who;
-    row.innerHTML = `
-      <div class="ts">${entry.ts}</div>
-      <div class="agent">${entry.name}</div>
-      <div class="msg typing"></div>`;
+  function line(entry, instant) {
+    const row = document.createElement("div");
+    row.className = `line ${entry.who}${instant ? "" : " console-enter"}`;
+    row.innerHTML = `<div class="ts">${entry.time}</div><div class="agent">${entry.name}</div><div class="msg">${entry.text}</div>`;
     body.appendChild(row);
-    const msg = row.querySelector('.msg');
-
-    return new Promise(resolve => {
-      const raw = entry.text;
-      let i = 0;
-      const step = () => {
-        let next = i + 2 + Math.floor(Math.random() * 3);
-        while (i < raw.length) {
-          if (raw[i] === '<') {
-            const close = raw.indexOf('>', i);
-            if (close !== -1) { i = close + 1; continue; }
-          }
-          break;
-        }
-        if (next > raw.length) next = raw.length;
-        msg.innerHTML = raw.slice(0, next);
-        i = next;
-        if (i < raw.length) {
-          setTimeout(step, 8 + Math.random() * 14);
-        } else {
-          msg.classList.remove('typing');
-          body.scrollTop = body.scrollHeight;
-          resolve();
-        }
-      };
-      step();
-    });
+    body.scrollTop = body.scrollHeight;
   }
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) {
+    body.innerHTML = "";
+    entries.forEach((entry) => line(entry, true));
+    verdict.innerHTML = '<span class="verdict-good">VERDICT: CONFIRMED</span>';
+    return;
+  }
+
+  const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 
   async function run() {
-    while (true) {
-      body.innerHTML = '';
-      verdict.textContent = 'awaiting verdict…';
-      for (const entry of script) {
-        await addLine(entry);
-        await new Promise(r => setTimeout(r, 350 + Math.random() * 450));
-        if (entry.who === 'good') {
-          verdict.innerHTML = '<span class="verdict-good">● VERDICT: CONFIRMED</span> · ZQ-2042 drafted';
+    while (document.body.contains(body)) {
+      body.innerHTML = "";
+      verdict.textContent = "review in progress";
+      for (const entry of entries) {
+        line(entry, false);
+        if (entry.who === "good") {
+          verdict.innerHTML = '<span class="verdict-good">VERDICT: CONFIRMED</span>';
         }
+        await wait(entry.who === "good" ? 1200 : 720);
       }
-      await new Promise(r => setTimeout(r, 4000));
+      await wait(4200);
     }
   }
+
   run();
 })();

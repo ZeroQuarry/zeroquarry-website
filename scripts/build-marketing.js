@@ -72,6 +72,7 @@ function layout({ title, description, canonical, active, body, schemas = [] }) {
 <link rel="stylesheet" href="/marketing.css" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="/index.js" defer></script>
 ${structuredData(schemas)}
 </head>
 <body>
@@ -89,13 +90,13 @@ const platformPages = [
     title: "AI Security Testing for Source Code, Binaries, and Live Applications | ZeroQuarry",
     description: "Run AI penetration testing and application security reviews across source code, shipped binaries, and authorized live targets in one project history.",
     eyebrow: "AI security testing",
-    h1: "Test the product you ship, not just the <em>code you wrote.</em>",
+    h1: "Test source, artifacts, and live behavior as <em>one product.</em>",
     lede: "ZeroQuarry combines AI code security review, binary analysis, and authorized live application testing so teams can follow vulnerabilities across build, packaging, and runtime boundaries.",
     image: "/assets/product/report-overview.png",
     imageAlt: "ZeroQuarry security assessment report showing findings and review controls",
     proof: ["Source repositories", "Binary artifacts", "Authorized live targets"],
     sectionTitle: "Three assessment surfaces. One <em>evidence chain.</em>",
-    sectionIntro: "A source finding can disappear during packaging—or only become exploitable at runtime. Keeping every surface in one project makes those differences visible.",
+    sectionIntro: "A source finding can disappear during packaging. Another issue may only become exploitable at runtime. Keeping every surface in one project makes those differences visible.",
     capabilities: [
       ["Source code review", "Trace authorization, data flow, unsafe parsers, secrets, dependency use, and business-logic failures across repositories or uploaded archives."],
       ["Binary analysis", "Expand and decompile APKs, JARs, firmware, installers, and archives to review the artifact customers actually receive."],
@@ -132,7 +133,7 @@ const platformPages = [
     image: "/assets/product/finding-detail.png",
     imageAlt: "ZeroQuarry finding detail with validation state and decision controls",
     proof: ["Evidence-first findings", "Vendor-style challenge", "Human decision history"],
-    sectionTitle: "False positives become a <em>process problem</em>, not a filter setting.",
+    sectionTitle: "False positives need a <em>review process.</em>",
     sectionIntro: "Instead of hiding uncertain alerts at an arbitrary score, ZeroQuarry records why a claim survived, changed, or was disputed.",
     capabilities: [
       ["Adversarial vendor review", "A separate review pass checks reachability, context mitigations, intended behavior, evidence quality, and practical exploitability."],
@@ -149,7 +150,7 @@ const platformPages = [
       ["Decide", "A human records the operating state and routes accepted work to the correct owner."],
     ],
     outcomes: [
-      ["Less alert fatigue", "Engineering sees reviewed claims with a visible evidence trail, not a raw queue of model suggestions."],
+      ["Less alert fatigue", "Engineering sees reviewed claims with a visible evidence trail. Unsupported suggestions are filtered out earlier."],
       ["Defensible decisions", "Disputes and accepted risks carry reasons that can be understood later."],
       ["Safer external sharing", "Challenge high-impact findings before they reach customers, vendors, or bounty programs."],
     ],
@@ -171,7 +172,7 @@ const platformPages = [
     imageAlt: "ZeroQuarry scheduled rescan controls for changed-code and full reviews",
     proof: ["PR and push triggers", "Scheduled rescans", "Changed-code focus"],
     sectionTitle: "Continuous testing without turning CI into an <em>alert machine.</em>",
-    sectionIntro: "The right cadence is not a full pentest on every commit. It is a reliable security signal around high-risk changes, plus a path to deeper review when the signal warrants it.",
+    sectionIntro: "A full pentest on every commit would be wasteful. Teams need a reliable signal around high-risk changes, plus a path to deeper review when the signal warrants it.",
     capabilities: [
       ["GitHub Actions workflow", "Install a maintained workflow that dispatches repository scans on pull requests, pushes, schedules, or manual runs."],
       ["Delta scans", "Use Git history to focus the next assessment on changed files and adjacent data flow after the first baseline."],
@@ -203,7 +204,7 @@ const platformPages = [
     title: "AI Security Operations: Intake, Triage, Tickets, and Audit History | ZeroQuarry",
     description: "Automate lean security operations with vulnerability-report intake, finding lifecycle, Jira, ServiceNow, GitHub, Slack, search, and audit history.",
     eyebrow: "AI security operations",
-    h1: "Turn security work into an <em>operating loop</em>, not an inbox.",
+    h1: "Give every vulnerability a path from <em>intake to resolution.</em>",
     lede: "ZeroQuarry receives work, investigates it, records accountable decisions, routes accepted findings into the systems teams already use, and preserves the evidence needed later.",
     image: "/assets/product/integrations-overview.png",
     imageAlt: "ZeroQuarry integrations for notifications, ticketing, automation, and email intake",
@@ -242,7 +243,7 @@ const platformPages = [
     description: "Move validated vulnerabilities into patches, GitHub auto-fix pull requests, Jira, ServiceNow, GitHub Issues, and focused security retests.",
     eyebrow: "Vulnerability remediation",
     h1: "Close the distance between <em>evidence and a reviewed fix.</em>",
-    lede: "Generate focused diffs, stage audited auto-fix proposals, open pull requests through ZeroQuarryBot, or hand findings into the team’s ticketing system—then retest in the same lineage.",
+    lede: "Generate focused diffs, stage audited auto-fix proposals, open pull requests through ZeroQuarryBot, or hand findings into the team’s ticketing system. Retest the result in the same lineage.",
     image: "/assets/product/github-autofix.png",
     imageAlt: "ZeroQuarryBot installation and kill-switch controls for auto-fix pull requests",
     proof: ["Generated patch revisions", "Approval-gated GitHub PRs", "Focused retesting"],
@@ -285,7 +286,7 @@ const platformPages = [
     imageAlt: "ZeroQuarry Evidence Room with target-level security reports and PDF export",
     proof: ["Asset-level Evidence Room", "Pentest-style PDF exports", "Expiring finding shares"],
     sectionTitle: "Evidence should be a by-product of the <em>operating process.</em>",
-    sectionIntro: "Waiting for a customer questionnaire or audit to reconstruct security history from tickets and chat is expensive—and often produces an incomplete story.",
+    sectionIntro: "Reconstructing security history from tickets and chat during a customer review is expensive. The resulting story is usually incomplete.",
     capabilities: [
       ["Evidence Room", "See completed work by actual Git repository, URL, upload, or path and export the latest report for selected assets."],
       ["Report and finding exports", "Create Markdown, single-file HTML, or pentest-style PDF outputs with confidence and review filters."],
@@ -329,8 +330,8 @@ const useCasePages = [
     sectionIntro: "A seed company needs a defensible baseline. A later-stage company needs consistent execution across products, owners, customer commitments, and audit evidence. The loop is the same; depth and governance increase.",
     capabilities: [
       ["Seed: establish the baseline", "Map the core product, assess the main repository, validate important findings, and retain one reviewed evidence record."],
-      ["Series A–B: enter delivery", "Add PR or scheduled coverage, route accepted findings into engineering, and operationalize external report intake."],
-      ["Series C–E: scale decisions", "Standardize lifecycle states, adversarial review, repository controls, retests, and asset-level assurance evidence."],
+      ["Series A to B: enter delivery", "Add PR or scheduled coverage, route accepted findings into engineering, and operationalize external report intake."],
+      ["Series C to E: scale decisions", "Standardize lifecycle states, adversarial review, repository controls, retests, and asset-level assurance evidence."],
       ["Human authorization", "Keep live-target authorization, accepted risk, external sharing, and production merge approval with accountable people."],
       ["Flexible model and data boundaries", "Use account defaults, bring-your-own provider keys, private Git credentials, and enterprise deployment controls as requirements mature."],
       ["Evidence from the work", "Let projects, audit history, finding decisions, and retests produce the record customers and auditors ask for later."],
@@ -343,7 +344,7 @@ const useCasePages = [
     ],
     outcomes: [
       ["Coverage without immediate headcount", "Automate repeatable assessment and coordination while reserving human time for authorization, context, and risk decisions."],
-      ["A buyer-ready security story", "Show how software is tested, how findings are handled, and how fixes are verified—not just which scanner is installed."],
+      ["A buyer-ready security story", "Show how software is tested, how findings are handled, and how fixes are verified. A scanner inventory cannot answer those questions."],
       ["A program that can mature", "Start with one product loop and add controls, ownership, and evidence as the organization grows."],
     ],
     faqs: [
@@ -363,7 +364,7 @@ const useCasePages = [
     image: "/assets/product/scheduled-rescan.png",
     imageAlt: "ZeroQuarry continuous security settings for changed-code reviews",
     proof: ["GitHub Actions", "Delta-aware review", "Non-blocking to gated rollout"],
-    sectionTitle: "Use CI as a <em>tripwire</em>, not a replacement for triage.",
+    sectionTitle: "Make CI raise a <em>useful security signal.</em>",
     sectionIntro: "The best PR security process flags consequential changes early, preserves the report outside ephemeral CI logs, and escalates only when the risk justifies deeper work.",
     capabilities: [
       ["Risk-aware triggers", "Run on authentication, authorization, billing, tenant, upload, webhook, parser, networking, and release-branch changes."],
@@ -382,7 +383,7 @@ const useCasePages = [
     outcomes: [
       ["Faster security feedback", "Review a risky change before context is spread across later releases and unrelated refactors."],
       ["Fewer disruptive gates", "Tune policy around validated findings instead of blocking on every model suggestion."],
-      ["Persistent change history", "Keep scans, findings, discussions, fixes, and retests with the product project—not only the CI run."],
+      ["Persistent change history", "Keep scans, findings, discussions, fixes, and retests with the product project instead of losing them in an individual CI run."],
     ],
     faqs: [
       ["Can ZeroQuarry scan private GitHub repositories?", "Yes. Store a scoped Git credential in the account and reference its ID from the workflow. The generated workflow explains the setup."],
@@ -439,7 +440,7 @@ const useCasePages = [
     image: "/assets/product/email-triage.png",
     imageAlt: "ZeroQuarry email triage settings with allowlists and project routing",
     proof: ["Project-specific inboxes", "Allowed senders and targets", "Manual or automatic kickoff"],
-    sectionTitle: "The risk is not just missing a real report. It is <em>losing context</em> during intake.",
+    sectionTitle: "A report can be missed. Its <em>context can disappear</em> too.",
     sectionIntro: "A report often arrives in one system, becomes a ticket in another, and turns into ad hoc testing somewhere else. ZeroQuarry keeps the original claim and the resulting assessment inside the owning product history.",
     capabilities: [
       ["Project routing", "Give each product project its own incoming address so reports land with the correct asset history."],
@@ -516,7 +517,7 @@ const useCasePages = [
     imageAlt: "ZeroQuarry secure vulnerability finding share controls",
     proof: ["HackerOne context", "Proof and disclosure drafts", "Disclosure timeline"],
     sectionTitle: "External reporting needs a higher evidence bar than <em>internal suspicion.</em>",
-    sectionIntro: "A vendor, researcher, or bounty program needs a reproducible claim, clear affected scope, and a controlled communication trail—not raw model output.",
+    sectionIntro: "A vendor, researcher, or bounty program needs a reproducible claim, clear affected scope, and a controlled communication trail. Raw model output is not enough.",
     capabilities: [
       ["Disclosure-quality evidence", "Review source, impact, reproduction, affected versions, and PoC before sending the claim outside the workspace."],
       ["Adversarial review", "Use a vendor-style challenge and researcher rebuttal to expose weak assumptions before the real counterparty does."],
@@ -576,6 +577,152 @@ function renderRelated(related) {
   </a>`).join("\n")}</div>`;
 }
 
+const motionVisuals = {
+  "platform-overview": {
+    label: "security-ops://product-loop",
+    title: "Product security coordinator",
+    detail: "One record from intake through evidence",
+    inputs: [["RECEIVE", "PR, schedule, report"], ["ASSESS", "source, binary, live"], ["VALIDATE", "proof and challenge"]],
+    outputs: [["REMEDIATE", "patch, PR, ticket"], ["RETEST", "verified or regressed"], ["PROVE", "report and evidence"]],
+    foot: "risk decisions and production authority stay with your team",
+    aria: "Animated flow from security intake and assessment through remediation, retesting, and evidence",
+  },
+  "use-case-router": {
+    label: "workflow://decision-router",
+    title: "Start with the decision",
+    detail: "ZeroQuarry assembles the right security workflow",
+    inputs: [["MERGE", "risky pull request"], ["SHIP", "release candidate"], ["RESPOND", "researcher or customer"]],
+    outputs: [["DECISION", "evidence reviewed"], ["ACTION", "owner and fix path"], ["PROOF", "retest and report"]],
+    foot: "the workflow changes with the decision, the operating record does not",
+    aria: "Animated router mapping product-security triggers to decisions, action, and evidence",
+  },
+  "security-testing": {
+    label: "assessment://surface-map",
+    title: "Multi-surface assessment",
+    detail: "Follow risk across build and runtime boundaries",
+    inputs: [["SOURCE", "auth/middleware.ts"], ["BINARY", "release/app.apk"], ["LIVE", "api.product.com"]],
+    outputs: [["FINDING", "cross-tenant read"], ["PROOF", "request replay"], ["SCOPE", "product / release 42"]],
+    foot: "the target surface changes, the evidence standard stays the same",
+    aria: "Animated assessment of source code, a release binary, and a live application producing a finding and proof",
+  },
+  "adversarial-validation": {
+    label: "review://claim-challenge",
+    title: "Skeptical finding review",
+    detail: "A separate reviewer tries to break the claim",
+    inputs: [["CLAIM", "tenant boundary bypass"], ["CONTEXT", "role and deployment state"], ["PROOF", "reproduction request"]],
+    outputs: [["VERDICT", "sustained"], ["CONFIDENCE", "0.91"], ["DECISION", "ready for owner"]],
+    foot: "severity says how bad; confidence says how likely the claim is to hold",
+    aria: "Animated adversarial validation of a vulnerability claim using context and proof",
+  },
+  "continuous-security": {
+    label: "automation://change-review",
+    title: "Continuous review coordinator",
+    detail: "Use the smallest useful scope for each trigger",
+    inputs: [["PULL REQUEST", "PR 248 / 7 files"], ["SCHEDULE", "nightly baseline"], ["RELEASE", "candidate 1.14.0"]],
+    outputs: [["CHECK", "focused review"], ["HISTORY", "lineage v12"], ["SIGNAL", "actionable change"]],
+    foot: "delta review keeps routine coverage fast without losing the baseline",
+    aria: "Animated pull-request, scheduled, and release security reviews producing checks and product history",
+  },
+  "security-operations": {
+    label: "operations://intake-route",
+    title: "Finding operations",
+    detail: "Resolve the target, validate the claim, assign the work",
+    inputs: [["INBOX", "researcher report"], ["API", "scan finding"], ["HUMAN", "manual escalation"]],
+    outputs: [["STATE", "validated"], ["OWNER", "platform team"], ["TICKET", "SEC-194"]],
+    foot: "every handoff keeps the original evidence and decision history",
+    aria: "Animated security report intake flowing to validation, ownership, and an engineering ticket",
+  },
+  remediation: {
+    label: "remediation://controlled-change",
+    title: "Patch staging and retest",
+    detail: "Generate the change without taking merge authority",
+    inputs: [["FINDING", "ZQ-2042"], ["POLICY", "deny-list and diff cap"], ["REPO", "enrolled branch"]],
+    outputs: [["PATCH", "+12 / -3 lines"], ["REVIEW", "human approval"], ["RETEST", "verified"]],
+    foot: "repository access, approval, CI, and merge controls remain yours",
+    aria: "Animated remediation flow from a validated finding through a controlled patch, review, and retest",
+  },
+  "evidence-reporting": {
+    label: "evidence://current-state",
+    title: "Evidence room assembly",
+    detail: "Build the answer from the live product history",
+    inputs: [["ASSESSMENT", "release 1.14"], ["DECISION", "accepted and owned"], ["RETEST", "fix verified"]],
+    outputs: [["REPORT", "customer-ready PDF"], ["SHARE", "password + expiry"], ["ANSWER", "current control story"]],
+    foot: "the evidence comes from operating work, not a last-minute document hunt",
+    aria: "Animated evidence assembly from an assessment, decision, and retest into a report and controlled share",
+  },
+  "startup-security": {
+    label: "startup://security-baseline",
+    title: "Lean security baseline",
+    detail: "Cover the product before staffing every specialty",
+    inputs: [["REPOSITORY", "main product"], ["RELEASE", "current build"], ["PRESSURE", "first enterprise buyer"]],
+    outputs: [["PRIORITY", "top product risk"], ["FIX", "owner and patch"], ["EVIDENCE", "buyer-ready history"]],
+    foot: "begin with one product boundary and expand as the company grows",
+    aria: "Animated startup security baseline producing prioritized risk, a fix, and customer evidence",
+  },
+  "pr-security-review": {
+    label: "pull-request://focused-review",
+    title: "Change-scoped security review",
+    detail: "Investigate the code that moved while context is fresh",
+    inputs: [["DIFF", "7 changed files"], ["CONTEXT", "tenant billing path"], ["BASELINE", "last completed scan"]],
+    outputs: [["CHECK", "review complete"], ["FINDING", "1 validated issue"], ["PATCH", "proposal ready"]],
+    foot: "one focused review consumes one security run",
+    aria: "Animated pull-request review using a code diff, product context, and the last baseline",
+  },
+  "release-security-review": {
+    label: "release://promotion-gate",
+    title: "Release security review",
+    detail: "Compare what was written, packaged, and deployed",
+    inputs: [["SOURCE", "release branch"], ["ARTIFACT", "signed package"], ["STAGING", "authorized target"]],
+    outputs: [["RISK", "release decision"], ["ACTION", "fix before promote"], ["REPORT", "release evidence"]],
+    foot: "surface differences stay attached to the same release decision",
+    aria: "Animated release review across source, a packaged artifact, and a staging environment",
+  },
+  "inbound-vulnerability-reports": {
+    label: "incoming://report-triage",
+    title: "Bounded report intake",
+    detail: "Turn an email into scoped, reviewable security work",
+    inputs: [["SENDER", "approved researcher"], ["REPORT", "forwarded email"], ["ATTACHMENT", "proof and logs"]],
+    outputs: [["TARGET", "project resolved"], ["VERDICT", "claim validated"], ["RESPONSE", "coordinated reply"]],
+    foot: "sender, project, target, and authorization boundaries are checked first",
+    aria: "Animated inbound vulnerability report triage from an approved sender to validation and response",
+  },
+  "customer-security-reviews": {
+    label: "assurance://customer-answer",
+    title: "Current assurance evidence",
+    detail: "Answer from product history instead of rebuilding it",
+    inputs: [["PROJECT", "covered assets"], ["DECISIONS", "risk and ownership"], ["RETESTS", "verified fixes"]],
+    outputs: [["SUMMARY", "current posture"], ["REPORT", "evidence package"], ["SHARE", "controlled access"]],
+    foot: "the answer stays current because it is built during normal security work",
+    aria: "Animated customer assurance workflow assembling project coverage, decisions, and retests",
+  },
+  "vulnerability-disclosure": {
+    label: "disclosure://coordinated-case",
+    title: "Coordinated disclosure case",
+    detail: "Keep proof, communication, remediation, and timing together",
+    inputs: [["CLAIM", "reproducible issue"], ["CONTACT", "vendor channel"], ["TIMELINE", "embargo agreed"]],
+    outputs: [["FIX", "maintainer patch"], ["VERIFY", "retest passed"], ["PUBLISH", "coordinated writeup"]],
+    foot: "publication follows verification and the agreed coordination window",
+    aria: "Animated vulnerability disclosure workflow from a claim and timeline through fix, retest, and publication",
+  },
+};
+
+function renderMotionVisual(key) {
+  const visual = motionVisuals[key] || motionVisuals["platform-overview"];
+  const renderNodes = (nodes, className) => `<div class="motion-column ${className}">${nodes.map(([label, value], index) => `<div class="motion-node" style="--node-delay:${index * 1.15}s"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>`;
+  return `<div class="motion-system motion-${key}" role="img" aria-label="${escapeHtml(visual.aria)}">
+    <div class="motion-head"><span>${escapeHtml(visual.label)}</span><span class="motion-live">processing</span></div>
+    <div class="motion-canvas">
+      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      ${renderNodes(visual.inputs, "motion-inputs")}
+      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-core"><small>ZEROQUARRY</small><strong>${escapeHtml(visual.title)}</strong><span>${escapeHtml(visual.detail)}</span><b>active</b></div>
+      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
+      ${renderNodes(visual.outputs, "motion-outputs")}
+    </div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>${escapeHtml(visual.foot)}</span></div>
+  </div>`;
+}
+
 function renderDetail(page, type) {
   const isPlatform = type === "platform";
   const baseLabel = isPlatform ? "Platform" : "Use cases";
@@ -602,37 +749,35 @@ function renderDetail(page, type) {
           </div>
           <div class="buyer-proofline">${page.proof.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>
         </div>
-        <figure class="product-frame hero-image">
-          <img src="${page.image}" alt="${escapeHtml(page.imageAlt)}" width="1440" height="1000" loading="eager">
-        </figure>
+        ${renderMotionVisual(page.slug)}
       </div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>${page.sectionTitle}</h2></div><p class="section-intro">${escapeHtml(page.sectionIntro)}</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>${page.sectionTitle}</h2></div><p class="section-intro">${escapeHtml(page.sectionIntro)}</p></div>
       ${renderCards(page.capabilities)}
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
       ${renderWorkflow(page.workflow)}
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
       <div class="outcome-grid">${page.outcomes.map(([title, text]) => `<article class="outcome-card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join("\n")}</div>
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
       ${renderFaqs(page.faqs)}
     </div>
   </section>
@@ -644,7 +789,7 @@ function renderDetail(page, type) {
     </div>
   </section>
 
-  ${renderCta("Give us one real security boundary.", "We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.")}
+  ${renderCta("Give us one real security boundary.", "We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision. The evaluation follows the result through review and decision.")}
   </main>`;
 
   return layout({ title: page.title, description: page.description, canonical: `${siteUrl}${canonicalPath}`, active: type === "platform" ? "platform" : "use-cases", body, schemas });
@@ -688,23 +833,17 @@ function homePage() {
         <div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">See it on your workflow <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
         <div class="buyer-proofline"><span>AI penetration testing</span><span>Application security operations</span><span>Evidence and remediation</span></div>
       </div>
-      <div class="hero-system" aria-label="ZeroQuarry security operating loop">
-        <div class="system-head"><span>security-ops://product</span><span class="system-status">loop active</span></div>
-        <div class="loop-map">
-          <div class="loop-node"><span>01 / RECEIVE</span><strong>Code change or report</strong><p>PR, schedule, manual review, API, or forwarded researcher email.</p></div>
-          <div class="loop-node"><span>02 / ASSESS</span><strong>Source, binary, live</strong><p>Specialist agents investigate the surface that can change the decision.</p></div>
-          <div class="loop-node wide"><span>03 / VALIDATE</span><strong>Red team claim vs. vendor challenge</strong><p>Evidence must survive skeptical review before it becomes expensive work.</p></div>
-          <div class="loop-node"><span>04 / REMEDIATE</span><strong>Patch, PR, or ticket</strong><p>Route accepted work through GitHub, Jira, ServiceNow, and engineering controls.</p></div>
-          <div class="loop-node"><span>05 / PROVE</span><strong>Retest and evidence</strong><p>Preserve decisions, verification, reports, controlled shares, and asset history.</p></div>
-        </div>
-        <div class="system-foot"><span class="pulse-dot"></span><span>authorization and risk ownership remain human</span></div>
+      <div class="console buyer-live-console" aria-label="Illustrative adversarial vulnerability review">
+        <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">example://</span>red-vs-vendor · target=<span class="amber">billing-api</span></span><span class="console-meta"><span class="live">illustrative</span></span></div>
+        <div class="console-body" id="zq-debate-body"><div class="line sys"><div class="ts">14:02:01</div><div class="agent">SYSTEM</div><div class="msg">review opened for billing-api</div></div><div class="line red"><div class="ts">14:02:05</div><div class="agent">RED</div><div class="msg">tracing tenant ownership into invoice update</div></div><div class="line blue"><div class="ts">14:02:11</div><div class="agent">VENDOR</div><div class="msg">challenge: prove the route lacks an earlier ownership check</div></div></div>
+        <div class="console-foot"><span class="chip">RED TEAM</span><span class="chip blue">VENDOR REVIEW</span><span class="sp"></span><span id="zq-debate-verdict">review in progress</span></div>
       </div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">The buying moments</div><h2>Security becomes urgent in <em>recognizable moments.</em></h2></div><p class="section-intro">ZeroQuarry is designed around the decisions buyers actually face—not a generic inventory of scanner features.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">The buying moments</div><h2>Security becomes urgent in <em>recognizable moments.</em></h2></div><p class="section-intro">ZeroQuarry starts with the decisions buyers actually face. Scanner categories come later.</p></div>
       <div class="moment-grid">
         ${[["Enterprise deal", "A buyer asks for current test evidence and how findings are remediated.", "/use-cases/customer-security-reviews/"], ["Risky release", "A change crosses identity, tenant, billing, upload, webhook, or runtime boundaries.", "/use-cases/release-security-review/"], ["Researcher report", "An external claim arrives and someone must resolve the target, reproduce it, and respond.", "/use-cases/inbound-vulnerability-reports/"], ["Fast-moving codebase", "Security review must happen in PR and scheduled workflows without becoming a noisy gate.", "/use-cases/pr-security-review/"], ["Lean security team", "The company needs real coverage before it can hire every AppSec and security-operations specialty.", "/use-cases/startup-security/"], ["External disclosure", "A serious claim needs stronger proof, controlled delivery, remediation, and timeline tracking.", "/use-cases/vulnerability-disclosure/"]].map(([title, text, href], index) => `<a class="moment-card" href="${href}"><div class="card-code">0${index + 1}</div><h3>${title}</h3><p>${text}</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}
       </div>
@@ -745,7 +884,7 @@ function homePage() {
 
   <section class="buyer-section">
     <div class="container split-proof">
-      <div class="proof-copy"><div class="section-label">Research-backed</div><h2>Built where real vulnerability reports <em>land.</em></h2><p>ZeroQuarry’s workflows come from finding, validating, coordinating, and fixing real product vulnerabilities—not from wrapping a chat interface around a pattern scanner.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability-triage experience across Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>Validated research patterns feed future prompts, coverage, report language, and evidence structure.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
+      <div class="proof-copy"><div class="section-label">Research-backed</div><h2>Built where real vulnerability reports <em>land.</em></h2><p>ZeroQuarry’s workflows come from finding, validating, coordinating, and fixing real product vulnerabilities. That work shapes the product more than generic scanner patterns do.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability-triage experience across Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>Validated research patterns feed future prompts, coverage, report language, and evidence structure.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
       <div class="hero-system"><div class="system-head"><span>research://evidence</span><span class="system-status">coordinated</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Opening untrusted Markdown reaches executable behavior</strong><p>Trace the plugin path, prove reachability, and identify the affected configuration.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>Is execution actually reachable?</strong><p>Test default state, permissions, versions, and realistic user action.</p></div><div class="loop-node"><span>OUTCOME</span><strong>Fix, disclose, publish</strong><p>Coordinate the maintainer response before turning the finding into public research.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>public writeups follow responsible disclosure</span></div></div>
     </div>
   </section>
@@ -757,9 +896,9 @@ function homePage() {
 
 function platformHub() {
   const body = `<main class="marketing-main">
-  <section class="buyer-hero"><div class="container buyer-hero-grid"><div><div class="buyer-kicker">ZeroQuarry platform</div><h1 class="buyer-title">The security work <em>between pentests.</em></h1><p class="buyer-lede">One AI security-operations platform to receive work, test the product, challenge findings, route remediation, verify fixes, and package evidence.</p><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">See it on your product <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/use-cases/">Explore use cases</a></div><div class="buyer-proofline"><span>Application security</span><span>Vulnerability operations</span><span>Customer assurance</span></div></div><figure class="product-frame hero-image"><img src="/assets/product/report-overview.png" alt="ZeroQuarry platform report overview" width="1440" height="1000" loading="eager"></figure></div></section>
+  <section class="buyer-hero"><div class="container buyer-hero-grid"><div><div class="buyer-kicker">ZeroQuarry platform</div><h1 class="buyer-title">The security work <em>between pentests.</em></h1><p class="buyer-lede">One AI security-operations platform to receive work, test the product, challenge findings, route remediation, verify fixes, and package evidence.</p><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">See it on your product <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/use-cases/">Explore use cases</a></div><div class="buyer-proofline"><span>Application security</span><span>Vulnerability operations</span><span>Customer assurance</span></div></div>${renderMotionVisual("platform-overview")}</div></section>
   <section class="buyer-section soft"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Capability map</div><h2>Choose an entry point. Keep one <em>operating record.</em></h2></div><p class="section-intro">Each capability is useful independently; together they replace the fragmented handoffs between scanners, inboxes, tickets, patch tools, retests, and audit folders.</p></div><div class="capability-grid">${platformPages.map((page, index) => `<a class="capability-card" href="/platform/${page.slug}/"><div class="card-code">0${index + 1}</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}</div></div></section>
-  <section class="buyer-section"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Operating model</div><h2>The scan is one stage, <em>not the product.</em></h2></div><p class="section-intro">ZeroQuarry treats intake, validation, ownership, remediation, retesting, and assurance as first-class security work.</p></div><div class="operation-rail">${[["Receive", "PR, schedule, API, report"], ["Assess", "Source, binary, live"], ["Validate", "Proof and skeptical review"], ["Decide", "State, reason, owner"], ["Remediate", "Patch, PR, ticket"], ["Retest", "Verify or regress"], ["Prove", "Evidence and sharing"]].map(([title, text], i) => `<div class="operation-step"><small>0${i + 1}</small><h3>${title}</h3><p>${text}</p></div>`).join("")}</div></div></section>
+  <section class="buyer-section"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Operating model</div><h2>The scan is only the beginning.</h2></div><p class="section-intro">ZeroQuarry treats intake, validation, ownership, remediation, retesting, and assurance as first-class security work.</p></div><div class="operation-rail">${[["Receive", "PR, schedule, API, report"], ["Assess", "Source, binary, live"], ["Validate", "Proof and skeptical review"], ["Decide", "State, reason, owner"], ["Remediate", "Patch, PR, ticket"], ["Retest", "Verify or regress"], ["Prove", "Evidence and sharing"]].map(([title, text], i) => `<div class="operation-step"><small>0${i + 1}</small><h3>${title}</h3><p>${text}</p></div>`).join("")}</div></div></section>
   <section class="buyer-section soft"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Designed for control</div><h2>Automation where it scales. Humans where <em>authority matters.</em></h2></div><p class="section-intro">ZeroQuarry can automate investigation and routine coordination without silently authorizing a live test, accepting business risk, exposing evidence, or merging production code.</p></div><div class="outcome-grid"><article class="outcome-card"><h3>Authorization stays explicit</h3><p>Remote targets, sender and repository boundaries, shares, and GitHub access are individually controlled.</p></article><article class="outcome-card"><h3>Decisions retain reasons</h3><p>Validation, dispute, regression, accepted risk, and archive history remain visible and attributable.</p></article><article class="outcome-card"><h3>Production controls remain yours</h3><p>Generated changes flow through installation, enrollment, approval, branch protection, CI, review, and merge.</p></article></div></div></section>
   ${renderCta("See the complete loop on your product.", "A useful evaluation starts with a real security boundary and follows the result all the way through validation, remediation, and evidence.")}
   </main>`;
@@ -769,9 +908,9 @@ function platformHub() {
 
 function useCasesHub() {
   const body = `<main class="marketing-main">
-  <section class="buyer-hero"><div class="container buyer-hero-grid"><div><div class="buyer-kicker">ZeroQuarry use cases</div><h1 class="buyer-title">Start with the moment security becomes <em>urgent.</em></h1><p class="buyer-lede">The right workflow depends on the decision: merge a risky PR, ship a release, answer a researcher, satisfy a customer, or build a credible program with a lean team.</p><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Discuss your workflow <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div></div><div class="hero-system"><div class="system-head"><span>use-case://router</span><span class="system-status">ready</span></div><div class="loop-map"><div class="loop-node"><span>BUILD</span><strong>Shipping product</strong><p>PR review, release review, continuous baseline.</p></div><div class="loop-node"><span>OPERATE</span><strong>Handling findings</strong><p>Intake, validation, ownership, fixes, retest.</p></div><div class="loop-node wide"><span>PROVE</span><strong>Answering external trust questions</strong><p>Customer reviews, audit evidence, vulnerability disclosure, product history.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>choose by outcome, not scanner category</span></div></div></div></section>
+  <section class="buyer-hero"><div class="container buyer-hero-grid"><div><div class="buyer-kicker">ZeroQuarry use cases</div><h1 class="buyer-title">Start with the moment security becomes <em>urgent.</em></h1><p class="buyer-lede">The right workflow depends on the decision: merge a risky PR, ship a release, answer a researcher, satisfy a customer, or build a credible program with a lean team.</p><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Discuss your workflow <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div></div>${renderMotionVisual("use-case-router")}</div></section>
   <section class="buyer-section soft"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Use-case library</div><h2>Six workflows buyers <em>recognize immediately.</em></h2></div><p class="section-intro">Each one combines the appropriate assessment surface, validation depth, human decision, remediation path, and evidence output.</p></div><div class="use-case-grid">${useCasePages.map((page, index) => `<a class="use-case-card" href="/use-cases/${page.slug}/"><div class="card-code">0${index + 1}</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}</div></div></section>
-  <section class="buyer-section"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Company stage</div><h2>The same loop, with <em>different depth.</em></h2></div><p class="section-intro">Company stage is only a proxy. Use the pattern that matches product exposure, customer pressure, change rate, and the cost of a miss.</p></div><div class="stage-table-wrap"><table class="stage-table"><thead><tr><th>Stage</th><th>Primary buyer concern</th><th>Starting workflow</th><th>What good looks like</th></tr></thead><tbody><tr><td>Seed</td><td>Do we know our critical product risk?</td><td>Source baseline and release review</td><td>Important findings have a decision and one fix has been retested.</td></tr><tr><td>Series A–B</td><td>Can security keep up with delivery?</td><td>PR review, schedules, issue routing</td><td>Security work moves through engineering without a separate manual program.</td></tr><tr><td>Series C–E</td><td>Can we execute consistently and prove it?</td><td>Lifecycle, adversarial review, evidence packs</td><td>Assets, decisions, remediation, exceptions, and retests are traceable.</td></tr></tbody></table></div></div></section>
+  <section class="buyer-section"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Company stage</div><h2>The same loop, with <em>different depth.</em></h2></div><p class="section-intro">Company stage is only a proxy. Use the pattern that matches product exposure, customer pressure, change rate, and the cost of a miss.</p></div><div class="stage-table-wrap"><table class="stage-table"><thead><tr><th>Stage</th><th>Primary buyer concern</th><th>Starting workflow</th><th>What good looks like</th></tr></thead><tbody><tr><td>Seed</td><td>Do we know our critical product risk?</td><td>Source baseline and release review</td><td>Important findings have a decision and one fix has been retested.</td></tr><tr><td>Series A to B</td><td>Can security keep up with delivery?</td><td>PR review, schedules, issue routing</td><td>Security work moves through engineering without a separate manual program.</td></tr><tr><td>Series C to E</td><td>Can we execute consistently and prove it?</td><td>Lifecycle, adversarial review, evidence packs</td><td>Assets, decisions, remediation, exceptions, and retests are traceable.</td></tr></tbody></table></div></div></section>
   ${renderCta("Which security moment is consuming the most time?", "Start there. ZeroQuarry can expand into the rest of the operating loop once one workflow is producing clear decisions and verified outcomes.")}
   </main>`;
   const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Use cases", href: "/use-cases/" }])];
@@ -797,22 +936,22 @@ function pricingPage() {
     { name: "Assessment coverage", rows: [
       ["Public and private source review", "Included", "Included", "Included", "Included", "Included"],
       ["Scheduled and pull-request review", "Included", "Included", "Included", "Included", "Included"],
-      ["Release artifact and binary review", "—", "Included", "Included", "Included", "Included"],
-      ["Authorized live-application testing", "—", "Included", "Included", "Included", "Included"],
+      ["Release artifact and binary review", "Not included", "Included", "Included", "Included", "Included"],
+      ["Authorized live-application testing", "Not included", "Included", "Included", "Included", "Included"],
       ["Proof generation and adversarial validation", "Included", "Included", "Included", "Included", "Included"],
     ] },
     { name: "Security operations", rows: [
       ["Patch proposals and finding retests", "Included", "Included", "Included", "Included", "Included"],
-      ["Jira issue creation", "—", "Included", "Included", "Included", "Included"],
-      ["ServiceNow issue creation", "—", "—", "Included", "Included", "Included"],
-      ["Inbound researcher-report email triage", "—", "—", "Included", "Included", "Included"],
-      ["GitHub autofix with human approval", "—", "—", "Included", "Included", "Included"],
+      ["Jira issue creation", "Not included", "Included", "Included", "Included", "Included"],
+      ["ServiceNow issue creation", "Not included", "Not included", "Included", "Included", "Included"],
+      ["Inbound researcher-report email triage", "Not included", "Not included", "Included", "Included", "Included"],
+      ["GitHub autofix with human approval", "Not included", "Not included", "Included", "Included", "Included"],
     ] },
     { name: "Evidence and rollout", rows: [
       ["Controlled evidence shares", "5", "25", "100", "500", "Custom"],
       ["Maximum share expiry", "30 days", "60 days", "180 days", "365 days", "Custom"],
-      ["Custom report branding", "—", "—", "Included", "Included", "Included"],
-      ["Workspace appearance controls", "—", "—", "—", "Included", "Included"],
+      ["Custom report branding", "Not included", "Not included", "Included", "Included", "Included"],
+      ["Workspace appearance controls", "Not included", "Not included", "Not included", "Included", "Included"],
       ["Rollout and procurement support", "Self-serve", "Standard", "Guided", "Priority", "Custom"],
     ] },
   ];
@@ -848,31 +987,31 @@ function pricingPage() {
   </div></section>
 
   <section class="pricing-section" id="plans"><div class="container">
-    <div class="section-head"><div><div class="tag">Public plans</div><h2>Land small. Expand when the <em>security work expands.</em></h2></div><div class="aside">Annual billing is exactly 20% less than monthly. Prices cover the account—not each seat—and model usage remains visible and separate.</div></div>
+    <div class="section-head"><div><div class="tag">Public plans</div><h2>Land small. Expand when the security work expands.</h2></div><div class="aside">Annual billing is exactly 20% less than monthly. Each price covers the account. Model usage remains visible and separate.</div></div>
     <input class="billing-choice" type="radio" name="billing-period" id="billing-annual" checked>
     <input class="billing-choice" type="radio" name="billing-period" id="billing-monthly">
     <div class="billing-toggle" role="group" aria-label="Billing period"><label for="billing-annual">Annual <strong>save 20%</strong></label><label for="billing-monthly">Monthly</label></div>
     <div class="pricing-grid">
       <article class="price-card"><div class="plan-kicker">Build securely</div><h2>Developer</h2><p class="plan-audience">For a founder or security-minded engineer adding independent review to one private product.</p><div class="price-row"><span class="price annual-price">$40</span><span class="price monthly-price">$50</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$480 billed yearly · save $120</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Choose Developer</a><ul class="plan-list"><li><span></span>1 private product</li><li><span></span>10 security runs each month</li><li><span></span>3 collaborators</li><li><span></span>Source, scheduled, and PR review</li><li><span></span>Adversarial validation and patch proposals</li><li><span></span>5 controlled evidence shares</li></ul></article>
       <article class="price-card featured"><div class="plan-ribbon">Startup default</div><div class="plan-kicker">Establish coverage</div><h2>Startup</h2><p class="plan-audience">For a seed or Series A team covering the product it ships without starting a security procurement cycle.</p><div class="price-row"><span class="price annual-price">$160</span><span class="price monthly-price">$200</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$1,920 billed yearly · save $480</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-primary plan-btn" href="/request-scan/">Choose Startup <span class="arr">-&gt;</span></a><ul class="plan-list"><li><span></span>1 protected product</li><li><span></span>50 security runs each month</li><li><span></span>15 collaborators, 3 concurrent assessments</li><li><span></span>Source, binary, and authorized live testing</li><li><span></span>Jira routing, patches, and retests</li><li><span></span>25 controlled evidence shares</li></ul></article>
-      <article class="price-card"><div class="plan-kicker">Operate continuously</div><h2>Growth</h2><p class="plan-audience">For Series A–C teams moving recurring review, inbound reports, and remediation through engineering.</p><div class="price-row"><span class="price annual-price">$400</span><span class="price monthly-price">$500</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$4,800 billed yearly · save $1,200</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Choose Growth</a><ul class="plan-list"><li><span></span>5 protected products</li><li><span></span>200 security runs each month</li><li><span></span>50 collaborators, 8 concurrent assessments</li><li><span></span>Inbound report triage and GitHub autofix</li><li><span></span>Jira, ServiceNow, and custom reports</li><li><span></span>100 controlled evidence shares</li></ul></article>
-      <article class="price-card"><div class="plan-kicker">Standardize</div><h2>Scale</h2><p class="plan-audience">For Series C–E companies coordinating security operations across a growing product portfolio.</p><div class="price-row"><span class="price annual-price">$800</span><span class="price monthly-price">$1,000</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$9,600 billed yearly · save $2,400</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Choose Scale</a><ul class="plan-list"><li><span></span>15 protected products</li><li><span></span>600 security runs each month</li><li><span></span>150 collaborators, 20 concurrent assessments</li><li><span></span>Portfolio-wide triage, autofix, and reporting</li><li><span></span>Workspace appearance and priority rollout</li><li><span></span>500 controlled shares, up to 365 days</li></ul></article>
+      <article class="price-card"><div class="plan-kicker">Operate continuously</div><h2>Growth</h2><p class="plan-audience">For Series A to C teams moving recurring review, inbound reports, and remediation through engineering.</p><div class="price-row"><span class="price annual-price">$400</span><span class="price monthly-price">$500</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$4,800 billed yearly · save $1,200</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Choose Growth</a><ul class="plan-list"><li><span></span>5 protected products</li><li><span></span>200 security runs each month</li><li><span></span>50 collaborators, 8 concurrent assessments</li><li><span></span>Inbound report triage and GitHub autofix</li><li><span></span>Jira, ServiceNow, and custom reports</li><li><span></span>100 controlled evidence shares</li></ul></article>
+      <article class="price-card"><div class="plan-kicker">Standardize</div><h2>Scale</h2><p class="plan-audience">For Series C to E companies coordinating security operations across a growing product portfolio.</p><div class="price-row"><span class="price annual-price">$800</span><span class="price monthly-price">$1,000</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$9,600 billed yearly · save $2,400</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="/request-scan/">Choose Scale</a><ul class="plan-list"><li><span></span>15 protected products</li><li><span></span>600 security runs each month</li><li><span></span>150 collaborators, 20 concurrent assessments</li><li><span></span>Portfolio-wide triage, autofix, and reporting</li><li><span></span>Workspace appearance and priority rollout</li><li><span></span>500 controlled shares, up to 365 days</li></ul></article>
     </div>
-    <div class="enterprise-strip"><div><span class="plan-kicker">Enterprise</span><h3>Need custom capacity, assurance, or deployment review?</h3><p>Custom products, runs, controls, storage, procurement, and rollout terms—without forcing smaller customers into enterprise packaging.</p></div><a class="btn btn-ghost" href="/request-scan/">Design Enterprise</a></div>
+    <div class="enterprise-strip"><div><span class="plan-kicker">Enterprise</span><h3>Need custom capacity, assurance, or deployment review?</h3><p>Custom products, runs, controls, storage, procurement, and rollout terms are available when the standard plans no longer fit.</p></div><a class="btn btn-ghost" href="/request-scan/">Design Enterprise</a></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">The difference</div><h2>A coding agent produces code. ZeroQuarry <em>holds security accountable.</em></h2></div><div class="aside">The pricing is intentionally comparable to developer AI. The job is not. ZeroQuarry maintains an independent product-security record from first test through external evidence.</div></div>
-    <div class="included-grid"><div class="included-item"><div class="included-code">TEST</div><h3>Find what ships</h3><p>Review source, release artifacts, binaries, and authorized live behavior—not only the file currently open in an editor.</p></div><div class="included-item"><div class="included-code">CHALLENGE</div><h3>Pressure-test claims</h3><p>Separate discovery from skeptical review, proof, confidence, and explicit human risk decisions.</p></div><div class="included-item"><div class="included-code">REMEDIATE</div><h3>Carry the outcome</h3><p>Generate controlled patches, route ownership, preserve approvals, and verify the actual fix.</p></div><div class="included-item"><div class="included-code">PROVE</div><h3>Answer outsiders</h3><p>Turn the same operating history into reports and controlled evidence for customers, auditors, and leadership.</p></div></div>
+    <div class="included-grid"><div class="included-item"><div class="included-code">TEST</div><h3>Find what ships</h3><p>Review source, release artifacts, binaries, and authorized live behavior across the product boundary.</p></div><div class="included-item"><div class="included-code">CHALLENGE</div><h3>Pressure-test claims</h3><p>Separate discovery from skeptical review, proof, confidence, and explicit human risk decisions.</p></div><div class="included-item"><div class="included-code">REMEDIATE</div><h3>Carry the outcome</h3><p>Generate controlled patches, route ownership, preserve approvals, and verify the actual fix.</p></div><div class="included-item"><div class="included-code">PROVE</div><h3>Answer outsiders</h3><p>Turn the same operating history into reports and controlled evidence for customers, auditors, and leadership.</p></div></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
-    <div class="section-head"><div><div class="tag">Compare plans</div><h2>The whole package, <em>line by line.</em></h2></div><div class="aside">No plan withholds the core analysis loop. Packaging expands operating scale and automation where the value—and the coordination burden—actually grows.</div></div>
+    <div class="section-head"><div><div class="tag">Compare plans</div><h2>The whole package, line by line.</h2></div><div class="aside">Every paid plan includes the core analysis loop. Higher plans add operating scale, automation, and coordination capacity.</div></div>
     <div class="compare-wrap"><table class="compare-table plan-comparison"><thead><tr><th>Capability</th><th>Developer</th><th>Startup</th><th>Growth</th><th>Scale</th><th>Enterprise</th></tr></thead><tbody>${comparisonGroups.map(group => `<tr class="compare-group"><th colspan="6">${group.name}</th></tr>${group.rows.map(([feature, developer, startup, growth, scale, enterprise]) => `<tr><th scope="row">${feature}</th><td>${developer}</td><td>${startup}</td><td>${growth}</td><td>${scale}</td><td>${enterprise}</td></tr>`).join("")}`).join("")}</tbody></table></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
-    <div class="section-head"><div><div class="tag">Add capacity</div><h2>Expand the constraint you <em>actually hit.</em></h2></div><div class="aside">Add-ons support temporary launch, diligence, or portfolio pressure without forcing an immediate repackage. Persistent overage is a signal that the next plan will be more economical.</div></div>
+    <div class="section-head"><div><div class="tag">Add capacity</div><h2>Expand the constraint you actually hit.</h2></div><div class="aside">Add-ons support temporary launch, diligence, or portfolio pressure without forcing an immediate repackage. Persistent overage is a signal that the next plan will be more economical.</div></div>
     <div class="pricing-addon-grid"><article><span>Product coverage</span><h3>+$80 / month</h3><p>One additional protected product on annual billing; $100 when billed monthly.</p></article><article><span>Assessment capacity</span><h3>+$40 / month</h3><p>Twenty-five additional security runs on annual billing; $50 when billed monthly.</p></article><article><span>Guided baseline</span><h3>$1,000 once</h3><p>Scope, onboarding, first baseline assessment, and a working session around the resulting operating plan.</p></article></div>
   </div></section>
 
@@ -883,7 +1022,7 @@ function pricingPage() {
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
-    <div class="section-head"><div><div class="tag">Pricing FAQ</div><h2>Questions a serious buyer <em>should ask.</em></h2></div><div class="aside">The aim is a predictable commercial model with honest boundaries—not an artificially simple number that becomes surprising in production.</div></div>
+    <div class="section-head"><div><div class="tag">Pricing FAQ</div><h2>Questions that come up before purchase.</h2></div><div class="aside">The commercial model should stay predictable, including the limits and usage charges that affect a production rollout.</div></div>
     <div class="faq-list">${faqs.map(([question, answer]) => `<details><summary>${question}</summary><p>${answer}</p></details>`).join("")}</div>
   </div></section>
   ${renderCta("Start with the product you are shipping now.", "Use the permanent free plan on public source, or cover one private product from $40 per month with annual billing. Expand only when the security operation expands.")}

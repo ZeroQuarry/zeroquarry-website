@@ -707,11 +707,12 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
 }
 .plan-ribbon {
   position: absolute;
-  top: 16px;
+  top: -11px;
   right: 16px;
   padding: 4px 7px;
+  border: 1px solid rgba(244,30,34,0.34);
   border-radius: 4px;
-  background: rgba(244,30,34,0.14);
+  background: #28101b;
   color: var(--red);
   font-family: var(--mono);
   font-size: 9.5px;

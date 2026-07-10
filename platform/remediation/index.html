@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/marketing.css" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="/index.js" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Vulnerability remediation","item":"https://zeroquarry.com/platform/remediation/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does ZeroQuarry auto-merge security fixes?","acceptedAnswer":{"@type":"Answer","text":"No. ZeroQuarryBot opens pull requests; your repository’s reviewers, CI, branch protection, and merge policy remain in control."}},{"@type":"Question","name":"Do we have to install the GitHub App to get a patch?","acceptedAnswer":{"@type":"Answer","text":"No. Patch generation can produce a downloadable or revisable diff without repository write access. The GitHub App is only needed for the pull-request workflow."}},{"@type":"Question","name":"How do we stop the bot quickly?","acceptedAnswer":{"@type":"Answer","text":"An account-wide kill switch stops all pushes, and each repository has its own kill switch. Repository enrollment and GitHub App access add separate permission gates."}}]}</script>
 </head>
@@ -91,23 +92,32 @@
         <div>
           <div class="buyer-kicker">Vulnerability remediation</div>
           <h1 class="buyer-title detail-title">Close the distance between <em>evidence and a reviewed fix.</em></h1>
-          <p class="buyer-lede">Generate focused diffs, stage audited auto-fix proposals, open pull requests through ZeroQuarryBot, or hand findings into the team’s ticketing system—then retest in the same lineage.</p>
+          <p class="buyer-lede">Generate focused diffs, stage audited auto-fix proposals, open pull requests through ZeroQuarryBot, or hand findings into the team’s ticketing system. Retest the result in the same lineage.</p>
           <div class="buyer-actions">
             <a class="btn btn-primary" href="/request-scan/">See it on your product <span class="arr">-&gt;</span></a>
             <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
           </div>
           <div class="buyer-proofline"><span>Generated patch revisions</span><span>Approval-gated GitHub PRs</span><span>Focused retesting</span></div>
         </div>
-        <figure class="product-frame hero-image">
-          <img src="/assets/product/github-autofix.png" alt="ZeroQuarryBot installation and kill-switch controls for auto-fix pull requests" width="1440" height="1000" loading="eager">
-        </figure>
+        <div class="motion-system motion-remediation" role="img" aria-label="Animated remediation flow from a validated finding through a controlled patch, review, and retest">
+    <div class="motion-head"><span>remediation://controlled-change</span><span class="motion-live">processing</span></div>
+    <div class="motion-canvas">
+      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>FINDING</span><strong>ZQ-2042</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>POLICY</span><strong>deny-list and diff cap</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>REPO</span><strong>enrolled branch</strong></div></div>
+      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-core"><small>ZEROQUARRY</small><strong>Patch staging and retest</strong><span>Generate the change without taking merge authority</span><b>active</b></div>
+      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>PATCH</span><strong>+12 / -3 lines</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>REVIEW</span><strong>human approval</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>RETEST</span><strong>verified</strong></div></div>
+    </div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>repository access, approval, CI, and merge controls remain yours</span></div>
+  </div>
       </div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">What the platform changes</div><h2>A patch is a proposal. The workflow makes that <em>explicit.</em></h2></div><p class="section-intro">Security automation should reduce translation work without silently approving production changes. ZeroQuarry separates generation, repository permission, operator approval, CI, and merge.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>A patch is a proposal. The workflow makes that <em>explicit.</em></h2></div><p class="section-intro">Security automation should reduce translation work without silently approving production changes. ZeroQuarry separates generation, repository permission, operator approval, CI, and merge.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
     <h3>Generated patch revisions</h3>
@@ -143,7 +153,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Operating workflow</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination while keeping authorization, product context, risk ownership, and production change authority explicit.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Validate</h3>
@@ -169,7 +179,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Buyer outcomes</div><h2>What this changes for the <em>team.</em></h2></div><p class="section-intro">The value is not scan volume. It is better coverage, faster decisions, cleaner remediation, and evidence that survives the next question.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
       <div class="outcome-grid"><article class="outcome-card"><h3>Engineer-ready work</h3><p>Reduce the manual translation from vulnerability narrative to code path, reproduction, and candidate change.</p></article>
 <article class="outcome-card"><h3>Controlled automation</h3><p>Get the speed of generated fixes while preserving explicit repository gates and human merge authority.</p></article>
 <article class="outcome-card"><h3>Verified closure</h3><p>Differentiate “a fix was merged” from “the security risk was actually retested.”</p></article></div>
@@ -178,7 +188,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Questions buyers ask</div><h2>Practical answers before <em>evaluation.</em></h2></div><p class="section-intro">ZeroQuarry is designed to increase security capacity without hiding the human control points that matter.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
       <div class="faq-list"><details>
     <summary>Does ZeroQuarry auto-merge security fixes?</summary>
     <p>No. ZeroQuarryBot opens pull requests; your repository’s reviewers, CI, branch protection, and merge policy remain in control.</p>
@@ -215,7 +225,7 @@
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision—not just another scanner output.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give us one real security boundary.</h2><p>We’ll use your product context to show how ZeroQuarry investigates, validates, and turns the result into an operating decision. The evaluation follows the result through review and decision.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Request a working session</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">
