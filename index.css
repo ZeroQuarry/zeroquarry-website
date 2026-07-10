@@ -146,8 +146,14 @@ h1.headline {
   line-height: 0.98; letter-spacing: -0.02em;
   margin: 22px 0 22px;
   color: var(--ink);
+  text-wrap: balance;
 }
-h1.headline em { font-style: italic; color: var(--red); }
+h1.headline em {
+  color: var(--red);
+  font-style: normal;
+  letter-spacing: -0.005em;
+  word-spacing: 0.045em;
+}
 h1.headline .block { display: block; }
 h1.headline .thin { color: var(--ink-2); }
 
@@ -161,7 +167,7 @@ h1.headline .thin { color: var(--ink-2); }
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 560px;
 }
 .trust-row .num { font-family: var(--serif); font-size: 32px; letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
-.trust-row .num em { font-style: italic; color: var(--red); }
+.trust-row .num em { font-style: normal; color: var(--red); }
 .trust-row .lbl { font-family: var(--mono); font-size: 10.5px; color: var(--mute); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 8px; }
 
 /* -------- agent console (hero right) -------- */
@@ -269,8 +275,14 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   font-size: clamp(40px, 4.4vw, 64px);
   line-height: 1.02; letter-spacing: -0.02em;
   margin: 0; max-width: 720px;
+  text-wrap: balance;
 }
-.section-head h2 em { font-style: italic; color: var(--red); }
+.section-head h2 em {
+  color: var(--red);
+  font-style: normal;
+  letter-spacing: -0.005em;
+  word-spacing: 0.045em;
+}
 .section-head .aside {
   max-width: 340px; color: var(--ink-2); font-size: 15px; padding-bottom: 8px;
 }
@@ -392,7 +404,7 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
 .team .team-eye .id { font-family: var(--mono); color: var(--mute); letter-spacing: 0.15em; }
 
 .team h3 { font-family: var(--serif); font-weight: 400; font-size: 32px; letter-spacing: -0.015em; line-height: 1.05; margin: 0 0 12px; }
-.team h3 em { font-style: italic; }
+.team h3 em { font-style: normal; }
 .team.red h3 em { color: var(--red); }
 .team.blue h3 em { color: var(--blue); }
 .team p { color: var(--ink-2); margin: 0 0 20px; font-size: 14.5px; }
@@ -517,9 +529,9 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1.1;
   margin: 0 0 8px; letter-spacing: -0.015em;
 }
-.report-body h4 em { font-style: italic; color: var(--red); }
+.report-body h4 em { font-style: normal; color: var(--red); }
 .report-body .sum { color: var(--ink-2); margin: 0 0 20px; font-size: 14px; }
-.report-body .sum em { font-style: italic; color: var(--red); }
+.report-body .sum em { font-style: normal; color: var(--red); font-weight: 600; }
 .cvss {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
   border-top: 1px dashed var(--line-2); border-bottom: 1px dashed var(--line-2);
@@ -527,7 +539,7 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
 }
 .cvss .k { font-family: var(--mono); font-size: 10px; color: var(--mute); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; }
 .cvss .v { font-family: var(--serif); font-size: 28px; line-height: 1; color: var(--ink); letter-spacing: -0.02em; }
-.cvss .v em { font-style: italic; color: var(--red); }
+.cvss .v em { font-style: normal; color: var(--red); }
 .cvss .v.small { font-size: 15px; font-family: var(--mono); font-weight: 500; }
 
 .diff {
@@ -584,8 +596,14 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   font-size: clamp(36px, 4vw, 56px);
   letter-spacing: -0.02em; line-height: 1.05;
   margin: 0 0 16px; max-width: 640px;
+  text-wrap: balance;
 }
-.cta-banner h2 em { font-style: italic; color: var(--red); }
+.cta-banner h2 em {
+  color: var(--red);
+  font-style: normal;
+  letter-spacing: -0.005em;
+  word-spacing: 0.045em;
+}
 .cta-banner p { color: var(--ink-2); margin: 0 0 32px; font-size: 17px; max-width: 560px; }
 .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .cta-note { margin-top: 20px; font-family: var(--mono); font-size: 11px; color: var(--mute); letter-spacing: 0.05em; }
@@ -2073,7 +2091,7 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   color: var(--ink);
   text-align: center;
 }
-.thesis-out em { font-style: italic; color: var(--red); }
+.thesis-out em { font-style: normal; color: var(--red); word-spacing: 0.035em; }
 
 /* Founder card (team section) */
 .founder-card {
@@ -2127,7 +2145,7 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   font-size: 36px; line-height: 1.02; letter-spacing: -0.015em;
   margin: 0 0 6px;
 }
-.founder-name em { font-style: italic; color: var(--red); }
+.founder-name em { font-style: normal; color: var(--red); }
 .founder-title {
   font-family: var(--mono); font-size: 11px;
   letter-spacing: 0.15em; text-transform: uppercase;

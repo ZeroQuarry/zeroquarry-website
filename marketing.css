@@ -228,12 +228,16 @@
   font-weight: 300;
   letter-spacing: -0.065em;
   line-height: 0.94;
+  text-wrap: balance;
 }
 
 .buyer-title em {
   color: var(--red);
   font-family: var(--serif);
+  font-style: normal;
   font-weight: 400;
+  letter-spacing: -0.012em;
+  word-spacing: 0.055em;
 }
 
 .detail-title {
@@ -747,12 +751,16 @@
   font-weight: 300;
   letter-spacing: -0.05em;
   line-height: 1;
+  text-wrap: balance;
 }
 
 .buyer-section h2 em {
   color: var(--red);
   font-family: var(--serif);
+  font-style: normal;
   font-weight: 400;
+  letter-spacing: -0.01em;
+  word-spacing: 0.045em;
 }
 
 .section-intro {
