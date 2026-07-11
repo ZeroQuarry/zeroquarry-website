@@ -49,6 +49,17 @@
   position: relative;
 }
 
+/* Keep the pointer inside the cluster while it crosses the small visual gap
+   between the trigger and flyout. */
+.nav-cluster::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: 12px;
+}
+
 .nav-cluster > summary::-webkit-details-marker {
   display: none;
 }
@@ -69,9 +80,9 @@
   position: absolute;
   top: calc(100% + 10px);
   left: 50%;
-  width: min(760px, calc(100vw - 40px));
+  width: min(900px, calc(100vw - 40px));
   display: grid;
-  grid-template-columns: 0.82fr 1.7fr;
+  grid-template-columns: 240px minmax(0, 1fr);
   gap: 18px;
   padding: 16px;
   transform: translateX(-42%);
@@ -96,7 +107,9 @@
 }
 
 .nav-mega-intro {
-  min-width: 0;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
   padding: 18px;
   border-radius: 9px;
   background:
@@ -128,18 +141,21 @@
 }
 
 .nav-mega-intro a {
+  margin-top: auto;
   color: var(--ink);
   font-family: var(--mono);
   font-size: 11px;
 }
 
 .nav-mega-links {
+  min-width: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
 }
 
 .nav-mega-links a {
+  min-width: 0;
   display: grid;
   gap: 5px;
   padding: 11px 12px;
@@ -1562,6 +1578,10 @@
 
   .nav-mega {
     grid-template-columns: 1fr;
+  }
+
+  .nav-mega-intro {
+    min-width: 0;
   }
 
   .nav-mega-links,

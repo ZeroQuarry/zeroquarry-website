@@ -51,3 +51,60 @@
 
   run();
 })();
+
+// Desktop navigation flyouts open on hover and close when the pointer leaves.
+// Touch and keyboard users keep the native <details> interaction.
+(function () {
+  const clusters = Array.from(document.querySelectorAll(".nav-cluster"));
+  if (!clusters.length) return;
+
+  const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const closeOthers = (active) => {
+    clusters.forEach((cluster) => {
+      if (cluster !== active) cluster.removeAttribute("open");
+    });
+  };
+
+  clusters.forEach((cluster) => {
+    const summary = cluster.querySelector(":scope > summary");
+    let closeTimer = 0;
+    const cancelClose = () => window.clearTimeout(closeTimer);
+    const open = () => {
+      if (!desktopPointer.matches) return;
+      cancelClose();
+      closeOthers(cluster);
+      cluster.setAttribute("open", "");
+    };
+    const close = () => {
+      if (!desktopPointer.matches) return;
+      cancelClose();
+      closeTimer = window.setTimeout(() => {
+        if (!cluster.matches(":hover") && !cluster.contains(document.activeElement)) {
+          cluster.removeAttribute("open");
+        }
+      }, 90);
+    };
+
+    cluster.addEventListener("mouseenter", open);
+    cluster.addEventListener("mouseleave", close);
+    cluster.addEventListener("focusin", open);
+    cluster.addEventListener("focusout", close);
+    cluster.addEventListener("toggle", () => {
+      if (cluster.open) closeOthers(cluster);
+    });
+    summary.addEventListener("click", (event) => {
+      if (!desktopPointer.matches) return;
+      event.preventDefault();
+      open();
+      summary.blur();
+    });
+    summary.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape") return;
+      cluster.removeAttribute("open");
+      summary.focus();
+    });
+  });
+
+  const resetFlyouts = () => clusters.forEach((cluster) => cluster.removeAttribute("open"));
+  if (desktopPointer.addEventListener) desktopPointer.addEventListener("change", resetFlyouts);
+})();
