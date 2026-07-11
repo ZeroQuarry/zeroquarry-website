@@ -26,7 +26,7 @@ const rootFiles = [
   "styles.css",
   "terms.html",
 ];
-const directories = ["assets", "platform", "request-scan", "research", "use-cases"];
+const directories = ["assets", "open-source", "platform", "request-scan", "research", "use-cases"];
 
 fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(client, { recursive: true });

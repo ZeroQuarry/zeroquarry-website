@@ -278,7 +278,7 @@ function renderPost(post) {
           <h1>${escapeHtml(post.data.title)}</h1>
           <p class="article-dek">${escapeHtml(post.data.description)}</p>
           <div class="article-actions">
-            <a class="btn btn-primary" href="../../request-scan/">Request a working session <span class="arr">-&gt;</span></a>
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
           </div>
         </div>
 
@@ -526,11 +526,11 @@ function renderIndex(posts) {
   <section class="section">
     <div class="container">
       <div class="cta-banner">
-        <div class="tag">Working session</div>
+        <div class="tag">Try ZeroQuarry</div>
         <h2>Have a product surface that looks like this?</h2>
-        <p>Bring a repository, release artifact, authorized target, or current security workflow. We will map how ZeroQuarry can investigate it and carry the outcome through validation, remediation, retesting, and evidence.</p>
+        <p>Use a 14-day trial to investigate a real repository, release artifact, or authorized target and follow the result through validation, remediation, retesting, and evidence.</p>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="../request-scan/">Request a working session <span class="arr">-&gt;</span></a>
+          <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
           <a class="btn btn-ghost" href="../platform/evidence-reporting/">See evidence and reporting</a>
         </div>
       </div>

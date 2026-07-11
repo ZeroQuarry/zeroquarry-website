@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1440" viewBox="0 0 2560 1440">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#f41e22" stroke-opacity="0.09" stroke-width="2"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f41e22" stop-opacity="0.22"/>
+      <stop offset="0.45" stop-color="#f41e22" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#05090f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="redline" x1="0" x2="1">
+      <stop offset="0" stop-color="#f41e22" stop-opacity="0"/>
+      <stop offset="0.2" stop-color="#f41e22" stop-opacity="0.85"/>
+      <stop offset="0.8" stop-color="#f41e22" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#f41e22" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="2560" height="1440" fill="#05090f"/>
+  <rect width="2560" height="1440" fill="url(#grid)"/>
+  <ellipse cx="1280" cy="720" rx="920" ry="610" fill="url(#glow)"/>
+
+  <g fill="none" stroke="#f41e22" stroke-opacity="0.22">
+    <circle cx="1280" cy="720" r="480" stroke-width="2"/>
+    <circle cx="1280" cy="720" r="555" stroke-width="1.5"/>
+    <circle cx="1280" cy="720" r="630" stroke-width="1"/>
+  </g>
+
+  <rect x="360" y="246" width="1840" height="2" fill="url(#redline)"/>
+  <rect x="360" y="1192" width="1840" height="2" fill="url(#redline)"/>
+
+  <!-- All important content stays inside YouTube's centered all-device safe area. -->
+  <image href="../wordmark.png" x="580" y="535" width="1400" height="233" preserveAspectRatio="xMidYMid meet"/>
+  <text x="1280" y="845" text-anchor="middle" fill="#eef2f9" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" letter-spacing="8">CONTINUOUS AI SECURITY TESTING</text>
+  <text x="1280" y="905" text-anchor="middle" fill="#aebbd0" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="5">SOURCE CODE  •  SHIPPED BINARIES  •  LIVE APPLICATIONS</text>
+</svg>

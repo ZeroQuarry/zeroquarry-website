@@ -39,7 +39,7 @@ On Windows, that launches Calculator. The point is not Calculator. The point is 
 
 We reported the issue to the plugin maintainer on April 17, 2026. The maintainer asked to meet immediately, joined a Zoom call, and was consistently responsive. On May 8, 2026, the maintainer released Tasks 8.0.0, a new major version that disables JavaScript execution in Tasks queries by default and requires users to explicitly enable it.
 
-[Request a private ZeroQuarry scan](/request-scan/)
+[Protect an open-source project free](https://zeroquarry.com/open-source/)
 
 ## Why this matters
 
@@ -82,7 +82,7 @@ The maintainer was responsive and thoughtful. The fix shipped in Tasks 8.0.0 cha
 
 This is often what real product security looks like. The answer is not always "delete the feature." Sometimes the right answer is to change the default, add friction, expose the risk, and give users or administrators control.
 
-[Request a private ZeroQuarry scan](/request-scan/)
+[Protect an open-source project free](https://zeroquarry.com/open-source/)
 
 ## What we are not disclosing
 
@@ -128,4 +128,4 @@ Right now, ZeroQuarry is free for open source projects. We want maintainers to f
 
 If your open source project or product supports plugins, extensions, Markdown, templates, local execution, AI-authored workflows, or complex user-generated content, ZeroQuarry can help you understand where serious vulnerabilities may exist.
 
-[Request a private ZeroQuarry scan](/request-scan/)
+[Start a free ZeroQuarry trial](https://console.zeroquarry.com/register)

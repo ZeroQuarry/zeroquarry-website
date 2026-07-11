@@ -67,6 +67,7 @@
             <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
+            <a href="/open-source/"><strong>Open source maintainers</strong><span>Validate noisy reports and keep the response work together</span></a>
             <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
             <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
             <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
@@ -81,8 +82,8 @@
       <a href="https://docs.zeroquarry.com">Docs</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost" href="/request-scan/">Talk to us</a>
-      <a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a>
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
     </div>
   </div>
 </header>
@@ -102,7 +103,7 @@
           <h1>RCE via Markdown in the Obsidian Tasks Plugin</h1>
           <p class="article-dek">ZeroQuarry identified a critical RCE path in the Obsidian Tasks plugin and coordinated responsible disclosure with Obsidian and the maintainer. This writeup explains the impact, disclosure process, and product-security tradeoff.</p>
           <div class="article-actions">
-            <a class="btn btn-primary" href="../../request-scan/">Request a working session <span class="arr">-&gt;</span></a>
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
           </div>
         </div>
 
@@ -154,7 +155,7 @@
 filter by function require(&#39;child_process&#39;).execSync(&#39;calc&#39;) || true</code></pre>
 <p>On Windows, that launches Calculator. The point is not Calculator. The point is that a Markdown document, normally treated as content, could become an execution path inside a popular local application.</p>
 <p>We reported the issue to the plugin maintainer on April 17, 2026. The maintainer asked to meet immediately, joined a Zoom call, and was consistently responsive. On May 8, 2026, the maintainer released Tasks 8.0.0, a new major version that disables JavaScript execution in Tasks queries by default and requires users to explicitly enable it.</p>
-<p><a href="/request-scan/">Request a private ZeroQuarry scan</a></p>
+<p><a href="https://zeroquarry.com/open-source/">Protect an open-source project free</a></p>
 <h2 id="why-this-matters">Why this matters</h2>
 <p>Plugin ecosystems are becoming serious attack surfaces.</p>
 <p>Modern applications increasingly allow users to install plugins, render Markdown, sync user-generated content, run extensions, invoke local behavior, and customize workflows. Those features are powerful. They also blur trust boundaries.</p>
@@ -180,7 +181,7 @@ filter by function require(&#39;child_process&#39;).execSync(&#39;calc&#39;) || 
 <p>The deeper platform issue is that Obsidian plugins are not strongly sandboxed from the local environment, and plugin authors do not have a simple, universal way to sandbox arbitrary JavaScript safely. As a result, &quot;advanced developer functionality&quot; can appear in plugins in ways that are useful and inherently dangerous at the same time.</p>
 <p>The maintainer was responsive and thoughtful. The fix shipped in Tasks 8.0.0 changes the default: Tasks instructions that require arbitrary user-supplied JavaScript now refuse to run unless the user explicitly enables JavaScript execution for that vault and machine.</p>
 <p>This is often what real product security looks like. The answer is not always &quot;delete the feature.&quot; Sometimes the right answer is to change the default, add friction, expose the risk, and give users or administrators control.</p>
-<p><a href="/request-scan/">Request a private ZeroQuarry scan</a></p>
+<p><a href="https://zeroquarry.com/open-source/">Protect an open-source project free</a></p>
 <h2 id="what-we-are-not-disclosing">What we are not disclosing</h2>
 <p>We are not publishing:</p>
 <ul>
@@ -214,7 +215,7 @@ filter by function require(&#39;child_process&#39;).execSync(&#39;calc&#39;) || 
 </ul>
 <h2 id="request-a-private-scan">Request a private scan</h2>
 <p>If your open source project or product supports plugins, extensions, Markdown, templates, local execution, AI-authored workflows, or complex user-generated content, ZeroQuarry can help you understand where serious vulnerabilities may exist.</p>
-<p><a href="/request-scan/">Request a private ZeroQuarry scan</a></p>
+<p><a href="https://console.zeroquarry.com/register">Start a free ZeroQuarry trial</a></p>
       </div>
     </div>
   </article>
@@ -228,7 +229,7 @@ filter by function require(&#39;child_process&#39;).execSync(&#39;calc&#39;) || 
           <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
         </a>
         <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
-        <a class="foot-cta" href="https://console.zeroquarry.com">Start free <span aria-hidden="true">-&gt;</span></a>
+        <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
       </div>
       <div class="foot-col legal">
         <h5>Platform</h5>
@@ -242,6 +243,7 @@ filter by function require(&#39;child_process&#39;).execSync(&#39;calc&#39;) || 
       </div>
       <div class="foot-col legal">
         <h5>Use cases</h5>
+        <a href="/open-source/">Open source maintainers</a>
         <a href="/use-cases/startup-security/">Security for growing companies</a>
         <a href="/use-cases/pr-security-review/">Pull request security review</a>
         <a href="/use-cases/release-security-review/">Release security review</a>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free AI Security Review for Open Source Maintainers | ZeroQuarry</title>
+<meta name="description" content="Free open source security review and vulnerability report triage for eligible maintainers. Validate scanner claims, track decisions, retest fixes, and share evidence." />
+<link rel="canonical" href="https://zeroquarry.com/open-source/" />
+<meta property="og:title" content="Free AI Security Review for Open Source Maintainers | ZeroQuarry" />
+<meta property="og:description" content="Free open source security review and vulnerability report triage for eligible maintainers. Validate scanner claims, track decisions, retest fixes, and share evidence." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/open-source/" />
+<meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css" />
+<link rel="stylesheet" href="/marketing.css" />
+<link rel="stylesheet" href="/cookie-consent.css" />
+<script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="/index.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Open source maintainers","item":"https://zeroquarry.com/open-source/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is included in the free trial?","acceptedAnswer":{"@type":"Answer","text":"The 14-day trial covers one private product, 25 security runs, three collaborators, source and pull-request review, release artifacts, authorized live testing, report intake, validation, patch proposals, retests, and controlled evidence. No card is required to begin."}},{"@type":"Question","name":"How does free for open source work?","acceptedAnswer":{"@type":"Answer","text":"Eligible maintainers receive an ongoing account for one public GitHub project with five monthly security runs, one maintainer, bounded report intake, validation, tracking, and three controlled evidence shares. The project must remain public and use an OSI-approved license."}},{"@type":"Question","name":"How do we move from the trial to a paid plan?","acceptedAnswer":{"@type":"Answer","text":"Choose the package and billing period that fit your expected capacity, then contact ZeroQuarry to activate it. Paid-plan activation is currently assisted while self-service subscription checkout is being completed."}},{"@type":"Question","name":"Which projects qualify?","acceptedAnswer":{"@type":"Answer","text":"The program is for public GitHub projects under an OSI-approved license. You must be a current maintainer or otherwise authorized to manage security work for the project."}},{"@type":"Question","name":"Is the account really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. There is no card and no fixed expiration while the project remains public, licensed, and eligible. The account stays within the published project, user, and monthly run limits."}},{"@type":"Question","name":"Can anyone scan a public repository?","acceptedAnswer":{"@type":"Answer","text":"The program is intended for maintainers, not third parties creating unofficial security workspaces. Eligibility is self-attested during registration and ZeroQuarry may review the project and maintainer relationship."}},{"@type":"Question","name":"Can ZeroQuarry receive reports sent to our existing security address?","acceptedAnswer":{"@type":"Answer","text":"Yes. A maintainer can forward reports from an approved sender into the project's bounded intake address. The project controls which senders and public repositories may start assessment work."}},{"@type":"Question","name":"What happens if we need private forks or more capacity?","acceptedAnswer":{"@type":"Answer","text":"Private source, multiple products, live testing, more collaborators, and higher monthly capacity are available on commercial plans. The public project can remain on the open-source program while private company work moves to a paid account."}}]}</script>
+</head>
+<body>
+<div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster">
+        <summary>Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster">
+        <summary aria-current="page">Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/open-source/"><strong>Open source maintainers</strong><span>Validate noisy reports and keep the response work together</span></a>
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
+    </div>
+  </div>
+</header>
+<main class="marketing-main">
+  <section class="buyer-hero detail-hero"><div class="container"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><span>Open source maintainers</span></nav><div class="buyer-hero-grid"><div><div class="buyer-kicker">Free for open source</div><h1 class="buyer-title detail-title">Your project is open. Your security inbox should not be a <em>full-time job.</em></h1><p class="buyer-lede">Forward a vulnerability report from your maintainer inbox. ZeroQuarry checks the claim against the public repository, challenges weak evidence, and keeps the decision and follow-up in one place.</p><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Protect an open-source project free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#eligibility">Check eligibility</a></div><div class="buyer-proofline"><span>No card</span><span>No fixed expiration</span><span>Bounded public-repo access</span></div></div><div class="motion-system motion-open-source" role="img" aria-label="Animated open-source maintainer workflow validating a scanner report against public source and retaining the decision">
+    <div class="motion-head"><span>maintainer://report-queue</span><span class="motion-live">processing</span></div>
+    <div class="motion-canvas">
+      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>REPORT</span><strong>scanner-generated claim</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>REPOSITORY</span><strong>public source</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>CONTEXT</span><strong>maintainer boundaries</strong></div></div>
+      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-core"><small>ZEROQUARRY</small><strong>Maintainer triage loop</strong><span>Check the claim before it becomes project work</span><b>active</b></div>
+      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>VERDICT</span><strong>validated or disputed</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>RETEST</span><strong>resolution checked</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>RECORD</span><strong>evidence retained</strong></div></div>
+    </div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>one bounded workflow from incoming claim to maintainer decision</span></div>
+  </div></div></div></section>
+
+  <section class="buyer-section soft"><div class="container"><div class="buyer-section-head"><div><div class="section-label">The maintainer problem</div><h2>AI made reports cheaper to send, not <em>cheaper to resolve.</em></h2></div><p class="section-intro">A scanner output can look urgent without showing reachability, product context, or a reproduction path. The maintainer still has to work out whether anything is real.</p></div><div class="outcome-grid"><article class="outcome-card"><h3>More low-context reports</h3><p>People can submit polished scanner output without knowing the repository or validating the claim.</p></article><article class="outcome-card"><h3>Repeated investigation</h3><p>Maintainers reconstruct the same code path, affected versions, and prior decision across issues and inbox threads.</p></article><article class="outcome-card"><h3>No shared operating record</h3><p>The report, technical verdict, retest, and disclosure timeline often live in different places.</p></article></div></div></section>
+
+  <section class="buyer-section"><div class="container"><div class="buyer-section-head"><div><div class="section-label">How it works</div><h2>Turn an incoming claim into a <em>maintainer decision.</em></h2></div><p class="section-intro">ZeroQuarry handles repeatable investigation and record keeping. Maintainers still control authorization, disclosure, and changes to the project.</p></div><div class="workflow-grid"><article class="workflow-card">
+    <span>STEP 01</span>
+    <h3>Forward</h3>
+    <p>Send a report from your maintainer inbox into the project&#39;s ZeroQuarry intake address.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 02</span>
+    <h3>Bound</h3>
+    <p>Match the sender and repository against the project&#39;s approved intake rules before assessment begins.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 03</span>
+    <h3>Validate</h3>
+    <p>Investigate the public source, test reachability, and challenge evidence that does not hold up.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 04</span>
+    <h3>Decide</h3>
+    <p>Record whether the claim is validated, disputed, accepted, mitigated, or ready for retest.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 05</span>
+    <h3>Track</h3>
+    <p>Keep the report, decision history, retest, disclosure timeline, and controlled evidence connected.</p>
+  </article></div></div></section>
+
+  <section class="buyer-section soft"><div class="container"><div class="buyer-section-head"><div><div class="section-label">The open-source account</div><h2>Enough capacity to clear real work, with <em>commercial boundaries intact.</em></h2></div><p class="section-intro">The program is deliberately useful for one public project and deliberately narrow around private company work.</p></div><div class="capability-grid"><article class="capability-card"><div class="card-code">01</div><h3>One public project</h3><p>Public GitHub source only. Private uploads, binaries, and live targets are blocked.</p></article><article class="capability-card"><div class="card-code">02</div><h3>Five runs each month</h3><p>Use five focused reviews or one full public-source assessment each month.</p></article><article class="capability-card"><div class="card-code">03</div><h3>One maintainer</h3><p>One account owner keeps the project boundary and security decisions accountable.</p></article><article class="capability-card"><div class="card-code">04</div><h3>Bounded email intake</h3><p>Forward reports through sender and repository rules instead of exposing an unrestricted scan trigger.</p></article><article class="capability-card"><div class="card-code">05</div><h3>Validation and tracking</h3><p>Use adversarial review, finding lifecycle, retests, and disclosure history on the public project.</p></article><article class="capability-card"><div class="card-code">06</div><h3>Controlled evidence</h3><p>Keep up to three active shares with expiration, revocation, and access history.</p></article></div></div></section>
+
+  <section class="buyer-section" id="eligibility"><div class="container split-proof"><div class="proof-copy"><div class="section-label">Eligibility</div><h2>Free while the work stays <em>open-source work.</em></h2><p>The registration flow asks you to attest that you maintain the project and that it uses an OSI-approved license. ZeroQuarry may review eligibility and will ask you to move private or commercial scope to a paid plan.</p><div class="proof-list"><div><span>01</span><p>The repository is public on GitHub and carries an OSI-approved open-source license.</p></div><div><span>02</span><p>You maintain the project or have clear authorization to coordinate its security work.</p></div><div><span>03</span><p>The protected scope stays with the public project. Private forks and company products use a commercial account.</p></div></div></div><div class="hero-system"><div class="system-head"><span>program://eligibility</span><span class="system-status">bounded</span></div><div class="loop-map"><div class="loop-node wide"><span>PUBLIC</span><strong>GitHub repository</strong><p>Source remains visible and the project remains eligible.</p></div><div class="loop-node"><span>LICENSE</span><strong>OSI approved</strong><p>Eligibility is self-attested and may be reviewed.</p></div><div class="loop-node"><span>SCOPE</span><strong>One public project</strong><p>Private work stays outside the free program.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>no card and no fixed expiration while eligible</span></div></div></div></section>
+
+  <section class="buyer-section soft"><div class="container split-proof"><div class="proof-copy"><div class="section-label">Built with maintainer context</div><h2>Designed by someone who has lived on the <em>receiving end.</em></h2><p>ZeroQuarry's founder led product work on Elasticsearch and Kong. The program comes from seeing how much maintainer time a security report can consume before anyone knows whether the claim is real.</p><p>That is also why the product keeps skeptical validation, a visible decision trail, and controlled disclosure work around the scan itself.</p><a class="card-link" href="/research/obsidian-tasks-rce/">Read a coordinated vulnerability investigation <span aria-hidden="true">-&gt;</span></a></div><div class="hero-system"><div class="system-head"><span>maintainer://decision</span><span class="system-status">reviewed</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Is the reported path actually reachable?</strong><p>Follow the repository and affected configuration before assigning severity.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>What would disprove it?</strong><p>Check versions, defaults, permissions, and realistic user action.</p></div><div class="loop-node"><span>RECORD</span><strong>Why did we decide?</strong><p>Keep the evidence available for the next report and the eventual retest.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>scanner output is the start of review, not the conclusion</span></div></div></div></section>
+
+  <section class="buyer-section"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Open-source FAQ</div><h2>Clear boundaries before you sign up.</h2></div></div><div class="faq-list"><details>
+    <summary>What is included in the free trial?</summary>
+    <p>The 14-day trial covers one private product, 25 security runs, three collaborators, source and pull-request review, release artifacts, authorized live testing, report intake, validation, patch proposals, retests, and controlled evidence. No card is required to begin.</p>
+  </details>
+<details>
+    <summary>How does free for open source work?</summary>
+    <p>Eligible maintainers receive an ongoing account for one public GitHub project with five monthly security runs, one maintainer, bounded report intake, validation, tracking, and three controlled evidence shares. The project must remain public and use an OSI-approved license.</p>
+  </details>
+<details>
+    <summary>How do we move from the trial to a paid plan?</summary>
+    <p>Choose the package and billing period that fit your expected capacity, then contact ZeroQuarry to activate it. Paid-plan activation is currently assisted while self-service subscription checkout is being completed.</p>
+  </details>
+<details>
+    <summary>Which projects qualify?</summary>
+    <p>The program is for public GitHub projects under an OSI-approved license. You must be a current maintainer or otherwise authorized to manage security work for the project.</p>
+  </details>
+<details>
+    <summary>Is the account really free?</summary>
+    <p>Yes. There is no card and no fixed expiration while the project remains public, licensed, and eligible. The account stays within the published project, user, and monthly run limits.</p>
+  </details>
+<details>
+    <summary>Can anyone scan a public repository?</summary>
+    <p>The program is intended for maintainers, not third parties creating unofficial security workspaces. Eligibility is self-attested during registration and ZeroQuarry may review the project and maintainer relationship.</p>
+  </details>
+<details>
+    <summary>Can ZeroQuarry receive reports sent to our existing security address?</summary>
+    <p>Yes. A maintainer can forward reports from an approved sender into the project&#39;s bounded intake address. The project controls which senders and public repositories may start assessment work.</p>
+  </details>
+<details>
+    <summary>What happens if we need private forks or more capacity?</summary>
+    <p>Private source, multiple products, live testing, more collaborators, and higher monthly capacity are available on commercial plans. The public project can remain on the open-source program while private company work moves to a paid account.</p>
+  </details></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give maintainers a better way to resolve the next report.</h2><p>Start with one qualifying public project. Keep it free while the project remains eligible.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Protect an open-source project free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
+  </main>
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/open-source/">Open source maintainers</a>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

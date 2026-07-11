@@ -14,14 +14,15 @@
   let ctaTrackingInstalled = false;
 
   function getChoice() {
+    const match = document.cookie.match(new RegExp('(?:^|;\\s*)' + consentCookieName + '=([^;]+)'));
+    if (match) return decodeURIComponent(match[1]);
     try {
       const stored = window.localStorage.getItem(storageKey);
       if (stored) return stored;
     } catch (_) {
       // Fall back to the cross-subdomain consent cookie below.
     }
-    const match = document.cookie.match(new RegExp('(?:^|;\\s*)' + consentCookieName + '=([^;]+)'));
-    return match ? decodeURIComponent(match[1]) : null;
+    return null;
   }
 
   function setChoice(choice) {

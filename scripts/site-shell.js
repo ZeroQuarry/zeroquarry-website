@@ -8,6 +8,7 @@ const platformLinks = [
 ];
 
 const useCaseLinks = [
+  ["/open-source/", "Open source maintainers", "Validate noisy reports and keep the response work together"],
   ["/use-cases/startup-security/", "Security for growing companies", "Run a credible program before staffing every specialty"],
   ["/use-cases/pr-security-review/", "Pull request security review", "Review risky changes while context is fresh"],
   ["/use-cases/release-security-review/", "Release security review", "Test code, artifacts, and staging before promotion"],
@@ -61,8 +62,8 @@ function siteNav(active = "") {
       <a href="https://docs.zeroquarry.com">Docs</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost" href="/request-scan/">Talk to us</a>
-      <a class="btn btn-primary" href="https://console.zeroquarry.com">Start free <span class="arr">-&gt;</span></a>
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
     </div>
   </div>
 </header>`;
@@ -77,7 +78,7 @@ function siteFooter() {
           <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
         </a>
         <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
-        <a class="foot-cta" href="https://console.zeroquarry.com">Start free <span aria-hidden="true">-&gt;</span></a>
+        <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
       </div>
       <div class="foot-col legal">
         <h5>Platform</h5>
