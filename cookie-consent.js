@@ -1,24 +1,39 @@
 (function () {
   const script = document.currentScript;
   const analyticsId = script && script.dataset.analyticsId;
+  const posthogKey = script && script.dataset.posthogKey;
+  const posthogHost = (script && script.dataset.posthogHost) || 'https://us.i.posthog.com';
+  const posthogUiHost = (script && script.dataset.posthogUiHost) || 'https://us.posthog.com';
   const storageKey = 'zeroquarry_cookie_consent';
+  const consentCookieName = 'zq_analytics_consent';
   const acceptedValue = 'accepted';
   const declinedValue = 'declined';
   const bannerId = 'cookie-consent-banner';
   let analyticsLoaded = false;
+  let posthogLoaded = false;
+  let ctaTrackingInstalled = false;
 
   function getChoice() {
     try {
-      return window.localStorage.getItem(storageKey);
+      const stored = window.localStorage.getItem(storageKey);
+      if (stored) return stored;
     } catch (_) {
-      return null;
+      // Fall back to the cross-subdomain consent cookie below.
     }
+    const match = document.cookie.match(new RegExp('(?:^|;\\s*)' + consentCookieName + '=([^;]+)'));
+    return match ? decodeURIComponent(match[1]) : null;
   }
 
   function setChoice(choice) {
     try {
       window.localStorage.setItem(storageKey, choice);
     } catch (_) {}
+    const domain = /(^|\.)zeroquarry\.com$/i.test(window.location.hostname)
+      ? '; Domain=.zeroquarry.com'
+      : '';
+    const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = consentCookieName + '=' + encodeURIComponent(choice)
+      + '; Path=/; Max-Age=31536000; SameSite=Lax' + domain + secure;
   }
 
   function hostnameParts() {
@@ -47,13 +62,17 @@
     document.cookie
       .split(';')
       .map((cookie) => cookie.split('=')[0].trim())
-      .filter((name) => /^_ga/.test(name) || name === '_gid' || name === '_gat' || /^_gac_/.test(name))
+      .filter((name) => /^_ga/.test(name) || name === '_gid' || name === '_gat'
+        || /^_gac_/.test(name) || /^ph_/.test(name))
       .forEach(deleteCookie);
   }
 
   function disableAnalytics() {
     if (analyticsId) {
       window['ga-disable-' + analyticsId] = true;
+    }
+    if (window.posthog && posthogLoaded && window.posthog.opt_out_capturing) {
+      window.posthog.opt_out_capturing();
     }
     deleteAnalyticsCookies();
   }
@@ -67,12 +86,57 @@
       window.dataLayer.push(arguments);
     };
     window.gtag('js', new Date());
-    window.gtag('config', analyticsId, { anonymize_ip: true });
+    const config = { anonymize_ip: true };
+    if (/(^|\.)zeroquarry\.com$/i.test(window.location.hostname)) {
+      config.cookie_domain = 'zeroquarry.com';
+    }
+    window.gtag('config', analyticsId, config);
 
     const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(analyticsId);
     document.head.appendChild(gaScript);
+  }
+
+  function installCtaTracking() {
+    if (ctaTrackingInstalled) return;
+    ctaTrackingInstalled = true;
+    document.addEventListener('click', (event) => {
+      const link = event.target && event.target.closest && event.target.closest('a[href]');
+      if (!link) return;
+      let destination;
+      try {
+        destination = new URL(link.href, window.location.href);
+      } catch (_) {
+        return;
+      }
+      if (destination.hostname !== 'console.zeroquarry.com') return;
+      window.posthog.capture('marketing_cta_clicked', {
+        cta_text: (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
+        source_path: window.location.pathname,
+        destination_url: destination.origin + destination.pathname,
+      });
+    });
+  }
+
+  function loadPostHog() {
+    if (!posthogKey) return;
+    if (posthogLoaded) {
+      if (window.posthog && window.posthog.opt_in_capturing) window.posthog.opt_in_capturing();
+      return;
+    }
+    posthogLoaded = true;
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session identify reset opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    window.posthog.init(posthogKey, {
+      api_host: posthogHost,
+      ui_host: posthogUiHost,
+      person_profiles: 'identified_only',
+      capture_pageview: true,
+      capture_pageleave: true,
+      cross_subdomain_cookie: true,
+    });
+    window.posthog.opt_in_capturing();
+    installCtaTracking();
   }
 
   function closeBanner() {
@@ -84,6 +148,7 @@
     setChoice(acceptedValue);
     closeBanner();
     loadAnalytics();
+    loadPostHog();
   }
 
   function declineAnalytics() {
@@ -102,7 +167,7 @@
     banner.innerHTML = [
       '<div class="cookie-consent__copy">',
       '<h2>Analytics cookies</h2>',
-      '<p>We use Google Analytics to understand website traffic. You can decline and we will not load analytics tracking.</p>',
+      '<p>We use Google Analytics and PostHog to understand website traffic and the journey into our product. You can decline and we will not load analytics tracking.</p>',
       '</div>',
       '<div class="cookie-consent__actions">',
       '<button class="cookie-consent__button cookie-consent__button--ghost" type="button" data-cookie-consent="decline">Decline</button>',
@@ -130,6 +195,7 @@
     const choice = getChoice();
     if (choice === acceptedValue) {
       loadAnalytics();
+      loadPostHog();
       return;
     }
     if (choice === declinedValue) {

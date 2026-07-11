@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "node scripts/build-marketing.js && node scripts/build-research.js && node scripts/sync-static-shell.js && node scripts/generate-sitemap.js",
+    "build": "node scripts/build-marketing.js && node scripts/build-research.js && node scripts/sync-static-shell.js && node scripts/generate-sitemap.js && node scripts/configure-analytics.js",
     "build:marketing": "node scripts/build-marketing.js",
     "build:research": "node scripts/build-research.js",
     "build:sites": "npm run build && node scripts/build-sites-dist.js",
