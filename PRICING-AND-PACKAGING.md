@@ -11,8 +11,8 @@ The first pricing proposal started at $1,250 per month. That reflected the event
 The aggressive package now does three things:
 
 1. A permanent Free plan removes time pressure and creates an open-source adoption loop.
-2. Developer and Startup plans sit close enough to coding-agent subscriptions to be bought from a software budget or company card.
-3. Growth, Scale, and Enterprise monetize portfolio coverage, automation, external evidence, coordination, and assurance. Model access is not the product.
+2. Developer and Coverage plans sit close enough to coding-agent subscriptions to be bought from a software budget or company card.
+3. Operations, Portfolio, and Enterprise monetize broader coverage, automation, external evidence, coordination, and assurance. Model access is not the product.
 
 The positioning is: **developer-tool price, independent security-operation outcome.**
 
@@ -58,9 +58,9 @@ Monthly purchase is available. Annual billing is exactly 20% less:
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Free | $0 | $0 | $0 | 1 public | 5 | 1 | 1 |
 | Developer | $50 | $480 | $40 | 1 | 10 | 3 | 1 |
-| Startup | $200 | $1,920 | $160 | 1 | 50 | 15 | 3 |
-| Growth | $500 | $4,800 | $400 | 5 | 200 | 50 | 8 |
-| Scale | $1,000 | $9,600 | $800 | 15 | 600 | 150 | 20 |
+| Coverage | $200 | $1,920 | $160 | 1 | 50 | 15 | 3 |
+| Operations | $500 | $4,800 | $400 | 5 | 200 | 50 | 8 |
+| Portfolio | $1,000 | $9,600 | $800 | 15 | 600 | 150 | 20 |
 | Enterprise | Custom | Custom | Custom | Custom | Custom | Custom | Custom |
 
 ### Free: create the habit
@@ -85,7 +85,7 @@ Free should create public-repository adoption, workflow familiarity, product fee
 
 At $40 per month annually, Developer is comparable to a single premium developer-AI seat while covering an account and producing an independent security result.
 
-### Startup: the default commercial plan
+### Coverage: establish repeatable product security
 
 - One protected product
 - Fifty security runs each month
@@ -93,11 +93,11 @@ At $40 per month annually, Developer is comparable to a single premium developer
 - Source, binary, release artifact, and authorized live testing
 - Jira routing, patches, retests, and 25 controlled shares
 
-At $160 per month annually, Startup should be cheap enough for a founder to buy without a security procurement process and broad enough to become the product-security record for a seed or Series A company.
+At $160 per month annually, Coverage should be accessible to a team that needs a real product-security record before it needs a broad procurement process. The package fits the security need, not the company’s funding history.
 
-### Growth: automate the operating loop
+### Operations: automate the operating loop
 
-Everything in Startup, plus:
+Everything in Coverage, plus:
 
 - Five protected products and 200 runs per month
 - Fifty collaborators and eight concurrent assessments
@@ -107,9 +107,9 @@ Everything in Startup, plus:
 - Custom report branding
 - 100 controlled shares with up to 180-day expiry
 
-### Scale: standardize across a portfolio
+### Portfolio: standardize across multiple products
 
-Everything in Growth, plus:
+Everything in Operations, plus:
 
 - Fifteen protected products and 600 runs per month
 - 150 collaborators and 20 concurrent assessments
@@ -156,7 +156,7 @@ At full plan utilization, even the highest posted model rate is bounded by the r
 ## Commercial rules
 
 - Show annual pricing by default and make the exact 20% saving explicit.
-- Keep monthly purchase available. Early-stage buyers value reversibility.
+- Keep monthly purchase available. Buyers establishing a new security workflow value reversibility.
 - Do not add a per-seat charge. Expansion is driven by products, security work, automation, evidence consumers, and assurance.
 - Run capacity resets monthly and does not roll over.
 - Avoid bespoke discounting below the public annual price. The 20% annual discount is the standard concession.
@@ -167,16 +167,16 @@ At full plan utilization, even the highest posted model rate is bounded by the r
 
 - The internal `trial` id now represents the permanent Free plan to avoid destructive account migration.
 - Existing legacy `premium` and `foundation` tiers remain available for old accounts but are no longer sold.
-- New sellable tiers are Developer, Startup, Growth, Scale, and Enterprise.
-- Existing Growth and Scale rows are migrated only when their prices still match the first public package experiment, preserving superadmin customizations.
+- Public tier names are Developer, Coverage, Operations, Portfolio, and Enterprise. Existing internal ids remain `developer`, `startup`, `growth`, `scale`, and `enterprise` to avoid destructive account migrations.
+- Existing Operations and Portfolio rows are migrated only when their names and prices still match the previous public package, preserving superadmin customizations.
 - Existing Free accounts have their old trial expiry cleared.
 - The product stores monthly list price, annual total, and monthly run allowance on each tier; records run weight on every scan; and enforces the allowance atomically.
 - Fixed subscription collection still needs Stripe products or an external order flow. The existing invoicer continues to handle model usage.
 
 ## What to measure
 
-- Free-to-Developer and Free-to-Startup conversion
-- Developer-to-Startup expansion and time to expansion
+- Free-to-Developer and Free-to-Coverage conversion
+- Developer-to-Coverage expansion and time to expansion
 - Full versus focused reviews per protected product
 - Monthly run utilization by plan
 - Model spend as a percentage of subscription revenue
