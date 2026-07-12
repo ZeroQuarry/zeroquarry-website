@@ -1012,17 +1012,18 @@ function pricingPage() {
     ] },
     { name: "Assessment coverage", rows: [
       ["Public and private source review", "Public only", "Included", "Included", "Included", "Included", "Included"],
-      ["Scheduled and pull-request review", "Included", "Included", "Included", "Included", "Included", "Included"],
+      ["Scheduled and pull-request review", "Not included", "Included", "Included", "Included", "Included", "Included"],
       ["Release artifact and binary review", "Not included", "Not included", "Included", "Included", "Included", "Included"],
       ["Authorized live-application testing", "Not included", "Not included", "Included", "Included", "Included", "Included"],
-      ["Proof generation and adversarial validation", "Included", "Included", "Included", "Included", "Included", "Included"],
+      ["Adversarial validation", "Included", "Included", "Included", "Included", "Included", "Included"],
+      ["Vulnerability PoCs", "Not included", "Included", "Included", "Included", "Included", "Included"],
     ] },
     { name: "Security operations", rows: [
       ["Finding retests", "Included", "Included", "Included", "Included", "Included", "Included"],
       ["Patch proposals", "Not included", "Included", "Included", "Included", "Included", "Included"],
       ["Jira issue creation", "Not included", "Not included", "Included", "Included", "Included", "Included"],
       ["ServiceNow issue creation", "Not included", "Not included", "Not included", "Included", "Included", "Included"],
-      ["Inbound researcher-report email triage", "Included", "Not included", "Not included", "Included", "Included", "Included"],
+      ["Inbound researcher-report email triage", "Not included", "Not included", "Not included", "Included", "Included", "Included"],
       ["GitHub autofix with human approval", "Not included", "Not included", "Not included", "Included", "Included", "Included"],
     ] },
     { name: "Evidence and rollout", rows: [
@@ -1096,8 +1097,6 @@ function pricingPage() {
 
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">Model usage</div><h2>Depth stays visible <em>on the invoice.</em></h2></div><div class="aside">Model input and output are billed separately from the subscription. Choose efficient models for routine change review and deeper models where the risk or decision warrants it.</div></div>
-    <div class="compare-wrap"><table class="compare-table"><thead><tr><th>Model</th><th>Input / 1M tokens</th><th>Output / 1M tokens</th></tr></thead><tbody>${rates.map(([model, input, output]) => `<tr><td><code>${model}</code></td><td>${input}</td><td>${output}</td></tr>`).join("")}</tbody></table></div>
-    <p class="usage-rate-note">Rates shown in USD reflect the current product configuration. Your account shows active rates, scan-level token history, and monthly usage. Cached-input discounts, when configured for a model, are applied separately.</p>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
