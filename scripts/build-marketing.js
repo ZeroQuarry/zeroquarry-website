@@ -1005,31 +1005,33 @@ function pricingPage() {
   ];
   const comparisonGroups = [
     { name: "Capacity", rows: [
-      ["Protected products", "1", "1", "5", "15", "Custom"],
-      ["Security runs / month", "10", "50", "200", "600", "Custom"],
-      ["Concurrent assessments", "1", "3", "8", "20", "Custom"],
-      ["Collaborators", "3", "15", "50", "150", "Custom"],
+      ["Protected products", "1 public", "1", "1", "5", "15", "Custom"],
+      ["Security runs / month", "5", "10", "50", "200", "600", "Custom"],
+      ["Concurrent assessments", "1", "1", "3", "8", "20", "Custom"],
+      ["Collaborators", "1", "3", "15", "50", "150", "Custom"],
     ] },
     { name: "Assessment coverage", rows: [
-      ["Public and private source review", "Included", "Included", "Included", "Included", "Included"],
-      ["Scheduled and pull-request review", "Included", "Included", "Included", "Included", "Included"],
-      ["Release artifact and binary review", "Not included", "Included", "Included", "Included", "Included"],
-      ["Authorized live-application testing", "Not included", "Included", "Included", "Included", "Included"],
-      ["Proof generation and adversarial validation", "Included", "Included", "Included", "Included", "Included"],
+      ["Public and private source review", "Public only", "Included", "Included", "Included", "Included", "Included"],
+      ["Scheduled and pull-request review", "Included", "Included", "Included", "Included", "Included", "Included"],
+      ["Release artifact and binary review", "Not included", "Not included", "Included", "Included", "Included", "Included"],
+      ["Authorized live-application testing", "Not included", "Not included", "Included", "Included", "Included", "Included"],
+      ["Proof generation and adversarial validation", "Included", "Included", "Included", "Included", "Included", "Included"],
     ] },
     { name: "Security operations", rows: [
-      ["Patch proposals and finding retests", "Included", "Included", "Included", "Included", "Included"],
-      ["Jira issue creation", "Not included", "Included", "Included", "Included", "Included"],
-      ["ServiceNow issue creation", "Not included", "Not included", "Included", "Included", "Included"],
-      ["Inbound researcher-report email triage", "Not included", "Not included", "Included", "Included", "Included"],
-      ["GitHub autofix with human approval", "Not included", "Not included", "Included", "Included", "Included"],
+      ["Finding retests", "Included", "Included", "Included", "Included", "Included", "Included"],
+      ["Patch proposals", "Not included", "Included", "Included", "Included", "Included", "Included"],
+      ["Jira issue creation", "Not included", "Not included", "Included", "Included", "Included", "Included"],
+      ["ServiceNow issue creation", "Not included", "Not included", "Not included", "Included", "Included", "Included"],
+      ["Inbound researcher-report email triage", "Included", "Not included", "Not included", "Included", "Included", "Included"],
+      ["GitHub autofix with human approval", "Not included", "Not included", "Not included", "Included", "Included", "Included"],
     ] },
     { name: "Evidence and rollout", rows: [
-      ["Controlled evidence shares", "5", "25", "100", "500", "Custom"],
-      ["Maximum share expiry", "30 days", "60 days", "180 days", "365 days", "Custom"],
-      ["Custom report branding", "Not included", "Not included", "Included", "Included", "Included"],
-      ["Workspace appearance controls", "Not included", "Not included", "Not included", "Included", "Included"],
-      ["Rollout and procurement support", "Self-serve", "Standard", "Guided", "Priority", "Custom"],
+      ["Controlled evidence shares", "3", "5", "25", "100", "500", "Custom"],
+      ["Maximum share expiry", "30 days", "30 days", "60 days", "180 days", "365 days", "Custom"],
+      ["Report watermark", "Required", "Not required", "Not required", "Not required", "Not required", "Custom"],
+      ["Custom report branding", "Not included", "Not included", "Not included", "Included", "Included", "Included"],
+      ["Workspace appearance controls", "Not included", "Not included", "Not included", "Not included", "Included", "Included"],
+      ["Rollout and procurement support", "Self-serve", "Self-serve", "Standard", "Guided", "Priority", "Custom"],
     ] },
   ];
   const faqs = [
@@ -1060,7 +1062,6 @@ function pricingPage() {
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">The value metric</div><h2>One unit buyers can <em>forecast.</em></h2></div><div class="aside">A security run represents reserved investigation capacity. It makes a five-minute PR check economically different from a full product assessment without turning every finding, report, or teammate into a surcharge.</div></div>
     <div class="run-metric-grid"><article><div class="run-number">1</div><div><h3>Focused review</h3><p>A pull request or changed-file assessment scoped to the code that moved.</p></div></article><article><div class="run-number">5</div><div><h3>Full assessment</h3><p>A complete source, release artifact, binary, or authorized live target review.</p></div></article><article><div class="run-number included">0</div><div><h3>Operational follow-through</h3><p>Review stages, decisions, reports, evidence sharing, and in-assessment reruns.</p></div></article></div>
-    <div class="trial-strip"><div><span class="plan-kicker">Free for open source</span><h3>Open Source · $0</h3><p>One qualifying public project, 5 security runs every month, one maintainer, bounded report intake, and watermarked reports. No card or fixed expiration while eligible.</p></div><a class="btn btn-ghost" href="/open-source/">See the open-source program</a></div>
   </div></section>
 
   <section class="pricing-section" id="plans"><div class="container">
@@ -1068,7 +1069,8 @@ function pricingPage() {
     <input class="billing-choice" type="radio" name="billing-period" id="billing-annual" checked>
     <input class="billing-choice" type="radio" name="billing-period" id="billing-monthly">
     <div class="billing-toggle" role="group" aria-label="Billing period"><label for="billing-annual">Annual <strong>save 20%</strong></label><label for="billing-monthly">Monthly</label></div>
-    <div class="pricing-grid">
+    <div class="pricing-grid pricing-grid-five">
+      <article class="price-card"><div class="plan-kicker">Free for open source</div><h2>OSS</h2><p class="plan-audience">For maintainers validating incoming security reports against one qualifying public project.</p><div class="price-row"><span class="price">$0</span><span class="cadence">/ month</span></div><div class="price-note">No card · no fixed expiration</div><a class="btn btn-ghost plan-btn" href="${signupUrls.openSource}?source=pricing&amp;plan=oss">Protect an OSS project</a><ul class="plan-list"><li><span></span>1 qualifying public project</li><li><span></span>5 security runs each month</li><li><span></span>1 maintainer</li><li><span></span>Secure researcher-report intake</li><li><span></span>Adversarial validation and retests</li><li><span></span>3 controlled evidence shares</li></ul></article>
       <article class="price-card"><div class="plan-kicker">Build securely</div><h2>Developer</h2><p class="plan-audience">For a founder or security-minded engineer adding independent review to one private product.</p><div class="price-row"><span class="price annual-price">$40</span><span class="price monthly-price">$50</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$480 billed yearly · save $120</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="${signupUrls.general}?source=pricing&amp;plan=developer">Start free trial</a><ul class="plan-list"><li><span></span>1 private product</li><li><span></span>10 security runs each month</li><li><span></span>3 collaborators</li><li><span></span>Source, scheduled, and PR review</li><li><span></span>Adversarial validation and patch proposals</li><li><span></span>5 controlled evidence shares</li></ul></article>
       <article class="price-card featured"><div class="plan-ribbon">Most popular</div><div class="plan-kicker">Establish coverage</div><h2>Coverage</h2><p class="plan-audience">For a team establishing repeatable testing, remediation, and evidence around one product.</p><div class="price-row"><span class="price annual-price">$160</span><span class="price monthly-price">$200</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$1,920 billed yearly · save $480</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-primary plan-btn" href="${signupUrls.startup}?source=pricing&amp;plan=startup">Start free trial <span class="arr">-&gt;</span></a><ul class="plan-list"><li><span></span>1 protected product</li><li><span></span>50 security runs each month</li><li><span></span>15 collaborators, 3 concurrent assessments</li><li><span></span>Source, binary, and authorized live testing</li><li><span></span>Jira routing, patches, and retests</li><li><span></span>25 controlled evidence shares</li></ul></article>
       <article class="price-card"><div class="plan-kicker">Operate continuously</div><h2>Operations</h2><p class="plan-audience">For teams running recurring review, inbound report triage, and remediation across several products.</p><div class="price-row"><span class="price annual-price">$400</span><span class="price monthly-price">$500</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$4,800 billed yearly · save $1,200</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="${signupUrls.reportTriage}?source=pricing&amp;plan=growth">Start free trial</a><ul class="plan-list"><li><span></span>5 protected products</li><li><span></span>200 security runs each month</li><li><span></span>50 collaborators, 8 concurrent assessments</li><li><span></span>Inbound report triage and GitHub autofix</li><li><span></span>Jira, ServiceNow, and custom reports</li><li><span></span>100 controlled evidence shares</li></ul></article>
@@ -1084,7 +1086,7 @@ function pricingPage() {
 
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">Compare plans</div><h2>The whole package, line by line.</h2></div><div class="aside">Every paid plan includes the core analysis loop. Higher plans add operating scale, automation, and coordination capacity.</div></div>
-    <div class="compare-wrap"><table class="compare-table plan-comparison"><thead><tr><th>Capability</th><th>Developer</th><th>Coverage</th><th>Operations</th><th>Portfolio</th><th>Enterprise</th></tr></thead><tbody>${comparisonGroups.map(group => `<tr class="compare-group"><th colspan="6">${group.name}</th></tr>${group.rows.map(([feature, developer, coverage, operations, portfolio, enterprise]) => `<tr><th scope="row">${feature}</th><td>${developer}</td><td>${coverage}</td><td>${operations}</td><td>${portfolio}</td><td>${enterprise}</td></tr>`).join("")}`).join("")}</tbody></table></div>
+    <div class="compare-wrap"><table class="compare-table plan-comparison"><thead><tr><th>Capability</th><th>OSS</th><th>Developer</th><th>Coverage</th><th>Operations</th><th>Portfolio</th><th>Enterprise</th></tr></thead><tbody>${comparisonGroups.map(group => `<tr class="compare-group"><th colspan="7">${group.name}</th></tr>${group.rows.map(([feature, oss, developer, coverage, operations, portfolio, enterprise]) => `<tr><th scope="row">${feature}</th><td>${oss}</td><td>${developer}</td><td>${coverage}</td><td>${operations}</td><td>${portfolio}</td><td>${enterprise}</td></tr>`).join("")}`).join("")}</tbody></table></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
@@ -1104,7 +1106,7 @@ function pricingPage() {
   </div></section>
   ${renderCta("Start with the product you are shipping now.", "Try one private product for 14 days without a card. Choose a paid plan only after the workflow has earned a place in your security operation.")}
   </main>`;
-  const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Pricing", href: "/pricing" }]), { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "ZeroQuarry", applicationCategory: "SecurityApplication", operatingSystem: "Web", url: `${siteUrl}/pricing`, offers: [{ "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD" }, { "@type": "Offer", name: "Developer", price: "480", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "480", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Coverage", price: "1920", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "1920", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Operations", price: "4800", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "4800", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Portfolio", price: "9600", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "9600", priceCurrency: "USD", unitText: "YEAR" } }] }];
+  const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Pricing", href: "/pricing" }]), { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "ZeroQuarry", applicationCategory: "SecurityApplication", operatingSystem: "Web", url: `${siteUrl}/pricing`, offers: [{ "@type": "Offer", name: "OSS", price: "0", priceCurrency: "USD" }, { "@type": "Offer", name: "Developer", price: "480", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "480", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Coverage", price: "1920", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "1920", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Operations", price: "4800", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "4800", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Portfolio", price: "9600", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "9600", priceCurrency: "USD", unitText: "YEAR" } }] }];
   return layout({ title: "AI Security Review Pricing from $40 per Month | ZeroQuarry", description: "Try ZeroQuarry free for 14 days or protect a private product from $40 per month annually. Free accounts are also available for eligible open-source maintainers.", canonical: `${siteUrl}/pricing`, active: "pricing", body, schemas });
 }
 

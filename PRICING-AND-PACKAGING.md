@@ -10,7 +10,7 @@ The first pricing proposal started at $1,250 per month. That reflected the event
 
 The aggressive package now does three things:
 
-1. A permanent Free plan removes time pressure and creates an open-source adoption loop.
+1. A permanent OSS plan removes time pressure and creates an open-source adoption loop.
 2. Developer and Coverage plans sit close enough to coding-agent subscriptions to be bought from a software budget or company card.
 3. Operations, Portfolio, and Enterprise monetize broader coverage, automation, external evidence, coordination, and assurance. Model access is not the product.
 
@@ -56,14 +56,14 @@ Monthly purchase is available. Annual billing is exactly 20% less:
 
 | Plan | Monthly | Annual total | Annual monthly equivalent | Products | Runs / month | Collaborators | Concurrency |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Free | $0 | $0 | $0 | 1 public | 5 | 1 | 1 |
+| OSS | $0 | $0 | $0 | 1 public | 5 | 1 | 1 |
 | Developer | $50 | $480 | $40 | 1 | 10 | 3 | 1 |
 | Coverage | $200 | $1,920 | $160 | 1 | 50 | 15 | 3 |
 | Operations | $500 | $4,800 | $400 | 5 | 200 | 50 | 8 |
 | Portfolio | $1,000 | $9,600 | $800 | 15 | 600 | 150 | 20 |
 | Enterprise | Custom | Custom | Custom | Custom | Custom | Custom | Custom |
 
-### Free: create the habit
+### OSS: create the habit
 
 - Permanent, not a trial
 - One public product
@@ -72,7 +72,7 @@ Monthly purchase is available. Annual billing is exactly 20% less:
 - Watermarked reports
 - No card or expiry
 
-Free should create public-repository adoption, workflow familiarity, product feedback, and organic proof. It should be useful but not sufficient for a private commercial product.
+OSS should create public-repository adoption, workflow familiarity, product feedback, and organic proof. It should be useful for maintainers without becoming the package for private commercial products.
 
 ### Developer: enter the developer-tool budget
 
@@ -167,7 +167,7 @@ At full plan utilization, even the highest posted model rate is bounded by the r
 
 - The internal `trial` id now represents the permanent Free plan to avoid destructive account migration.
 - Existing legacy `premium` and `foundation` tiers remain available for old accounts but are no longer sold.
-- Public tier names are Developer, Coverage, Operations, Portfolio, and Enterprise. Existing internal ids remain `developer`, `startup`, `growth`, `scale`, and `enterprise` to avoid destructive account migrations.
+- Public tier names are OSS, Developer, Coverage, Operations, Portfolio, and Enterprise. Existing internal ids remain `oss`, `developer`, `startup`, `growth`, `scale`, and `enterprise` to avoid destructive account migrations.
 - Existing Operations and Portfolio rows are migrated only when their names and prices still match the previous public package, preserving superadmin customizations.
 - Existing Free accounts have their old trial expiry cleared.
 - The product stores monthly list price, annual total, and monthly run allowance on each tier; records run weight on every scan; and enforces the allowance atomically.
@@ -175,7 +175,7 @@ At full plan utilization, even the highest posted model rate is bounded by the r
 
 ## What to measure
 
-- Free-to-Developer and Free-to-Coverage conversion
+- OSS-to-Developer and OSS-to-Coverage conversion
 - Developer-to-Coverage expansion and time to expansion
 - Full versus focused reviews per protected product
 - Monthly run utilization by plan
