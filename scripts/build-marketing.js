@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { siteFooter, siteNav } = require("./site-shell");
+const { assetVersion, siteFooter, siteNav } = require("./site-shell");
 
 const root = path.resolve(__dirname, "..");
 const siteUrl = "https://zeroquarry.com";
@@ -89,10 +89,10 @@ function layout({ title, description, canonical, active, body, schemas = [] }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css" />
+<link rel="stylesheet" href="/marketing.css?v=${assetVersion}" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js" defer></script>
+<script src="/index.js?v=${assetVersion}" defer></script>
 ${structuredData(schemas)}
 </head>
 <body>

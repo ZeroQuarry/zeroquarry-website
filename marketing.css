@@ -178,6 +178,25 @@
   line-height: 1.35;
 }
 
+/* On devices with a real pointer, hover is the source of truth. This also
+   prevents two natively-open <details> elements from ever rendering on top of
+   one another if an older cached script left both open. */
+@media (hover: hover) and (pointer: fine) {
+  .nav-cluster > .nav-mega {
+    display: none;
+  }
+
+  .nav-cluster:hover > .nav-mega,
+  .nav-cluster:has(> summary:focus-visible) > .nav-mega,
+  .nav-cluster:has(.nav-mega a:focus-visible) > .nav-mega {
+    display: grid;
+  }
+
+  .buyer-nav:has(.nav-cluster:hover) .nav-cluster:not(:hover) > .nav-mega {
+    display: none;
+  }
+}
+
 .marketing-main {
   position: relative;
   overflow: hidden;

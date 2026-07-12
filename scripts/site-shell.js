@@ -17,6 +17,9 @@ const useCaseLinks = [
   ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure", "Validate, share, and track external findings"],
 ];
 
+// Keep shell behavior and styles on the same cache generation after deploys.
+const assetVersion = "20260712-nav3";
+
 function linkCurrent(active, value) {
   return active === value ? ' aria-current="page"' : "";
 }
@@ -29,7 +32,7 @@ function siteNav(active = "") {
     </a>
     <nav class="nav-links buyer-nav" aria-label="Primary">
       <a href="/"${linkCurrent(active, "home")}>Why ZeroQuarry</a>
-      <details class="nav-cluster">
+      <details class="nav-cluster" name="primary-nav">
         <summary${linkCurrent(active, "platform")}>Platform</summary>
         <div class="nav-mega nav-mega-platform">
           <div class="nav-mega-intro">
@@ -43,7 +46,7 @@ function siteNav(active = "") {
           </div>
         </div>
       </details>
-      <details class="nav-cluster">
+      <details class="nav-cluster" name="primary-nav">
         <summary${linkCurrent(active, "use-cases")}>Use cases</summary>
         <div class="nav-mega nav-mega-use-cases">
           <div class="nav-mega-intro">
@@ -113,6 +116,7 @@ function siteFooter() {
 }
 
 module.exports = {
+  assetVersion,
   platformLinks,
   siteFooter,
   siteNav,
