@@ -20,10 +20,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260712-pricing5" />
+<link rel="stylesheet" href="/marketing.css?v=20260713-growth1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260712-pricing5" defer></script>
+<script src="/index.js?v=20260713-growth1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://zeroquarry.com/use-cases/"},{"@type":"ListItem","position":3,"name":"Pull request security review","item":"https://zeroquarry.com/use-cases/pr-security-review/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can ZeroQuarry scan private GitHub repositories?","acceptedAnswer":{"@type":"Answer","text":"Yes. Store a scoped Git credential in the account and reference its ID from the workflow. The generated workflow explains the setup."}},{"@type":"Question","name":"What happens if the same scan is triggered twice?","acceptedAnswer":{"@type":"Answer","text":"Identical in-progress Git dispatches can be deduplicated, returning the existing scan so CI can follow it instead of starting duplicate work."}},{"@type":"Question","name":"Should auto-fix branches trigger another scan?","acceptedAnswer":{"@type":"Answer","text":"Exclude the ZeroQuarryBot branch namespace from the scan trigger to avoid a feedback loop. The product and docs provide the branch filter."}}]}</script>
 </head>
@@ -81,8 +81,19 @@
     </nav>
     <div class="nav-cta">
       <a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
-      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start trial <span class="arr">-&gt;</span></a>
     </div>
+    <details class="mobile-nav">
+      <summary>Browse ZeroQuarry</summary>
+      <nav class="mobile-nav-panel" aria-label="Mobile primary">
+        <a href="/">Why ZeroQuarry</a>
+        <a href="/platform">Platform</a>
+        <a href="/use-cases/" aria-current="page">Use cases</a>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+      </nav>
+    </details>
   </div>
 </header>
 <main class="marketing-main">

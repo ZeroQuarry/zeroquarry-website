@@ -529,7 +529,7 @@ function renderIndex(posts) {
       <div class="cta-banner">
         <div class="tag">Try ZeroQuarry</div>
         <h2>Have a product surface that looks like this?</h2>
-        <p>Use a 14-day trial to investigate a real repository, release artifact, or authorized target and follow the result through validation, remediation, retesting, and evidence.</p>
+        <p>Use a 30-day trial to investigate a real repository, release artifact, or authorized target and follow the result through validation, remediation, retesting, and evidence.</p>
         <div class="cta-actions">
           <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
           <a class="btn btn-ghost" href="../platform/evidence-reporting/">See evidence and reporting</a>

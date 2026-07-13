@@ -860,8 +860,8 @@ function homePage() {
         <div class="buyer-kicker">AI security operations for software companies</div>
         <h1 class="buyer-title">Run product security like you already <em>staffed the team.</em></h1>
         <p class="buyer-lede">ZeroQuarry receives security work, tests source, binaries, and live applications, challenges weak findings, opens fixes, verifies remediation, and packages the evidence customers ask for.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
-        <div class="buyer-proofline"><span>AI penetration testing</span><span>Application security operations</span><span>Evidence and remediation</span></div>
+        <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start 30-day trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
+        <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs</span></div>
       </div>
       <div class="console buyer-live-console" aria-label="Illustrative adversarial vulnerability review">
         <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">example://</span>red-vs-vendor · target=<span class="amber">billing-api</span></span><span class="console-meta"><span class="live">illustrative</span></span></div>
@@ -918,7 +918,7 @@ function homePage() {
       <div class="hero-system"><div class="system-head"><span>research://evidence</span><span class="system-status">coordinated</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Opening untrusted Markdown reaches executable behavior</strong><p>Trace the plugin path, prove reachability, and identify the affected configuration.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>Is execution actually reachable?</strong><p>Test default state, permissions, versions, and realistic user action.</p></div><div class="loop-node"><span>OUTCOME</span><strong>Fix, disclose, publish</strong><p>Coordinate the maintainer response before turning the finding into public research.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>public writeups follow responsible disclosure</span></div></div>
     </div>
   </section>
-  ${renderCta("Start with one real product boundary.", "Try the complete workflow on the product you ship. No card or sales call is required to begin.")}
+  ${renderCta("Run a 30-day security operations sprint.", "Start with one real product, complete the loop from assessment to verified outcome, and decide from evidence. No card or sales call is required.", signupUrls.general, "Start 30-day trial")}
   </main>`;
 
   return layout({ title: "AI Security Operations for Product Teams | ZeroQuarry", description: "ZeroQuarry is an AI security operations platform for continuous application security testing, vulnerability validation, remediation, retesting, and customer evidence.", canonical: `${siteUrl}/`, active: "home", body, schemas });
@@ -949,7 +949,7 @@ function useCasesHub() {
 
 function openSourcePage() {
   const faqs = [
-    ["What is included in the free trial?", "The 14-day trial covers one private product, 25 security runs, three collaborators, source and pull-request review, release artifacts, authorized live testing, report intake, validation, patch proposals, retests, and controlled evidence. No card is required to begin."],
+    ["What is included in the free trial?", "The 30-day trial covers one private product, 25 security runs, three collaborators, source and pull-request review, release artifacts, authorized live testing, report intake, validation, patch proposals, retests, and controlled evidence. No card is required to begin."],
     ["How does free for open source work?", "Eligible maintainers receive an ongoing account for one public GitHub project with five monthly security runs, one maintainer, bounded report intake, validation, tracking, and three controlled evidence shares. The project must remain public and use an OSI-approved license."],
     ["How do we move from the trial to a paid plan?", "Choose the package and billing period that fit your expected capacity, then contact ZeroQuarry to activate it. Paid-plan activation is currently assisted while self-service subscription checkout is being completed."],
     ["Which projects qualify?", "The program is for public GitHub projects under an OSI-approved license. You must be a current maintainer or otherwise authorized to manage security work for the project."],
@@ -1050,7 +1050,7 @@ function pricingPage() {
       <div>
         <span class="eyebrow"><span class="tag">PRICING</span><span>Account pricing. Not per-seat pricing.</span></span>
         <h1 class="headline pricing-headline"><span class="block">Security leverage</span><span class="block thin">at developer-tool</span><span class="block thin"><em>prices.</em></span></h1>
-        <p class="lede">Try ZeroQuarry for 14 days, cover a private product from $40 per month on annual billing, and invite the people who need the outcome. ZeroQuarry costs like a developer tool while doing the continuous testing, validation, remediation, and evidence work a coding assistant does not.</p>
+        <p class="lede">Try ZeroQuarry for 30 days, cover a private product from $40 per month on annual billing, and invite the people who need the outcome. ZeroQuarry costs like a developer tool while doing the continuous testing, validation, remediation, and evidence work a coding assistant does not.</p>
         <div class="hero-ctas"><a class="btn btn-primary" href="${signupUrls.general}?source=pricing">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#plans">Compare plans</a></div>
       </div>
       <div class="pricing-terminal" aria-label="ZeroQuarry pricing model">
@@ -1103,10 +1103,10 @@ function pricingPage() {
     <div class="section-head"><div><div class="tag">Pricing FAQ</div><h2>Questions that come up before purchase.</h2></div><div class="aside">The commercial model should stay predictable, including the limits and usage charges that affect a production rollout.</div></div>
     <div class="faq-list">${faqs.map(([question, answer]) => `<details><summary>${question}</summary><p>${answer}</p></details>`).join("")}</div>
   </div></section>
-  ${renderCta("Start with the product you are shipping now.", "Try one private product for 14 days without a card. Choose a paid plan only after the workflow has earned a place in your security operation.")}
+  ${renderCta("Start with the product you are shipping now.", "Try one private product for 30 days without a card. Choose a paid plan only after the workflow has earned a place in your security operation.", signupUrls.general, "Start 30-day trial")}
   </main>`;
   const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Pricing", href: "/pricing" }]), { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "ZeroQuarry", applicationCategory: "SecurityApplication", operatingSystem: "Web", url: `${siteUrl}/pricing`, offers: [{ "@type": "Offer", name: "OSS", price: "0", priceCurrency: "USD" }, { "@type": "Offer", name: "Developer", price: "480", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "480", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Coverage", price: "1920", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "1920", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Operations", price: "4800", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "4800", priceCurrency: "USD", unitText: "YEAR" } }, { "@type": "Offer", name: "Portfolio", price: "9600", priceCurrency: "USD", priceSpecification: { "@type": "UnitPriceSpecification", price: "9600", priceCurrency: "USD", unitText: "YEAR" } }] }];
-  return layout({ title: "AI Security Review Pricing from $40 per Month | ZeroQuarry", description: "Try ZeroQuarry free for 14 days or protect a private product from $40 per month annually. Free accounts are also available for eligible open-source maintainers.", canonical: `${siteUrl}/pricing`, active: "pricing", body, schemas });
+  return layout({ title: "AI Security Review Pricing from $40 per Month | ZeroQuarry", description: "Try ZeroQuarry free for 30 days or protect a private product from $40 per month annually. Free accounts are also available for eligible open-source maintainers.", canonical: `${siteUrl}/pricing`, active: "pricing", body, schemas });
 }
 
 function requestScanPage() {

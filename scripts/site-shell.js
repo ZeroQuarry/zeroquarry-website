@@ -18,7 +18,7 @@ const useCaseLinks = [
 ];
 
 // Keep shell behavior and styles on the same cache generation after deploys.
-const assetVersion = "20260712-pricing5";
+const assetVersion = "20260713-growth1";
 
 function linkCurrent(active, value) {
   return active === value ? ' aria-current="page"' : "";
@@ -66,8 +66,19 @@ function siteNav(active = "") {
     </nav>
     <div class="nav-cta">
       <a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
-      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start trial <span class="arr">-&gt;</span></a>
     </div>
+    <details class="mobile-nav">
+      <summary>Browse ZeroQuarry</summary>
+      <nav class="mobile-nav-panel" aria-label="Mobile primary">
+        <a href="/"${linkCurrent(active, "home")}>Why ZeroQuarry</a>
+        <a href="/platform"${linkCurrent(active, "platform")}>Platform</a>
+        <a href="/use-cases/"${linkCurrent(active, "use-cases")}>Use cases</a>
+        <a href="/research/"${linkCurrent(active, "research")}>Research</a>
+        <a href="/pricing"${linkCurrent(active, "pricing")}>Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+      </nav>
+    </details>
   </div>
 </header>`;
 }
