@@ -1,12 +1,12 @@
 ---
-title: "Many serious vulnerabilities found in Obsidian's Excalidraw plugin"
+title: "Excalidraw security vulnerabilities in the Obsidian plugin"
 slug: "excalidraw-vulnerabilities"
 date: "2026-05-20"
 author: "Shane Connelly"
 status: "Mitigation available"
-description: "ZeroQuarry identified and helped fix a large number of vulnerabilities in the Excalidraw plugin for Obsidian."
-ogTitle: "Opening a malicious Markdown file could trigger serious security vulnerabilities"
-ogDescription: "ZeroQuarry found and helped fix a large number of vulnerabilities in the Excalidraw plugin for Obsidian."
+description: "ZeroQuarry found serious Excalidraw plugin security vulnerabilities, including attacker-controlled script execution, and coordinated fixes with Obsidian and the maintainer."
+ogTitle: "Excalidraw security vulnerabilities in the Obsidian plugin"
+ogDescription: "Opening a malicious Excalidraw Markdown file could cross trust boundaries and trigger attacker-controlled behavior."
 featured: true
 featuredSummary: "ZeroQuarry identified a number of serious vulnerabilities in the Excalidraw plugin.  We engaged in a coordinated disclosure with Obsidian and the plugin maintainer. This writeup explains the impact, disclosure process, mitigation tradeoff, and lessons for plugin ecosystems."
 disclosureDetail: "Excalidraw now has shipped a number of fixes. We are limiting exploit detail to avoid showing weaponized payloads."
@@ -344,5 +344,4 @@ You need something closer to an always-on security researcher: something that st
 That is what we are building with ZeroQuarry.
 
 And the Excalidraw Obsidian plugin is exactly the kind of case that shows why it matters.
-
 
