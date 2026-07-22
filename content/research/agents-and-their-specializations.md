@@ -7,7 +7,7 @@ description: "A practical comparison of how different LLMs perform on cybersecur
 ogTitle: "How Different AI Models Perform on Security Scans"
 ogDescription: "A hands-on look at how frontier and open models identify, validate, reject, and exploit potential vulnerabilities differently in real-world security scans."
 featured: true
-image: "/assets/research/obsidian-tasks-rce-og.png"
+image: "/assets/research/agents-specializations.png"
 featuredSummary: "Not all AI models are equally good at security research. Some are great at spotting suspicious code, others are better at validating real vulnerabilities, and the best results often come from combining them in a multi-agent workflow."
 tags:
   - research
