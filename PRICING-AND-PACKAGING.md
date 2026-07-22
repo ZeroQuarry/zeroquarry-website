@@ -120,6 +120,10 @@ Everything in Operations, plus:
 ### Enterprise: sell assurance and coordination
 
 - Custom products, runs, users, concurrency, storage, and sharing
+- Customer-controlled private runner pools for Git source and authorized
+  internal-target scans
+- Outbound-only runner connectivity, project execution policies, and minimized
+  or standard result return
 - Security, privacy, procurement, and deployment architecture review
 - Rollout design across engineering groups
 - Custom commercial and support terms
@@ -149,7 +153,7 @@ The current planning assumption is roughly 80,000 input and 20,000 output tokens
 | Claude Sonnet 4.5 / 4.6 | $0.72 |
 | GPT-5 | $2.40 |
 
-Model usage remains separately metered. This makes the aggressive subscription sustainable and lets customers choose depth. The risk is that buyers perceive a second meter, so the product must show a pre-scan estimate, current-month usage, and an optional spending cap as early as practical.
+Hosted model usage remains separately metered. This makes the aggressive subscription sustainable and lets customers choose depth. When a customer uses an account-managed provider key, the provider bills those calls directly and ZeroQuarry excludes them from its model-usage invoice; only the platform subscription remains payable to ZeroQuarry. BYOK calls also bypass platform-funded token caps, while security-run and concurrency limits still apply. Private runners require an account-managed key for every selected scan, review, and artifact model.
 
 At full plan utilization, even the highest posted model rate is bounded by the run allowance. Typical use should be materially lower because focused reviews use less context and customers can choose efficient models.
 

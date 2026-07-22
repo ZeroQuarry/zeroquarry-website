@@ -20,10 +20,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260713-growth1" />
+<link rel="stylesheet" href="/marketing.css?v=20260722-private-execution1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260713-growth1" defer></script>
+<script src="/index.js?v=20260722-private-execution1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Continuous application security","item":"https://zeroquarry.com/platform/continuous-security/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should every pull request block on ZeroQuarry?","acceptedAnswer":{"@type":"Answer","text":"Usually not at first. Start with report-only visibility, learn the finding profile, then introduce a reviewed threshold for the branches and changes that justify it."}},{"@type":"Question","name":"What is the difference between CI and scheduled scans?","acceptedAnswer":{"@type":"Answer","text":"CI associates security review with an engineering event. Schedules provide independent baseline coverage and only run a new scan when the repository commit changes."}},{"@type":"Question","name":"Does a delta scan inspect only the edited lines?","acceptedAnswer":{"@type":"Answer","text":"No. Changed files define the focus, but agents can follow nearby calls and data flow when the security impact crosses the diff boundary."}}]}</script>
 </head>
@@ -51,6 +51,7 @@
             <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
             <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
             <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Customer-controlled runners for internal targets</span></a>
             <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
           </div>
         </div>
@@ -143,7 +144,7 @@
 <article class="capability-card">
     <div class="card-code">03</div>
     <h3>Native schedules</h3>
-    <p>Attach daily, weekly, or monthly coverage to a Git lineage and skip unchanged commits automatically.</p>
+    <p>Attach daily, weekly, or monthly coverage to a Git lineage, skip unchanged commits, and optionally recheck unresolved findings.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">04</div>
@@ -194,6 +195,7 @@
       <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
       <div class="outcome-grid"><article class="outcome-card"><h3>Shorter feedback loops</h3><p>Catch authorization, webhook, parser, billing, and tenant-boundary regressions before context disappears.</p></article>
 <article class="outcome-card"><h3>Controlled scan spend</h3><p>Use change focus, no-change skips, deduplication, and stage-specific models to match depth to risk.</p></article>
+<article class="outcome-card"><h3>Evidence-backed remediation checks</h3><p>Record each selected previous finding as fixed, still present, or inconclusive instead of treating absence from a new scan as proof of a fix.</p></article>
 <article class="outcome-card"><h3>Security history by product</h3><p>Keep repeated assessments and retests in one project instead of burying evidence in CI logs.</p></article></div>
     </div>
   </section>
@@ -257,6 +259,7 @@
         <a href="/platform/continuous-security/">Continuous security</a>
         <a href="/platform/security-operations/">Security operations</a>
         <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/private-execution/">Private execution</a>
         <a href="/platform/evidence-reporting/">Evidence and reporting</a>
       </div>
       <div class="foot-col legal">

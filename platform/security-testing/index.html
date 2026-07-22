@@ -20,12 +20,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260713-growth1" />
+<link rel="stylesheet" href="/marketing.css?v=20260722-private-execution1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260713-growth1" defer></script>
+<script src="/index.js?v=20260722-private-execution1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"AI security testing","item":"https://zeroquarry.com/platform/security-testing/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ZeroQuarry a SAST or DAST scanner?","acceptedAnswer":{"@type":"Answer","text":"ZeroQuarry covers source, binary, and authorized live targets, but its workflow is closer to agent-led security research than a deterministic rule scanner. It investigates product-specific behavior and produces evidence for review."}},{"@type":"Question","name":"Can it test private repositories?","acceptedAnswer":{"@type":"Answer","text":"Yes. Accounts can configure scoped HTTPS or SSH Git credentials, and CI workflows can reference the saved credential without placing it in the scan payload."}},{"@type":"Question","name":"Can ZeroQuarry test production?","acceptedAnswer":{"@type":"Answer","text":"Remote testing requires explicit authorization and scope. Use a staging or production-like environment when active probes could create risk, and keep the allowed host boundary narrow."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ZeroQuarry a SAST or DAST scanner?","acceptedAnswer":{"@type":"Answer","text":"ZeroQuarry combines a bounded deterministic SAST pre-pass with agent-led source investigation, binary analysis, and authorized live testing. Static matches are investigation candidates, not alerts presented as validated vulnerabilities."}},{"@type":"Question","name":"Can it test private repositories?","acceptedAnswer":{"@type":"Answer","text":"Yes. Accounts can configure scoped HTTPS or SSH Git credentials, and CI workflows can reference the saved credential without placing it in the scan payload."}},{"@type":"Question","name":"Can ZeroQuarry test production?","acceptedAnswer":{"@type":"Answer","text":"Remote testing requires explicit authorization and scope. Use a staging or production-like environment when active probes could create risk, and keep the allowed host boundary narrow."}}]}</script>
 </head>
 <body>
 <div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
@@ -51,6 +51,7 @@
             <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
             <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
             <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Customer-controlled runners for internal targets</span></a>
             <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
           </div>
         </div>
@@ -132,31 +133,36 @@
       <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Three assessment surfaces. One <em>evidence chain.</em></h2></div><p class="section-intro">A source finding can disappear during packaging. Another issue may only become exploitable at runtime. Keeping every surface in one project makes those differences visible.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
+    <h3>Hybrid static and agent analysis</h3>
+    <p>Use a bounded deterministic SAST pre-pass to generate investigation candidates, then have agents test reachability, product context, control flow, and impact before recording findings.</p>
+  </article>
+<article class="capability-card">
+    <div class="card-code">02</div>
     <h3>Source code review</h3>
     <p>Trace authorization, data flow, unsafe parsers, secrets, dependency use, and business-logic failures across repositories or uploaded archives.</p>
   </article>
 <article class="capability-card">
-    <div class="card-code">02</div>
+    <div class="card-code">03</div>
     <h3>Binary analysis</h3>
     <p>Expand and decompile APKs, JARs, firmware, installers, and archives to review the artifact customers actually receive.</p>
   </article>
 <article class="capability-card">
-    <div class="card-code">03</div>
+    <div class="card-code">04</div>
     <h3>Live application testing</h3>
     <p>Probe web applications and APIs inside explicit host, authentication, and authorization boundaries.</p>
   </article>
 <article class="capability-card">
-    <div class="card-code">04</div>
+    <div class="card-code">05</div>
     <h3>Focused assessment notes</h3>
     <p>Give the coordinator product context, sensitive boundaries, and recent-change details without preventing broader investigation.</p>
   </article>
 <article class="capability-card">
-    <div class="card-code">05</div>
+    <div class="card-code">06</div>
     <h3>Multi-model orchestration</h3>
     <p>Resolve separate models for investigation, adversarial review, and artifact generation while keeping one report.</p>
   </article>
 <article class="capability-card">
-    <div class="card-code">06</div>
+    <div class="card-code">07</div>
     <h3>Project and lineage history</h3>
     <p>Group assessment versions by product or service and preserve targets, findings, retests, logs, and artifacts.</p>
   </article></div>
@@ -203,7 +209,7 @@
       <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
       <div class="faq-list"><details>
     <summary>Is ZeroQuarry a SAST or DAST scanner?</summary>
-    <p>ZeroQuarry covers source, binary, and authorized live targets, but its workflow is closer to agent-led security research than a deterministic rule scanner. It investigates product-specific behavior and produces evidence for review.</p>
+    <p>ZeroQuarry combines a bounded deterministic SAST pre-pass with agent-led source investigation, binary analysis, and authorized live testing. Static matches are investigation candidates, not alerts presented as validated vulnerabilities.</p>
   </details>
 <details>
     <summary>Can it test private repositories?</summary>
@@ -229,9 +235,9 @@
     <h3>Pull request security review</h3>
     <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
   </a>
-<a class="related-card" href="/platform/adversarial-validation/">
+<a class="related-card" href="/platform/private-execution/">
     <div class="card-code">Continue</div>
-    <h3>Adversarial validation</h3>
+    <h3>Private execution</h3>
     <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
   </a></div>
     </div>
@@ -257,6 +263,7 @@
         <a href="/platform/continuous-security/">Continuous security</a>
         <a href="/platform/security-operations/">Security operations</a>
         <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/private-execution/">Private execution</a>
         <a href="/platform/evidence-reporting/">Evidence and reporting</a>
       </div>
       <div class="foot-col legal">

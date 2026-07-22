@@ -118,6 +118,7 @@ const platformPages = [
     sectionTitle: "Three assessment surfaces. One <em>evidence chain.</em>",
     sectionIntro: "A source finding can disappear during packaging. Another issue may only become exploitable at runtime. Keeping every surface in one project makes those differences visible.",
     capabilities: [
+      ["Hybrid static and agent analysis", "Use a bounded deterministic SAST pre-pass to generate investigation candidates, then have agents test reachability, product context, control flow, and impact before recording findings."],
       ["Source code review", "Trace authorization, data flow, unsafe parsers, secrets, dependency use, and business-logic failures across repositories or uploaded archives."],
       ["Binary analysis", "Expand and decompile APKs, JARs, firmware, installers, and archives to review the artifact customers actually receive."],
       ["Live application testing", "Probe web applications and APIs inside explicit host, authentication, and authorization boundaries."],
@@ -137,11 +138,11 @@ const platformPages = [
       ["A repeatable assessment record", "Keep every target, version, decision, and retest connected to the product it belongs to."],
     ],
     faqs: [
-      ["Is ZeroQuarry a SAST or DAST scanner?", "ZeroQuarry covers source, binary, and authorized live targets, but its workflow is closer to agent-led security research than a deterministic rule scanner. It investigates product-specific behavior and produces evidence for review."],
+      ["Is ZeroQuarry a SAST or DAST scanner?", "ZeroQuarry combines a bounded deterministic SAST pre-pass with agent-led source investigation, binary analysis, and authorized live testing. Static matches are investigation candidates, not alerts presented as validated vulnerabilities."],
       ["Can it test private repositories?", "Yes. Accounts can configure scoped HTTPS or SSH Git credentials, and CI workflows can reference the saved credential without placing it in the scan payload."],
       ["Can ZeroQuarry test production?", "Remote testing requires explicit authorization and scope. Use a staging or production-like environment when active probes could create risk, and keep the allowed host boundary narrow."],
     ],
-    related: [["/use-cases/release-security-review/", "Release security review"], ["/use-cases/pr-security-review/", "Pull request security review"], ["/platform/adversarial-validation/", "Adversarial validation"]],
+    related: [["/use-cases/release-security-review/", "Release security review"], ["/use-cases/pr-security-review/", "Pull request security review"], ["/platform/private-execution/", "Private execution"]],
   },
   {
     slug: "adversarial-validation",
@@ -196,7 +197,7 @@ const platformPages = [
     capabilities: [
       ["GitHub Actions workflow", "Install a maintained workflow that dispatches repository scans on pull requests, pushes, schedules, or manual runs."],
       ["Delta scans", "Use Git history to focus the next assessment on changed files and adjacent data flow after the first baseline."],
-      ["Native schedules", "Attach daily, weekly, or monthly coverage to a Git lineage and skip unchanged commits automatically."],
+      ["Native schedules", "Attach daily, weekly, or monthly coverage to a Git lineage, skip unchanged commits, and optionally recheck unresolved findings."],
       ["Public API", "Create, monitor, cancel, rescan, search, share, and export through the same account and tier boundaries as the console."],
       ["Practical gating", "Start non-blocking, then gate on reviewed critical or high findings when the team understands the signal profile."],
       ["Notifications and handoff", "Send completion summaries to email or Slack and move accepted findings into tickets or pull requests."],
@@ -210,6 +211,7 @@ const platformPages = [
     outcomes: [
       ["Shorter feedback loops", "Catch authorization, webhook, parser, billing, and tenant-boundary regressions before context disappears."],
       ["Controlled scan spend", "Use change focus, no-change skips, deduplication, and stage-specific models to match depth to risk."],
+      ["Evidence-backed remediation checks", "Record each selected previous finding as fixed, still present, or inconclusive instead of treating absence from a new scan as proof of a fix."],
       ["Security history by product", "Keep repeated assessments and retests in one project instead of burying evidence in CI logs."],
     ],
     faqs: [
@@ -275,13 +277,13 @@ const platformPages = [
       ["Layered safety controls", "Use account and repository kill switches, explicit enrollment, base-branch settings, file deny-lists, size limits, and push caps."],
       ["Optional auto-push", "After a successful manual workflow, selected repositories can send qualifying proposals straight to PR review without auto-merging."],
       ["Ticket handoff", "Create Jira or ServiceNow work, or open a prefilled GitHub Issue when code changes are not the right first step."],
-      ["Retest and regression history", "Re-run focused assessments, record mitigation and retest decisions, and surface a later recurrence as regression."],
+      ["Explicit finding rechecks", "Ask an update scan to retest unresolved lineage findings and record each one as fixed, still present, or inconclusive with current evidence."],
     ],
     workflow: [
       ["Validate", "Confirm the vulnerability applies to the product before generating or filing remediation work."],
       ["Propose", "Generate a patch, auto-fix proposal, or ticket with source, impact, proof, and expected outcome."],
       ["Review", "Use normal engineering ownership, CI, branch protection, and code-review controls."],
-      ["Retest", "Verify the risk after merge and record retested or regression state in the original history."],
+      ["Retest", "Verify the risk after merge; do not infer a fix merely because a previous finding is absent from a new scan."],
     ],
     outcomes: [
       ["Engineer-ready work", "Reduce the manual translation from vulnerability narrative to code path, reproduction, and candidate change."],
@@ -294,6 +296,47 @@ const platformPages = [
       ["How do we stop the bot quickly?", "An account-wide kill switch stops all pushes, and each repository has its own kill switch. Repository enrollment and GitHub App access add separate permission gates."],
     ],
     related: [["/use-cases/pr-security-review/", "Pull request security review"], ["/platform/adversarial-validation/", "Adversarial validation"], ["/platform/continuous-security/", "Continuous security"]],
+  },
+  {
+    slug: "private-execution",
+    title: "Private Security Scanning Runners for Internal Networks | ZeroQuarry",
+    description: "Run AI security scans from customer-controlled Docker runners for private Git repositories and authorized internal applications, with outbound-only connectivity and minimized result return.",
+    eyebrow: "Private execution",
+    h1: "Run security assessments where your code and internal targets <em>already live.</em>",
+    lede: "Enterprise private runners execute eligible source and live-target scans from Docker hosts inside networks you control. Keep cloud and private execution explicit per project, call your LLM provider directly, and choose how much result detail returns to ZeroQuarry.",
+    image: "/assets/product/account-private-runners.png",
+    imageAlt: "ZeroQuarry private runner pool controls for internal-network security assessments",
+    proof: ["Customer-controlled Docker hosts", "Outbound HTTPS only", "Minimized or standard results"],
+    sectionTitle: "Private reachability without pretending the control plane is <em>air-gapped.</em>",
+    sectionIntro: "The runner stays connected to the ZeroQuarry SaaS control plane and the customer-selected LLM provider. The design gives buyers a precise execution and result boundary instead of a vague on-premise claim.",
+    capabilities: [
+      ["Internal application testing", "Reach authorized RFC1918, loopback, link-local, and internal-DNS targets from inside the customer network while cloud workers retain SSRF protections."],
+      ["Private Git source execution", "Clone Git repositories directly on the runner with scoped credentials. Browser source uploads and binary uploads do not use private execution."],
+      ["Outbound-only enrollment", "Enroll a runner with a one-use, 15-minute token and make outbound HTTPS connections without opening an inbound firewall rule."],
+      ["Per-project execution policy", "Allow specific pools on a project, choose a default, and let scan creators select only compatible environments."],
+      ["Result minimization", "Return allowlisted finding metadata and safe locations while evidence, remediation text, logs, errors, and artifacts remain on the runner."],
+      ["Operational controls", "Separate trust zones into pools, monitor health and leases, drain for maintenance, revoke immediately, and retain an account audit trail."],
+    ],
+    workflow: [
+      ["Design", "Choose the network boundary, eligible source or remote modes, returned-result policy, and account-managed models."],
+      ["Enroll", "Run the generated Docker command on a host that can reach the targets, Git host, LLM providers, and ZeroQuarry control plane."],
+      ["Authorize", "Allow the pool on selected projects and choose whether ZeroQuarry Cloud remains an approved alternative."],
+      ["Operate", "Assign scans explicitly, monitor runner health, and review result and audit behavior without automatic cloud fallback."],
+    ],
+    outcomes: [
+      ["Coverage of internal attack surface", "Assess private applications and APIs that a managed SaaS worker cannot safely reach."],
+      ["A narrower result boundary", "Keep detailed evidence local when minimized metadata is enough for centralized triage and reporting."],
+      ["Explicit deployment control", "Give security and infrastructure teams a reviewable model for network reachability, provider access, retries, and revocation."],
+    ],
+    faqs: [
+      ["Is a private runner fully on-premise or air-gapped?", "No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider."],
+      ["Which scans can use private runners?", "Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs."],
+      ["Can a failed private job fall back to ZeroQuarry Cloud?", "No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment."],
+      ["Do private runners require bring-your-own model keys?", "Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly."],
+    ],
+    related: [["/platform/security-testing/", "AI security testing"], ["/use-cases/release-security-review/", "Release security review"], ["/platform/evidence-reporting/", "Evidence and reporting"]],
+    ctaHref: "/request-scan/",
+    ctaLabel: "Discuss private execution",
   },
   {
     slug: "evidence-reporting",
@@ -309,7 +352,7 @@ const platformPages = [
     sectionIntro: "Reconstructing security history from tickets and chat during a customer review is expensive. The resulting story is usually incomplete.",
     capabilities: [
       ["Evidence Room", "See completed work by actual Git repository, URL, upload, or path and export the latest report for selected assets."],
-      ["Report and finding exports", "Create Markdown, single-file HTML, or pentest-style PDF outputs with confidence and review filters."],
+      ["Report and finding exports", "Create Markdown, single-file HTML, or PDF outputs. Customer-facing PDFs default to aggregate severity context; include detailed finding evidence only for authorized recipients."],
       ["Controlled secure shares", "Give a named recipient read-only access to selected findings through a password-protected, expiring, revocable link."],
       ["Disclosure tracking", "Preserve reported, acknowledged, fixed, advisory, bounty, credit, and closure milestones for external issues."],
       ["Audit history", "Show investigation stages, model resolution, human actors, outcomes, lifecycle changes, and reasons."],
@@ -329,7 +372,7 @@ const platformPages = [
     faqs: [
       ["Does the Evidence Room prove compliance?", "No. It packages assessment evidence and history. Your organization still determines control scope, test frequency, reviewer requirements, and framework assertions."],
       ["Can a recipient see the rest of our scan?", "A secure share exposes only the selected findings. It does not grant the recipient access to the rest of the report, project, or account."],
-      ["What is included in a PDF report?", "The pentest-style layout can include target context, executive summary, finding overview, per-finding evidence, and configured report definitions, branding, and disclaimers."],
+      ["What is included in a PDF report?", "The default customer-facing PDF contains report context and aggregate severity counts without finding names or exploit details. An authorized operator can explicitly include detailed findings, evidence, branding, and disclaimers."],
     ],
     related: [["/use-cases/customer-security-reviews/", "Customer and audit evidence"], ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure"], ["/platform/security-operations/", "Security operations"]],
   },
@@ -661,6 +704,15 @@ const motionVisuals = {
     foot: "repository access, approval, CI, and merge controls remain yours",
     aria: "Animated remediation flow from a validated finding through a controlled patch, review, and retest",
   },
+  "private-execution": {
+    label: "execution://private-pool",
+    title: "Customer-controlled runner",
+    detail: "Source and internal-target assessment",
+    inputs: [["GIT", "private repository"], ["INTERNAL", "service.private"], ["POLICY", "minimized results"]],
+    outputs: [["FINDING", "metadata returned"], ["EVIDENCE", "retained locally"], ["AUDIT", "attempt recorded"]],
+    foot: "outbound HTTPS only · no automatic cloud fallback",
+    aria: "Animated private runner processing a private Git repository and internal target while retaining detailed evidence locally",
+  },
   "evidence-reporting": {
     label: "evidence://current-state",
     title: "Evidence room assembly",
@@ -757,7 +809,8 @@ function renderDetail(page, type) {
   const baseLabel = isPlatform ? "Platform" : "Use cases";
   const baseHref = isPlatform ? "/platform" : "/use-cases/";
   const canonicalPath = isPlatform ? `/platform/${page.slug}/` : `/use-cases/${page.slug}/`;
-  const signupUrl = signupBySlug[page.slug] || signupUrls.general;
+  const signupUrl = page.ctaHref || signupBySlug[page.slug] || signupUrls.general;
+  const signupLabel = page.ctaLabel || "Start free trial";
   const faqs = page.faqs.map(([q, a]) => ({ q, a }));
   const schemas = [
     breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: baseLabel, href: baseHref }, { name: page.eyebrow, href: canonicalPath }]),
@@ -774,7 +827,7 @@ function renderDetail(page, type) {
           <h1 class="buyer-title detail-title">${page.h1}</h1>
           <p class="buyer-lede">${escapeHtml(page.lede)}</p>
           <div class="buyer-actions">
-            <a class="btn btn-primary" href="${signupUrl}">Start free trial <span class="arr">-&gt;</span></a>
+            <a class="btn btn-primary" href="${signupUrl}">${escapeHtml(signupLabel)} <span class="arr">-&gt;</span></a>
             <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
           </div>
           <div class="buyer-proofline">${page.proof.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>
@@ -1015,6 +1068,7 @@ function pricingPage() {
       ["Scheduled and pull-request review", "Not included", "Included", "Included", "Included", "Included", "Included"],
       ["Release artifact and binary review", "Not included", "Not included", "Included", "Included", "Included", "Included"],
       ["Authorized live-application testing", "Not included", "Not included", "Included", "Included", "Included", "Included"],
+      ["Customer-controlled private runners", "Not included", "Not included", "Not included", "Not included", "Not included", "Included"],
       ["Adversarial validation", "Included", "Included", "Included", "Included", "Included", "Included"],
       ["Vulnerability PoCs", "Not included", "Included", "Included", "Included", "Included", "Included"],
     ] },
@@ -1040,7 +1094,7 @@ function pricingPage() {
     ["What consumes a security run?", "A focused pull-request or changed-file review consumes 1 security run. A full source, binary, or authorized live assessment consumes 5. Reports, lifecycle decisions, evidence sharing, and rerunning a pipeline stage inside the same assessment do not consume more. Any newly started scan is metered by its scope."],
     ["Is this priced per seat?", "No. Each listed price covers the whole account and includes multiple collaborators. Developer includes 3 people and Coverage includes 15, so inviting engineering, product, or leadership does not multiply the subscription bill."],
     ["Why does this cost more than one coding-agent seat?", "A coding agent helps one developer produce code. ZeroQuarry independently tests the product, challenges vulnerability claims, retains risk decisions, moves remediation, verifies fixes, and produces evidence for customers and auditors. The entry price stays in developer-tool territory; the product outcome is a continuous security operation."],
-    ["Is model usage included?", "No. Model input and output are metered separately at the posted rates below, so you can match model depth to the decision and see the cost by scan. Keeping it visible also lets ZeroQuarry price the platform aggressively without hiding a usage assumption in every subscription."],
+    ["Is model usage included?", "Hosted model input and output are metered separately at the posted rates below. With an account-managed key, the LLM provider bills you directly and ZeroQuarry does not add those calls to its model-usage invoice; your ZeroQuarry subscription and security-run limits remain unchanged. Private runners require your keys for every selected stage."],
     ["Can we add capacity without changing plans?", "Yes. Add protected products or bundles of 25 monthly security runs. If that becomes a recurring pattern, moving to the next plan will usually provide better economics and more operating controls."],
     ["Does this replace a human pentest?", "ZeroQuarry creates continuous assessment and evidence between point-in-time tests. Some regulations, customers, or insurance policies may still require a named independent human assessor; we will scope those requirements honestly rather than treating every report as interchangeable."],
   ];
@@ -1077,7 +1131,7 @@ function pricingPage() {
       <article class="price-card"><div class="plan-kicker">Operate continuously</div><h2>Operations</h2><p class="plan-audience">For teams running recurring review, inbound report triage, and remediation across several products.</p><div class="price-row"><span class="price annual-price">$400</span><span class="price monthly-price">$500</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$4,800 billed yearly · save $1,200</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="${signupUrls.reportTriage}?source=pricing&amp;plan=growth">Start free trial</a><ul class="plan-list"><li><span></span>5 protected products</li><li><span></span>200 security runs each month</li><li><span></span>50 collaborators, 8 concurrent assessments</li><li><span></span>Inbound report triage and GitHub autofix</li><li><span></span>Jira, ServiceNow, and custom reports</li><li><span></span>100 controlled evidence shares</li></ul></article>
       <article class="price-card"><div class="plan-kicker">Standardize</div><h2>Portfolio</h2><p class="plan-audience">For security teams standardizing decisions, automation, and assurance across a product portfolio.</p><div class="price-row"><span class="price annual-price">$800</span><span class="price monthly-price">$1,000</span><span class="cadence">/ month</span></div><div class="price-note annual-billing-note">$9,600 billed yearly · save $2,400</div><div class="price-note monthly-billing-note">Billed monthly · switch anytime</div><a class="btn btn-ghost plan-btn" href="${signupUrls.general}?source=pricing&amp;plan=scale">Start free trial</a><ul class="plan-list"><li><span></span>15 protected products</li><li><span></span>600 security runs each month</li><li><span></span>150 collaborators, 20 concurrent assessments</li><li><span></span>Portfolio-wide triage, autofix, and reporting</li><li><span></span>Workspace appearance and priority rollout</li><li><span></span>500 controlled shares, up to 365 days</li></ul></article>
     </div>
-    <div class="enterprise-strip"><div><span class="plan-kicker">Enterprise</span><h3>Need custom capacity, assurance, or deployment review?</h3><p>Custom products, runs, controls, storage, procurement, and rollout terms are available when the standard plans no longer fit.</p></div><a class="btn btn-ghost" href="/request-scan/">Design Enterprise</a></div>
+    <div class="enterprise-strip"><div><span class="plan-kicker">Enterprise</span><h3>Need private-network execution or a custom operating boundary?</h3><p>Enterprise includes customer-controlled runner pools for private Git and authorized internal targets, with custom capacity, storage, procurement, assurance, and rollout terms.</p></div><a class="btn btn-ghost" href="/request-scan/">Design Enterprise</a></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
@@ -1096,7 +1150,7 @@ function pricingPage() {
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
-    <div class="section-head"><div><div class="tag">Model usage</div><h2>Depth stays visible <em>on the invoice.</em></h2></div><div class="aside">Model input and output are billed separately from the subscription. Choose efficient models for routine change review and deeper models where the risk or decision warrants it.</div></div>
+    <div class="section-head"><div><div class="tag">Model usage</div><h2>Choose who funds the <em>model calls.</em></h2></div><div class="aside">Hosted model input and output are billed separately from the subscription. Bring your own provider key and the provider bills those calls directly; ZeroQuarry charges only the platform subscription.</div></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">

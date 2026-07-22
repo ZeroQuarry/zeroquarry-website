@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Security Operations for Startups and Growing Software Companies | ZeroQuarry</title>
-<meta name="description" content="Build a credible startup security program with AI security testing, vulnerability triage, remediation, retesting, and customer evidence before hiring a large team." />
-<link rel="canonical" href="https://zeroquarry.com/use-cases/startup-security/" />
-<meta property="og:title" content="Security Operations for Startups and Growing Software Companies | ZeroQuarry" />
-<meta property="og:description" content="Build a credible startup security program with AI security testing, vulnerability triage, remediation, retesting, and customer evidence before hiring a large team." />
+<title>Private Security Scanning Runners for Internal Networks | ZeroQuarry</title>
+<meta name="description" content="Run AI security scans from customer-controlled Docker runners for private Git repositories and authorized internal applications, with outbound-only connectivity and minimized result return." />
+<link rel="canonical" href="https://zeroquarry.com/platform/private-execution/" />
+<meta property="og:title" content="Private Security Scanning Runners for Internal Networks | ZeroQuarry" />
+<meta property="og:description" content="Run AI security scans from customer-controlled Docker runners for private Git repositories and authorized internal applications, with outbound-only connectivity and minimized result return." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://zeroquarry.com/use-cases/startup-security/" />
+<meta property="og:url" content="https://zeroquarry.com/platform/private-execution/" />
 <meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -24,8 +24,8 @@
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
 <script src="/index.js?v=20260722-private-execution1" defer></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://zeroquarry.com/use-cases/"},{"@type":"ListItem","position":3,"name":"Security for growing companies","item":"https://zeroquarry.com/use-cases/startup-security/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does ZeroQuarry replace a security leader?","acceptedAnswer":{"@type":"Answer","text":"It automates substantial assessment and operations work, but it does not replace business accountability, live-testing authorization, risk ownership, or production change approval."}},{"@type":"Question","name":"Where should a startup begin?","acceptedAnswer":{"@type":"Answer","text":"Begin with the repository containing the most important customer data or trust boundary. Complete the full loop from assessment to validated decision to one verified fix before expanding coverage."}},{"@type":"Question","name":"Can this support customer security reviews?","acceptedAnswer":{"@type":"Answer","text":"Yes. Projects, reports, finding states, audit history, retests, and the Evidence Room make it easier to provide current, scoped assessment evidence."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Private execution","item":"https://zeroquarry.com/platform/private-execution/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a private runner fully on-premise or air-gapped?","acceptedAnswer":{"@type":"Answer","text":"No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider."}},{"@type":"Question","name":"Which scans can use private runners?","acceptedAnswer":{"@type":"Answer","text":"Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs."}},{"@type":"Question","name":"Can a failed private job fall back to ZeroQuarry Cloud?","acceptedAnswer":{"@type":"Answer","text":"No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment."}},{"@type":"Question","name":"Do private runners require bring-your-own model keys?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly."}}]}</script>
 </head>
 <body>
 <div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
@@ -37,7 +37,7 @@
     <nav class="nav-links buyer-nav" aria-label="Primary">
       <a href="/">Why ZeroQuarry</a>
       <details class="nav-cluster" name="primary-nav">
-        <summary>Platform</summary>
+        <summary aria-current="page">Platform</summary>
         <div class="nav-mega nav-mega-platform">
           <div class="nav-mega-intro">
             <span class="nav-overline">Platform</span>
@@ -57,7 +57,7 @@
         </div>
       </details>
       <details class="nav-cluster" name="primary-nav">
-        <summary aria-current="page">Use cases</summary>
+        <summary>Use cases</summary>
         <div class="nav-mega nav-mega-use-cases">
           <div class="nav-mega-intro">
             <span class="nav-overline">Use cases</span>
@@ -88,8 +88,8 @@
       <summary>Browse ZeroQuarry</summary>
       <nav class="mobile-nav-panel" aria-label="Mobile primary">
         <a href="/">Why ZeroQuarry</a>
-        <a href="/platform">Platform</a>
-        <a href="/use-cases/" aria-current="page">Use cases</a>
+        <a href="/platform" aria-current="page">Platform</a>
+        <a href="/use-cases/">Use cases</a>
         <a href="/research/">Research</a>
         <a href="/pricing">Pricing</a>
         <a href="https://docs.zeroquarry.com">Docs</a>
@@ -100,29 +100,29 @@
 <main class="marketing-main">
   <section class="buyer-hero detail-hero">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/use-cases/">Use cases</a><span>/</span><span>Security for growing companies</span></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/platform">Platform</a><span>/</span><span>Private execution</span></nav>
       <div class="buyer-hero-grid">
         <div>
-          <div class="buyer-kicker">Security for growing companies</div>
-          <h1 class="buyer-title detail-title">Run product security before you can staff <em>every specialty.</em></h1>
-          <p class="buyer-lede">ZeroQuarry gives founders, engineering leaders, and lean security teams a repeatable way to assess releases, absorb external reports, drive fixes, and answer customer security questions.</p>
+          <div class="buyer-kicker">Private execution</div>
+          <h1 class="buyer-title detail-title">Run security assessments where your code and internal targets <em>already live.</em></h1>
+          <p class="buyer-lede">Enterprise private runners execute eligible source and live-target scans from Docker hosts inside networks you control. Keep cloud and private execution explicit per project, call your LLM provider directly, and choose how much result detail returns to ZeroQuarry.</p>
           <div class="buyer-actions">
-            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/startup-security">Start free trial <span class="arr">-&gt;</span></a>
+            <a class="btn btn-primary" href="/request-scan/">Discuss private execution <span class="arr">-&gt;</span></a>
             <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
           </div>
-          <div class="buyer-proofline"><span>One product to a portfolio</span><span>One operating record</span><span>Human control points</span></div>
+          <div class="buyer-proofline"><span>Customer-controlled Docker hosts</span><span>Outbound HTTPS only</span><span>Minimized or standard results</span></div>
         </div>
-        <div class="motion-system motion-startup-security" role="img" aria-label="Animated startup security baseline producing prioritized risk, a fix, and customer evidence">
-    <div class="motion-head"><span>startup://security-baseline</span><span class="motion-live">processing</span></div>
+        <div class="motion-system motion-private-execution" role="img" aria-label="Animated private runner processing a private Git repository and internal target while retaining detailed evidence locally">
+    <div class="motion-head"><span>execution://private-pool</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
       <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>REPOSITORY</span><strong>main product</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>RELEASE</span><strong>current build</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>PRESSURE</span><strong>first enterprise buyer</strong></div></div>
+      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>GIT</span><strong>private repository</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>INTERNAL</span><strong>service.private</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>POLICY</span><strong>minimized results</strong></div></div>
       <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Lean security baseline</strong><span>Cover the product before staffing every specialty</span><b>active</b></div>
+      <div class="motion-core"><small>ZEROQUARRY</small><strong>Customer-controlled runner</strong><span>Source and internal-target assessment</span><b>active</b></div>
       <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>PRIORITY</span><strong>top product risk</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>FIX</span><strong>owner and patch</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>EVIDENCE</span><strong>buyer-ready history</strong></div></div>
+      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>FINDING</span><strong>metadata returned</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>EVIDENCE</span><strong>retained locally</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>AUDIT</span><strong>attempt recorded</strong></div></div>
     </div>
-    <div class="motion-foot"><span class="pulse-dot"></span><span>begin with one product boundary and expand as the company grows</span></div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>outbound HTTPS only · no automatic cloud fallback</span></div>
   </div>
       </div>
     </div>
@@ -130,36 +130,36 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Security maturity should grow with the <em>company’s actual risk.</em></h2></div><p class="section-intro">A team establishing its first baseline needs visibility. A team managing recurring delivery, inbound reports, and multiple product owners needs consistent execution and traceable evidence. The loop is the same; depth and governance increase with the work.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Private reachability without pretending the control plane is <em>air-gapped.</em></h2></div><p class="section-intro">The runner stays connected to the ZeroQuarry SaaS control plane and the customer-selected LLM provider. The design gives buyers a precise execution and result boundary instead of a vague on-premise claim.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
-    <h3>Establish the baseline</h3>
-    <p>Map the core product, assess the main repository, validate important findings, and retain one reviewed evidence record.</p>
+    <h3>Internal application testing</h3>
+    <p>Reach authorized RFC1918, loopback, link-local, and internal-DNS targets from inside the customer network while cloud workers retain SSRF protections.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">02</div>
-    <h3>Put security into delivery</h3>
-    <p>Add PR or scheduled coverage, route accepted findings into engineering, and operationalize external report intake.</p>
+    <h3>Private Git source execution</h3>
+    <p>Clone Git repositories directly on the runner with scoped credentials. Browser source uploads and binary uploads do not use private execution.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">03</div>
-    <h3>Standardize decisions and evidence</h3>
-    <p>Apply consistent lifecycle states, adversarial review, repository controls, retests, and asset-level assurance evidence.</p>
+    <h3>Outbound-only enrollment</h3>
+    <p>Enroll a runner with a one-use, 15-minute token and make outbound HTTPS connections without opening an inbound firewall rule.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">04</div>
-    <h3>Human authorization</h3>
-    <p>Keep live-target authorization, accepted risk, external sharing, and production merge approval with accountable people.</p>
+    <h3>Per-project execution policy</h3>
+    <p>Allow specific pools on a project, choose a default, and let scan creators select only compatible environments.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">05</div>
-    <h3>Flexible model and data boundaries</h3>
-    <p>Use account defaults, bring-your-own provider keys, private Git credentials, and enterprise deployment controls as requirements mature.</p>
+    <h3>Result minimization</h3>
+    <p>Return allowlisted finding metadata and safe locations while evidence, remediation text, logs, errors, and artifacts remain on the runner.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">06</div>
-    <h3>Evidence from the work</h3>
-    <p>Let projects, audit history, finding decisions, and retests produce the record customers and auditors ask for later.</p>
+    <h3>Operational controls</h3>
+    <p>Separate trust zones into pools, monitor health and leases, drain for maintenance, revoke immediately, and retain an account audit trail.</p>
   </article></div>
     </div>
   </section>
@@ -169,23 +169,23 @@
       <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
-    <h3>Week 1</h3>
-    <p>Create the product map and complete a source baseline on the highest-value service.</p>
+    <h3>Design</h3>
+    <p>Choose the network boundary, eligible source or remote modes, returned-result policy, and account-managed models.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 02</span>
-    <h3>Week 2</h3>
-    <p>Validate important findings, connect engineering handoff, and retest one fix.</p>
+    <h3>Enroll</h3>
+    <p>Run the generated Docker command on a host that can reach the targets, Git host, LLM providers, and ZeroQuarry control plane.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 03</span>
-    <h3>Week 3</h3>
-    <p>Add CI or a schedule to one repository and tune a practical gating policy.</p>
+    <h3>Authorize</h3>
+    <p>Allow the pool on selected projects and choose whether ZeroQuarry Cloud remains an approved alternative.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 04</span>
-    <h3>Week 4</h3>
-    <p>Assess a release artifact or staging target and prepare a reviewed evidence pack.</p>
+    <h3>Operate</h3>
+    <p>Assign scans explicitly, monitor runner health, and review result and audit behavior without automatic cloud fallback.</p>
   </article></div>
     </div>
   </section>
@@ -193,9 +193,9 @@
   <section class="buyer-section soft">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
-      <div class="outcome-grid"><article class="outcome-card"><h3>Coverage without immediate headcount</h3><p>Automate repeatable assessment and coordination while reserving human time for authorization, context, and risk decisions.</p></article>
-<article class="outcome-card"><h3>A buyer-ready security story</h3><p>Show how software is tested, how findings are handled, and how fixes are verified. A scanner inventory cannot answer those questions.</p></article>
-<article class="outcome-card"><h3>A program that can mature</h3><p>Start with one product loop and add controls, ownership, and evidence as the organization grows.</p></article></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>Coverage of internal attack surface</h3><p>Assess private applications and APIs that a managed SaaS worker cannot safely reach.</p></article>
+<article class="outcome-card"><h3>A narrower result boundary</h3><p>Keep detailed evidence local when minimized metadata is enough for centralized triage and reporting.</p></article>
+<article class="outcome-card"><h3>Explicit deployment control</h3><p>Give security and infrastructure teams a reviewable model for network reachability, provider access, retries, and revocation.</p></article></div>
     </div>
   </section>
 
@@ -203,16 +203,20 @@
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
       <div class="faq-list"><details>
-    <summary>Does ZeroQuarry replace a security leader?</summary>
-    <p>It automates substantial assessment and operations work, but it does not replace business accountability, live-testing authorization, risk ownership, or production change approval.</p>
+    <summary>Is a private runner fully on-premise or air-gapped?</summary>
+    <p>No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider.</p>
   </details>
 <details>
-    <summary>Where should a startup begin?</summary>
-    <p>Begin with the repository containing the most important customer data or trust boundary. Complete the full loop from assessment to validated decision to one verified fix before expanding coverage.</p>
+    <summary>Which scans can use private runners?</summary>
+    <p>Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs.</p>
   </details>
 <details>
-    <summary>Can this support customer security reviews?</summary>
-    <p>Yes. Projects, reports, finding states, audit history, retests, and the Evidence Room make it easier to provide current, scoped assessment evidence.</p>
+    <summary>Can a failed private job fall back to ZeroQuarry Cloud?</summary>
+    <p>No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment.</p>
+  </details>
+<details>
+    <summary>Do private runners require bring-your-own model keys?</summary>
+    <p>Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly.</p>
   </details></div>
     </div>
   </section>
@@ -220,25 +224,25 @@
   <section class="buyer-section soft">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continue through the <em>operating loop.</em></h2></div></div>
-      <div class="related-grid"><a class="related-card" href="/platform/security-operations/">
+      <div class="related-grid"><a class="related-card" href="/platform/security-testing/">
     <div class="card-code">Continue</div>
-    <h3>AI security operations</h3>
-    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
-  </a>
-<a class="related-card" href="/use-cases/customer-security-reviews/">
-    <div class="card-code">Continue</div>
-    <h3>Customer and audit evidence</h3>
+    <h3>AI security testing</h3>
     <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
   </a>
 <a class="related-card" href="/use-cases/release-security-review/">
     <div class="card-code">Continue</div>
     <h3>Release security review</h3>
     <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/platform/evidence-reporting/">
+    <div class="card-code">Continue</div>
+    <h3>Evidence and reporting</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
   </a></div>
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Start with one real security boundary.</h2><p>Use the free trial on your own product, then decide whether the resulting security work is useful enough to keep.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/startup-security">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Start with one real security boundary.</h2><p>Use the free trial on your own product, then decide whether the resulting security work is useful enough to keep.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="/request-scan/">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">

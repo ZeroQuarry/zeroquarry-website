@@ -20,10 +20,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260713-growth1" />
+<link rel="stylesheet" href="/marketing.css?v=20260722-private-execution1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260713-growth1" defer></script>
+<script src="/index.js?v=20260722-private-execution1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Vulnerability remediation","item":"https://zeroquarry.com/platform/remediation/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does ZeroQuarry auto-merge security fixes?","acceptedAnswer":{"@type":"Answer","text":"No. ZeroQuarryBot opens pull requests; your repository’s reviewers, CI, branch protection, and merge policy remain in control."}},{"@type":"Question","name":"Do we have to install the GitHub App to get a patch?","acceptedAnswer":{"@type":"Answer","text":"No. Patch generation can produce a downloadable or revisable diff without repository write access. The GitHub App is only needed for the pull-request workflow."}},{"@type":"Question","name":"How do we stop the bot quickly?","acceptedAnswer":{"@type":"Answer","text":"An account-wide kill switch stops all pushes, and each repository has its own kill switch. Repository enrollment and GitHub App access add separate permission gates."}}]}</script>
 </head>
@@ -51,6 +51,7 @@
             <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
             <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
             <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Customer-controlled runners for internal targets</span></a>
             <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
           </div>
         </div>
@@ -157,8 +158,8 @@
   </article>
 <article class="capability-card">
     <div class="card-code">06</div>
-    <h3>Retest and regression history</h3>
-    <p>Re-run focused assessments, record mitigation and retest decisions, and surface a later recurrence as regression.</p>
+    <h3>Explicit finding rechecks</h3>
+    <p>Ask an update scan to retest unresolved lineage findings and record each one as fixed, still present, or inconclusive with current evidence.</p>
   </article></div>
     </div>
   </section>
@@ -184,7 +185,7 @@
 <article class="workflow-card">
     <span>STEP 04</span>
     <h3>Retest</h3>
-    <p>Verify the risk after merge and record retested or regression state in the original history.</p>
+    <p>Verify the risk after merge; do not infer a fix merely because a previous finding is absent from a new scan.</p>
   </article></div>
     </div>
   </section>
@@ -257,6 +258,7 @@
         <a href="/platform/continuous-security/">Continuous security</a>
         <a href="/platform/security-operations/">Security operations</a>
         <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/private-execution/">Private execution</a>
         <a href="/platform/evidence-reporting/">Evidence and reporting</a>
       </div>
       <div class="foot-col legal">

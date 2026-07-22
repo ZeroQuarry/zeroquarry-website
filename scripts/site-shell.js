@@ -4,6 +4,7 @@ const platformLinks = [
   ["/platform/continuous-security/", "Continuous security", "PR, scheduled, and API-triggered reviews"],
   ["/platform/security-operations/", "Security operations", "Intake, decisions, routing, and audit history"],
   ["/platform/remediation/", "Remediation", "Patches, pull requests, tickets, and retests"],
+  ["/platform/private-execution/", "Private execution", "Customer-controlled runners for internal targets"],
   ["/platform/evidence-reporting/", "Evidence and reporting", "Reports, controlled sharing, and assurance packs"],
 ];
 
@@ -18,7 +19,7 @@ const useCaseLinks = [
 ];
 
 // Keep shell behavior and styles on the same cache generation after deploys.
-const assetVersion = "20260713-growth1";
+const assetVersion = "20260722-private-execution1";
 
 function linkCurrent(active, value) {
   return active === value ? ' aria-current="page"' : "";
