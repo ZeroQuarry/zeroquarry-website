@@ -160,7 +160,7 @@
 <p>They are usually: <strong>bad function used here, in this product workflow, after this kind of file is shared, with these permissions, inside this trust model, by this kind of user.</strong></p>
 <p>That is where many static analysis tools struggle. And that is exactly the class of issue ZeroQuarry was built to find.</p>
 <p>In May 2026, ZeroQuarry scanned the Excalidraw plugin for Obsidian, a widely used visual thinking and whiteboarding plugin. The initial scan reported 41 high-severity, 32 medium-severity, and 2 low-severity findings. A later re-scan, after fixes, showed that the highest-risk surface had been substantially reduced.</p>
-<p>The interesting part is not the count. The interesting part is the *type* of vulnerabilities ZeroQuarry found.</p>
+<p>The interesting part is not the count. The interesting part is the <em>type</em> of vulnerabilities ZeroQuarry found.</p>
 <p>These were not simple &quot;regex found eval&quot; findings. They were product-context findings: issues that only matter if you understand how Obsidian vaults are shared, how Excalidraw drawings are represented as Markdown, how plugin scripts work, how users install community scripts, how drawings embed links and images, and how people collaborate by passing around notes, vaults, and canvases.</p>
 <p>That is the gap ZeroQuarry is designed to close.</p>
 <h2 id="developer-tools-are-an-unusually-high-value-target">Developer tools are an unusually high-value target</h2>

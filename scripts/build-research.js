@@ -19,6 +19,49 @@ function escapeAttr(value) {
   return escapeHtml(value).replace(/`/g, '&#96;');
 }
 
+function renderLinks(html) {
+  let rendered = '';
+  let cursor = 0;
+
+  while (cursor < html.length) {
+    const labelStart = html.indexOf('[', cursor);
+    if (labelStart === -1) {
+      rendered += html.slice(cursor);
+      break;
+    }
+
+    const labelEnd = html.indexOf('](', labelStart + 1);
+    if (labelEnd === -1) {
+      rendered += html.slice(cursor);
+      break;
+    }
+
+    let hrefEnd = labelEnd + 2;
+    let depth = 0;
+    for (; hrefEnd < html.length; hrefEnd += 1) {
+      if (html[hrefEnd] === '(') depth += 1;
+      if (html[hrefEnd] === ')') {
+        if (depth === 0) break;
+        depth -= 1;
+      }
+    }
+
+    if (hrefEnd === html.length) {
+      rendered += html.slice(cursor, labelStart + 1);
+      cursor = labelStart + 1;
+      continue;
+    }
+
+    const label = html.slice(labelStart + 1, labelEnd);
+    const href = html.slice(labelEnd + 2, hrefEnd).trim();
+    rendered += html.slice(cursor, labelStart);
+    rendered += href ? `<a href="${href.replace(/`/g, '&#96;')}">${label}</a>` : html.slice(labelStart, hrefEnd + 1);
+    cursor = hrefEnd + 1;
+  }
+
+  return rendered;
+}
+
 function parseFrontmatter(raw) {
   if (!raw.startsWith('---\n')) {
     throw new Error('Research posts must start with YAML-style frontmatter.');
@@ -79,11 +122,11 @@ function renderInline(text) {
     tokens.push(`<code>${code}</code>`);
     return token;
   });
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
-    const safeHref = escapeAttr(href);
-    return `<a href="${safeHref}">${label}</a>`;
-  });
+  html = renderLinks(html);
   html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+  html = html.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, '$1<em>$2</em>');
+  html = html.replace(/(^|[^\w])_([^_]+)_([^\w]|$)/g, '$1<em>$2</em>$3');
   tokens.forEach((tokenHtml, index) => {
     html = html.replace(`@@TOKEN${index}@@`, tokenHtml);
   });
@@ -107,7 +150,9 @@ function renderMarkdown(markdown) {
 
   function closeList() {
     if (!list) return;
-    html.push(`</${list}>`);
+    html.push(`<${list.type}>`);
+    list.items.forEach((item) => html.push(`<li>${renderInline(item.join(' '))}</li>`));
+    html.push(`</${list.type}>`);
     list = null;
   }
 
@@ -171,12 +216,16 @@ function renderMarkdown(markdown) {
       flushParagraph(paragraph, html);
       closeBlockquote();
       const type = unordered ? 'ul' : 'ol';
-      if (list && list !== type) closeList();
+      if (list && list.type !== type) closeList();
       if (!list) {
-        list = type;
-        html.push(`<${type}>`);
+        list = { type, items: [] };
       }
-      html.push(`<li>${renderInline((unordered || ordered)[1])}</li>`);
+      list.items.push([(unordered || ordered)[1]]);
+      continue;
+    }
+
+    if (list) {
+      list.items[list.items.length - 1].push(line.trim());
       continue;
     }
 
