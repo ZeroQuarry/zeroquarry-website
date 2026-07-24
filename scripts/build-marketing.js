@@ -337,6 +337,7 @@ const platformPages = [
     related: [["/platform/security-testing/", "AI security testing"], ["/use-cases/release-security-review/", "Release security review"], ["/platform/evidence-reporting/", "Evidence and reporting"]],
     ctaHref: "/request-scan/",
     ctaLabel: "Discuss private execution",
+    docsHref: "https://docs.zeroquarry.com/workflows/private-runners",
   },
   {
     slug: "evidence-reporting",
@@ -828,7 +829,7 @@ function renderDetail(page, type) {
           <p class="buyer-lede">${escapeHtml(page.lede)}</p>
           <div class="buyer-actions">
             <a class="btn btn-primary" href="${signupUrl}">${escapeHtml(signupLabel)} <span class="arr">-&gt;</span></a>
-            <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
+            <a class="btn btn-ghost" href="${escapeHtml(page.docsHref || "https://docs.zeroquarry.com")}">Read the documentation</a>
           </div>
           <div class="buyer-proofline">${page.proof.map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>
         </div>
