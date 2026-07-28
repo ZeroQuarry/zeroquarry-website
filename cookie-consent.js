@@ -9,9 +9,11 @@
   const acceptedValue = 'accepted';
   const declinedValue = 'declined';
   const bannerId = 'cookie-consent-banner';
+  const cohortFormName = 'founding-security-cohort';
+  const cohortSubmissionMarker = 'zq_founding_cohort_submission_pending';
   let analyticsLoaded = false;
   let posthogLoaded = false;
-  let ctaTrackingInstalled = false;
+  let marketingTrackingInstalled = false;
 
   function getChoice() {
     const match = document.cookie.match(new RegExp('(?:^|;\\s*)' + consentCookieName + '=([^;]+)'));
@@ -92,6 +94,7 @@
       config.cookie_domain = 'zeroquarry.com';
     }
     window.gtag('config', analyticsId, config);
+    trackCurrentPageMilestone('google');
 
     const gaScript = document.createElement('script');
     gaScript.async = true;
@@ -99,9 +102,60 @@
     document.head.appendChild(gaScript);
   }
 
-  function installCtaTracking() {
-    if (ctaTrackingInstalled) return;
-    ctaTrackingInstalled = true;
+  function captureMarketingEvent(name, properties) {
+    if (analyticsLoaded && window.gtag) {
+      window.gtag('event', name, properties);
+    }
+    if (posthogLoaded && window.posthog && window.posthog.capture) {
+      window.posthog.capture(name, properties);
+    }
+  }
+
+  function setCohortSubmissionMarker() {
+    try {
+      window.sessionStorage.setItem(cohortSubmissionMarker, '1');
+    } catch (_) {}
+  }
+
+  function hasCohortSubmissionMarker() {
+    try {
+      return window.sessionStorage.getItem(cohortSubmissionMarker) === '1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function consumeCohortSubmissionMarker(provider) {
+    const providerKey = cohortSubmissionMarker + '_' + provider;
+    try {
+      if (window.sessionStorage.getItem(providerKey) === '1') return false;
+      window.sessionStorage.setItem(providerKey, '1');
+      return true;
+    } catch (_) {
+      return true;
+    }
+  }
+
+  function trackCurrentPageMilestone(provider) {
+    if (window.location.pathname !== '/founding-security-cohort/thanks/') return;
+    if (!hasCohortSubmissionMarker() || !consumeCohortSubmissionMarker(provider)) return;
+    const properties = {
+      campaign_name: 'founding-security-cohort-2026',
+      source_path: window.location.pathname,
+      currency: 'USD',
+      value: 1000,
+    };
+    if (provider === 'google' && window.gtag) {
+      window.gtag('event', 'generate_lead', properties);
+    }
+    if (provider === 'posthog' && window.posthog && window.posthog.capture) {
+      window.posthog.capture('cohort_application_received', properties);
+    }
+  }
+
+  function installMarketingTracking() {
+    if (marketingTrackingInstalled) return;
+    marketingTrackingInstalled = true;
     document.addEventListener('click', (event) => {
       const link = event.target && event.target.closest && event.target.closest('a[href]');
       if (!link) return;
@@ -112,10 +166,30 @@
         return;
       }
       if (destination.hostname !== 'console.zeroquarry.com') return;
-      window.posthog.capture('marketing_cta_clicked', {
+      captureMarketingEvent('marketing_cta_clicked', {
         cta_text: (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
         source_path: window.location.pathname,
         destination_url: destination.origin + destination.pathname,
+      });
+    });
+    const cohortForm = document.forms[cohortFormName];
+    if (!cohortForm) return;
+    let formStarted = false;
+    cohortForm.addEventListener('focusin', () => {
+      if (formStarted) return;
+      formStarted = true;
+      captureMarketingEvent('cohort_application_started', {
+        campaign_name: 'founding-security-cohort-2026',
+        source_path: window.location.pathname,
+      });
+    });
+    cohortForm.addEventListener('submit', () => {
+      setCohortSubmissionMarker();
+      captureMarketingEvent('cohort_application_submitted', {
+        campaign_name: 'founding-security-cohort-2026',
+        source_path: window.location.pathname,
+        currency: 'USD',
+        value: 1000,
       });
     });
   }
@@ -137,7 +211,7 @@
       cross_subdomain_cookie: true,
     });
     window.posthog.opt_in_capturing();
-    installCtaTracking();
+    trackCurrentPageMilestone('posthog');
   }
 
   function closeBanner() {
@@ -193,6 +267,7 @@
   }
 
   function init() {
+    installMarketingTracking();
     const choice = getChoice();
     if (choice === acceptedValue) {
       loadAnalytics();
