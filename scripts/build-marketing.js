@@ -1042,7 +1042,27 @@ function foundingSecurityCohortPage() {
     </div>
   </section>
 
-  <section class="buyer-section soft">
+  <section class="buyer-section soft" id="build-vs-buy">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Why not Cursor, Codex, or an internal build?</div><h2>Use coding agents for code. Use ZeroQuarry to operate the <em>security decision.</em></h2></div><p class="section-intro">A coding agent can find and fix real bugs. The commercial question is whether your team also wants to build the authorization, skeptical review, human decision trail, remediation workflow, retesting, and reporting around every result.</p></div>
+      <div class="stage-table-wrap">
+        <table class="stage-table">
+          <thead><tr><th>What the team needs</th><th>Coding agent or one-off prompt</th><th>ZeroQuarry</th><th>Build it internally</th></tr></thead>
+          <tbody>
+            <tr><td>Primary job</td><td>Explore, explain, or change code in a developer session.</td><td>Run an authorized finding-to-fix security lifecycle.</td><td>Own and maintain a custom security platform.</td></tr>
+            <tr><td>Skeptical review</td><td>Depends on the prompt and context the operator assembles.</td><td>Separate investigator and adversarial-review roles, followed by human disposition.</td><td>Design, evaluate, and maintain the agent chain and quality bar.</td></tr>
+            <tr><td>Decision record</td><td>Usually a chat, patch, or ad hoc artifact.</td><td>Traceable evidence, confidence, status, rationale, remediation, and retest history.</td><td>Build the data model, controls, integrations, and reporting.</td></tr>
+            <tr><td>Engineering handoff</td><td>Suggest or implement a code change.</td><td>Route accepted work into issues or controlled patch proposals, then retest the original risk.</td><td>Connect every repository, approval path, ticketing system, and CI policy.</td></tr>
+            <tr><td>Customer or audit use</td><td>A useful input, but not a durable security operating record by itself.</td><td>A current report plus the evidence and human decisions behind it.</td><td>Create and govern your own evidence package and review process.</td></tr>
+            <tr><td>Best fit</td><td>A developer investigating or fixing a specific concern.</td><td>A software team under security pressure before dedicated AppSec-platform headcount.</td><td>A well-funded security team that wants platform engineering to be a core capability.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pricing-footnote">The cohort makes this a falsifiable purchase decision: if the managed workflow is not materially more useful than your existing coding-agent stack, stop after the 30-day evaluation.</p>
+    </div>
+  </section>
+
+  <section class="buyer-section">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">The 30-day plan</div><h2>A time-boxed path to a <em>continue-or-stop decision.</em></h2></div><p class="section-intro">Each company starts from its own product and security trigger. The operating sequence stays bounded and comparable.</p></div>
       ${renderWorkflow([
