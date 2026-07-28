@@ -15,7 +15,7 @@ const signupUrls = {
   customerEvidence: `${consoleUrl}/register/customer-evidence`,
 };
 const foundingCohortPath = "/founding-security-cohort/";
-const foundingCohortSignup = `${signupUrls.startup}?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=founding-security-cohort-2026&utm_content=cohort-page&offer=founding-cohort`;
+const foundingCohortApplication = "#apply";
 const signupBySlug = {
   "continuous-security": signupUrls.prReview,
   "pr-security-review": signupUrls.prReview,
@@ -68,14 +68,14 @@ function faqData(faqs) {
   };
 }
 
-function layout({ title, description, canonical, active, body, schemas = [] }) {
+function layout({ title, description, canonical, active, body, schemas = [], robots = "" }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>${escapeHtml(title)}</title>
-<meta name="description" content="${escapeHtml(description)}" />
+<meta name="description" content="${escapeHtml(description)}" />${robots ? `\n<meta name="robots" content="${escapeHtml(robots)}" />` : ""}
 <link rel="canonical" href="${escapeHtml(canonical)}" />
 <meta property="og:title" content="${escapeHtml(title)}" />
 <meta property="og:description" content="${escapeHtml(description)}" />
@@ -988,7 +988,7 @@ function foundingSecurityCohortPage() {
         <div class="buyer-kicker">Founding Security Cohort · applications close August 12</div>
         <h1 class="buyer-title">Turn one real product into a <em>verified security outcome</em> in 30 days.</h1>
         <p class="buyer-lede">A founder-assisted ZeroQuarry evaluation for software companies with meaningful application-security pressure and no dedicated AppSec platform team. Scope one product, investigate it, challenge the findings, act on what holds up, retest the work, and leave with current evidence.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortSignup}">Apply for one of 10 places <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#cohort-scope">See exactly what happens</a></div>
+        <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for one of 10 places <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#cohort-scope">See exactly what happens</a></div>
         <div class="buyer-proofline"><span>Up to 10 companies</span><span>30 days</span><span>$1,000 guided baseline</span><span>Creditable toward annual coverage</span></div>
       </div>
       <div class="hero-system" aria-label="Founding Security Cohort operating plan">
@@ -1079,7 +1079,50 @@ function foundingSecurityCohortPage() {
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Apply before August 12.</h2><p>Bring one real product and leave with an explicit security outcome and commercial decision in 30 days. The $1,000 guided-baseline fee is fully creditable toward annual Coverage or higher.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortSignup}">Apply for the cohort <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
+  <section class="pricing-section compact" id="apply">
+    <div class="container">
+      <div class="contact-panel">
+        <div>
+          <div class="tag">Cohort application</div>
+          <h2>Start with the boundary and the decision.</h2>
+          <p>Applying does not create an account or charge anything. ZeroQuarry will confirm fit, authorization, success criteria, model funding, the $1,000 fee, and a decision date before the guided baseline begins.</p>
+          <ul class="contact-points"><li>One real product, repository, release, or authorized application</li><li>One accountable technical reviewer</li><li>One current security, customer, audit, or launch trigger</li><li>One explicit continue-or-stop decision within 30 days</li></ul>
+        </div>
+        <form class="enterprise-form" name="founding-security-cohort" method="POST" action="/founding-security-cohort/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="founding-security-cohort">
+          <input type="hidden" name="offer" value="founding-cohort">
+          <input type="hidden" name="utm_source" value="zeroquarry.com">
+          <input type="hidden" name="utm_medium" value="owned-site">
+          <input type="hidden" name="utm_campaign" value="founding-security-cohort-2026">
+          <input type="hidden" name="utm_content" value="cohort-application">
+          <input type="hidden" name="utm_term" value="">
+          <input type="hidden" name="gclid" value="">
+          <p class="hidden-field"><label>Do not fill this out: <input name="bot-field"></label></p>
+          <label>Work email<input type="email" name="email" autocomplete="email" required></label>
+          <label>Company<input type="text" name="company" autocomplete="organization" required></label>
+          <label>Product, repo, or company URL<input type="url" name="target" autocomplete="url" required></label>
+          <label>Current security trigger<select name="security-trigger" required><option value="">Choose one</option><option value="customer-review">Customer security review</option><option value="soc2-iso">SOC 2 or ISO 27001</option><option value="pentest">Pentest or retest requirement</option><option value="launch-release">Product launch or release</option><option value="security-backlog">Known security backlog</option><option value="other">Another current trigger</option></select></label>
+          <label>Technical reviewer<input type="text" name="technical-reviewer" placeholder="Name or role" required></label>
+          <label>Commercial readiness<select name="commercial-readiness" required><option value="">Choose one</option><option value="ready">Ready to approve the $1,000 baseline</option><option value="budget-owner">Need to include our budget owner</option><option value="scope-first">Need to validate scope first</option></select></label>
+          <label class="full">What must change or become provable in 30 days?<textarea name="success-outcome" rows="5" required></textarea></label>
+          <button class="btn btn-primary" type="submit">Submit cohort application <span class="arr">-&gt;</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Applications close August 12.</h2><p>Bring one real product and leave with an explicit security outcome and commercial decision in 30 days. The $1,000 guided-baseline fee is fully creditable toward annual Coverage or higher.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for the cohort <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
+  <script>
+  (() => {
+    const form = document.forms["founding-security-cohort"];
+    if (!form) return;
+    const params = new URLSearchParams(window.location.search);
+    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid"]) {
+      const value = params.get(key);
+      if (value && form.elements[key]) form.elements[key].value = value.slice(0, 160);
+    }
+  })();
+  </script>
   </main>`;
   const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Founding Security Cohort", href: foundingCohortPath }])];
   return layout({
@@ -1089,6 +1132,38 @@ function foundingSecurityCohortPage() {
     active: "",
     body,
     schemas,
+  });
+}
+
+function foundingSecurityCohortThanksPage() {
+  const body = `<main class="marketing-main">
+  <section class="buyer-hero">
+    <div class="container buyer-hero-grid">
+      <div>
+        <div class="buyer-kicker">Application received</div>
+        <h1 class="buyer-title">Now we test whether there is a <em>real 30-day decision.</em></h1>
+        <p class="buyer-lede">ZeroQuarry will review the product boundary, security trigger, technical owner, and commercial readiness you submitted. If the cohort is a fit, the next step is a short scoping call—not an unstructured demo.</p>
+        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">Review the operating loop <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.startup}?utm_source=cohort-application&utm_medium=owned-site&utm_campaign=founding-security-cohort-2026&utm_content=thank-you-self-serve">Start self-serve instead</a></div>
+        <div class="buyer-proofline"><span>Boundary review</span><span>Success criteria</span><span>Model funding</span><span>Decision date</span></div>
+      </div>
+      <div class="hero-system" aria-label="Cohort application next steps">
+        <div class="system-head"><span>application://received</span><span class="system-status">review</span></div>
+        <div class="loop-map">
+          <div class="loop-node wide"><span>01</span><strong>Fit and authority</strong><p>Confirm the product is in scope, authorized, and reviewable by an accountable engineer.</p></div>
+          <div class="loop-node"><span>02</span><strong>Outcome and terms</strong><p>Agree what must change, the $1,000 fee, model funding, and the final decision date.</p></div>
+          <div class="loop-node"><span>03</span><strong>Begin or decline</strong><p>Start the bounded baseline only when both sides agree—or stop without creating another abandoned trial.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>`;
+  return layout({
+    title: "Founding Security Cohort Application Received | ZeroQuarry",
+    description: "ZeroQuarry has received your Founding Security Cohort application.",
+    canonical: `${siteUrl}/founding-security-cohort/thanks/`,
+    active: "",
+    body,
+    robots: "noindex,follow",
   });
 }
 
@@ -1304,6 +1379,7 @@ write("platform.html", platformHub());
 write("pricing.html", pricingPage());
 write("request-scan/index.html", requestScanPage());
 write("founding-security-cohort/index.html", foundingSecurityCohortPage());
+write("founding-security-cohort/thanks/index.html", foundingSecurityCohortThanksPage());
 write("open-source/index.html", openSourcePage());
 write("use-cases/index.html", useCasesHub());
 for (const page of platformPages) write(`platform/${page.slug}/index.html`, renderDetail(page, "platform"));
