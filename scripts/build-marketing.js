@@ -991,7 +991,7 @@ function foundingSecurityCohortPage() {
         <h1 class="buyer-title">Turn one real product into a <em>verified security outcome</em> in 30 days.</h1>
         <p class="buyer-lede">A founder-assisted ZeroQuarry evaluation for software companies with meaningful application-security pressure and no dedicated AppSec platform team. Scope one product, investigate it, challenge the findings, act on what holds up, retest the work, and leave with current evidence.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for one of 10 places <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#cohort-scope">See exactly what happens</a></div>
-        <div class="buyer-proofline"><span>Up to 10 companies</span><span>30 days</span><span>$1,000 guided baseline</span><span>Creditable toward annual coverage</span></div>
+        <div class="buyer-proofline"><span>Up to 10 companies</span><span>30 days</span><span>$1,000 guided baseline</span><span>$1,920/year continuation</span></div>
       </div>
       <div class="hero-system" aria-label="Founding Security Cohort operating plan">
         <div class="system-head"><span>cohort://30-day-outcome</span><span class="system-status">10 places</span></div>
@@ -1094,7 +1094,7 @@ function foundingSecurityCohortPage() {
       <div class="buyer-section-head"><div><div class="section-label">Commercial terms</div><h2>A paid evaluation with <em>no stranded pilot fee.</em></h2></div><p class="section-intro">The cohort is intended for teams making a real continue-or-stop decision, not collecting another free security report.</p></div>
       <div class="pricing-addon-grid">
         <article><span>Guided baseline</span><h3>$1,000 once</h3><p>Scope, kickoff, first baseline assessment, working review, and the final commercial decision session.</p></article>
-        <article><span>Conversion credit</span><h3>100% credited</h3><p>Apply the full $1,000 to an annual Coverage plan or higher when selected at the final decision review.</p></article>
+        <article><span>Continuation</span><h3>$1,920 / year</h3><p>Select annual Coverage at the final review and apply the full $1,000 baseline credit, leaving $920 for the first annual subscription.</p></article>
         <article><span>Model execution</span><h3>Bring your keys</h3><p>Use account-managed model keys, or separately fund hosted model usage with costs kept visible.</p></article>
       </div>
       <p class="pricing-footnote">No long-term commitment is required to run the guided baseline. Teams that need to validate fit before purchasing may apply first; payment begins only after ZeroQuarry and the team agree the boundary, success criteria, and decision date.</p>
@@ -1107,7 +1107,7 @@ function foundingSecurityCohortPage() {
         <div>
           <div class="tag">Cohort application</div>
           <h2>Start with the boundary and the decision.</h2>
-          <p>Applying does not create an account or charge anything. ZeroQuarry will confirm fit, authorization, success criteria, model funding, the $1,000 fee, and a decision date before the guided baseline begins.</p>
+          <p>Applying does not create an account or charge anything. ZeroQuarry will confirm fit, authorization, success criteria, model funding, the $1,000 fee, the $1,920 annual Coverage continuation price, and a decision date before the guided baseline begins.</p>
           <ul class="contact-points"><li>One real product, repository, release, or authorized application</li><li>One accountable technical reviewer</li><li>One current security, customer, audit, or launch trigger</li><li>One explicit continue-or-stop decision within 30 days</li></ul>
         </div>
         <form class="enterprise-form" name="founding-security-cohort" method="POST" action="/founding-security-cohort/thanks/" data-netlify="true" netlify-honeypot="bot-field">
@@ -1133,7 +1133,7 @@ function foundingSecurityCohortPage() {
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Applications close August 12.</h2><p>Bring one real product and leave with an explicit security outcome and commercial decision in 30 days. The $1,000 guided-baseline fee is fully creditable toward annual Coverage or higher.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for the cohort <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Applications close August 12.</h2><p>Bring one real product and leave with an explicit security outcome and commercial decision in 30 days. Continue on annual Coverage at $1,920 per year and the full $1,000 baseline fee is credited.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for the cohort <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
   <script>
   (() => {
     const form = document.forms["founding-security-cohort"];
@@ -1268,7 +1268,7 @@ function securityPartnerPage() {
       <div class="pricing-addon-grid">
         <article><span>Guided baseline</span><h3>$1,000 once</h3><p>One bounded product, kickoff, baseline workflow, working review, selected retest, and final decision session.</p></article>
         <article><span>Model execution</span><h3>Keys or hard cap</h3><p>Bring account-managed model keys, or agree a maximum hosted-usage budget before the engagement begins.</p></article>
-        <article><span>Continuation</span><h3>100% credited</h3><p>The full baseline fee credits toward annual Coverage or higher if the client continues at the final review.</p></article>
+        <article><span>Continuation</span><h3>$1,920 / year</h3><p>The client can continue on annual Coverage and apply the full $1,000 baseline credit, leaving $920 for the first annual subscription.</p></article>
       </div>
       <p class="pricing-footnote">Direct, bundled, referral, and subcontracted delivery are all possible. Commercial handling, attribution, confidentiality, and responsibilities are agreed before the client introduction. No exclusivity or ongoing partner commitment is required.</p>
     </div>
