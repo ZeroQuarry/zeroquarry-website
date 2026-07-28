@@ -14,6 +14,8 @@ const signupUrls = {
   openSource: `${consoleUrl}/register/open-source`,
   customerEvidence: `${consoleUrl}/register/customer-evidence`,
 };
+const foundingCohortPath = "/founding-security-cohort/";
+const foundingCohortSignup = `${signupUrls.startup}?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=founding-security-cohort-2026&utm_content=cohort-page&offer=founding-cohort`;
 const signupBySlug = {
   "continuous-security": signupUrls.prReview,
   "pr-security-review": signupUrls.prReview,
@@ -312,7 +314,7 @@ const platformPages = [
     capabilities: [
       ["Internal application testing", "Reach authorized RFC1918, loopback, link-local, and internal-DNS targets from inside the customer network while cloud workers retain SSRF protections."],
       ["Private Git source execution", "Clone Git repositories directly on the runner with scoped credentials. Browser source uploads and binary uploads do not use private execution."],
-      ["Outbound-only enrollment", "Enroll a runner with a one-use, 15-minute token and make outbound HTTPS connections without opening an inbound firewall rule."],
+      ["Outbound-only enrollment", "Enroll a runner with a one-use, 24-hour token and make outbound HTTPS connections without opening an inbound firewall rule."],
       ["Per-project execution policy", "Allow specific pools on a project, choose a default, and let scan creators select only compatible environments."],
       ["Result minimization", "Return allowlisted finding metadata and safe locations while evidence, remediation text, logs, errors, and artifacts remain on the runner."],
       ["Operational controls", "Separate trust zones into pools, monitor health and leases, drain for maintenance, revoke immediately, and retain an account audit trail."],
@@ -911,11 +913,11 @@ function homePage() {
   <section class="buyer-hero">
     <div class="container buyer-hero-grid">
       <div>
-        <div class="buyer-kicker">AI security operations for software companies</div>
+        <div class="buyer-kicker">Founding Security Cohort · 10 teams · applications through August 12</div>
         <h1 class="buyer-title">Run product security like you already <em>staffed the team.</em></h1>
         <p class="buyer-lede">ZeroQuarry receives security work, tests source, binaries, and live applications, challenges weak findings, opens fixes, verifies remediation, and packages the evidence customers ask for.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start 30-day trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
-        <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs</span></div>
+        <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortPath}?utm_source=homepage&utm_medium=owned-site&utm_campaign=founding-security-cohort-2026&utm_content=hero">Apply to the founding cohort <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.general}?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=self-serve-trial&utm_content=homepage-hero">Start self-serve trial</a></div>
+        <div class="buyer-proofline"><span>Up to 10 companies</span><span>30 days</span><span>1 real product boundary</span></div>
       </div>
       <div class="console buyer-live-console" aria-label="Illustrative adversarial vulnerability review">
         <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">example://</span>red-vs-vendor · target=<span class="amber">billing-api</span></span><span class="console-meta"><span class="live">illustrative</span></span></div>
@@ -972,10 +974,110 @@ function homePage() {
       <div class="hero-system"><div class="system-head"><span>research://evidence</span><span class="system-status">coordinated</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Opening untrusted Markdown reaches executable behavior</strong><p>Trace the plugin path, prove reachability, and identify the affected configuration.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>Is execution actually reachable?</strong><p>Test default state, permissions, versions, and realistic user action.</p></div><div class="loop-node"><span>OUTCOME</span><strong>Fix, disclose, publish</strong><p>Coordinate the maintainer response before turning the finding into public research.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>public writeups follow responsible disclosure</span></div></div>
     </div>
   </section>
-  ${renderCta("Run a 30-day security operations sprint.", "Start with one real product, complete the loop from assessment to verified outcome, and decide from evidence. No card or sales call is required.", signupUrls.general, "Start 30-day trial")}
+  ${renderCta("Join the ten-company Founding Security Cohort.", "Work directly with ZeroQuarry on one real product for 30 days. Complete the loop from assessment through validated outcome, remediation, retest, and evidence.", `${foundingCohortPath}?utm_source=homepage&utm_medium=owned-site&utm_campaign=founding-security-cohort-2026&utm_content=final-cta`, "See the cohort")}
   </main>`;
 
   return layout({ title: "AI Security Operations for Product Teams | ZeroQuarry", description: "ZeroQuarry is an AI security operations platform for continuous application security testing, vulnerability validation, remediation, retesting, and customer evidence.", canonical: `${siteUrl}/`, active: "home", body, schemas });
+}
+
+function foundingSecurityCohortPage() {
+  const body = `<main class="marketing-main">
+  <section class="buyer-hero">
+    <div class="container buyer-hero-grid">
+      <div>
+        <div class="buyer-kicker">Founding Security Cohort · applications close August 12</div>
+        <h1 class="buyer-title">Turn one real product into a <em>verified security outcome</em> in 30 days.</h1>
+        <p class="buyer-lede">A founder-assisted ZeroQuarry evaluation for software companies with meaningful application-security pressure and no dedicated AppSec platform team. Scope one product, investigate it, challenge the findings, act on what holds up, retest the work, and leave with current evidence.</p>
+        <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortSignup}">Apply for one of 10 places <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#cohort-scope">See exactly what happens</a></div>
+        <div class="buyer-proofline"><span>Up to 10 companies</span><span>30 days</span><span>Founder-assisted</span><span>No long-term commitment</span></div>
+      </div>
+      <div class="hero-system" aria-label="Founding Security Cohort operating plan">
+        <div class="system-head"><span>cohort://30-day-outcome</span><span class="system-status">10 places</span></div>
+        <div class="loop-map">
+          <div class="loop-node wide"><span>SCOPE</span><strong>One product boundary</strong><p>Choose an authorized repository, release, binary, or application and define what a useful result must change.</p></div>
+          <div class="loop-node"><span>DECIDE</span><strong>Validate what holds up</strong><p>Challenge claims, record human outcomes, and keep rejected results out of active risk.</p></div>
+          <div class="loop-node"><span>SHIP</span><strong>Fix, retest, and prove</strong><p>Move accepted work into remediation and finish with current evidence of the outcome.</p></div>
+        </div>
+        <div class="system-foot"><span class="pulse-dot"></span><span>applications close August 12, 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft" id="cohort-scope">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">The outcome</div><h2>Not another scanner trial that ends with <em>an alert queue.</em></h2></div><p class="section-intro">The cohort is designed around completed security work. The scan is the beginning, not the deliverable.</p></div>
+      ${renderCards([
+        ["Scope one real boundary", "Select one product and agree the code, artifact, live target, authorization, and business context that make the evaluation credible."],
+        ["Run a baseline assessment", "Investigate the product with deterministic candidates and AI agents, then preserve the source, reasoning, evidence, and project history."],
+        ["Challenge the claims", "Use separate adversarial review, proof, and human disposition so weak results do not quietly become engineering work."],
+        ["Move valid work to fixes", "Open GitHub issues, propose controlled patches, or route work through the system your engineering team already uses."],
+        ["Retest the result", "Verify whether remediation changed the original risk and keep regressions or unresolved decisions visible."],
+        ["Package current evidence", "Leave the 30 days with a security report and a durable record of findings, decisions, remediation, and retest status."],
+      ])}
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container split-proof">
+      <div class="proof-copy">
+        <div class="section-label">Good fit</div>
+        <h2>You have security pressure before you have <em>AppSec headcount.</em></h2>
+        <div class="proof-list">
+          <div><span>01</span><p>A customer, auditor, launch, or risky product boundary has made application security materially important.</p></div>
+          <div><span>02</span><p>An engineering leader can authorize one real product boundary and review what ZeroQuarry finds.</p></div>
+          <div><span>03</span><p>The team wants validated remediation and evidence, not the largest possible alert count.</p></div>
+        </div>
+      </div>
+      <div class="proof-copy">
+        <div class="section-label">Not a fit</div>
+        <h2>The cohort is not a shortcut to <em>a compliance stamp.</em></h2>
+        <div class="proof-list">
+          <div><span>×</span><p>You need a particular certification or assessor opinion without confirming its acceptance requirements.</p></div>
+          <div><span>×</span><p>No engineer can review findings, make risk decisions, or act on valid remediation during the 30 days.</p></div>
+          <div><span>×</span><p>The target is not yours or you do not have explicit authorization to test it.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">The 30-day plan</div><h2>A time-boxed path to a <em>continue-or-stop decision.</em></h2></div><p class="section-intro">Each company starts from its own product and security trigger. The operating sequence stays bounded and comparable.</p></div>
+      ${renderWorkflow([
+        ["Kickoff and boundary", "Agree the target, authorization, product context, success condition, execution policy, and model-funding choice."],
+        ["Baseline and review", "Run the first assessment, inspect the attack-surface plan, and challenge findings before assigning work."],
+        ["Decisions and remediation", "Record valid, invalid, accepted-risk, and mitigated outcomes; move the work that matters into fixes."],
+        ["Retest and evidence", "Verify remediation, assemble the current report, quantify the outcome, and make an explicit commercial decision."],
+      ])}
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container split-proof">
+      <div class="proof-copy">
+        <div class="section-label">What ZeroQuarry commits</div>
+        <h2>Founder attention, honest boundaries, and <em>measurable outcomes.</em></h2>
+        <p>ZeroQuarry will help scope the first product, review the workflow with your team, investigate failures, and finish with an outcome review. The product will not be presented as a replacement for a certification, assessor, or every form of human penetration testing.</p>
+      </div>
+      <div class="proof-copy">
+        <div class="section-label">What participating teams commit</div>
+        <h2>One real product and <em>candid decisions.</em></h2>
+        <p>Participating teams provide an authorized target, an accountable technical reviewer, and direct feedback about what was useful, wrong, or commercially valuable. Public attribution or a testimonial is never required.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Apply before August 12.</h2><p>Accepted teams use the ZeroQuarry plan that fits their scope and either bring their own model-provider keys or fund hosted model usage separately. There is no long-term commitment.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortSignup}">Apply for the cohort <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
+  </main>`;
+  const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Founding Security Cohort", href: foundingCohortPath }])];
+  return layout({
+    title: "Founding Security Cohort: 30-Day AppSec Evaluation | ZeroQuarry",
+    description: "Apply for a founder-assisted 30-day ZeroQuarry evaluation: assess one real product, validate findings, remediate what matters, retest, and package current evidence.",
+    canonical: `${siteUrl}${foundingCohortPath}`,
+    active: "",
+    body,
+    schemas,
+  });
 }
 
 function platformHub() {
@@ -1189,6 +1291,7 @@ write("index.html", homePage());
 write("platform.html", platformHub());
 write("pricing.html", pricingPage());
 write("request-scan/index.html", requestScanPage());
+write("founding-security-cohort/index.html", foundingSecurityCohortPage());
 write("open-source/index.html", openSourcePage());
 write("use-cases/index.html", useCasesHub());
 for (const page of platformPages) write(`platform/${page.slug}/index.html`, renderDetail(page, "platform"));
