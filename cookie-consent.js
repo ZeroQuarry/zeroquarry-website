@@ -11,6 +11,8 @@
   const bannerId = 'cookie-consent-banner';
   const cohortFormName = 'founding-security-cohort';
   const cohortSubmissionMarker = 'zq_founding_cohort_submission_pending';
+  const partnerFormName = 'security-partner-pilot';
+  const partnerSubmissionMarker = 'zq_security_partner_submission_pending';
   let analyticsLoaded = false;
   let posthogLoaded = false;
   let marketingTrackingInstalled = false;
@@ -136,21 +138,89 @@
     }
   }
 
+  function setPartnerSubmissionMarker() {
+    try {
+      window.sessionStorage.setItem(partnerSubmissionMarker, '1');
+    } catch (_) {}
+  }
+
+  function hasPartnerSubmissionMarker() {
+    try {
+      return window.sessionStorage.getItem(partnerSubmissionMarker) === '1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function consumePartnerSubmissionMarker(provider) {
+    const providerKey = partnerSubmissionMarker + '_' + provider;
+    try {
+      if (window.sessionStorage.getItem(providerKey) === '1') return false;
+      window.sessionStorage.setItem(providerKey, '1');
+      return true;
+    } catch (_) {
+      return true;
+    }
+  }
+
   function trackCurrentPageMilestone(provider) {
-    if (window.location.pathname !== '/founding-security-cohort/thanks/') return;
-    if (!hasCohortSubmissionMarker() || !consumeCohortSubmissionMarker(provider)) return;
-    const properties = {
-      campaign_name: 'founding-security-cohort-2026',
-      source_path: window.location.pathname,
-      currency: 'USD',
-      value: 1000,
-    };
-    if (provider === 'google' && window.gtag) {
-      window.gtag('event', 'generate_lead', properties);
+    if (window.location.pathname === '/founding-security-cohort/thanks/'
+      && hasCohortSubmissionMarker()
+      && consumeCohortSubmissionMarker(provider)) {
+      const properties = {
+        campaign_name: 'founding-security-cohort-2026',
+        source_path: window.location.pathname,
+        currency: 'USD',
+        value: 1000,
+      };
+      if (provider === 'google' && window.gtag) {
+        window.gtag('event', 'generate_lead', properties);
+      }
+      if (provider === 'posthog' && window.posthog && window.posthog.capture) {
+        window.posthog.capture('cohort_application_received', properties);
+      }
     }
-    if (provider === 'posthog' && window.posthog && window.posthog.capture) {
-      window.posthog.capture('cohort_application_received', properties);
+
+    if (window.location.pathname === '/partners/thanks/'
+      && hasPartnerSubmissionMarker()
+      && consumePartnerSubmissionMarker(provider)) {
+      const properties = {
+        campaign_name: 'security-partner-pilot-2026',
+        source_path: window.location.pathname,
+      };
+      if (provider === 'google' && window.gtag) {
+        window.gtag('event', 'generate_lead', properties);
+      }
+      if (provider === 'posthog' && window.posthog && window.posthog.capture) {
+        window.posthog.capture('partner_pilot_proposal_received', properties);
+      }
     }
+  }
+
+  function installTrackedForm(options) {
+    const form = document.forms[options.formName];
+    if (!form) return;
+    let formStarted = false;
+    form.addEventListener('focusin', () => {
+      if (formStarted) return;
+      formStarted = true;
+      captureMarketingEvent(options.startedEvent, {
+        campaign_name: options.campaignName,
+        source_path: window.location.pathname,
+      });
+    });
+    form.addEventListener('submit', () => {
+      options.setSubmissionMarker();
+      const properties = {
+        campaign_name: options.campaignName,
+        source_path: window.location.pathname,
+      };
+      if (options.value) {
+        properties.currency = 'USD';
+        properties.value = options.value;
+      }
+      captureMarketingEvent(options.submittedEvent, properties);
+    });
   }
 
   function installMarketingTracking() {
@@ -172,25 +242,20 @@
         destination_url: destination.origin + destination.pathname,
       });
     });
-    const cohortForm = document.forms[cohortFormName];
-    if (!cohortForm) return;
-    let formStarted = false;
-    cohortForm.addEventListener('focusin', () => {
-      if (formStarted) return;
-      formStarted = true;
-      captureMarketingEvent('cohort_application_started', {
-        campaign_name: 'founding-security-cohort-2026',
-        source_path: window.location.pathname,
-      });
+    installTrackedForm({
+      formName: cohortFormName,
+      campaignName: 'founding-security-cohort-2026',
+      startedEvent: 'cohort_application_started',
+      submittedEvent: 'cohort_application_submitted',
+      setSubmissionMarker: setCohortSubmissionMarker,
+      value: 1000,
     });
-    cohortForm.addEventListener('submit', () => {
-      setCohortSubmissionMarker();
-      captureMarketingEvent('cohort_application_submitted', {
-        campaign_name: 'founding-security-cohort-2026',
-        source_path: window.location.pathname,
-        currency: 'USD',
-        value: 1000,
-      });
+    installTrackedForm({
+      formName: partnerFormName,
+      campaignName: 'security-partner-pilot-2026',
+      startedEvent: 'partner_pilot_proposal_started',
+      submittedEvent: 'partner_pilot_proposal_submitted',
+      setSubmissionMarker: setPartnerSubmissionMarker,
     });
   }
 

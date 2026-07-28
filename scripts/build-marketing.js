@@ -16,6 +16,8 @@ const signupUrls = {
 };
 const foundingCohortPath = "/founding-security-cohort/";
 const foundingCohortApplication = "#apply";
+const securityPartnerPath = "/partners/";
+const securityPartnerApplication = "#partner-apply";
 const signupBySlug = {
   "continuous-security": signupUrls.prReview,
   "pr-security-review": signupUrls.prReview,
@@ -1167,6 +1169,189 @@ function foundingSecurityCohortThanksPage() {
   });
 }
 
+function securityPartnerPage() {
+  const body = `<main class="marketing-main">
+  <section class="buyer-hero">
+    <div class="container buyer-hero-grid">
+      <div>
+        <div class="buyer-kicker">Security partner pilot · two founding firms</div>
+        <h1 class="buyer-title">Your client does not need another PDF. They need the <em>finding-to-fix work finished.</em></h1>
+        <p class="buyer-lede">A one-client delivery pilot for vCISO, compliance, penetration-testing, and software-advisory firms. You keep the customer relationship. ZeroQuarry helps carry application findings through skeptical validation, engineering decisions, remediation, retesting, and current evidence.</p>
+        <div class="buyer-actions"><a class="btn btn-primary" href="${securityPartnerApplication}">Propose one client situation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#partner-model">See the delivery model</a></div>
+        <div class="buyer-proofline"><span>One client</span><span>One product boundary</span><span>30 days</span><span>No reseller commitment</span></div>
+      </div>
+      <div class="hero-system" aria-label="Joint security partner delivery loop">
+        <div class="system-head"><span>partner://one-client-pilot</span><span class="system-status">2 firms</span></div>
+        <div class="loop-map">
+          <div class="loop-node wide"><span>PARTNER</span><strong>Own the client context</strong><p>Bring the security trigger, assurance requirement, and relationship that make the work matter now.</p></div>
+          <div class="loop-node"><span>ZEROQUARRY</span><strong>Carry the application work</strong><p>Investigate, challenge, route, retest, and preserve the evidence around one product.</p></div>
+          <div class="loop-node"><span>JOINT</span><strong>Decide whether to repeat</strong><p>Complete one paid engagement before discussing a broad channel program.</p></div>
+        </div>
+        <div class="system-foot"><span class="pulse-dot"></span><span>client authorization required before testing</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">The handoff gap</div><h2>The assessment ends. The security work <em>does not.</em></h2></div><p class="section-intro">Advisers often identify the requirement and pentesters identify the issue. Engineering still needs a credible way to decide, fix, verify, and answer the next customer.</p></div>
+      ${renderCards([
+        ["Pentest follow-through", "A report lands with engineering, but validation context, remediation ownership, and retest evidence split across tools and inboxes."],
+        ["Compliance pressure", "The client needs to demonstrate a current application-security practice, not merely upload last year’s assessment PDF."],
+        ["Fractional security capacity", "The vCISO owns the risk conversation but cannot economically operate every finding across every engineering team."],
+        ["Customer assurance", "A security review asks whether findings were fixed, accepted, or retested, and the answer must be reconstructed from stale records."],
+        ["Development consulting", "The partner can implement fixes but needs independent evidence about what matters and whether the change addressed the original risk."],
+        ["Overflow and specialist coverage", "A security firm can keep strategic and human-testing work while ZeroQuarry handles bounded, repeatable follow-through."],
+      ])}
+    </div>
+  </section>
+
+  <section class="buyer-section" id="partner-model">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">One-client delivery model</div><h2>Prove the joint outcome before building <em>a partnership deck.</em></h2></div><p class="section-intro">The first engagement is deliberately bounded. No quotas, exclusivity, certification, or reseller infrastructure is required.</p></div>
+      ${renderWorkflow([
+        ["Nominate the situation", "Identify one consenting client with a current pentest, compliance, customer-review, launch, or application-security trigger."],
+        ["Agree the boundary", "Define the authorized product, responsibilities, success criteria, commercial model, attribution, model funding, and decision date."],
+        ["Run the operating loop", "Assess the product, challenge findings, record human decisions, and move accepted work into the client’s engineering workflow."],
+        ["Retest and package evidence", "Verify selected remediation and preserve the current finding, decision, fix, and retest record for the client and adviser."],
+        ["Make a repeat decision", "Review delivery effort, client value, economics, and fit; then continue, revise the offer, or stop without channel debt."],
+      ])}
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container split-proof">
+      <div class="proof-copy">
+        <div class="section-label">The partner owns</div>
+        <h2>Trust, context, and the <em>customer relationship.</em></h2>
+        <div class="proof-list">
+          <div><span>01</span><p>The client’s current security or assurance trigger and the requirements the outcome must satisfy.</p></div>
+          <div><span>02</span><p>Client sponsorship, authorization, stakeholder context, and the advisory or testing work already in motion.</p></div>
+          <div><span>03</span><p>The decision about how ZeroQuarry appears: direct, bundled, subcontracted, or jointly delivered.</p></div>
+        </div>
+      </div>
+      <div class="proof-copy">
+        <div class="section-label">ZeroQuarry owns</div>
+        <h2>The application-security <em>operating loop.</em></h2>
+        <div class="proof-list">
+          <div><span>01</span><p>Product scoping, platform onboarding, assessment workflow, and transparent execution boundaries.</p></div>
+          <div><span>02</span><p>Adversarial validation, decision records, remediation support, selected retesting, and current evidence.</p></div>
+          <div><span>03</span><p>Founder involvement during the pilot and an honest final review of value, failure, economics, and next fit.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">First-engagement commercial shape</div><h2>Small enough to start. Specific enough to <em>make a buying decision.</em></h2></div><p class="section-intro">The client or partner chooses the billing path before any source, target, or customer identity is shared.</p></div>
+      <div class="pricing-addon-grid">
+        <article><span>Guided baseline</span><h3>$1,000 once</h3><p>One bounded product, kickoff, baseline workflow, working review, selected retest, and final decision session.</p></article>
+        <article><span>Model execution</span><h3>Keys or hard cap</h3><p>Bring account-managed model keys, or agree a maximum hosted-usage budget before the engagement begins.</p></article>
+        <article><span>Continuation</span><h3>100% credited</h3><p>The full baseline fee credits toward annual Coverage or higher if the client continues at the final review.</p></article>
+      </div>
+      <p class="pricing-footnote">Direct, bundled, referral, and subcontracted delivery are all possible. Commercial handling, attribution, confidentiality, and responsibilities are agreed before the client introduction. No exclusivity or ongoing partner commitment is required.</p>
+    </div>
+  </section>
+
+  <section class="pricing-section compact" id="partner-apply">
+    <div class="container">
+      <div class="contact-panel">
+        <div>
+          <div class="tag">Partner pilot</div>
+          <h2>Start with the client situation—not a channel forecast.</h2>
+          <p>Do not disclose a client’s identity or confidential details in this form. Describe the security trigger, product shape, and handoff problem well enough to test whether a joint engagement is worth a working session.</p>
+          <ul class="contact-points"><li>A real client pattern or current engagement</li><li>A product or application boundary the client can authorize</li><li>A finding-to-fix or evidence gap your current service does not economically close</li><li>A path to a paid 30-day decision</li></ul>
+        </div>
+        <form class="enterprise-form" name="security-partner-pilot" method="POST" action="/partners/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="security-partner-pilot">
+          <input type="hidden" name="offer" value="security-partner-pilot">
+          <input type="hidden" name="utm_source" value="zeroquarry.com">
+          <input type="hidden" name="utm_medium" value="owned-site">
+          <input type="hidden" name="utm_campaign" value="security-partner-pilot-2026">
+          <input type="hidden" name="utm_content" value="partner-application">
+          <input type="hidden" name="utm_term" value="">
+          <p class="hidden-field"><label>Do not fill this out: <input name="bot-field"></label></p>
+          <label>Work email<input type="email" name="email" autocomplete="email" required></label>
+          <label>Firm or company<input type="text" name="company" autocomplete="organization" required></label>
+          <label>Website<input type="url" name="website" autocomplete="url" required></label>
+          <label>Primary service<select name="service" required><option value="">Choose one</option><option value="vciso">vCISO or fractional security</option><option value="compliance">Compliance readiness or audit support</option><option value="pentest">Penetration testing or AppSec consulting</option><option value="development">Software engineering or development consulting</option><option value="mssp">Managed security services</option><option value="other">Another advisory service</option></select></label>
+          <label>Earliest client timing<select name="client-timing" required><option value="">Choose one</option><option value="current">A current client situation</option><option value="30-days">Likely within 30 days</option><option value="60-days">Likely within 60 days</option><option value="no-client">No specific client pattern yet</option></select></label>
+          <label>Preferred delivery shape<select name="delivery-shape" required><option value="">Choose one</option><option value="joint">Jointly delivered</option><option value="bundled">Bundled into our service</option><option value="direct">Direct client introduction</option><option value="subcontract">Subcontracted or white-label</option><option value="explore">Decide after scoping</option></select></label>
+          <label class="full">What application-security handoff is getting stuck?<textarea name="handoff-gap" rows="5" required></textarea></label>
+          <label class="full">What would a successful first engagement prove?<textarea name="success-outcome" rows="4" required></textarea></label>
+          <button class="btn btn-primary" type="submit">Propose a partner pilot <span class="arr">-&gt;</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>One client. One product. One decision.</h2><p>Use a paid engagement to learn whether ZeroQuarry closes the gap between your security advice and the client’s engineering outcome.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${securityPartnerApplication}">Propose the situation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/founding-security-cohort/">See the client cohort</a></div></div></div></section>
+  <script>
+  (() => {
+    const form = document.forms["security-partner-pilot"];
+    if (!form) return;
+    const params = new URLSearchParams(window.location.search);
+    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]) {
+      const value = params.get(key);
+      if (value && form.elements[key]) form.elements[key].value = value.slice(0, 160);
+    }
+  })();
+  </script>
+  </main>`;
+  const schemas = [
+    breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Security partner pilot", href: securityPartnerPath }]),
+    faqData([
+      { q: "Is this a reseller program?", a: "No. The first step is one bounded, paid client engagement. ZeroQuarry and the partner decide whether a repeatable commercial relationship is justified only after reviewing the delivery outcome and economics." },
+      { q: "Who owns the client relationship?", a: "The partner keeps its client relationship. Before an introduction, both sides agree whether ZeroQuarry is direct, bundled, subcontracted, white-labeled, or jointly presented." },
+      { q: "Can the work run inside the client environment?", a: "ZeroQuarry supports customer-controlled private runners for eligible internal source and targets. The deployment and result-return policy is agreed during scoping." },
+    ]),
+  ];
+  return layout({
+    title: "Security Partner Pilot for vCISO, Compliance, and Pentest Firms | ZeroQuarry",
+    description: "Run one joint client engagement that carries application-security findings through validation, remediation, retesting, and customer-ready evidence.",
+    canonical: `${siteUrl}${securityPartnerPath}`,
+    active: "",
+    body,
+    schemas,
+  });
+}
+
+function securityPartnerThanksPage() {
+  const body = `<main class="marketing-main">
+  <section class="buyer-hero">
+    <div class="container buyer-hero-grid">
+      <div>
+        <div class="buyer-kicker">Partner pilot proposal received</div>
+        <h1 class="buyer-title">Now we test the <em>client situation.</em></h1>
+        <p class="buyer-lede">ZeroQuarry will review the service fit, security trigger, delivery shape, and path to one authorized paid engagement. Expect a direct response from Shane rather than an automated partner sequence.</p>
+        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">Review the operating loop <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/founding-security-cohort/">Review the client cohort</a></div>
+        <div class="buyer-proofline"><span>Client fit</span><span>Delivery ownership</span><span>Commercial shape</span><span>Decision date</span></div>
+      </div>
+      <div class="hero-system" aria-label="Partner pilot proposal review">
+        <div class="system-head"><span>partner://proposal</span><span class="system-status">received</span></div>
+        <div class="loop-map">
+          <div class="loop-node wide"><span>REVIEW</span><strong>Does the client situation fit?</strong><p>Confirm a current application-security trigger, authorized boundary, and accountable technical reviewer.</p></div>
+          <div class="loop-node"><span>DESIGN</span><strong>Who owns which work?</strong><p>Agree client relationship, delivery roles, confidentiality, model funding, and commercial handling.</p></div>
+          <div class="loop-node"><span>DECIDE</span><strong>Book or stop</strong><p>Start only when the first engagement has a product boundary, success criteria, and paid decision path.</p></div>
+        </div>
+        <div class="system-foot"><span class="pulse-dot"></span><span>reply routes to shane@zeroquarry.com</span></div>
+      </div>
+    </div>
+  </section>
+  </main>`;
+  const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Security partner pilot", href: securityPartnerPath }, { name: "Proposal received", href: "/partners/thanks/" }])];
+  return layout({
+    title: "Security Partner Pilot Proposal Received | ZeroQuarry",
+    description: "ZeroQuarry received your security partner pilot proposal and will review the client situation, delivery model, and paid engagement path.",
+    canonical: `${siteUrl}/partners/thanks/`,
+    active: "",
+    body,
+    schemas,
+    robots: "noindex,nofollow",
+  });
+}
+
 function platformHub() {
   const body = `<main class="marketing-main">
   <section class="buyer-hero"><div class="container buyer-hero-grid"><div><div class="buyer-kicker">ZeroQuarry platform</div><h1 class="buyer-title">The security work <em>between pentests.</em></h1><p class="buyer-lede">One AI security-operations platform to receive work, test the product, challenge findings, route remediation, verify fixes, and package evidence.</p><div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/use-cases/">Explore use cases</a></div><div class="buyer-proofline"><span>Application security</span><span>Vulnerability operations</span><span>Customer assurance</span></div></div>${renderMotionVisual("platform-overview")}</div></section>
@@ -1380,6 +1565,8 @@ write("pricing.html", pricingPage());
 write("request-scan/index.html", requestScanPage());
 write("founding-security-cohort/index.html", foundingSecurityCohortPage());
 write("founding-security-cohort/thanks/index.html", foundingSecurityCohortThanksPage());
+write("partners/index.html", securityPartnerPage());
+write("partners/thanks/index.html", securityPartnerThanksPage());
 write("open-source/index.html", openSourcePage());
 write("use-cases/index.html", useCasesHub());
 for (const page of platformPages) write(`platform/${page.slug}/index.html`, renderDetail(page, "platform"));
