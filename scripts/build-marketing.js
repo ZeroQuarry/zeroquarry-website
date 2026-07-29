@@ -1055,12 +1055,12 @@ function foundingSecurityCohortPage() {
         </div>
       </div>
       <div class="proof-copy">
-        <div class="section-label">Not a fit</div>
-        <h2>The cohort is not a shortcut to <em>a compliance stamp.</em></h2>
+        <div class="section-label">What you bring</div>
+        <h2>A real product, a reviewer, and <em>a reason to act now.</em></h2>
         <div class="proof-list">
-          <div><span>×</span><p>You want an unscoped review across an undefined product portfolio rather than one accountable product boundary.</p></div>
-          <div><span>×</span><p>No engineer can review findings, distinguish known from novel results, or make risk decisions.</p></div>
-          <div><span>×</span><p>The target is not yours or you do not have explicit authorization to test it.</p></div>
+          <div><span>01</span><p>One authorized repository, release, application, or API boundary that matters to the business.</p></div>
+          <div><span>02</span><p>One technical reviewer who can evaluate the findings and record the outcome.</p></div>
+          <div><span>03</span><p>One current deadline or security trigger that gives the assessment a clear purpose.</p></div>
         </div>
       </div>
     </div>
