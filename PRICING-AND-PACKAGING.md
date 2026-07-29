@@ -136,26 +136,36 @@ Use **$24,000 annual contract value** as the internal starting anchor. Expand fr
 |---|---:|---:|---|
 | Additional protected product | $100 | $80 | Add a product without immediately repackaging |
 | Additional 25 monthly runs | $50 | $40 | Absorb launch, diligence, or temporary change volume |
-| Guided baseline | $1,000 once | Not applicable | Scope, onboarding, first baseline, and operating-plan workshop |
+| Design-partner assessment | $2,000 once | Not applicable | One written boundary, founder-assisted assessment, adversarial review, technical-reviewer session, and pentest-style report; fee-back outcome guarantee; model-token costs separate |
 
 If both recurring add-ons would cost more than the next plan, quote the next plan instead.
 
 ## Unit economics and model usage
 
-The current planning assumption is roughly 80,000 input and 20,000 output tokens per security run. At posted ZeroQuarry model rates, one run costs approximately:
+Do not plan model economics from the earlier 80,000-input-token assumption.
+Observed full source assessments have consumed millions of input tokens even on
+small repositories, and model/reasoning choices materially change usage.
+Model-token costs therefore remain separate from the platform fee and every
+guided assessment must use BYOK or a written hosted-usage cap.
 
-| Model | Posted cost / run |
-|---|---:|
-| GPT-5 nano | $0.06 |
-| Claude Haiku 4 | $0.18 |
-| GPT-5 mini | $0.48 |
-| GPT-4o | $0.70 |
-| Claude Sonnet 4.5 / 4.6 | $0.72 |
-| GPT-5 | $2.40 |
+The rate table below is useful for comparing model prices, not for predicting a
+fixed cost per assessment:
+
+| Model | Input / 1M tokens | Output / 1M tokens |
+|---|---:|---:|
+| GPT-5 nano | $0.40 | $1.60 |
+| Claude Haiku 4 | $1.00 | $5.00 |
+| GPT-5 mini | $3.00 | $12.00 |
+| Claude Sonnet 4.5 / 4.6 | $4.00 | $20.00 |
+| GPT-4o | $5.00 | $15.00 |
+| GPT-5 | $15.00 | $60.00 |
 
 Hosted model usage remains separately metered. This makes the aggressive subscription sustainable and lets customers choose depth. When a customer uses an account-managed provider key, the provider bills those calls directly and ZeroQuarry excludes them from its model-usage invoice; only the platform subscription remains payable to ZeroQuarry. BYOK calls also bypass platform-funded token caps, while security-run and concurrency limits still apply. Private runners require an account-managed key for every selected scan, review, and artifact model.
 
-At full plan utilization, even the highest posted model rate is bounded by the run allowance. Typical use should be materially lower because focused reviews use less context and customers can choose efficient models.
+Security-run allowances bound platform capacity, not model-token cost. Hosted
+model usage must remain visible and capped separately; focused reviews may use
+less context, but do not promise a fixed token quantity before observing the
+target and chosen reasoning policy.
 
 ## Commercial rules
 

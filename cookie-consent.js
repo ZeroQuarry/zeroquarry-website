@@ -168,16 +168,16 @@
       && hasCohortSubmissionMarker()
       && consumeCohortSubmissionMarker(provider)) {
       const properties = {
-        campaign_name: 'founding-security-cohort-2026',
+        campaign_name: 'design-partner-pentest-2026',
         source_path: window.location.pathname,
         currency: 'USD',
-        value: 1000,
+        value: 2000,
       };
       if (provider === 'google' && window.gtag) {
         window.gtag('event', 'generate_lead', properties);
       }
       if (provider === 'posthog' && window.posthog && window.posthog.capture) {
-        window.posthog.capture('cohort_application_received', properties);
+        window.posthog.capture('design_partner_application_received', properties);
       }
     }
 
@@ -244,11 +244,11 @@
     });
     installTrackedForm({
       formName: cohortFormName,
-      campaignName: 'founding-security-cohort-2026',
-      startedEvent: 'cohort_application_started',
-      submittedEvent: 'cohort_application_submitted',
+      campaignName: 'design-partner-pentest-2026',
+      startedEvent: 'design_partner_application_started',
+      submittedEvent: 'design_partner_application_submitted',
       setSubmissionMarker: setCohortSubmissionMarker,
-      value: 1000,
+      value: 2000,
     });
     installTrackedForm({
       formName: partnerFormName,
