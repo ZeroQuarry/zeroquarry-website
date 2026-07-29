@@ -307,7 +307,7 @@ const platformPages = [
     description: "Run AI security scans from customer-controlled Docker runners for private Git repositories and authorized internal applications, with outbound-only connectivity and minimized result return.",
     eyebrow: "Private execution",
     h1: "Run security assessments where your code and internal targets <em>already live.</em>",
-    lede: "Enterprise private runners execute eligible source and live-target scans from Docker hosts inside networks you control. Keep cloud and private execution explicit per project, call your LLM provider directly, and choose how much result detail returns to ZeroQuarry.",
+    lede: "Private runners execute eligible source and live-target scans from Docker hosts inside networks you control. Evaluate the full workflow during the 30-day commercial trial, keep cloud and private execution explicit per project, and choose how much result detail returns to ZeroQuarry.",
     image: "/assets/product/account-private-runners.png",
     imageAlt: "ZeroQuarry private runner pool controls for internal-network security assessments",
     proof: ["Customer-controlled Docker hosts", "Outbound HTTPS only", "Minimized or standard results"],
@@ -337,10 +337,13 @@ const platformPages = [
       ["Which scans can use private runners?", "Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs."],
       ["Can a failed private job fall back to ZeroQuarry Cloud?", "No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment."],
       ["Do private runners require bring-your-own model keys?", "Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly."],
+      ["Can we evaluate private runners before buying Enterprise?", "Yes. The 30-day commercial trial includes self-serve private runner pools. Create a pool, run the generated Docker command, and evaluate a Git-backed source scan or authorized internal target before discussing Enterprise rollout terms."],
     ],
     related: [["/platform/security-testing/", "AI security testing"], ["/use-cases/release-security-review/", "Release security review"], ["/platform/evidence-reporting/", "Evidence and reporting"]],
-    ctaHref: "/request-scan/",
-    ctaLabel: "Discuss private execution",
+    ctaHref: `${signupUrls.general}?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=private-execution-trial&utm_content=hero`,
+    ctaLabel: "Start 30-day private-execution trial",
+    finalCtaTitle: "Prove the execution boundary on your infrastructure.",
+    finalCtaText: "Create a private runner pool, run the generated Docker command, and evaluate one Git-backed source scan or authorized internal target during the 30-day trial.",
     docsHref: "https://docs.zeroquarry.com/workflows/private-runners",
   },
   {
@@ -877,7 +880,13 @@ function renderDetail(page, type) {
     </div>
   </section>
 
-  ${renderCta("Start with one real security boundary.", "Use the free trial on your own product, then decide whether the resulting security work is useful enough to keep.", signupUrl)}
+  ${renderCta(
+    page.finalCtaTitle || "Start with one real security boundary.",
+    page.finalCtaText || "Use the free trial on your own product, then decide whether the resulting security work is useful enough to keep.",
+    page.slug === "private-execution"
+      ? signupUrl.replace("utm_content=hero", "utm_content=final-cta")
+      : signupUrl
+  )}
   </main>`;
 
   return layout({ title: page.title, description: page.description, canonical: `${siteUrl}${canonicalPath}`, active: type === "platform" ? "platform" : "use-cases", body, schemas });
