@@ -5,7 +5,7 @@ date: "2026-05-12"
 author: "ZeroQuarry Research"
 status: "Fixed in production and open source"
 description: "ZeroQuarry scanned Quepid, the open-source search-relevance tool from OpenSource Connections. Part 1: an unauthenticated open-proxy SSRF that was live both in the public repo and on the hosted go.quepidapp.com service. Fixed in commit 634aa4a."
-ogTitle: "ZeroQuarry found an unauthenticated SSRF in Quepid — patched in OSS and on go.quepidapp.com"
+ogTitle: "ZeroQuarry found an unauthenticated SSRF in Quepid: patched in OSS and on go.quepidapp.com"
 ogDescription: "First in a series. ZeroQuarry's scan of Quepid surfaced an open-proxy SSRF reachable on the public repo and the hosted service. Patched in commit 634aa4a."
 image: "/assets/research/quepid-scan-og.png"
 featured: true
@@ -123,6 +123,6 @@ ZeroQuarry is free for open-source projects. We want maintainers to find and fix
 ## Public references
 
 - [Quepid repository](https://github.com/o19s/quepid)
-- [Commit 634aa4a — proxy fetch fix](https://github.com/o19s/quepid/commit/634aa4a5d9a217198ebfd9e9864333094ae3c25b)
+- [Commit 634aa4a: proxy fetch fix](https://github.com/o19s/quepid/commit/634aa4a5d9a217198ebfd9e9864333094ae3c25b)
 - [OpenSource Connections](https://opensourceconnections.com/)
 - [ZeroQuarry research: Obsidian Tasks RCE](/research/obsidian-tasks-rce/)

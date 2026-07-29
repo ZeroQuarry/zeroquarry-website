@@ -934,7 +934,7 @@ function homePage() {
     <div class="container buyer-hero-grid">
       <div>
         <div class="buyer-kicker">Design Partner Pentest Offer · 10 teams · through August 31</div>
-        <h1 class="buyer-title">Find something novel—or get the <em>$2,000 platform fee back.</em></h1>
+        <h1 class="buyer-title">Find a novel security issue or get the <em>$2,000 platform fee back.</em></h1>
         <p class="buyer-lede">Scope one authorized product boundary. ZeroQuarry runs an AI-assisted security assessment, challenges the findings, and produces a pentest-style report. If your technical reviewer finds no previously unknown, valid security result worth recording, ZeroQuarry reimburses the entire platform fee; model-token costs remain yours.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortPath}?utm_source=homepage&utm_medium=owned-site&utm_campaign=design-partner-pentest-2026&utm_content=hero">Apply for one of 10 evaluations <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.general}?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=self-serve-trial&utm_content=homepage-hero">Start self-serve trial</a></div>
         <div class="buyer-proofline"><span>$2,000 platform fee</span><span>Token cost separate</span><span>Full fee-back outcome guarantee</span></div>
@@ -1012,7 +1012,7 @@ function foundingSecurityCohortPage() {
     <div class="container buyer-hero-grid">
       <div>
         <div class="buyer-kicker">Design Partner Pentest Offer · through August 31</div>
-        <h1 class="buyer-title">Find something novel—or get the <em>$2,000 platform fee back.</em></h1>
+        <h1 class="buyer-title">Find a novel security issue or get the <em>$2,000 platform fee back.</em></h1>
         <p class="buyer-lede">For software teams whose audit, customer, or security program calls for a penetration test or meaningful application-security evidence. Scope one authorized product boundary, run a ZeroQuarry assessment, validate the results with your technical reviewer, and receive a pentest-style report.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for one of 10 evaluations <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#guarantee">Read the guarantee</a></div>
         <div class="buyer-proofline"><span>$2,000 platform fee</span><span>Model tokens separate</span><span>Full fee-back outcome guarantee</span></div>
@@ -1173,7 +1173,7 @@ function foundingSecurityCohortPage() {
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Ten accepted scopes—or through August 31.</h2><p>Pay $2,000 plus model-token costs for one scoped assessment and pentest-style report. If the written outcome test finds no previously unknown, valid security result worth recording, the platform fee comes back.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for an evaluation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Ten accepted scopes, available through August 31.</h2><p>Pay $2,000 plus model-token costs for one scoped assessment and pentest-style report. If the written outcome test finds no previously unknown, valid security result worth recording, the platform fee comes back.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for an evaluation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
   <script>
   (() => {
     const form = document.forms["founding-security-cohort"];
@@ -1217,7 +1217,7 @@ function foundingSecurityCohortThanksPage() {
       <div>
         <div class="buyer-kicker">Design-partner application received</div>
         <h1 class="buyer-title">Next we make the scope and guarantee <em>unambiguous.</em></h1>
-        <p class="buyer-lede">ZeroQuarry will review the product boundary, authorization, evidence requirement, technical reviewer, model funding, and commercial readiness you submitted. If the evaluation is a fit, the next step is a short scoping call—not an unstructured demo.</p>
+        <p class="buyer-lede">ZeroQuarry will review the product boundary, authorization, evidence requirement, technical reviewer, model funding, and commercial readiness you submitted. If the evaluation is a fit, the next step is a short scoping call instead of an unstructured demo.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="/platform">Review the operating loop <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.startup}?utm_source=design-partner-application&utm_medium=owned-site&utm_campaign=design-partner-pentest-2026&utm_content=thank-you-self-serve">Start self-serve instead</a></div>
         <div class="buyer-proofline"><span>Authorized boundary</span><span>Known findings</span><span>Token cap</span><span>Guarantee test</span></div>
       </div>
@@ -1226,7 +1226,7 @@ function foundingSecurityCohortThanksPage() {
         <div class="loop-map">
           <div class="loop-node wide"><span>01</span><strong>Fit and authority</strong><p>Confirm the product is in scope, authorized, and reviewable by an accountable engineer.</p></div>
           <div class="loop-node"><span>02</span><strong>Outcome and terms</strong><p>Agree the success test, the $2,000 platform fee, model-token budget, report audience, and review date.</p></div>
-          <div class="loop-node"><span>03</span><strong>Begin or decline</strong><p>Start the bounded assessment only when both sides agree—or stop without creating another abandoned trial.</p></div>
+          <div class="loop-node"><span>03</span><strong>Begin or decline</strong><p>Start the bounded assessment only when both sides agree. Otherwise, stop without creating another abandoned trial.</p></div>
         </div>
       </div>
     </div>
@@ -1332,7 +1332,7 @@ function securityPartnerPage() {
       <div class="contact-panel">
         <div>
           <div class="tag">Partner pilot</div>
-          <h2>Start with the client situation—not a channel forecast.</h2>
+          <h2>Start with the client situation, not a channel forecast.</h2>
           <p>Do not disclose a client’s identity or confidential details in this form. Describe the security trigger, product shape, and handoff problem well enough to test whether a joint engagement is worth a working session.</p>
           <ul class="contact-points"><li>A real client pattern or current engagement</li><li>A product or application boundary the client can authorize</li><li>A finding-to-fix or evidence gap your current service does not economically close</li><li>A path to a paid 30-day decision</li></ul>
         </div>
