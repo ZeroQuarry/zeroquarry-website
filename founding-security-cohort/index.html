@@ -264,9 +264,9 @@
       <div class="contact-panel">
         <div>
           <div class="tag">Design-partner application</div>
-          <h2>Start with the requirement and the boundary.</h2>
-          <p>Applying does not create an account or charge anything. ZeroQuarry will confirm fit, authorization, report requirements, technical review, the $2,000 platform fee, and separate model-token budget before testing begins.</p>
-          <ul class="contact-points"><li>One written, authorized product boundary</li><li>One accountable technical reviewer</li><li>One current audit, customer, launch, or security trigger</li><li>One written guarantee test and report audience</li></ul>
+          <h2>Tell us what you want tested.</h2>
+          <p>Shane will review your request personally and reply to arrange a short scoping call.</p>
+          <ul class="contact-points"><li>Four quick fields</li><li>No account required</li><li>No payment to apply</li><li>Personal response from the founder</li></ul>
         </div>
         <form class="enterprise-form" name="founding-security-cohort" method="POST" action="/founding-security-cohort/thanks/" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="founding-security-cohort">
@@ -280,20 +280,9 @@
           <p class="hidden-field"><label>Do not fill this out: <input name="bot-field"></label></p>
           <label>Work email<input type="email" name="email" autocomplete="email" required></label>
           <label>Company<input type="text" name="company" autocomplete="organization" required></label>
-          <label>Product, repo, or company URL<input type="url" name="target" autocomplete="url" required></label>
-          <label>Current security trigger<select name="security-trigger" required><option value="">Choose one</option><option value="customer-review">Customer security review</option><option value="soc2-iso">SOC 2 or ISO 27001</option><option value="pentest">Pentest or retest requirement</option><option value="launch-release">Product launch or release</option><option value="security-backlog">Known security backlog</option><option value="other">Another current trigger</option></select></label>
-          <label>Target type<select name="target-type" required><option value="">Choose one</option><option value="source">Source repository or coherent codebase</option><option value="release">Release artifact or binary</option><option value="application">Authorized application or API</option><option value="mixed">A written combination of targets</option></select></label>
-          <label>Approximate scope size<select name="scope-size" required><option value="">Choose one</option><option value="small">Under 25k lines or one narrow service</option><option value="medium">25k–250k lines or one application</option><option value="large">Over 250k lines or multiple components</option><option value="unknown">Not sure yet</option></select></label>
-          <label>Report needed by<input type="date" name="required-by" required></label>
-          <label>Report audience<select name="report-audience" required><option value="">Choose one</option><option value="auditor">SOC 2, ISO, or other auditor/assessor</option><option value="customer">Customer security review</option><option value="internal">Internal engineering or security</option><option value="other">Another audience</option></select></label>
-          <label>Technical reviewer<input type="text" name="technical-reviewer" placeholder="Name or role" required></label>
-          <label>Model funding<select name="model-funding" required><option value="">Choose one</option><option value="byok">We can provide model-provider keys</option><option value="hosted-cap">We need a written hosted-usage cap</option><option value="decide">We need help choosing</option></select></label>
-          <label>Commercial readiness<select name="commercial-readiness" required><option value="">Choose one</option><option value="ready">Ready to approve $2,000 plus model tokens</option><option value="budget-owner">Need to include our budget owner</option><option value="scope-first">Need to validate scope first</option></select></label>
-          <label class="full">What must the assessment find, change, or make provable?<textarea name="success-outcome" rows="4" required></textarea></label>
-          <label class="full">What security issues are already known in this boundary?<textarea name="known-findings" rows="3" placeholder="List known findings or write “none known.”" required></textarea></label>
-          <label class="checkbox-row"><input type="checkbox" name="authorized-testing" value="confirmed" required><span>I confirm my organization owns this target or has explicit authorization to test it.</span></label>
-          <label class="checkbox-row"><input type="checkbox" name="guarantee-terms" value="confirmed" required><span>I understand the guarantee covers the $2,000 platform fee only. Model-token costs are separate and not reimbursed.</span></label>
-          <button class="btn btn-primary" type="submit">Apply for design-partner evaluation <span class="arr">-&gt;</span></button>
+          <label class="full">What do you want tested?<textarea name="target" rows="3" placeholder="Product, repository, application, API, or URL" required></textarea></label>
+          <label class="full">Why now?<textarea name="security-trigger" rows="3" placeholder="Upcoming audit, customer request, launch, pentest, or another reason" required></textarea></label>
+          <button class="btn btn-primary" type="submit">Request a design-partner spot <span class="arr">-&gt;</span></button>
         </form>
       </div>
     </div>

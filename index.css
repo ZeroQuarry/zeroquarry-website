@@ -972,7 +972,6 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   text-transform: uppercase;
 }
 .enterprise-form .full,
-.enterprise-form .checkbox-row,
 .enterprise-form button {
   grid-column: 1 / -1;
 }
@@ -992,23 +991,6 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
 .enterprise-form textarea {
   resize: vertical;
   min-height: 130px;
-}
-.enterprise-form .checkbox-row {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  gap: 10px;
-  align-items: start;
-  color: var(--ink-2);
-  font: 12px/1.5 var(--sans);
-  letter-spacing: 0;
-  text-transform: none;
-}
-.enterprise-form .checkbox-row input {
-  width: 16px;
-  height: 16px;
-  margin: 1px 0 0;
-  padding: 0;
-  accent-color: var(--red);
 }
 .enterprise-form .hidden-field {
   position: absolute;
