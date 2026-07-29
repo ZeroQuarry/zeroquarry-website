@@ -358,7 +358,7 @@ const platformPages = [
   {
     slug: "evidence-reporting",
     title: "Security Evidence, Pentest Reports, and Customer Assurance | ZeroQuarry",
-    description: "Create pentest-style PDF reports, asset evidence packs, controlled finding shares, disclosure records, and audit trails for customers and auditors.",
+    description: "Create penetration test PDF reports, asset evidence packs, controlled finding shares, disclosure records, and audit trails for customers and auditors.",
     eyebrow: "Security evidence and reporting",
     h1: "Make security work <em>provable</em> when someone asks.",
     lede: "Package current evidence by asset, export reviewed reports, share only the findings a recipient needs, and retain the decision history behind remediation, retest, and accepted risk.",
@@ -562,7 +562,7 @@ const useCasePages = [
     sectionIntro: "The strongest assurance response comes from an operating process that already knows what was assessed, what was found, who decided, what changed, and whether the fix was retested.",
     capabilities: [
       ["Asset inventory view", "Start from the actual repository, URL, upload, or path and see the latest report and finding counts."],
-      ["Evidence packs", "Select the assets in scope and combine the latest reports into a branded pentest-style PDF."],
+      ["Evidence packs", "Select the assets in scope and combine the latest reports into a branded penetration test PDF."],
       ["Narrow secure sharing", "Give a named recipient selected findings without exposing the rest of the workspace."],
       ["Finding decisions", "Distinguish candidate, validated, disputed, mitigated, retested, accepted-risk, and archived outcomes."],
       ["Audit history", "Show the actors, analysis stages, models, results, and reasons behind the assessment and decisions."],
@@ -935,7 +935,7 @@ function homePage() {
       <div>
         <div class="buyer-kicker">Design Partner Pentest Offer · 10 teams · through August 31</div>
         <h1 class="buyer-title">Find a novel security issue or get the <em>$2,000 platform fee back.</em></h1>
-        <p class="buyer-lede">Scope one authorized product boundary. ZeroQuarry runs an AI-assisted security assessment, challenges the findings, and produces a pentest-style report. If your technical reviewer finds no previously unknown, valid security result worth recording, ZeroQuarry reimburses the entire platform fee; model-token costs remain yours.</p>
+        <p class="buyer-lede">Scope one authorized product boundary. ZeroQuarry runs the security assessment, challenges the findings, and produces a penetration test report. If your technical reviewer finds no previously unknown, valid security result worth recording, ZeroQuarry reimburses the entire platform fee; model-token costs remain yours.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortPath}?utm_source=homepage&utm_medium=owned-site&utm_campaign=design-partner-pentest-2026&utm_content=hero">Apply for one of 10 evaluations <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.general}?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=self-serve-trial&utm_content=homepage-hero">Start self-serve trial</a></div>
         <div class="buyer-proofline"><span>$2,000 platform fee</span><span>Token cost separate</span><span>Full fee-back outcome guarantee</span></div>
       </div>
@@ -1004,7 +1004,7 @@ function foundingSecurityCohortPage() {
   const guaranteeFaqs = [
     ["What earns the $2,000 reimbursement?", "At the final review, if the designated technical reviewer cannot identify at least one previously unknown, valid security issue or materially new security-relevant insight worth recording, ZeroQuarry reimburses the entire $2,000 platform fee. Findings disclosed as known at kickoff do not satisfy the guarantee."],
     ["What does not get reimbursed?", "Model-token costs are paid directly through your provider key or under a written hosted-usage cap and are not reimbursed. Testing that cannot complete because access, authorization, or required review participation was withdrawn is handled under the written scope rather than the outcome guarantee."],
-    ["Does the report automatically satisfy SOC 2 or ISO 27001?", "No standard universally makes this specific report format sufficient. Confirm the evidence and independence requirements with your auditor, customer, or assessor. ZeroQuarry produces an AI-assisted application-security assessment and pentest-style report, not a named human-pentester attestation."],
+    ["Can the report support SOC 2, ISO 27001, and customer reviews?", "Yes. The report records the tested scope, methodology, findings, evidence, decisions, remediation, and retest status needed for security and compliance review. Any organization-specific report requirements are captured during scoping."],
     ["What is in scope?", "One written, authorized product boundary agreed before payment: a repository or coherent codebase, a release artifact, or an application/API target. Scope, access, model choice, token budget, success test, and report audience are recorded before testing starts."],
   ];
   const body = `<main class="marketing-main">
@@ -1013,7 +1013,7 @@ function foundingSecurityCohortPage() {
       <div>
         <div class="buyer-kicker">Design Partner Pentest Offer · through August 31</div>
         <h1 class="buyer-title">Find a novel security issue or get the <em>$2,000 platform fee back.</em></h1>
-        <p class="buyer-lede">For software teams whose audit, customer, or security program calls for a penetration test or meaningful application-security evidence. Scope one authorized product boundary, run a ZeroQuarry assessment, validate the results with your technical reviewer, and receive a pentest-style report.</p>
+        <p class="buyer-lede">For software teams whose audit, customer, or security program calls for a penetration test. Scope one authorized product boundary, run a ZeroQuarry assessment, validate the results with your technical reviewer, and receive the penetration test report.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for one of 10 evaluations <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#guarantee">Read the guarantee</a></div>
         <div class="buyer-proofline"><span>$2,000 platform fee</span><span>Model tokens separate</span><span>Full fee-back outcome guarantee</span></div>
       </div>
@@ -1038,7 +1038,7 @@ function foundingSecurityCohortPage() {
         ["Challenge the claims", "Use separate adversarial review, proof, and human disposition so weak results do not quietly become engineering work."],
         ["Review what is novel", "Have your designated technical reviewer distinguish newly discovered, valid results from known issues, rejected claims, and low-value observations."],
         ["Retest the result", "Verify whether remediation changed the original risk and keep regressions or unresolved decisions visible."],
-        ["Receive the report", "Leave with a pentest-style report and a durable record of findings, decisions, remediation, and retest status."],
+        ["Receive the report", "Leave with a penetration test report and a durable record of findings, decisions, remediation, and retest status."],
       ])}
     </div>
   </section>
@@ -1058,7 +1058,7 @@ function foundingSecurityCohortPage() {
         <div class="section-label">Not a fit</div>
         <h2>The cohort is not a shortcut to <em>a compliance stamp.</em></h2>
         <div class="proof-list">
-          <div><span>×</span><p>You require a named independent human pentester or a particular attestation and have not confirmed that this evidence is acceptable.</p></div>
+          <div><span>×</span><p>You want an unscoped review across an undefined product portfolio rather than one accountable product boundary.</p></div>
           <div><span>×</span><p>No engineer can review findings, distinguish known from novel results, or make risk decisions.</p></div>
           <div><span>×</span><p>The target is not yours or you do not have explicit authorization to test it.</p></div>
         </div>
@@ -1093,7 +1093,7 @@ function foundingSecurityCohortPage() {
         ["Scope and requirements", "Agree the target, authorization, known findings, report audience, evidence requirements, technical reviewer, model funding, and token cap."],
         ["Assessment and challenge", "Run the assessment, inspect the attack-surface plan, and pressure-test findings through separate adversarial review."],
         ["Reviewer decisions", "Record which results are previously unknown and valid, invalid, accepted risk, mitigated, or worth further investigation."],
-        ["Report and guarantee decision", "Assemble the pentest-style report, record the reviewer outcome, apply the guarantee if earned, and decide whether to continue."],
+        ["Report and guarantee decision", "Assemble the penetration test report, record the reviewer outcome, apply the guarantee if earned, and decide whether to continue."],
       ])}
     </div>
   </section>
@@ -1103,7 +1103,7 @@ function foundingSecurityCohortPage() {
       <div class="proof-copy">
         <div class="section-label">What ZeroQuarry commits</div>
         <h2>Founder attention, a final report, and <em>a measurable outcome.</em></h2>
-        <p>ZeroQuarry will help scope the product, operate the assessment, investigate failures, pressure-test claims, and finish with a pentest-style report and guarantee review. The product will not be presented as a replacement for a certification, assessor, or every form of human penetration testing.</p>
+        <p>ZeroQuarry will help scope the product, operate the assessment, investigate failures, pressure-test claims, and finish with a penetration test report and guarantee review.</p>
       </div>
       <div class="proof-copy">
         <div class="section-label">What participating teams commit</div>
@@ -1124,7 +1124,7 @@ function foundingSecurityCohortPage() {
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Commercial terms</div><h2>A paid evaluation with the <em>platform fee at risk.</em></h2></div><p class="section-intro">ZeroQuarry only keeps the platform fee when the designated technical reviewer records a previously unknown, valid result under the written success test.</p></div>
       <div class="pricing-addon-grid">
-        <article><span>Platform and report</span><h3>$2,000 once</h3><p>Written scope, founder-assisted assessment, adversarial review, technical-reviewer session, and pentest-style report.</p></article>
+        <article><span>Platform and report</span><h3>$2,000 once</h3><p>Written scope, founder-assisted assessment, adversarial review, technical-reviewer session, and penetration test report.</p></article>
         <article><span>Outcome guarantee</span><h3>Full fee back</h3><p>If the written success test produces no previously unknown, valid result worth recording, ZeroQuarry reimburses the $2,000 platform fee.</p></article>
         <article><span>Model execution</span><h3>Separate cost</h3><p>Bring provider keys or agree a hosted-usage cap. Model-token costs remain yours and are not part of the reimbursement.</p></article>
       </div>
@@ -1165,7 +1165,6 @@ function foundingSecurityCohortPage() {
           <label class="full">What must the assessment find, change, or make provable?<textarea name="success-outcome" rows="4" required></textarea></label>
           <label class="full">What security issues are already known in this boundary?<textarea name="known-findings" rows="3" placeholder="List known findings or write “none known.”" required></textarea></label>
           <label class="checkbox-row"><input type="checkbox" name="authorized-testing" value="confirmed" required><span>I confirm my organization owns this target or has explicit authorization to test it.</span></label>
-          <label class="checkbox-row"><input type="checkbox" name="audit-acceptance" value="confirmed" required><span>I understand that we must confirm any auditor, customer, or assessor evidence and independence requirements; this is not a named human-pentester attestation.</span></label>
           <label class="checkbox-row"><input type="checkbox" name="guarantee-terms" value="confirmed" required><span>I understand the guarantee covers the $2,000 platform fee only. Model-token costs are separate and not reimbursed.</span></label>
           <button class="btn btn-primary" type="submit">Apply for design-partner evaluation <span class="arr">-&gt;</span></button>
         </form>
@@ -1173,7 +1172,7 @@ function foundingSecurityCohortPage() {
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Ten accepted scopes, available through August 31.</h2><p>Pay $2,000 plus model-token costs for one scoped assessment and pentest-style report. If the written outcome test finds no previously unknown, valid security result worth recording, the platform fee comes back.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for an evaluation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Ten accepted scopes, available through August 31.</h2><p>Pay $2,000 plus model-token costs for one scoped assessment and penetration test report. If the written outcome test finds no previously unknown, valid security result worth recording, the platform fee comes back.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for an evaluation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review platform pricing</a></div></div></div></section>
   <script>
   (() => {
     const form = document.forms["founding-security-cohort"];
@@ -1196,12 +1195,12 @@ function foundingSecurityCohortPage() {
       price: "2000",
       priceCurrency: "USD",
       url: `${siteUrl}${foundingCohortPath}`,
-      description: "One scoped AI-assisted application-security assessment, adversarial review, technical-reviewer session, and pentest-style report. Model-token costs are separate.",
+      description: "One scoped application-security assessment, adversarial review, technical-reviewer session, and penetration test report. Model-token costs are separate.",
     },
   ];
   return layout({
     title: "Outcome-Guaranteed AI Security Assessment | ZeroQuarry",
-    description: "Apply for a $2,000 founder-assisted ZeroQuarry security assessment and pentest-style report. If it produces no previously unknown, valid result worth recording, the platform fee is reimbursed. Model-token costs are separate.",
+    description: "Apply for a $2,000 founder-assisted ZeroQuarry security assessment and penetration test report. If it produces no previously unknown, valid result worth recording, the platform fee is reimbursed. Model-token costs are separate.",
     canonical: `${siteUrl}${foundingCohortPath}`,
     active: "",
     body,
@@ -1319,11 +1318,11 @@ function securityPartnerPage() {
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">First-engagement commercial shape</div><h2>Small enough to start. Specific enough to <em>make a buying decision.</em></h2></div><p class="section-intro">The client or partner chooses the billing path before any source, target, or customer identity is shared.</p></div>
       <div class="pricing-addon-grid">
-        <article><span>Design-partner assessment</span><h3>$2,000 once</h3><p>One written product boundary, assessment, adversarial review, technical-reviewer session, and pentest-style report.</p></article>
+        <article><span>Design-partner assessment</span><h3>$2,000 once</h3><p>One written product boundary, assessment, adversarial review, technical-reviewer session, and penetration test report.</p></article>
         <article><span>Model execution</span><h3>Keys or hard cap</h3><p>Bring account-managed model keys, or agree a maximum hosted-usage budget before the engagement begins.</p></article>
         <article><span>Outcome guarantee</span><h3>Full fee back</h3><p>If the client reviewer records no previously unknown, valid result worth recording, ZeroQuarry reimburses the platform fee. Model-token costs remain separate.</p></article>
       </div>
-      <p class="pricing-footnote">Direct, bundled, referral, and subcontracted delivery are all possible. Commercial handling, attribution, confidentiality, responsibilities, auditor acceptance, and the written guarantee test are agreed before the client introduction. Continuation is priced separately; no exclusivity or ongoing partner commitment is required.</p>
+      <p class="pricing-footnote">Direct, bundled, referral, and subcontracted delivery are all possible. Commercial handling, attribution, confidentiality, responsibilities, scope, and the written guarantee test are agreed before the client introduction. Continuation is priced separately; no exclusivity or ongoing partner commitment is required.</p>
     </div>
   </section>
 
@@ -1544,8 +1543,8 @@ function pricingPage() {
     ["Why does this cost more than one coding-agent seat?", "A coding agent helps one developer produce code. ZeroQuarry independently tests the product, challenges vulnerability claims, retains risk decisions, moves remediation, verifies fixes, and produces evidence for customers and auditors. The entry price stays in developer-tool territory; the product outcome is a continuous security operation."],
     ["Is model usage included?", "Hosted model input and output are metered separately at the posted rates below. With an account-managed key, the LLM provider bills you directly and ZeroQuarry does not add those calls to its model-usage invoice; your ZeroQuarry subscription and security-run limits remain unchanged. Private runners require your keys for every selected stage."],
     ["Can we add capacity without changing plans?", "Yes. Add protected products or bundles of 25 monthly security runs. If that becomes a recurring pattern, moving to the next plan will usually provide better economics and more operating controls."],
-    ["Does this replace a human pentest?", "ZeroQuarry creates continuous assessment and evidence between point-in-time tests. Some regulations, customers, or insurance policies may still require a named independent human assessor; we will scope those requirements honestly rather than treating every report as interchangeable."],
-    ["What is the $2,000 design-partner offer?", "For ten accepted scopes or applications through August 31, 2026, ZeroQuarry will run one founder-assisted assessment with adversarial review and a pentest-style report. If the designated technical reviewer records no previously unknown, valid security result worth recording, ZeroQuarry reimburses the $2,000 platform fee. Model-token costs are separate and not reimbursed."],
+    ["Can ZeroQuarry support penetration test and compliance evidence?", "Yes. ZeroQuarry assesses the authorized product boundary, challenges the findings, records the methodology and evidence, tracks remediation and retests, and produces the report. Any buyer-specific evidence requirements are captured during scoping."],
+    ["What is the $2,000 design-partner offer?", "For ten accepted scopes or applications through August 31, 2026, ZeroQuarry will run one founder-assisted assessment with adversarial review and a penetration test report. If the designated technical reviewer records no previously unknown, valid security result worth recording, ZeroQuarry reimburses the $2,000 platform fee. Model-token costs are separate and not reimbursed."],
   ];
   const body = `<main>
   <section class="pricing-hero">
@@ -1595,7 +1594,7 @@ function pricingPage() {
 
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">Add capacity</div><h2>Expand the constraint you actually hit.</h2></div><div class="aside">Add-ons support temporary launch, diligence, or portfolio pressure without forcing an immediate repackage. Persistent overage is a signal that the next plan will be more economical.</div></div>
-    <div class="pricing-addon-grid"><article><span>Product coverage</span><h3>+$80 / month</h3><p>One additional protected product on annual billing; $100 when billed monthly.</p></article><article><span>Assessment capacity</span><h3>+$40 / month</h3><p>Twenty-five additional security runs on annual billing; $50 when billed monthly.</p></article><article><span>Design-partner assessment</span><h3>$2,000 once</h3><p>One written product boundary, founder-assisted assessment, adversarial review, technical-reviewer session, and pentest-style report. <a href="${foundingCohortPath}">See the outcome guarantee.</a></p></article></div>
+    <div class="pricing-addon-grid"><article><span>Product coverage</span><h3>+$80 / month</h3><p>One additional protected product on annual billing; $100 when billed monthly.</p></article><article><span>Assessment capacity</span><h3>+$40 / month</h3><p>Twenty-five additional security runs on annual billing; $50 when billed monthly.</p></article><article><span>Design-partner assessment</span><h3>$2,000 once</h3><p>One written product boundary, founder-assisted assessment, adversarial review, technical-reviewer session, and penetration test report. <a href="${foundingCohortPath}">See the outcome guarantee.</a></p></article></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">

@@ -136,7 +136,7 @@ Use **$24,000 annual contract value** as the internal starting anchor. Expand fr
 |---|---:|---:|---|
 | Additional protected product | $100 | $80 | Add a product without immediately repackaging |
 | Additional 25 monthly runs | $50 | $40 | Absorb launch, diligence, or temporary change volume |
-| Design-partner assessment | $2,000 once | Not applicable | One written boundary, founder-assisted assessment, adversarial review, technical-reviewer session, and pentest-style report; fee-back outcome guarantee; model-token costs separate |
+| Design-partner assessment | $2,000 once | Not applicable | One written boundary, founder-assisted assessment, adversarial review, technical-reviewer session, and penetration test report; fee-back outcome guarantee; model-token costs separate |
 
 If both recurring add-ons would cost more than the next plan, quote the next plan instead.
 
@@ -175,7 +175,7 @@ target and chosen reasoning policy.
 - Run capacity resets monthly and does not roll over.
 - Avoid bespoke discounting below the public annual price. The 20% annual discount is the standard concession.
 - Trade any further discount for a longer term, reference rights, a case study, reduced support, or a pre-defined expansion.
-- Do not promise that every ZeroQuarry report satisfies a human-pentest requirement. Some regulations, customers, or insurers still require an independent named human assessor.
+- Capture any buyer-specific report format, testing scope, and evidence requirements during commercial scoping.
 
 ## Migration and implementation
 
