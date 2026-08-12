@@ -21,7 +21,7 @@ tags:
 
 Earlier this month, ZeroQuarry was run against [Copas](https://github.com/lunarmodules/copas), an asynchronous networking library for Lua. Copas is not huge: roughly 6,000 lines of code. But it sits underneath the sort of code where small mistakes can have outsized consequences: HTTP clients, TLS servers, connection pools, timers, and locks.  Copas is used in [a number of projects in the Lua ecosystem](https://github.com/search?q=copas+language%3ALua&type=repositories), and due to Lua's nature as a popular embedded language: in a variety of other applications upstream.  One of the Copas maintainers signed up for ZeroQuarry to scan the open source repository for free under ZeroQuarry's "[protect OSS](https://console.zeroquarry.com/register/open-source)" free offering.
 
-## What Copas does, and why a bug here can matter elsewhere
+### What Copas does, and why a bug here can matter elsewhere
 
 Copas is a coroutine-based dispatcher for asynchronous networking in Lua. An application gives it a handler for a TCP or UDP connection, Copas waits for sockets to become readable or writable, and then wakes the appropriate coroutine to continue the request. This is a common way to build a server that can deal with many connections without allocating an operating-system thread to each one.
 
@@ -33,7 +33,7 @@ The scan produced a number of reports that were then worked through publicly by 
 
 Two of the findings are worth looking at because neither starts with the usual security smell. There is no obvious `eval`, SQL query, or buffer overflow. They come from a small mismatch between what an application developer thinks happened and what the library actually does.
 
-## 1. When `HTTPS://` can become a plaintext request
+### 1. When `HTTPS://` can become a plaintext request
 
 URL schemes are case-insensitive. `https://example.com`, `HTTPS://example.com`, and `HtTpS://example.com` are all URLs with the HTTPS scheme.
 
@@ -47,7 +47,7 @@ The fix is straightforward: normalize the scheme before using it, validate that 
 
 The public issue is [#188: Mixed-case HTTPS schemes silently downgrade requests to plaintext HTTP](https://github.com/lunarmodules/copas/issues/188).
 
-## 2. How a failed non-blocking lock attempt can permanently block later requests
+### 2. How a failed non-blocking lock attempt can permanently block later requests
 
 The second issue is a concurrency bug, but it has a very practical availability impact.
 
@@ -63,7 +63,7 @@ The fix is also conceptually simple: a failed immediate acquire needs to leave n
 
 The public issue is [#201: Failed zero-timeout lock acquisition remains queued and poisons the lock](https://github.com/lunarmodules/copas/issues/201).
 
-## Why these are interesting
+### Why these are interesting
 
 Both bugs require following a sequence rather than spotting one suspicious function:
 
