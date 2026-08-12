@@ -5,6 +5,8 @@ date: "2026-08-12"
 author: "Shane Connelly"
 status: "Mitigation available"
 description: "ZeroQuarry helps an open source maintainer fix vulnerabilities in the popular Copas library."
+disclosureClass: "Cryptographic Failures, Insecure Design"
+disclosureSurface: "Lua, Socket libraries"
 ogTitle: "Finding and fixing vulnerabilities in an open source Lua coprocessor"
 ogDescription: "A variety of security issues in Copas could lead to silently dropping to insecure channels. ZeroQuarry identified a variety of vulnerabilities like this and helped the maintainer fix them."
 featured: true
