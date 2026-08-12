@@ -933,11 +933,11 @@ function homePage() {
   <section class="buyer-hero">
     <div class="container buyer-hero-grid">
       <div>
-        <div class="buyer-kicker">Operations founding cohort · 10 companies</div>
-        <h1 class="buyer-title">One year of Operations for <em>$2,000.</em></h1>
-        <p class="buyer-lede">Operations normally costs $500 per month. Cohort companies pay $2,000 upfront for the first year, including a founder-assisted initial assessment and report plus three founder-assisted rescans. If the first assessment finds nothing previously unknown worth recording, the $2,000 comes back and the subscription ends.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortPath}?utm_source=homepage&utm_medium=owned-site&utm_campaign=operations-founding-cohort-2026&utm_content=hero">Apply for one of 10 places <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.general}?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=self-serve-trial&utm_content=homepage-hero">Start self-serve trial</a></div>
-        <div class="buyer-proofline"><span>$166.67 / month effective</span><span>12 months of Operations</span><span>Model tokens separate</span></div>
+        <div class="buyer-kicker">AI security operations for software companies</div>
+        <h1 class="buyer-title">Run product security like you already <em>staffed the team.</em></h1>
+        <p class="buyer-lede">ZeroQuarry receives security work, tests source, binaries, and live applications, challenges weak findings, opens fixes, verifies remediation, and packages the evidence customers ask for.</p>
+        <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start 30-day trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
+        <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs</span></div>
       </div>
       <div class="console buyer-live-console" aria-label="Illustrative adversarial vulnerability review">
         <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">example://</span>red-vs-vendor · target=<span class="amber">billing-api</span></span><span class="console-meta"><span class="live">illustrative</span></span></div>
