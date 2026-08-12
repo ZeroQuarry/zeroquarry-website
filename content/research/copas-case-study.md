@@ -17,7 +17,7 @@ tags:
   - responsible-disclosure
 ---
 
-# Two bugs in Copas that turn ordinary application behavior into security problems
+## Two bugs in Copas that turn ordinary application behavior into security problems
 
 Earlier this month, ZeroQuarry was run against [Copas](https://github.com/lunarmodules/copas), an asynchronous networking library for Lua. Copas is not huge: roughly 6,000 lines of code. But it sits underneath the sort of code where small mistakes can have outsized consequences: HTTP clients, TLS servers, connection pools, timers, and locks.  Copas is used in [a number of projects in the Lua ecosystem](https://github.com/search?q=copas+language%3ALua&type=repositories), and due to Lua's nature as a popular embedded language: in a variety of other applications upstream.  One of the Copas maintainers signed up for ZeroQuarry to scan the open source repository for free under ZeroQuarry's "[protect OSS](https://console.zeroquarry.com/register/open-source)" free offering.
 

@@ -141,14 +141,15 @@
 
     <div class="container article-layout">
       <aside class="article-toc" aria-label="Article sections">
-        <a href="#what-copas-does-and-why-a-bug-here-can-matter-elsewhere">What Copas does, and why a bug here can matter elsewhere</a>
+        <a href="#two-bugs-in-copas-that-turn-ordinary-application-behavior-into-security-problems">Two bugs in Copas that turn ordinary application behavior into security problems</a>
+<a href="#what-copas-does-and-why-a-bug-here-can-matter-elsewhere">What Copas does, and why a bug here can matter elsewhere</a>
 <a href="#1-when-https-can-become-a-plaintext-request">1. When `HTTPS://` can become a plaintext request</a>
 <a href="#2-how-a-failed-non-blocking-lock-attempt-can-permanently-block-later-requests">2. How a failed non-blocking lock attempt can permanently block later requests</a>
 <a href="#why-these-are-interesting">Why these are interesting</a>
       </aside>
 
       <div class="article-body">
-<p># Two bugs in Copas that turn ordinary application behavior into security problems</p>
+<h2 id="two-bugs-in-copas-that-turn-ordinary-application-behavior-into-security-problems">Two bugs in Copas that turn ordinary application behavior into security problems</h2>
 <p>Earlier this month, ZeroQuarry was run against <a href="https://github.com/lunarmodules/copas">Copas</a>, an asynchronous networking library for Lua. Copas is not huge: roughly 6,000 lines of code. But it sits underneath the sort of code where small mistakes can have outsized consequences: HTTP clients, TLS servers, connection pools, timers, and locks.  Copas is used in <a href="https://github.com/search?q=copas+language%3ALua&amp;type=repositories">a number of projects in the Lua ecosystem</a>, and due to Lua&#39;s nature as a popular embedded language: in a variety of other applications upstream.  One of the Copas maintainers signed up for ZeroQuarry to scan the open source repository for free under ZeroQuarry&#39;s &quot;<a href="https://console.zeroquarry.com/register/open-source">protect OSS</a>&quot; free offering.</p>
 <h2 id="what-copas-does-and-why-a-bug-here-can-matter-elsewhere">What Copas does, and why a bug here can matter elsewhere</h2>
 <p>Copas is a coroutine-based dispatcher for asynchronous networking in Lua. An application gives it a handler for a TCP or UDP connection, Copas waits for sockets to become readable or writable, and then wakes the appropriate coroutine to continue the request. This is a common way to build a server that can deal with many connections without allocating an operating-system thread to each one.</p>
