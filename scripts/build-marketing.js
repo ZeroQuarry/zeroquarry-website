@@ -949,7 +949,7 @@ function homePage() {
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">The buying moments</div><h2>Security becomes urgent in <em>recognizable moments.</em></h2></div><p class="section-intro">ZeroQuarry starts with the decisions buyers actually face. Scanner categories come later.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">You've lived it</div><h2>Security becomes urgent in <em>at the worst times.</em></h2></div><p class="section-intro">ZeroQuarry starts with the decisions buyers actually face. Scanner categories come later.</p></div>
       <div class="moment-grid">
         ${[["Open-source report queue", "AI scanners create more low-context claims than maintainers have time to validate.", "/open-source/"], ["Enterprise deal", "A buyer asks for current test evidence and how findings are remediated.", "/use-cases/customer-security-reviews/"], ["Risky release", "A change crosses identity, tenant, billing, upload, webhook, or runtime boundaries.", "/use-cases/release-security-review/"], ["Researcher report", "An external claim arrives and someone must resolve the target, reproduce it, and respond.", "/use-cases/inbound-vulnerability-reports/"], ["Fast-moving codebase", "Security review must happen in PR and scheduled workflows without becoming a noisy gate.", "/use-cases/pr-security-review/"], ["Lean security team", "The company needs real coverage before it can hire every AppSec and security-operations specialty.", "/use-cases/startup-security/"]].map(([title, text, href], index) => `<a class="moment-card" href="${href}"><div class="card-code">0${index + 1}</div><h3>${title}</h3><p>${text}</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}
       </div>
@@ -967,7 +967,7 @@ function homePage() {
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Platform</div><h2>Six capabilities. One <em>security record.</em></h2></div><p class="section-intro">Use the whole loop or begin with the security motion creating the most operational drag today.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Platform</div><h2>Seven capabilities. One <em>security record.</em></h2></div><p class="section-intro">Use the whole loop or begin with the security motion creating the most operational drag today.</p></div>
       <div class="capability-grid">
         ${platformPages.map((page, index) => `<a class="capability-card" href="/platform/${page.slug}/"><div class="card-code">0${index + 1} / Platform</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}
       </div>
