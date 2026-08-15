@@ -1,5 +1,5 @@
 ---
-title: "Finding and fixing vulnerabilities in an open source Lua coprocessor"
+title: "Finding and fixing vulnerabilities in an open source Lua coroutine-dispatcher"
 slug: "copas-concurrency-and-tls-case-study"
 date: "2026-08-12"
 author: "Shane Connelly"
@@ -7,7 +7,7 @@ status: "Mitigation available"
 description: "ZeroQuarry helps an open source maintainer fix vulnerabilities in the popular Copas library."
 disclosureClass: "Cryptographic Failures, Insecure Design"
 disclosureSurface: "Lua, Socket libraries"
-ogTitle: "Finding and fixing vulnerabilities in an open source Lua coprocessor"
+ogTitle: "Finding and fixing vulnerabilities in an open source Lua coroutine-dispatcher"
 ogDescription: "A variety of security issues in Copas could lead to silently dropping to insecure channels. ZeroQuarry identified a variety of vulnerabilities like this and helped the maintainer fix them."
 featured: true
 featuredSummary: "One of the open source maintainers of the library scanned Copas using ZeroQuarry and ZeroQuarry then identified a number of serious vulnerabilities in the library. This writeup explains the impact, disclosure process, mitigation tradeoff, and lessons for embedded library ecosystems."
