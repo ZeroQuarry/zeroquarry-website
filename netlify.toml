@@ -1,3 +1,39 @@
 [build]
 command = "npm run build"
 publish = "."
+
+[[redirects]]
+  from = "/features"
+  to = "/platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/features.html"
+  to = "/platform"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/evidence-reports"
+  to = "/platform/evidence-reporting/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/evidence-reports.html"
+  to = "/platform/evidence-reporting/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/continuous-testing"
+  to = "/platform/continuous-security/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/continuous-testing.html"
+  to = "/platform/continuous-security/"
+  status = 301
+  force = true

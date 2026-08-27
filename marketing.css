@@ -1818,3 +1818,20 @@
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Proof receipts strip (homepage) */
+.proof-receipt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.proof-stat {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  line-height: 1.25;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+@media (max-width: 900px) {
+  .proof-receipt-grid { grid-template-columns: 1fr; }
+}

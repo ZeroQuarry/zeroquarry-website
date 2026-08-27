@@ -106,12 +106,23 @@
         <h1 class="buyer-title">Run product security like you already <em>staffed the team.</em></h1>
         <p class="buyer-lede">ZeroQuarry receives security work, tests source, binaries, and live applications, challenges weak findings, opens fixes, verifies remediation, and packages the evidence customers ask for.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start 30-day trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
-        <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs</span></div>
+        <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs (&asymp; 5 full assessments)</span></div>
       </div>
       <div class="console buyer-live-console" aria-label="Illustrative adversarial vulnerability review">
         <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">example://</span>red-vs-vendor · target=<span class="amber">billing-api</span></span><span class="console-meta"><span class="live">illustrative</span></span></div>
         <div class="console-body" id="zq-debate-body"><div class="line sys"><div class="ts">14:02:01</div><div class="agent">SYSTEM</div><div class="msg">review opened for billing-api</div></div><div class="line red"><div class="ts">14:02:05</div><div class="agent">RED</div><div class="msg">tracing tenant ownership into invoice update</div></div><div class="line blue"><div class="ts">14:02:11</div><div class="agent">VENDOR</div><div class="msg">challenge: prove the route lacks an earlier ownership check</div></div></div>
         <div class="console-foot"><span class="chip">RED TEAM</span><span class="chip blue">VENDOR REVIEW</span><span class="sp"></span><span id="zq-debate-verdict">review in progress</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Published work</div><h2>We find things. Then they get <em>fixed.</em></h2></div><p class="section-intro">Every claim below links to public writeups, disclosures, merge history, or maintainer-confirmed remediation.</p></div>
+      <div class="proof-receipt-grid">
+        <a class="moment-card proof-receipt" href="/research/copas-concurrency-and-tls-case-study/"><div class="card-code">Copas · Lua networking library</div><div class="proof-stat">13 issues<br>16 merged PRs</div><h3>Fixed by the maintainers themselves</h3><p>A Copas maintainer worked every finding in public, merging 16 pull requests &mdash; many drafted by ZeroQuarry and reviewed by a human. He then signed up to scan the project for free.</p><span class="card-link">Read the case study <span aria-hidden="true">-&gt;</span></span></a>
+        <a class="moment-card proof-receipt" href="/research/excalidraw-vulnerabilities/"><div class="card-code">Excalidraw package ecosystem</div><div class="proof-stat">41 high-severity findings<br>&lt;$30 of inference</div><h3>Attack chains in real plugins</h3><p>Six concrete chains through popular Excalidraw plugins: script execution via frontmatter, SVG icon injection, cmd:// link handling, and more. Follow-up finding fixed by a maintainer.</p><span class="card-link">Read the writeup <span aria-hidden="true">-&gt;</span></span></a>
+        <a class="moment-card proof-receipt" href="/research/obsidian-tasks-rce/"><div class="card-code">Obsidian Tasks · community plugin</div><div class="proof-stat">3.4M downloads<br>RCE, disclosed &amp; fixed</div><h3>From untrusted Markdown to code execution</h3><p>A coordinated disclosure against one of Obsidian's most-installed plugins, with the full timeline public: report, maintainer response, patch, and merged fix.</p><span class="card-link">Read the disclosure <span aria-hidden="true">-&gt;</span></span></a>
       </div>
     </div>
   </section>
@@ -220,6 +231,7 @@
       </div>
       <div class="foot-col legal">
         <h5>Company</h5>
+        <a href="/founding-security-cohort/">Founding cohort</a>
         <a href="/research/">Research</a>
         <a href="/partners/">Security partners</a>
         <a href="/pricing">Pricing</a>
