@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZeroQuarry is finding security vulnerability chains in AI-reviewed code | ZeroQuarry Research</title>
+<meta name="description" content="iShortn, an open source URL shortener, was already using AI code review when the vulnerabilities ZeroQuarry found were introduced. The review found locally plausible concerns. It missed both attack paths." />
+<link rel="canonical" href="https://zeroquarry.com/research/security-vulnerabilities-in-ai-reviewed-code" />
+<meta property="og:title" content="ZeroQuarry is finding security vulnerability chains in AI-reviewed code" />
+<meta property="og:description" content="A pre-deployment scan of an open source URL shortener surfaced cross-tenant link takeover, SSRF, and custom-domain takeover chains that AI code review did not flag." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeroquarry.com/research/security-vulnerabilities-in-ai-reviewed-code" />
+
+<link rel="icon" type="image/png" href="../../assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index.css" />
+<link rel="stylesheet" href="../../marketing.css?v=20260722-private-execution1" />
+<link rel="stylesheet" href="../../cookie-consent.css" />
+<script src="../../cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="../../index.js?v=20260722-private-execution1" defer></script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>The security operating loop</strong>
+            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Customer-controlled runners for internal targets</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start with the security moment</strong>
+            <p>Choose the workflow that matches the decision in front of you.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/open-source/"><strong>Open source maintainers</strong><span>Validate noisy reports and keep the response work together</span></a>
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/" aria-current="page">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start trial <span class="arr">-&gt;</span></a>
+    </div>
+    <details class="mobile-nav">
+      <summary>Browse ZeroQuarry</summary>
+      <nav class="mobile-nav-panel" aria-label="Mobile primary">
+        <a href="/">Why ZeroQuarry</a>
+        <a href="/platform">Platform</a>
+        <a href="/use-cases/">Use cases</a>
+        <a href="/research/" aria-current="page">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <article class="research-article">
+    <header class="article-header">
+      <div class="container article-header-grid">
+        <div>
+          <a class="article-back" href="../">Research</a>
+          <div class="article-meta">
+            <span>Shane Connelly</span>
+<span>September 1, 2026</span>
+<span>oss</span>
+<span>nextjs</span>
+<span>typescript</span>
+          </div>
+          <h1>ZeroQuarry is finding security vulnerability chains in AI-reviewed code</h1>
+          <p class="article-dek">iShortn, an open source URL shortener with custom domains, analytics, QR codes, password-protected links, and a REST API, was already using AI code review when the vulnerabilities below were introduced. The reviewer found locally plausible concerns. It missed both attack paths.</p>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
+          </div>
+        </div>
+
+        <aside class="disclosure-panel" aria-label="Disclosure status">
+          <div class="disclosure-label">Disclosure status</div>
+          <div class="disclosure-state">Mitigation available</div>
+
+          <p>Fixes were merged publicly. The original remediation PR (#324) had drifted from <code>main</code> and was re-landed as part of <a href="https://github.com/AmoabaKelvin/ishortn.ink/pull/336">PR #336</a>.</p>
+          <dl>
+            <div>
+              <dt>Class</dt>
+              <dd>Broken Access Control, SSRF, Vulnerable Components</dd>
+            </div>
+            <div>
+              <dt>Surface</dt>
+              <dd>TypeScript, Next.js 16, tRPC, sharp</dd>
+            </div>
+            <div>
+              <dt>Posture</dt>
+              <dd>Disclosure-safe</dd>
+            </div>
+          </dl>
+          </aside>
+      </div>
+    </header>
+
+    <div class="container article-layout">
+      <aside class="article-toc" aria-label="Article sections">
+        <a href="#a-public-link-contained-everything-needed-to-target-it">1. A public link contained everything needed to target it</a>
+        <a href="#ishortns-link-preview-feature-could-reach-inside-the-deployments-network">2. iShortn's link-preview feature could reach inside the deployment's network</a>
+        <a href="#another-custom-domain-problem">3. Another custom-domain problem</a>
+        <a href="#ai-code-review-was-already-in-place">4. AI code review was already in place</a>
+        <a href="#why-these-findings-matter">5. Why these findings matter</a>
+      </aside>
+
+      <div class="article-body">
+<p>I was considering deploying <a href="https://github.com/AmoabaKelvin/ishortn.ink">iShortn</a>, an open-source URL shortener with custom domains, analytics, QR codes, password-protected links, and a REST API.</p>
+<p>Before deploying it, I ran the source code through ZeroQuarry, which I'm thankful I did.</p>
+<p>iShortn was running AI code review on the pull requests that introduced two of the bugs discussed below. The reviewer had commented on the exact files where the problems appeared. It did not identify either attack path.</p>
+<p>The ZeroQuarry scan found several ways that one account could cross into another account's data or infrastructure. In total, ZeroQuarry found 13 high-severity and 33 medium-severity issues in iShortn, all of which have been fixed. The clearest allowed someone with an ordinary API key to read and modify links owned by another user. Combined with a second bug in the update endpoint, an attacker could replace the destination of a trusted short link with a phishing page.</p>
+<p>The scan also found <em>multiple</em> server-side request forgery paths. These matter even more when software is self-hosted, because the application often runs next to databases, caches, admin tools, and cloud credentials that are not reachable from the public internet.</p>
+<p>I disclosed the findings privately to the maintainer. The fix was merged in <a href="https://github.com/AmoabaKelvin/ishortn.ink/pull/336">PR #336</a>.</p>
+<p>Three of the findings are worth explaining in more detail, because they show how the bugs hide, how they could be chained, and why each is the kind of issue a code-change reviewer is poorly positioned to catch.</p>
+
+<h2 id="a-public-link-contained-everything-needed-to-target-it">1. A public link contained everything needed to target it</h2>
+<p>Consider a company (example.com) that publishes this link with iShortn (hosted on go.example.com):</p>
+<pre><code>https://go.example.com/payroll</code></pre>
+<p>The domain and alias are obviously not secrets: they appear together every time somebody shares or follows the link.</p>
+<p>iShortn also has an authenticated REST API. An API key identifies the user making a request, but the API accepted a <code>domain</code> parameter supplied by that user. If the parameter was present, the domain resolver returned it without checking whether the API-key owner controlled the domain.</p>
+<p>The link lookup then searched for a record using only:</p>
+<pre><code>domain = go.example.com
+alias  = payroll</code></pre>
+<p>It did not include the authenticated user's ID in the query.</p>
+<p>This distinction is the core of a large number of authorization bugs:</p>
+<pre><code>authenticated: the application knows who made the request
+authorized:   the application checked that they may act on this object</code></pre>
+<p>iShortn did the first part. For this API path, it did not do the second.</p>
+<p>An attacker could create their own account, generate their own API key, and use the public domain and alias from somebody else's short link. A GET request disclosed the link's destination and expiry information. A PATCH request could modify the same record.</p>
+<p>That was already enough for a link takeover. A second problem made the update even more dangerous.</p>
+
+<h3>TypeScript types disappear at runtime</h3>
+<p>The PATCH handler declared a TypeScript type containing four expected fields. It looked roughly like this:</p>
+<pre><code>{
+  url?: string;
+  alias?: string;
+  disableLinkAfterDate?: Date | null;
+  disableLinkAfterClicks?: number | null;
+}</code></pre>
+<p>But a TypeScript type does not validate an incoming JSON request: it disappears when the code runs.</p>
+<p>The handler parsed the body, copied every supplied key into an update object, and passed that object to the database. There was no runtime allowlist. Fields such as <code>blocked</code>, <code>passwordHash</code>, <code>publicStats</code>, and <code>userId</code> were therefore available for mass assignment even though they did not appear in the TypeScript type.</p>
+<p>The PATCH path also skipped the phishing and blocked-domain check used when a link was created.</p>
+<p>ZeroQuarry was able to identify that those two bugs could be chained together:</p>
+<ol>
+  <li>The attacker takes the domain and alias from a public short link.</li>
+  <li>They authenticate using an API key for their own account.</li>
+  <li>The API finds the victim's link without checking its owner.</li>
+  <li>The attacker changes its destination to a credential-harvesting page.</li>
+  <li>Existing emails, documents, QR codes, and browser bookmarks continue sending people through the trusted short link.</li>
+</ol>
+<p>Through this chain, the victim does not need to click an unusual attachment or approve a request. The thing they already distributed changes underneath them.</p>
+<p>That is what makes a link-shortener takeover particularly useful to an attacker. The short domain is the trust signal: the destination is deliberately hidden.</p>
+<p><a href="https://github.com/AmoabaKelvin/ishortn.ink/commit/f085189a3f57c7642ef5c337cfe3a0818e2a9045">The first remediation commit</a> addresses the chain in several places. Explicit custom domains are checked against the API-key owner. Link reads and updates include an ownership predicate. The PATCH body is parsed through a strict runtime schema. URL changes go through the same safety checks used during creation. <a href="https://github.com/AmoabaKelvin/ishortn.ink/commit/4cdda885115c9be64d1716f92245887c7bd80a0e">A follow-up commit</a> authorizes the record before spending work on URL checks and updates it by the authorized database ID.</p>
+
+<h2 id="ishortns-link-preview-feature-could-reach-inside-the-deployments-network">2. iShortn's link-preview feature could reach inside the deployment's network</h2>
+<p>iShortn checks whether a destination can be displayed in an iframe. The feature accepted a URL and fetched it from the server to inspect its response headers. It parsed the URL and allowed HTTP or HTTPS. It did not check where the hostname resolved.</p>
+<p>That meant a requester could ask the iShortn server to fetch addresses such as:</p>
+<pre><code>http://127.0.0.1:3000/
+http://redis.internal:6379/
+http://169.254.169.254/latest/meta-data/</code></pre>
+<p>These addresses may be unreachable from the attacker's computer but reachable from the application server. This is server-side request forgery (SSRF). The endpoint returned only whether the target appeared iframeable, so this was primarily a blind SSRF.</p>
+<p>Redirects created another path: the code followed redirects automatically, so an attacker could begin with an ordinary public URL that redirected the server to an internal address.</p>
+<p>This is a particularly relevant problem for self-hosted software. A public iShortn deployment might share a Docker network with MySQL and Redis, run inside a cloud account with a metadata service, or have access to internal tools that were never designed to receive public traffic. The URL shortener becomes an indirect route into that environment.</p>
+<p>ZeroQuarry found the same trust problem in a separate feature. Bio-page image URLs were stored and later rendered on the server when generating an Open Graph image. A user could point an image field at an internal URL, then ask the public image route to make the request. This is an easy class of bug to fix once and then reintroduce elsewhere. URL shorteners fetch URLs for metadata, screenshots, phishing checks, previews, images, redirects, and analytics. Each feature tends to grow its own small piece of request code.</p>
+<p><a href="https://github.com/AmoabaKelvin/ishortn.ink/commit/d2ac63bc169ee8c3bb15fdc9a4f718e3b6fc5515">The remediation</a> introduces a shared outbound-request guard. It rejects loopback, private, link-local, cloud-metadata, and other reserved addresses after DNS resolution. It also checks each redirect before following it. The iframe endpoint now requires authentication, and the Open Graph renderer accepts only image sources hosted by the application. <a href="https://github.com/AmoabaKelvin/ishortn.ink/commit/165f779e0884f94684d1ba47fe094eeab3d4278f">A later fix</a> replaced hand-written IP parsing with Node's built-in <code>net.BlockList</code> and added tests for IPv4-mapped IPv6 addresses and other less obvious address formats.</p>
+
+<h2 id="another-custom-domain-problem">3. Another custom-domain problem</h2>
+<p>One other finding shows why multi-tenant security often fails at the boundary between an application and its infrastructure provider.</p>
+<p>iShortn uses Vercel to manage custom domains. Once one customer had verified a domain on the shared Vercel project, Vercel correctly reported that the domain already existed and was verified.</p>
+<p>The application treated that project-wide verification state as proof that a different workspace also controlled the domain.</p>
+<p>An attacker could ask to add a domain already verified by another iShortn customer. The shared Vercel project said it was verified, and iShortn created an active domain record in the attacker's workspace without requiring new proof of control. The attacker could then create their own short links under the victim's branded domain.</p>
+<p>Vercel's answer was correct: the domain had been verified for the project. The application asked the wrong authorization question. It needed to know whether this specific workspace controlled the existing claim.</p>
+<p><a href="https://github.com/AmoabaKelvin/ishortn.ink/commit/09f5a77a1482558bf1c26aff29239c04c0893527">The custom-domain remediation</a> adds that workspace check.</p>
+
+<h2 id="ai-code-review-was-already-in-place">4. AI code review was already in place</h2>
+<p>iShortn was running AI code review on the pull requests that introduced these vulnerabilities. The reviewer, CodeRabbit, was specifically configured to look at the same files. It commented on the same code. It found locally plausible concerns about CSP behavior, database calls, and race conditions. It did not identify either attack path.</p>
+<p>That is a useful data point, and the gap is not specific to one tool. AI code review is good at missing null checks, redundant database calls, and similar local defects in a diff. It is less good at asking what a feature actually does versus what it promises, which is the question that surfaces cross-tenant, BOLA, and SSRF chains. The pattern shows up across other AI-assisted codebases.</p>
+
+<h2 id="why-these-findings-matter">5. Why these findings matter</h2>
+<p>None of these issues came from a single obviously dangerous function.</p>
+<p>The link takeover required following authentication through domain resolution, link lookup, JSON parsing, database update behavior, and URL safety checks. The custom-domain issue required understanding that Vercel's verification scope and iShortn's tenant scope were different. The SSRF findings appeared in product features that had legitimate reasons to fetch URLs.</p>
+<p>Two things follow from cases like this. First, AI coding tools produce code quickly, and that code is not less likely to be wrong than any other code. The same volume of features that makes the work go faster also makes the surface area for security mistakes larger. Second, AI code review does not catch all of those mistakes, because it is structurally looking at a diff rather than at a product. A setting on a review tool does not turn a code reviewer into a product security assessor.</p>
+<p>That is the gap a dedicated model and harness is built to fill. It reads the repository the way a product is read, with the tenant model, the deployment, and the attacker in view, rather than as a diff. That is the role ZeroQuarry is built to play, regardless of which AI coding tools are in use elsewhere in the workflow.</p>
+<p>This is the kind of security review I want ZeroQuarry to perform:</p>
+<ol>
+  <li>Work out what the product promises.</li>
+  <li>Follow the data and authorization state across the implementation.</li>
+  <li>Look at the same workflow from another tenant's perspective.</li>
+  <li>Turn the result into a specific attack path.</li>
+  <li>Challenge it before asking a maintainer to spend time on it.</li>
+</ol>
+<p>The fix is in. The vulnerabilities are closed, the diff is public, and the maintainer shipped it without changing the public API surface that customers depend on.</p>
+<p>iShortn is open source, and the remediation is public. If you maintain an open-source project and want to see what ZeroQuarry finds, <a href="https://console.zeroquarry.com/register/open-source?utm_source=zeroquarry&utm_medium=research&utm_campaign=ishortn-security">protect an open-source project free</a>. If you are evaluating software before deploying it, <a href="https://console.zeroquarry.com/register?utm_source=zeroquarry&utm_medium=research&utm_campaign=ishortn-security">start a 30-day trial</a> or <a href="https://zeroquarry.com/request-scan/?utm_source=zeroquarry&utm_medium=research&utm_campaign=ishortn-security">get in touch</a>.</p>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+        </a>
+        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/private-execution/">Private execution</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/open-source/">Open source maintainers</a>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/founding-security-cohort/">Founding cohort</a>
+        <a href="/research/">Research</a>
+        <a href="/partners/">Security partners</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
