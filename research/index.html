@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="../index.css" />
 <link rel="stylesheet" href="../marketing.css?v=20260722-private-execution1" />
 <link rel="stylesheet" href="../cookie-consent.css" />
-<script src="../cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="../cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer data-posthog-key="phc_u3zPBsSy74eo8zyeNKuf4sAtHKLiK2b98JzG6XQV8LGY" data-posthog-host="https://events.zeroquarry.com" data-posthog-ui-host="https://us.posthog.com"></script>
 <script src="../index.js?v=20260722-private-execution1" defer></script>
 </head>
 <body>
@@ -177,12 +177,27 @@
           <h2>Disclosure-safe <em>writeups.</em></h2>
         </div>
         <div class="aside">
-          5 published posts so far. Additional findings are in coordinated disclosure and will be added after fixes or maintainer guidance make publication appropriate.
+          6 published posts so far. Additional findings are in coordinated disclosure and will be added after fixes or maintainer guidance make publication appropriate.
         </div>
       </div>
 
       <div class="research-list">
         <article class="research-card">
+        <a class="research-card-link" href="security-vulnerabilities-in-ai-reviewed-code/">
+          <div class="research-card-meta">
+            <span>Shane Connelly</span>
+            <span>September 1, 2026</span>
+            <span class="status-pill">Mitigation available</span>
+          </div>
+          <h2>ZeroQuarry is finding security vulnerability chains in AI-reviewed code</h2>
+          <p>iShortn, an open source URL shortener, was already using AI code review when the vulnerabilities ZeroQuarry found were introduced. Cross-tenant link takeover, SSRF, and custom-domain takeover chains that the AI reviewer did not flag.</p>
+          <div class="research-card-footer">
+            <span>Read the research</span>
+            <span>-&gt;</span>
+          </div>
+        </a>
+      </article>
+<article class="research-card">
         <a class="research-card-link" href="copas-concurrency-and-tls-case-study/">
           <div class="research-card-meta">
             <span>Shane Connelly</span>
