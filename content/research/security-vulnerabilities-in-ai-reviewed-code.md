@@ -23,7 +23,7 @@ I was considering deploying [iShortn](https://github.com/AmoabaKelvin/ishortn.in
 
 Before deploying it, I ran the source code through ZeroQuarry, which I'm thankful I did.
 
-iShortn was running AI code review on the pull requests that introduced two of the bugs discussed below. The reviewer had commented on the exact files where the problems appeared. It did not identify either attack path.
+iShortn was running AI code review on the pull requests that introduced two of the bugs discussed below. The AI reviewer had commented on the exact files where the problems appeared. It did not identify either attack path.
 
 The ZeroQuarry scan found several ways that one account could cross into another account's data or infrastructure. In total, ZeroQuarry found 13 high-severity and 33 medium-severity issues in iShortn, all of which have been fixed. The clearest allowed someone with an ordinary API key to read and modify links owned by another user. Combined with a second bug in the update endpoint, an attacker could replace the destination of a trusted short link with a phishing page.
 
@@ -138,9 +138,14 @@ Vercel's answer was correct: the domain had been verified for the project. The a
 
 ## 4. AI code review was already in place
 
-iShortn was running AI code review on the pull requests that introduced these vulnerabilities. The reviewer, CodeRabbit, was specifically configured to look at the same files. It commented on the same code. It found locally plausible concerns about CSP behavior, database calls, and race conditions. It did not identify either attack path.
+iShortn was running AI code review on the pull requests that introduced these vulnerabilities. The AI reviewer, CodeRabbit, was specifically configured to look at the same files. The AI reviewer did not treat the vulnerabilities uniformly:
 
-That is a useful data point, and the gap is not specific to one tool. AI code review is good at missing null checks, redundant database calls, and similar local defects in a diff. It is less good at asking what a feature actually does versus what it promises, which is the question that surfaces cross-tenant, BOLA, and SSRF chains. The pattern shows up across other AI-assisted codebases.
+- On [PR #306](https://github.com/AmoabaKelvin/ishortn.ink/pull/306), the AI reviewer identified the exact cross-tenant GET and PATCH vulnerabilities, rated them Major, and supplied the missing ownership checks. The one-commit PR merged roughly an hour later without the fixes.
+- On [PR #267](https://github.com/AmoabaKelvin/ishortn.ink/pull/267), the AI reviewer examined the iframe-fetching file but focused on CSP behavior and did not identify that the public endpoint could make arbitrary server-side requests.
+- On [PR #255](https://github.com/AmoabaKelvin/ishortn.ink/pull/255), it reviewed the custom-domain service, found database and race-condition concerns, but missed the cross-workspace domain takeover.
+- On the [remediation PR](https://github.com/AmoabaKelvin/ishortn.ink/pull/336), the AI reviewer provided useful review.
+
+That is what AI code review does in practice. The AI reviewer can surface a finding on one PR and the finding can fail to be applied; the AI reviewer can be working in the same file and miss the cross-tenant question. AI code review is good at spotting local defects in a diff, and less good at the question of what a feature actually does versus what it promises, which is the question that surfaces cross-tenant, BOLA, and SSRF chains. The pattern shows up across other AI-assisted codebases.
 
 ## 5. Why these findings matter
 
