@@ -25,26 +25,24 @@ function htmlFiles(directory) {
 }
 
 let configured = 0;
-for (const filePath of htmlFiles(root)) {
-  const original = fs.readFileSync(filePath, "utf8");
-  const updated = original.replace(
-    /<script\b([^>]*\bsrc=(["'])[^"']*cookie-consent\.js\2[^>]*)><\/script>/gi,
-    (full, rawAttributes) => {
-      const attributes = rawAttributes
-        .replace(/\sdata-posthog-(?:key|host|ui-host)=(["'])[^"']*\1/gi, "");
-      if (!projectKey) return `<script${attributes}></script>`;
-      configured += 1;
-      return `<script${attributes}`
-        + ` data-posthog-key="${escapeAttribute(projectKey)}"`
-        + ` data-posthog-host="${escapeAttribute(publicHost)}"`
-        + ` data-posthog-ui-host="${escapeAttribute(uiHost)}"></script>`;
-    },
-  );
-  if (updated !== original) fs.writeFileSync(filePath, updated);
-}
-
 if (projectKey) {
+  for (const filePath of htmlFiles(root)) {
+    const original = fs.readFileSync(filePath, "utf8");
+    const updated = original.replace(
+      /<script\b([^>]*\bsrc=(["'])[^"']*cookie-consent\.js\2[^>]*)><\/script>/gi,
+      (full, rawAttributes) => {
+        const attributes = rawAttributes
+          .replace(/\sdata-posthog-(?:key|host|ui-host)=(["'])[^"']*\1/gi, "");
+        configured += 1;
+        return `<script${attributes}`
+          + ` data-posthog-key="${escapeAttribute(projectKey)}"`
+          + ` data-posthog-host="${escapeAttribute(publicHost)}"`
+          + ` data-posthog-ui-host="${escapeAttribute(uiHost)}"></script>`;
+      },
+    );
+    if (updated !== original) fs.writeFileSync(filePath, updated);
+  }
   console.log(`Configured consent-gated PostHog on ${configured} HTML pages.`);
 } else {
-  console.log("POSTHOG_PROJECT_API_KEY is unset; marketing PostHog remains disabled.");
+  console.log("POSTHOG_PROJECT_API_KEY is unset; leaving existing data-posthog-* attributes untouched.");
 }
