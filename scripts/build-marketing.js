@@ -1026,7 +1026,7 @@ function foundingSecurityCohortPage() {
           <div class="loop-node"><span>OPERATE</span><strong>Use Operations for a year</strong><p>Keep findings, remediation, reports, schedules, integrations, and evidence in one operating record.</p></div>
           <div class="loop-node"><span>RESCAN</span><strong>Verify what changes</strong><p>Use three founder-assisted rescans plus additional self-service runs within the Operations limits.</p></div>
         </div>
-        <div class="system-foot"><span class="pulse-dot"></span><span>10 accepted scopes or applications through August 31, 2026</span></div>
+        <div class="system-foot"><span class="pulse-dot"></span><span>10 accepted scopes or applications while cohort places remain</span></div>
       </div>
     </div>
   </section>

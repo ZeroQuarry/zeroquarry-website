@@ -1,11 +1,11 @@
 ---
-title: "Excalidraw security vulnerabilities in the Obsidian plugin"
+title: "Is Excalidraw safe? What we found in the Obsidian plugin"
 slug: "excalidraw-vulnerabilities"
 date: "2026-05-20"
 author: "Shane Connelly"
 status: "Mitigation available"
-description: "ZeroQuarry found serious Excalidraw plugin security vulnerabilities, including attacker-controlled script execution, and coordinated fixes with Obsidian and the maintainer."
-ogTitle: "Excalidraw security vulnerabilities in the Obsidian plugin"
+description: "Short answer: the Excalidraw plugin for Obsidian had real attack paths, including attacker-controlled script execution. Mitigations have shipped. Here is what we found."
+ogTitle: "Is Excalidraw safe? Excalidraw plugin vulnerabilities, found and disclosed"
 ogDescription: "Opening a malicious Excalidraw Markdown file could cross trust boundaries and trigger attacker-controlled behavior."
 featured: true
 featuredSummary: "ZeroQuarry identified a number of serious vulnerabilities in the Excalidraw plugin.  We engaged in a coordinated disclosure with Obsidian and the plugin maintainer. This writeup explains the impact, disclosure process, mitigation tradeoff, and lessons for plugin ecosystems."
@@ -16,6 +16,10 @@ tags:
   - plugin-security
   - responsible-disclosure
 ---
+
+## Is Excalidraw safe to use?
+
+Mostly, yes, with one caveat worth understanding. The vulnerabilities in this writeup were in the Excalidraw plugin for Obsidian, not the core drawing library: the place where shared drawings, scripts, and file access meet. Obsidian and the plugin maintainer have shipped fixes, so a current Obsidian install with an updated plugin addresses the serious paths described below. The rest of this article explains what we found, how disclosure worked, and what it means for plugin ecosystems generally.
 
 Most security tools are good at spotting code smells.
 
@@ -333,7 +337,7 @@ Open-source maintainers already carry too much. The goal is not to dump a pile o
 
 ## ZeroQuarry is free for open-source projects
 
-We are offering ZeroQuarry for free to open-source projects.
+We offer [ZeroQuarry free for open-source projects](/open-source/).
 
 If you maintain an open-source project, especially one with plugins, scripting, local file access, developer workflows, AI features, complex import/export paths, or rich user-generated content, we would love to help.
 
@@ -344,4 +348,6 @@ You need something closer to an always-on security researcher: something that st
 That is what we are building with ZeroQuarry.
 
 And the Excalidraw Obsidian plugin is exactly the kind of case that shows why it matters.
+
+Commercial products get the same treatment as a continuous [pull request security review](/use-cases/pr-security-review/) instead of a one-off audit, so the fix-verify loop runs on every risky change rather than once a year.
 
