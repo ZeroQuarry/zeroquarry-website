@@ -19,17 +19,26 @@ const useCaseLinks = [
 ];
 
 // Keep shell behavior and styles on the same cache generation after deploys.
-const assetVersion = "20260722-private-execution1";
+const assetVersion = "20260912-theme1";
 
 function linkCurrent(active, value) {
   return active === value ? ' aria-current="page"' : "";
 }
 
+// Theme toggle lives in the shared shell so every page offers it. Icons are
+// swapped by CSS based on the active theme (sun shows in dark mode).
+const themeToggleButton = `<button class="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+`;
+
 function siteNav(active = "") {
   return `<header class="nav site-nav">
   <div class="nav-inner">
     <a href="/" class="brand" aria-label="ZeroQuarry home">
-      <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
     </a>
     <nav class="nav-links buyer-nav" aria-label="Primary">
       <a href="/"${linkCurrent(active, "home")}>Why ZeroQuarry</a>
@@ -66,7 +75,7 @@ function siteNav(active = "") {
       <a href="https://docs.zeroquarry.com">Docs</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      ${themeToggleButton}<a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
       <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start trial <span class="arr">-&gt;</span></a>
     </div>
     <details class="mobile-nav">
@@ -90,7 +99,8 @@ function siteFooter() {
     <div class="foot-grid buyer-foot-grid">
       <div class="foot-col foot-brand">
         <a href="/" class="brand" aria-label="ZeroQuarry home">
-          <img class="wordmark" src="/assets/wordmark.png" alt="ZeroQuarry">
+          <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
         </a>
         <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
         <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>

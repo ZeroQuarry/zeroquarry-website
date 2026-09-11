@@ -98,9 +98,10 @@ function layout({
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="${socialImageUrl}" />
 <link rel="icon" type="image/png" href="/assets/favicon.png" />
+<script>function __zqTheme(){var t=null;try{var q=new URLSearchParams(location.search).get("theme");var s=localStorage.getItem("zq-theme");t=q==="light"||q==="dark"?q:(s==="light"||s==="dark"?s:null)}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}__zqTheme()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
 <link rel="stylesheet" href="/marketing.css?v=${assetVersion}" />
 <link rel="stylesheet" href="/cookie-consent.css" />
@@ -939,13 +940,24 @@ function homePage() {
         <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start 30-day trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
         <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs</span></div>
       </div>
-      <div class="console buyer-live-console" aria-label="Illustrative adversarial vulnerability review">
-        <div class="console-head"><span class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></span><span class="console-title"><span class="tbl">example://</span>red-vs-vendor · target=<span class="amber">billing-api</span></span><span class="console-meta"><span class="live">illustrative</span></span></div>
-        <div class="console-body" id="zq-debate-body"><div class="line sys"><div class="ts">14:02:01</div><div class="agent">SYSTEM</div><div class="msg">review opened for billing-api</div></div><div class="line red"><div class="ts">14:02:05</div><div class="agent">RED</div><div class="msg">tracing tenant ownership into invoice update</div></div><div class="line blue"><div class="ts">14:02:11</div><div class="agent">VENDOR</div><div class="msg">challenge: prove the route lacks an earlier ownership check</div></div></div>
-        <div class="console-foot"><span class="chip">RED TEAM</span><span class="chip blue">VENDOR REVIEW</span><span class="sp"></span><span id="zq-debate-verdict">review in progress</span></div>
+      <div class="finding-panel" aria-label="Illustrative finding register">
+        <div class="fp-head"><b>finding-register://billing-api</b><span>illustrative</span></div>
+        <div class="fp-item"><span class="fp-sev hi">HIGH · 0.94</span><span class="fp-main"><b>Tenant isolation bypass in invoice update</b><span class="fp-body">Forged tenant JWT reaches the update handler. Proven under adversarial review.</span></span><span class="fp-state ok">ACCEPTED</span></div>
+        <div class="fp-item"><span class="fp-sev med">MED · 0.71</span><span class="fp-main"><b>Rate-limit gap on password reset</b><span class="fp-body">Challenge sustained: bypass requires header tampering out of scope.</span></span><span class="fp-state">DISPUTED</span></div>
+        <div class="fp-item"><span class="fp-sev hi">HIGH · 0.88</span><span class="fp-main"><b>Webhook signature not enforced</b><span class="fp-body">Fix merged. Retest confirms signature verification on all routes.</span></span><span class="fp-state ok">RETESTED</span></div>
+        <div class="fp-foot"><span>REVIEW · REMEDIATE · RETEST</span><span>3 FINDINGS · 3 DECISIONS · 0 UNOWNED</span></div>
       </div>
     </div>
   </section>
+
+  <div class="trust-strip" aria-label="Platform assurances">
+    <div class="container trust-inner">
+      <span><b>Audit-ready evidence</b> from every run</span><span class="sep">/</span>
+      <span><b>Jira · ServiceNow · GitHub</b> native routing</span><span class="sep">/</span>
+      <span><b>Private runners</b> for internal targets</span><span class="sep">/</span>
+      <span><b>Retest-verified</b> remediation</span>
+    </div>
+  </div>
 
   <section class="buyer-section soft">
     <div class="container">

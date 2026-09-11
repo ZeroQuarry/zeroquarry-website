@@ -1,55 +1,42 @@
-// Illustrative adversarial review shown on the marketing homepage.
+// Light/dark theme: follow the OS setting until the visitor chooses, then
+// remember the choice. The inline <head> script sets the initial attribute
+// before first paint to avoid a flash; this module keeps it in sync.
 (function () {
-  const body = document.getElementById("zq-debate-body");
-  const verdict = document.getElementById("zq-debate-verdict");
-  if (!body || !verdict) return;
+  const KEY = "zq-theme";
+  const root = document.documentElement;
+  const media = window.matchMedia("(prefers-color-scheme: light)");
 
-  const entries = [
-    { who: "sys", name: "SYSTEM", time: "14:02:01", text: "review opened · target: <span class=\"k\">billing-api/invoices</span>" },
-    { who: "red", name: "RED", time: "14:02:04", text: "tracing tenant ownership into the invoice update path" },
-    { who: "red", name: "RED", time: "14:02:07", text: "request body <span class=\"k\">invoice_id</span> reaches <span class=\"f\">invoices.update()</span>" },
-    { who: "blue", name: "VENDOR", time: "14:02:10", text: "challenge: an earlier middleware check may enforce account ownership" },
-    { who: "red", name: "RED", time: "14:02:14", text: "middleware verifies session role; controller query has <span class=\"f\">no account filter</span>" },
-    { who: "red", name: "RED", time: "14:02:18", text: "cross-tenant invoice update returns <span class=\"g\">200 OK</span> in the authorized test environment" },
-    { who: "blue", name: "VENDOR", time: "14:02:21", text: "reproduced. claim sustained with high confidence" },
-    { who: "blue", name: "VENDOR", time: "14:02:23", text: "patch path: scope invoice lookup by <span class=\"k\">account_id</span> before update" },
-    { who: "good", name: "VERDICT", time: "14:02:26", text: "<span class=\"g\">CONFIRMED</span> · owner assigned · patch proposal ready" },
-  ];
+  const stored = () => {
+    // ?theme=light|dark is a per-session QA override, same precedence as the head script.
+    const q = new URLSearchParams(location.search).get("theme");
+    if (q === "light" || q === "dark") return q;
+    try { const v = localStorage.getItem(KEY); return v === "light" || v === "dark" ? v : null; }
+    catch (err) { return null; }
+  };
+  const current = () => stored() || (media.matches ? "light" : "dark");
 
-  function line(entry, instant) {
-    const row = document.createElement("div");
-    row.className = `line ${entry.who}${instant ? "" : " console-enter"}`;
-    row.innerHTML = `<div class="ts">${entry.time}</div><div class="agent">${entry.name}</div><div class="msg">${entry.text}</div>`;
-    body.appendChild(row);
-    body.scrollTop = body.scrollHeight;
-  }
+  const apply = () => { root.dataset.theme = current(); };
 
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reducedMotion) {
-    body.innerHTML = "";
-    entries.forEach((entry) => line(entry, true));
-    verdict.innerHTML = '<span class="verdict-good">VERDICT: CONFIRMED</span>';
-    return;
-  }
+  const syncButtons = () => {
+    document.querySelectorAll(".theme-toggle").forEach((btn) => {
+      btn.dataset.mode = current();
+      btn.setAttribute("aria-label", current() === "dark" ? "Switch to light mode" : "Switch to dark mode");
+    });
+  };
 
-  const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
-
-  async function run() {
-    while (document.body.contains(body)) {
-      body.innerHTML = "";
-      verdict.textContent = "review in progress";
-      for (const entry of entries) {
-        line(entry, false);
-        if (entry.who === "good") {
-          verdict.innerHTML = '<span class="verdict-good">VERDICT: CONFIRMED</span>';
-        }
-        await wait(entry.who === "good" ? 1200 : 720);
-      }
-      await wait(4200);
-    }
-  }
-
-  run();
+  apply();
+  media.addEventListener("change", () => { if (!stored()) apply(); syncButtons(); });
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".theme-toggle").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const next = current() === "dark" ? "light" : "dark";
+        try { localStorage.setItem(KEY, next); } catch (err) { /* private mode */ }
+        apply();
+        syncButtons();
+      });
+    });
+    syncButtons();
+  });
 })();
 
 // Desktop navigation flyouts open on hover and close when the pointer leaves.

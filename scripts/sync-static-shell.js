@@ -44,9 +44,16 @@ function ensureShellBehavior(html, relativePath) {
   return html.replace("</head>", `${script}\n</head>`);
 }
 
+function ensureThemeInit(html) {
+  if (html.includes("__zqTheme")) return html;
+  const script = `<script>function __zqTheme(){var t=null;try{var q=new URLSearchParams(location.search).get("theme");var s=localStorage.getItem("zq-theme");t=q==="light"||q==="dark"?q:(s==="light"||s==="dark"?s:null)}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}__zqTheme()</` + `script>`;
+  return html.replace(/<link rel="icon"[^>]*>/, (m) => `${m}\n${script}`);
+}
+
 for (const [relativePath, active] of pages) {
   const filePath = path.join(root, relativePath);
   let html = fs.readFileSync(filePath, "utf8");
+  html = ensureThemeInit(html);
   html = ensureMarketingStyles(html, relativePath);
   html = ensureShellBehavior(html, relativePath);
   html = html.replace(/<header class="[^"]*(?:nav|site-header)[^"]*">[\s\S]*?<\/header>/, siteNav(active));

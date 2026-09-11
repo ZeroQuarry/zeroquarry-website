@@ -11,7 +11,7 @@
   padding: 18px;
   border: 1px solid var(--line-2, #1D2E48);
   border-radius: 8px;
-  background: rgba(11, 21, 36, 0.96);
+  background: var(--mega-bg, rgba(11, 21, 36, 0.96));
   box-shadow: 0 22px 80px rgba(0, 0, 0, 0.42);
   color: var(--ink, #EEF2F9);
   backdrop-filter: blur(16px) saturate(150%);
@@ -55,8 +55,8 @@
 }
 
 .cookie-consent__button:hover {
-  border-color: #2a4060;
-  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--line-2, #2a4060);
+  background: var(--fill-2, rgba(255, 255, 255, 0.04));
 }
 
 .cookie-consent__button--primary {
@@ -66,8 +66,8 @@
 }
 
 .cookie-consent__button--primary:hover {
-  border-color: #ff3a3e;
-  background: #ff3a3e;
+  border-color: var(--red-hover, #ff3a3e);
+  background: var(--red-hover, #ff3a3e);
 }
 
 .cookie-consent__link {
