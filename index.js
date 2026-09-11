@@ -31,11 +31,86 @@
       btn.addEventListener("click", () => {
         const next = current() === "dark" ? "light" : "dark";
         try { localStorage.setItem(KEY, next); } catch (err) { /* private mode */ }
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          root.classList.add("theme-fading");
+          window.setTimeout(() => root.classList.remove("theme-fading"), 350);
+        }
         apply();
         syncButtons();
       });
     });
     syncButtons();
+  });
+})();
+
+// Finding register on the homepage plays as a live feed: rows arrive one by
+// one, hold, then the register resets. Static without reduced motion.
+(function () {
+  const panel = document.querySelector(".finding-panel");
+  if (!panel) return;
+  const items = Array.from(panel.querySelectorAll(".fp-item"));
+  if (!items.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+
+  async function run() {
+    while (document.body.contains(panel)) {
+      items.forEach((item) => item.classList.remove("fp-in"));
+      for (const item of items) {
+        await wait(760);
+        item.classList.add("fp-in");
+      }
+      await wait(5600);
+    }
+  }
+  run();
+})();
+
+// Scroll-in reveal: mark known content blocks, stagger their children, and
+// fade them up as they enter the viewport. Attributes are removed after the
+// entrance so hover transitions behave normally afterwards.
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const plans = [
+    [".buyer-hero-grid > div:first-child", ":scope > *", 90, 450],
+    [".finding-panel, .product-frame, .hero-system, .motion-system", null, 0, 0],
+    [".buyer-section-head, .section-head, .proof-copy", null, 0, 0],
+    [".moment-grid, .capability-grid, .use-case-grid, .outcome-grid, .related-grid, .proof-receipt-grid", ":scope > *", 70, 420],
+    [".operation-rail", ":scope > *", 60, 420],
+    [".workflow-grid, .pricing-grid, .pricing-path-grid, .pricing-addon-grid, .run-metric-grid", ":scope > *", 70, 420],
+    [".faq-list", ":scope > *", 70, 350],
+    [".buyer-cta-panel", ":scope > *", 120, 240],
+    [".trial-strip, .enterprise-strip", null, 0, 0],
+    [".trust-strip .trust-inner", ":scope > *", 60, 300],
+  ];
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      observer.unobserve(el);
+      el.classList.add("revealed");
+      el.addEventListener("animationend", () => {
+        el.classList.remove("revealed");
+        el.removeAttribute("data-reveal");
+      }, { once: true });
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
+
+  plans.forEach(([containerSelector, childSelector, step, cap]) => {
+    document.querySelectorAll(containerSelector).forEach((container) => {
+      if (container.closest(".nav, .mobile-nav")) return;
+      const targets = childSelector ? Array.from(container.querySelectorAll(childSelector)) : [container];
+      targets.forEach((el, index) => {
+        if (el.hasAttribute("data-reveal")) return;
+        el.setAttribute("data-reveal", "");
+        el.style.setProperty("--reveal-delay", Math.min(index * step, cap) + "ms");
+        observer.observe(el);
+      });
+    });
   });
 })();
 

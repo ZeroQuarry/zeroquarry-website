@@ -46,7 +46,7 @@ function ensureShellBehavior(html, relativePath) {
 
 function ensureThemeInit(html) {
   if (html.includes("__zqTheme")) return html;
-  const script = `<script>function __zqTheme(){var t=null;try{var q=new URLSearchParams(location.search).get("theme");var s=localStorage.getItem("zq-theme");t=q==="light"||q==="dark"?q:(s==="light"||s==="dark"?s:null)}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")}__zqTheme()</` + `script>`;
+  const script = `<script>function __zqTheme(){var t=null;try{var q=new URLSearchParams(location.search).get("theme");var s=localStorage.getItem("zq-theme");t=q==="light"||q==="dark"?q:(s==="light"||s==="dark"?s:null)}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.classList.add("js")}__zqTheme()</` + `script>`;
   return html.replace(/<link rel="icon"[^>]*>/, (m) => `${m}\n${script}`);
 }
 

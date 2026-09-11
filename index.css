@@ -2648,3 +2648,63 @@ section.section > .container { position: relative; z-index: 1; }
   .fp-item { grid-template-columns: 88px minmax(0, 1fr); gap: 12px; padding: 14px 16px; }
   .fp-state { grid-column: 2; justify-self: start; text-align: left; }
 }
+
+/* ============ MOTION ============ */
+/* Scroll/load reveal. Elements are only hidden when JS is available
+   (html.js) and the visitor accepts motion; after the entrance plays the
+   attribute is removed so component hover transitions are untouched. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal]:not(.revealed) {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  html.js [data-reveal].revealed {
+    animation: reveal-in 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  /* hero glow breathes */
+  .bg-glow-red { animation: glow-breathe 14s ease-in-out infinite; }
+
+  /* finding register: rows arrive as a live feed (index.js cycles them) */
+  html.js .finding-panel .fp-item {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  html.js .finding-panel .fp-item.fp-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .fp-live-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    vertical-align: 1px;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+}
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes glow-breathe {
+  0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+/* Smooth palette cross-fade while the toggle is used; applied for 350ms only. */
+html.theme-fading, html.theme-fading * {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    fill 0.3s ease,
+    box-shadow 0.3s ease !important;
+}
