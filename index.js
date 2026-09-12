@@ -68,9 +68,16 @@
       status.textContent = "REVIEW IN PROGRESS";
       for (let i = 0; i < lines.length; i++) {
         await wait(i === 0 ? 900 : 1600);
-        lines[i].classList.add("fp-in");
-        // keep the newest step in view once the log outgrows its window
-        log.scrollTo({ top: log.scrollHeight, behavior: "smooth" });
+        const line = lines[i];
+        line.classList.add("fp-in");
+        // scroll only once the log actually overflows, and only far enough
+        // to bring the newest step above the fade strip
+        const lr = log.getBoundingClientRect();
+        const rr = line.getBoundingClientRect();
+        const overflow = rr.bottom - (lr.top + log.clientHeight - 34);
+        if (overflow > 0) {
+          log.scrollTo({ top: log.scrollTop + overflow, behavior: "smooth" });
+        }
       }
       await wait(700);
       status.textContent = FINAL;

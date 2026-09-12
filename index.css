@@ -2615,24 +2615,9 @@ section.section > .container { position: relative; z-index: 1; }
   font-family: var(--mono); font-size: 11.5px; color: var(--mute);
 }
 .fp-head b { color: var(--ink-2); font-weight: 500; }
-/* Bottom padding lets the newest line scroll clear of the fade strip. */
 .fp-log {
-  height: 330px;
-  padding: 12px 0 30px;
-  overflow: hidden;
+  padding: 12px 0 14px;
   font-family: var(--mono);
-}
-/* Fixed fade strip above the foot: new lines rise out of it, but it never
-   scrolls with the content, so nothing mid-panel ever gets dimmed. */
-.finding-panel { position: relative; }
-.finding-panel::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 42px;
-  height: 26px;
-  background: linear-gradient(180deg, transparent, var(--bg-2));
-  pointer-events: none;
-  z-index: 1;
 }
 .fp-line {
   display: grid; grid-template-columns: 58px 74px minmax(0, 1fr);
@@ -2649,7 +2634,6 @@ section.section > .container { position: relative; z-index: 1; }
 .fp-line.human .who { color: var(--green); }
 .fp-line .msg { color: var(--ink-2); overflow-wrap: anywhere; }
 @media (max-width: 640px) {
-  .fp-log { height: 300px; padding-bottom: 30px; }
   .fp-line { grid-template-columns: 50px 64px minmax(0, 1fr); gap: 8px; padding: 6px 14px; font-size: 10.5px; }
 }
 .fp-foot {
@@ -2699,6 +2683,26 @@ section.section > .container { position: relative; z-index: 1; }
     vertical-align: 1px;
     animation: pulse 1.8s ease-in-out infinite;
   }
+
+  /* scrolling log window + fade only when playback is actually running */
+  html.js .fp-log {
+    height: 330px;
+    padding-bottom: 30px;
+    overflow: hidden;
+  }
+  .finding-panel { position: relative; }
+  .finding-panel::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 42px;
+    height: 26px;
+    background: linear-gradient(180deg, transparent, var(--bg-2));
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 640px) {
+  html.js .fp-log { height: 300px; }
 }
 
 @keyframes reveal-in {
