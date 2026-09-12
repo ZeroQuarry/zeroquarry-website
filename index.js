@@ -67,7 +67,7 @@
       log.scrollTop = 0;
       status.textContent = "REVIEW IN PROGRESS";
       for (let i = 0; i < lines.length; i++) {
-        await wait(i === 0 ? 900 : 1600);
+        await wait(i === 0 ? 900 : 3000);
         const line = lines[i];
         line.classList.add("fp-in");
         // scroll only once the log actually overflows, and only far enough
@@ -79,7 +79,7 @@
           log.scrollTo({ top: log.scrollTop + overflow, behavior: "smooth" });
         }
       }
-      await wait(700);
+      await wait(1400);
       status.textContent = FINAL;
       await wait(6500);
     }
