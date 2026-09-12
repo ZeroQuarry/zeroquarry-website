@@ -941,16 +941,18 @@ function homePage() {
         <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs</span></div>
       </div>
       <div class="finding-panel" aria-label="Illustrative vulnerability disclosure flow, from detection to approved patch">
-        <div class="fp-head"><b>case://tenant-bypass</b><span class="fp-live"><span class="fp-live-dot"></span>illustrative</span></div>
+        <div class="fp-head"><b>case://ZQC-281</b><span class="fp-live"><span class="fp-live-dot"></span>illustrative</span></div>
         <div class="fp-log" id="zq-disclosure-log">
-          <div class="fp-line red"><span class="ts">14:02:04</span><span class="who">RED</span><span class="msg">candidate found — invoice update may skip the tenant ownership check</span></div>
-          <div class="fp-line blue"><span class="ts">14:02:16</span><span class="who">VENDOR</span><span class="msg">contested — middleware could enforce ownership. prove that it does not</span></div>
-          <div class="fp-line red"><span class="ts">14:02:31</span><span class="who">RED</span><span class="msg">revised — controller query has no account filter</span></div>
-          <div class="fp-line red"><span class="ts">14:02:38</span><span class="who">RED</span><span class="msg">PoC generated — forged tenant JWT reaches update handler · 200 OK</span></div>
-          <div class="fp-line blue"><span class="ts">14:02:52</span><span class="who">VENDOR</span><span class="msg">reproduced — claim sustained · confidence 0.94</span></div>
-          <div class="fp-line sys"><span class="ts">14:03:07</span><span class="who">SYSTEM</span><span class="msg">evidence report drafted — reproduction, impact, remediation guidance</span></div>
-          <div class="fp-line bot"><span class="ts">14:03:21</span><span class="who">BOT</span><span class="msg">ZeroQuarryBot opened PR #482 — scope invoice lookup by account_id</span></div>
-          <div class="fp-line human"><span class="ts">14:03:44</span><span class="who">HUMAN</span><span class="msg">approved — merge authorized · retest scheduled</span></div>
+          <div class="fp-line red"><span class="ts">14:02:04</span><span class="who">Researcher</span><span class="msg">[ZQC-281] Candidate: invoice update may skip the tenant ownership check</span></div>
+          <div class="fp-line blue"><span class="ts">14:02:16</span><span class="who">Vendor</span><span class="msg">[ZQC-281] Contested: middleware could enforce ownership, provide a full source-to-sink</span></div>
+          <div class="fp-line red"><span class="ts">14:02:31</span><span class="who">Researcher</span><span class="msg">[ZQC-281] Revised: invoice query and update mechanism does not apply account filter</span></div>
+          <div class="fp-line red"><span class="ts">14:02:38</span><span class="who">Researcher</span><span class="msg">[ZQC-281] PoC: forged tenant JWT reaches update handler · 200 OK</span></div>
+          <div class="fp-line blue"><span class="ts">14:02:52</span><span class="who">Vendor</span><span class="msg">[ZQC-281] Accepted: PoC reproduction validated. Claim sustained</span></div>
+          <div class="fp-line sys"><span class="ts">14:03:07</span><span class="who">System</span><span class="msg">[ZQC-281] Evidence report: drafted report with impact and remediation guidance</span></div>
+          <div class="fp-line sys"><span class="ts">14:03:15</span><span class="who">System</span><span class="msg">[ZQC-281] Opened PR #482: scope invoice lookup by account_id</span></div>
+          <div class="fp-line human"><span class="ts">14:03:44</span><span class="who">Human</span><span class="msg">Merge PR #482</span></div>
+          <div class="fp-line red"><span class="ts">14:04:02</span><span class="who">Researcher</span><span class="msg">[ZQC-281] Retest: validate forged JWTs don't reach update handler</span></div>
+          <div class="fp-line sys"><span class="ts">14:04:18</span><span class="who">System</span><span class="msg">[ZQC-281] Evidence report: draft evidence of remediation</span></div>
         </div>
         <div class="fp-foot"><span>DETECT · CONTEST · PROVE · PATCH</span><span id="zq-disclosure-status">REVIEW IN PROGRESS</span></div>
       </div>

@@ -53,7 +53,7 @@
   if (!log || !status) return;
   const lines = Array.from(log.querySelectorAll(".fp-line"));
   if (!lines.length) return;
-  const FINAL = "CONFIRMED · PR #482 OPEN";
+  const FINAL = "MERGED · RETESTED · EVIDENCE PACKED";
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     status.textContent = FINAL;
     return;
@@ -64,10 +64,13 @@
   async function run() {
     while (document.body.contains(log)) {
       lines.forEach((line) => line.classList.remove("fp-in"));
+      log.scrollTop = 0;
       status.textContent = "REVIEW IN PROGRESS";
       for (let i = 0; i < lines.length; i++) {
         await wait(i === 0 ? 900 : 1600);
         lines[i].classList.add("fp-in");
+        // keep the newest step in view once the log outgrows its window
+        log.scrollTo({ top: log.scrollHeight, behavior: "smooth" });
       }
       await wait(700);
       status.textContent = FINAL;
