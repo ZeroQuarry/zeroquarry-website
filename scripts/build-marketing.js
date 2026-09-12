@@ -940,12 +940,19 @@ function homePage() {
         <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start 30-day trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
         <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs</span></div>
       </div>
-      <div class="finding-panel" aria-label="Illustrative finding register">
-        <div class="fp-head"><b>finding-register://billing-api</b><span class="fp-live"><span class="fp-live-dot"></span>illustrative</span></div>
-        <div class="fp-item"><span class="fp-sev hi">HIGH · 0.94</span><span class="fp-main"><b>Tenant isolation bypass in invoice update</b><span class="fp-body">Forged tenant JWT reaches the update handler. Proven under adversarial review.</span></span><span class="fp-state ok">ACCEPTED</span></div>
-        <div class="fp-item"><span class="fp-sev med">MED · 0.71</span><span class="fp-main"><b>Rate-limit gap on password reset</b><span class="fp-body">Challenge sustained: bypass requires header tampering out of scope.</span></span><span class="fp-state">DISPUTED</span></div>
-        <div class="fp-item"><span class="fp-sev hi">HIGH · 0.88</span><span class="fp-main"><b>Webhook signature not enforced</b><span class="fp-body">Fix merged. Retest confirms signature verification on all routes.</span></span><span class="fp-state ok">RETESTED</span></div>
-        <div class="fp-foot"><span>REVIEW · REMEDIATE · RETEST</span><span>3 FINDINGS · 3 DECISIONS · 0 UNOWNED</span></div>
+      <div class="finding-panel" aria-label="Illustrative vulnerability disclosure flow, from detection to approved patch">
+        <div class="fp-head"><b>case://tenant-bypass</b><span class="fp-live"><span class="fp-live-dot"></span>illustrative</span></div>
+        <div class="fp-log" id="zq-disclosure-log">
+          <div class="fp-line red"><span class="ts">14:02:04</span><span class="who">RED</span><span class="msg">candidate found — invoice update may skip the tenant ownership check</span></div>
+          <div class="fp-line blue"><span class="ts">14:02:16</span><span class="who">VENDOR</span><span class="msg">contested — middleware could enforce ownership. prove that it does not</span></div>
+          <div class="fp-line red"><span class="ts">14:02:31</span><span class="who">RED</span><span class="msg">revised — controller query has no account filter</span></div>
+          <div class="fp-line red"><span class="ts">14:02:38</span><span class="who">RED</span><span class="msg">PoC generated — forged tenant JWT reaches update handler · 200 OK</span></div>
+          <div class="fp-line blue"><span class="ts">14:02:52</span><span class="who">VENDOR</span><span class="msg">reproduced — claim sustained · confidence 0.94</span></div>
+          <div class="fp-line sys"><span class="ts">14:03:07</span><span class="who">SYSTEM</span><span class="msg">evidence report drafted — reproduction, impact, remediation guidance</span></div>
+          <div class="fp-line bot"><span class="ts">14:03:21</span><span class="who">BOT</span><span class="msg">ZeroQuarryBot opened PR #482 — scope invoice lookup by account_id</span></div>
+          <div class="fp-line human"><span class="ts">14:03:44</span><span class="who">HUMAN</span><span class="msg">approved — merge authorized · retest scheduled</span></div>
+        </div>
+        <div class="fp-foot"><span>DETECT · CONTEST · PROVE · PATCH</span><span id="zq-disclosure-status">REVIEW IN PROGRESS</span></div>
       </div>
     </div>
   </section>

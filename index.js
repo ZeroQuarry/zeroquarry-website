@@ -43,25 +43,35 @@
   });
 })();
 
-// Finding register on the homepage plays as a live feed: rows arrive one by
-// one, hold, then the register resets. Static without reduced motion.
+// Homepage disclosure walkthrough: one finding plays end to end — found,
+// contested, revised with a PoC, sustained, reported, patched by
+// ZeroQuarryBot, approved by a person — then the case resets. Paced slowly
+// so each step is readable; static without reduced motion.
 (function () {
-  const panel = document.querySelector(".finding-panel");
-  if (!panel) return;
-  const items = Array.from(panel.querySelectorAll(".fp-item"));
-  if (!items.length) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const log = document.getElementById("zq-disclosure-log");
+  const status = document.getElementById("zq-disclosure-status");
+  if (!log || !status) return;
+  const lines = Array.from(log.querySelectorAll(".fp-line"));
+  if (!lines.length) return;
+  const FINAL = "CONFIRMED · PR #482 OPEN";
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    status.textContent = FINAL;
+    return;
+  }
 
   const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
   async function run() {
-    while (document.body.contains(panel)) {
-      items.forEach((item) => item.classList.remove("fp-in"));
-      for (const item of items) {
-        await wait(760);
-        item.classList.add("fp-in");
+    while (document.body.contains(log)) {
+      lines.forEach((line) => line.classList.remove("fp-in"));
+      status.textContent = "REVIEW IN PROGRESS";
+      for (let i = 0; i < lines.length; i++) {
+        await wait(i === 0 ? 900 : 1600);
+        lines[i].classList.add("fp-in");
       }
-      await wait(5600);
+      await wait(700);
+      status.textContent = FINAL;
+      await wait(6500);
     }
   }
   run();
