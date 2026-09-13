@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260912-theme1" />
+<link rel="stylesheet" href="/marketing.css?v=20260912-motion1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260912-theme1" defer></script>
+<script src="/index.js?v=20260912-motion1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Private execution","item":"https://zeroquarry.com/platform/private-execution/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a private runner fully on-premise or air-gapped?","acceptedAnswer":{"@type":"Answer","text":"No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider."}},{"@type":"Question","name":"Which scans can use private runners?","acceptedAnswer":{"@type":"Answer","text":"Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs."}},{"@type":"Question","name":"Can a failed private job fall back to ZeroQuarry Cloud?","acceptedAnswer":{"@type":"Answer","text":"No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment."}},{"@type":"Question","name":"Do private runners require bring-your-own model keys?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly."}},{"@type":"Question","name":"Can we evaluate private runners before buying Enterprise?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 30-day commercial trial includes self-serve private runner pools. Create a pool, run the generated Docker command, and evaluate a Git-backed source scan or authorized internal target before discussing Enterprise rollout terms."}}]}</script>
 </head>
@@ -118,17 +118,24 @@
           </div>
           <div class="buyer-proofline"><span>Customer-controlled Docker hosts</span><span>Outbound HTTPS only</span><span>Minimized or standard results</span></div>
         </div>
-        <div class="motion-system motion-private-execution" role="img" aria-label="Animated private runner processing a private Git repository and internal target while retaining detailed evidence locally">
+        <div class="motion-system motion-private-execution" role="img" aria-label="A runner works inside the customer network against private code and internal services, shipping only a minimized result out">
     <div class="motion-head"><span>execution://private-pool</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>GIT</span><strong>private repository</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>INTERNAL</span><strong>service.private</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>POLICY</span><strong>minimized results</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Customer-controlled runner</strong><span>Source and internal-target assessment</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>FINDING</span><strong>metadata returned</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>EVIDENCE</span><strong>retained locally</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>AUDIT</span><strong>attempt recorded</strong></div></div>
+      <div class="motion-grid" aria-hidden="true"></div>
+      
+      <div class="mv-contain">
+        <div class="contain-box">
+          <span class="contain-tag">customer network</span>
+          <svg class="contain-gear" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 8.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Zm9.2 5.1-2.1-.4a7.3 7.3 0 0 1-.8 1.9l1.3 1.7-1.6 1.6-1.7-1.3a7.3 7.3 0 0 1-1.9.8l-.4 2.1h-2.2l-.4-2.1a7.3 7.3 0 0 1-1.9-.8l-1.7 1.3-1.6-1.6 1.3-1.7a7.3 7.3 0 0 1-.8-1.9l-2.1-.4v-2.2l2.1-.4a7.3 7.3 0 0 1 .8-1.9L5.4 6.8 7 5.2l1.7 1.3a7.3 7.3 0 0 1 1.9-.8l.4-2.1h2.2l.4 2.1a7.3 7.3 0 0 1 1.9.8l1.7-1.3 1.6 1.6-1.3 1.7a7.3 7.3 0 0 1 .8 1.9l2.1.4v2.2Z"/></svg>
+          <div class="contain-node n1">git · private</div>
+          <div class="contain-node n2">app.service.internal</div>
+          <div class="contain-node n3">runner</div>
+        </div>
+        <div class="contain-wire"><i class="pk-out"></i><i class="pk-in"></i><span>outbound results only · evidence stays local</span></div>
+        <div class="contain-zq">ZEROQUARRY</div>
+      </div>
     </div>
-    <div class="motion-foot"><span class="pulse-dot"></span><span>outbound HTTPS only · no automatic cloud fallback</span></div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>assessment runs inside your boundary · no automatic cloud fallback</span></div>
   </div>
       </div>
     </div>

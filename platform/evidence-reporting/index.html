@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260912-theme1" />
+<link rel="stylesheet" href="/marketing.css?v=20260912-motion1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260912-theme1" defer></script>
+<script src="/index.js?v=20260912-motion1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Security evidence and reporting","item":"https://zeroquarry.com/platform/evidence-reporting/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does the Evidence Room prove compliance?","acceptedAnswer":{"@type":"Answer","text":"No. It packages assessment evidence and history. Your organization still determines control scope, test frequency, reviewer requirements, and framework assertions."}},{"@type":"Question","name":"Can a recipient see the rest of our scan?","acceptedAnswer":{"@type":"Answer","text":"A secure share exposes only the selected findings. It does not grant the recipient access to the rest of the report, project, or account."}},{"@type":"Question","name":"What is included in a PDF report?","acceptedAnswer":{"@type":"Answer","text":"The default customer-facing PDF contains report context and aggregate severity counts without finding names or exploit details. An authorized operator can explicitly include detailed findings, evidence, branding, and disclaimers."}}]}</script>
 </head>
@@ -118,15 +118,19 @@
           </div>
           <div class="buyer-proofline"><span>Asset-level Evidence Room</span><span>Pentest-style PDF exports</span><span>Expiring finding shares</span></div>
         </div>
-        <div class="motion-system motion-evidence-reporting" role="img" aria-label="Animated evidence assembly from an assessment, decision, and retest into a report and controlled share">
+        <div class="motion-system motion-evidence-reporting" role="img" aria-label="Three generated reports, auditor, internal, and customer, settle into an evidence stack that is hashed, timestamped, and share-controlled">
     <div class="motion-head"><span>evidence://current-state</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>ASSESSMENT</span><strong>release 1.14</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>DECISION</span><strong>accepted and owned</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>RETEST</span><strong>fix verified</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Evidence room assembly</strong><span>Build the answer from the live product history</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>REPORT</span><strong>customer-ready PDF</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>SHARE</span><strong>password + expiry</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>ANSWER</span><strong>current control story</strong></div></div>
+      <div class="motion-grid" aria-hidden="true"></div>
+      
+      <div class="mv-docs">
+        <div class="doc-stack">
+          <div class="doc doc-a"><span class="doc-tag">PDF</span><b>Auditor Report</b><i></i><i></i><i></i><em>control evidence · current</em></div>
+          <div class="doc doc-b"><span class="doc-tag">PDF</span><b>Internal Report</b><i></i><i></i><i></i><em>findings · decisions · owners</em></div>
+          <div class="doc doc-c"><span class="doc-tag">PDF</span><b>Customer Report</b><i></i><i></i><i></i><em>customer-ready summary</em></div>
+        </div>
+        <div class="doc-seal"><span>hashed</span><span>timestamped</span><span>share-controlled</span></div>
+      </div>
     </div>
     <div class="motion-foot"><span class="pulse-dot"></span><span>the evidence comes from operating work, not a last-minute document hunt</span></div>
   </div>

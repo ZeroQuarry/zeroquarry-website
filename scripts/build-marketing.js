@@ -687,58 +687,40 @@ const motionVisuals = {
     aria: "Animated assessment of source code, a release binary, and a live application producing a finding and proof",
   },
   "adversarial-validation": {
+    variant: "rally",
     label: "review://claim-challenge",
-    title: "Skeptical finding review",
-    detail: "A separate reviewer tries to break the claim",
-    inputs: [["CLAIM", "tenant boundary bypass"], ["CONTEXT", "role and deployment state"], ["PROOF", "reproduction request"]],
-    outputs: [["VERDICT", "sustained"], ["CONFIDENCE", "0.91"], ["DECISION", "ready for owner"]],
     foot: "severity says how bad; confidence says how likely the claim is to hold",
-    aria: "Animated adversarial validation of a vulnerability claim using context and proof",
+    aria: "A vulnerability claim rallies between a researcher building it and a vendor challenging it until it is sustained with confidence 0.94",
   },
   "continuous-security": {
-    label: "automation://change-review",
-    title: "Continuous review coordinator",
-    detail: "Use the smallest useful scope for each trigger",
-    inputs: [["PULL REQUEST", "PR 248 / 7 files"], ["SCHEDULE", "nightly baseline"], ["RELEASE", "candidate 1.14.0"]],
-    outputs: [["CHECK", "focused review"], ["HISTORY", "lineage v12"], ["SIGNAL", "actionable change"]],
-    foot: "delta review keeps routine coverage fast without losing the baseline",
-    aria: "Animated pull-request, scheduled, and release security reviews producing checks and product history",
+    variant: "loop",
+    label: "automation://workstream-loop",
+    foot: "one workstream, looping: ZeroQuarry to GitHub to a human decision and back",
+    aria: "A security workstream loops between ZeroQuarry, GitHub, and a human reviewer, restarted by each new trigger",
   },
   "security-operations": {
+    variant: "sort",
     label: "operations://intake-route",
-    title: "Finding operations",
-    detail: "Resolve the target, validate the claim, assign the work",
-    inputs: [["INBOX", "researcher report"], ["API", "scan finding"], ["HUMAN", "manual escalation"]],
-    outputs: [["STATE", "validated"], ["OWNER", "platform team"], ["TICKET", "SEC-194"]],
-    foot: "every handoff keeps the original evidence and decision history",
-    aria: "Animated security report intake flowing to validation, ownership, and an engineering ticket",
+    foot: "each claim is investigated before it becomes engineering work",
+    aria: "Incoming vulnerability reports are investigated one by one and leave as validated or disputed verdicts",
   },
   remediation: {
+    variant: "patch",
     label: "remediation://controlled-change",
-    title: "Patch staging and retest",
-    detail: "Generate the change without taking merge authority",
-    inputs: [["FINDING", "ZQ-2042"], ["POLICY", "deny-list and diff cap"], ["REPO", "enrolled branch"]],
-    outputs: [["PATCH", "+12 / -3 lines"], ["REVIEW", "human approval"], ["RETEST", "verified"]],
-    foot: "repository access, approval, CI, and merge controls remain yours",
-    aria: "Animated remediation flow from a validated finding through a controlled patch, review, and retest",
+    foot: "ZeroQuarryBot proposes · your gates and merge authority decide",
+    aria: "A patch adding a missing nonce applies to a code diff, then CI, review, merge, and retest checks turn green",
   },
   "private-execution": {
+    variant: "containment",
     label: "execution://private-pool",
-    title: "Customer-controlled runner",
-    detail: "Source and internal-target assessment",
-    inputs: [["GIT", "private repository"], ["INTERNAL", "service.private"], ["POLICY", "minimized results"]],
-    outputs: [["FINDING", "metadata returned"], ["EVIDENCE", "retained locally"], ["AUDIT", "attempt recorded"]],
-    foot: "outbound HTTPS only · no automatic cloud fallback",
-    aria: "Animated private runner processing a private Git repository and internal target while retaining detailed evidence locally",
+    foot: "assessment runs inside your boundary · no automatic cloud fallback",
+    aria: "A runner works inside the customer network against private code and internal services, shipping only a minimized result out",
   },
   "evidence-reporting": {
+    variant: "documents",
     label: "evidence://current-state",
-    title: "Evidence room assembly",
-    detail: "Build the answer from the live product history",
-    inputs: [["ASSESSMENT", "release 1.14"], ["DECISION", "accepted and owned"], ["RETEST", "fix verified"]],
-    outputs: [["REPORT", "customer-ready PDF"], ["SHARE", "password + expiry"], ["ANSWER", "current control story"]],
     foot: "the evidence comes from operating work, not a last-minute document hunt",
-    aria: "Animated evidence assembly from an assessment, decision, and retest into a report and controlled share",
+    aria: "Three generated reports, auditor, internal, and customer, settle into an evidence stack that is hashed, timestamped, and share-controlled",
   },
   "startup-security": {
     label: "startup://security-baseline",
@@ -805,21 +787,142 @@ const motionVisuals = {
   },
 };
 
-function renderMotionVisual(key) {
-  const visual = motionVisuals[key] || motionVisuals["platform-overview"];
-  const renderNodes = (nodes, className) => `<div class="motion-column ${className}">${nodes.map(([label, value], index) => `<div class="motion-node" style="--node-delay:${index * 1.15}s"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>`;
+function motionShell(key, visual, inner, { scanline = false } = {}) {
   return `<div class="motion-system motion-${key}" role="img" aria-label="${escapeHtml(visual.aria)}">
     <div class="motion-head"><span>${escapeHtml(visual.label)}</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-grid" aria-hidden="true"></div>${scanline ? '<div class="motion-scanline" aria-hidden="true"></div>' : ""}
+      ${inner}
+    </div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>${escapeHtml(visual.foot)}</span></div>
+  </div>`;
+}
+
+// Default choreography: inputs -> ZeroQuarry -> outputs. Security testing
+// keeps this one on purpose; it is the convergence story.
+function renderRouterMotion(key, visual) {
+  const renderNodes = (nodes, className) => `<div class="motion-column ${className}">${nodes.map(([label, value], index) => `<div class="motion-node" style="--node-delay:${index * 1.15}s"><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>`;
+  return motionShell(key, visual, `
       ${renderNodes(visual.inputs, "motion-inputs")}
       <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="motion-core"><small>ZEROQUARRY</small><strong>${escapeHtml(visual.title)}</strong><span>${escapeHtml(visual.detail)}</span><b>active</b></div>
       <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      ${renderNodes(visual.outputs, "motion-outputs")}
-    </div>
-    <div class="motion-foot"><span class="pulse-dot"></span><span>${escapeHtml(visual.foot)}</span></div>
-  </div>`;
+      ${renderNodes(visual.outputs, "motion-outputs")}`, { scanline: true });
+}
+
+// Adversarial validation: the claim rallies between researcher and vendor,
+// picking up evidence and confidence until the vendor sustains it.
+function renderRallyMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-rally">
+        <div class="rally-camp camp-red"><span>Researcher</span><strong>builds the claim</strong></div>
+        <div class="rally-arena">
+          <div class="rally-claim">[ZQC-281] invoice update skips the tenant ownership check</div>
+          <div class="rally-mark m1">evidence attached</div>
+          <div class="rally-mark m2">rebuttal answered</div>
+          <div class="rally-confidence"><span>confidence</span><div class="rally-bar"><i></i></div><b><em>0.61</em><em>0.78</em><em>0.94</em></b></div>
+          <div class="rally-verdict">SUSTAINED · 0.94</div>
+        </div>
+        <div class="rally-camp camp-blue"><span>Vendor</span><strong>tries to break it</strong></div>
+      </div>`);
+}
+
+// Continuous security: one workstream looping ZeroQuarry -> GitHub -> human,
+// restarted by whichever trigger lands next.
+function renderLoopMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-loop">
+        <div class="loop-ring" aria-hidden="true"><i class="loop-orbit"><b class="loop-packet"></b></i></div>
+        <div class="loop-node loop-zq"><span>ZeroQuarry</span><strong>triage · review · retest</strong></div>
+        <div class="loop-node loop-gh"><span>GitHub</span><strong>PR checks · issues · fixes</strong></div>
+        <div class="loop-node loop-human"><span>Human</span><strong>review · merge · decide</strong></div>
+        <div class="loop-input in-a"><span class="loop-ico">✉</span> researcher report</div>
+        <div class="loop-input in-b"><span class="loop-ico">⑂</span> PR #248 opened</div>
+      </div>`);
+}
+
+// Security operations: reports queue up, get investigated one by one, and
+// leave as stamped verdicts on the output ledger.
+function renderSortMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-sort">
+        <div class="sort-queue">
+          <div class="sort-chip c1">report · XSS in search</div>
+          <div class="sort-chip c2">scan · SQLi candidate</div>
+          <div class="sort-chip c3">report · SSRF via proxy</div>
+          <div class="sort-chip c4">issue · open redirect</div>
+        </div>
+        <div class="sort-lens"><small>ZEROQUARRY</small><b>investigating</b><i class="lens-ring" aria-hidden="true"></i></div>
+        <div class="sort-out">
+          <div class="sort-verdict ok v1">✓ validated · SEC-191</div>
+          <div class="sort-verdict no v2">✗ disputed · noise</div>
+          <div class="sort-verdict ok v3">✓ validated · SEC-194</div>
+          <div class="sort-verdict no v4">✗ duplicate of SEC-188</div>
+        </div>
+      </div>`);
+}
+
+// Remediation: a small real diff applies itself, then the gates tick green.
+function renderPatchMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-patch">
+        <div class="patch-file"><span>templates/report.php</span><em>finding ZQ-2042</em></div>
+        <div class="patch-diff">
+          <div class="dl minus">- Content-Security-Policy: default-src *</div>
+          <div class="dl plus p1">+ Content-Security-Policy: default-src 'self'</div>
+          <div class="dl plus p2">+ script-src 'nonce-4f8a1c'</div>
+        </div>
+        <div class="patch-checks">
+          <span class="chk k1"><i></i>CI</span>
+          <span class="chk k2"><i></i>human review</span>
+          <span class="chk k3"><i></i>merge</span>
+          <span class="chk k4"><i></i>retest</span>
+        </div>
+      </div>`);
+}
+
+// Private execution: everything happens inside the customer boundary; only
+// a minimized result ever crosses the wire.
+function renderContainmentMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-contain">
+        <div class="contain-box">
+          <span class="contain-tag">customer network</span>
+          <svg class="contain-gear" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 8.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2Zm9.2 5.1-2.1-.4a7.3 7.3 0 0 1-.8 1.9l1.3 1.7-1.6 1.6-1.7-1.3a7.3 7.3 0 0 1-1.9.8l-.4 2.1h-2.2l-.4-2.1a7.3 7.3 0 0 1-1.9-.8l-1.7 1.3-1.6-1.6 1.3-1.7a7.3 7.3 0 0 1-.8-1.9l-2.1-.4v-2.2l2.1-.4a7.3 7.3 0 0 1 .8-1.9L5.4 6.8 7 5.2l1.7 1.3a7.3 7.3 0 0 1 1.9-.8l.4-2.1h2.2l.4 2.1a7.3 7.3 0 0 1 1.9.8l1.7-1.3 1.6 1.6-1.3 1.7a7.3 7.3 0 0 1 .8 1.9l2.1.4v2.2Z"/></svg>
+          <div class="contain-node n1">git · private</div>
+          <div class="contain-node n2">app.service.internal</div>
+          <div class="contain-node n3">runner</div>
+        </div>
+        <div class="contain-wire"><i class="pk-out"></i><i class="pk-in"></i><span>outbound results only · evidence stays local</span></div>
+        <div class="contain-zq">ZEROQUARRY</div>
+      </div>`);
+}
+
+// Evidence reporting: three reports arrive and settle into a fanned stack.
+// Plays once on scroll-in and then rests; static fanned stack otherwise.
+function renderDocumentsMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-docs">
+        <div class="doc-stack">
+          <div class="doc doc-a"><span class="doc-tag">PDF</span><b>Auditor Report</b><i></i><i></i><i></i><em>control evidence · current</em></div>
+          <div class="doc doc-b"><span class="doc-tag">PDF</span><b>Internal Report</b><i></i><i></i><i></i><em>findings · decisions · owners</em></div>
+          <div class="doc doc-c"><span class="doc-tag">PDF</span><b>Customer Report</b><i></i><i></i><i></i><em>customer-ready summary</em></div>
+        </div>
+        <div class="doc-seal"><span>hashed</span><span>timestamped</span><span>share-controlled</span></div>
+      </div>`);
+}
+
+function renderMotionVisual(key) {
+  const visual = motionVisuals[key] || motionVisuals["platform-overview"];
+  switch (visual.variant) {
+    case "rally": return renderRallyMotion(key, visual);
+    case "loop": return renderLoopMotion(key, visual);
+    case "sort": return renderSortMotion(key, visual);
+    case "patch": return renderPatchMotion(key, visual);
+    case "containment": return renderContainmentMotion(key, visual);
+    case "documents": return renderDocumentsMotion(key, visual);
+    default: return renderRouterMotion(key, visual);
+  }
 }
 
 function renderDetail(page, type) {

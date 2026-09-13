@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260912-theme1" />
+<link rel="stylesheet" href="/marketing.css?v=20260912-motion1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260912-theme1" defer></script>
+<script src="/index.js?v=20260912-motion1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Vulnerability remediation","item":"https://zeroquarry.com/platform/remediation/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does ZeroQuarry auto-merge security fixes?","acceptedAnswer":{"@type":"Answer","text":"No. ZeroQuarryBot opens pull requests; your repository’s reviewers, CI, branch protection, and merge policy remain in control."}},{"@type":"Question","name":"Do we have to install the GitHub App to get a patch?","acceptedAnswer":{"@type":"Answer","text":"No. Patch generation can produce a downloadable or revisable diff without repository write access. The GitHub App is only needed for the pull-request workflow."}},{"@type":"Question","name":"How do we stop the bot quickly?","acceptedAnswer":{"@type":"Answer","text":"An account-wide kill switch stops all pushes, and each repository has its own kill switch. Repository enrollment and GitHub App access add separate permission gates."}}]}</script>
 </head>
@@ -118,17 +118,27 @@
           </div>
           <div class="buyer-proofline"><span>Generated patch revisions</span><span>Approval-gated GitHub PRs</span><span>Focused retesting</span></div>
         </div>
-        <div class="motion-system motion-remediation" role="img" aria-label="Animated remediation flow from a validated finding through a controlled patch, review, and retest">
+        <div class="motion-system motion-remediation" role="img" aria-label="A patch adding a missing nonce applies to a code diff, then CI, review, merge, and retest checks turn green">
     <div class="motion-head"><span>remediation://controlled-change</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>FINDING</span><strong>ZQ-2042</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>POLICY</span><strong>deny-list and diff cap</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>REPO</span><strong>enrolled branch</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Patch staging and retest</strong><span>Generate the change without taking merge authority</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>PATCH</span><strong>+12 / -3 lines</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>REVIEW</span><strong>human approval</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>RETEST</span><strong>verified</strong></div></div>
+      <div class="motion-grid" aria-hidden="true"></div>
+      
+      <div class="mv-patch">
+        <div class="patch-file"><span>templates/report.php</span><em>finding ZQ-2042</em></div>
+        <div class="patch-diff">
+          <div class="dl minus">- Content-Security-Policy: default-src *</div>
+          <div class="dl plus p1">+ Content-Security-Policy: default-src 'self'</div>
+          <div class="dl plus p2">+ script-src 'nonce-4f8a1c'</div>
+        </div>
+        <div class="patch-checks">
+          <span class="chk k1"><i></i>CI</span>
+          <span class="chk k2"><i></i>human review</span>
+          <span class="chk k3"><i></i>merge</span>
+          <span class="chk k4"><i></i>retest</span>
+        </div>
+      </div>
     </div>
-    <div class="motion-foot"><span class="pulse-dot"></span><span>repository access, approval, CI, and merge controls remain yours</span></div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>ZeroQuarryBot proposes · your gates and merge authority decide</span></div>
   </div>
       </div>
     </div>

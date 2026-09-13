@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260912-theme1" />
+<link rel="stylesheet" href="/marketing.css?v=20260912-motion1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260912-theme1" defer></script>
+<script src="/index.js?v=20260912-motion1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Continuous application security","item":"https://zeroquarry.com/platform/continuous-security/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should every pull request block on ZeroQuarry?","acceptedAnswer":{"@type":"Answer","text":"Usually not at first. Start with report-only visibility, learn the finding profile, then introduce a reviewed threshold for the branches and changes that justify it."}},{"@type":"Question","name":"What is the difference between CI and scheduled scans?","acceptedAnswer":{"@type":"Answer","text":"CI associates security review with an engineering event. Schedules provide independent baseline coverage and only run a new scan when the repository commit changes."}},{"@type":"Question","name":"Does a delta scan inspect only the edited lines?","acceptedAnswer":{"@type":"Answer","text":"No. Changed files define the focus, but agents can follow nearby calls and data flow when the security impact crosses the diff boundary."}}]}</script>
 </head>
@@ -118,17 +118,21 @@
           </div>
           <div class="buyer-proofline"><span>PR and push triggers</span><span>Scheduled rescans</span><span>Changed-code focus</span></div>
         </div>
-        <div class="motion-system motion-continuous-security" role="img" aria-label="Animated pull-request, scheduled, and release security reviews producing checks and product history">
-    <div class="motion-head"><span>automation://change-review</span><span class="motion-live">processing</span></div>
+        <div class="motion-system motion-continuous-security" role="img" aria-label="A security workstream loops between ZeroQuarry, GitHub, and a human reviewer, restarted by each new trigger">
+    <div class="motion-head"><span>automation://workstream-loop</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>PULL REQUEST</span><strong>PR 248 / 7 files</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>SCHEDULE</span><strong>nightly baseline</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>RELEASE</span><strong>candidate 1.14.0</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Continuous review coordinator</strong><span>Use the smallest useful scope for each trigger</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>CHECK</span><strong>focused review</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>HISTORY</span><strong>lineage v12</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>SIGNAL</span><strong>actionable change</strong></div></div>
+      <div class="motion-grid" aria-hidden="true"></div>
+      
+      <div class="mv-loop">
+        <div class="loop-ring" aria-hidden="true"><i class="loop-orbit"><b class="loop-packet"></b></i></div>
+        <div class="loop-node loop-zq"><span>ZeroQuarry</span><strong>triage · review · retest</strong></div>
+        <div class="loop-node loop-gh"><span>GitHub</span><strong>PR checks · issues · fixes</strong></div>
+        <div class="loop-node loop-human"><span>Human</span><strong>review · merge · decide</strong></div>
+        <div class="loop-input in-a"><span class="loop-ico">✉</span> researcher report</div>
+        <div class="loop-input in-b"><span class="loop-ico">⑂</span> PR #248 opened</div>
+      </div>
     </div>
-    <div class="motion-foot"><span class="pulse-dot"></span><span>delta review keeps routine coverage fast without losing the baseline</span></div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>one workstream, looping: ZeroQuarry to GitHub to a human decision and back</span></div>
   </div>
       </div>
     </div>

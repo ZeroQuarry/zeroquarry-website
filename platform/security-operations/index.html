@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260912-theme1" />
+<link rel="stylesheet" href="/marketing.css?v=20260912-motion1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260912-theme1" defer></script>
+<script src="/index.js?v=20260912-motion1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"AI security operations","item":"https://zeroquarry.com/platform/security-operations/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ZeroQuarry a SIEM or incident-response platform?","acceptedAnswer":{"@type":"Answer","text":"No. ZeroQuarry focuses on product-security assessment and the operating workflow around vulnerabilities, not production threat telemetry or incident containment."}},{"@type":"Question","name":"Can external email trigger arbitrary scans?","acceptedAnswer":{"@type":"Answer","text":"No. Email processing requires an assigned project address, an allowed sender, approved repositories, and an explicit setting for remote targets. Only reports that pass those checks can start assessment work."}},{"@type":"Question","name":"Does ZeroQuarry sync ticket status back automatically?","acceptedAnswer":{"@type":"Answer","text":"Current integrations create or prefill work and preserve the creation record. The finding lifecycle remains the explicit source of truth for the security decision."}}]}</script>
 </head>
@@ -118,17 +118,28 @@
           </div>
           <div class="buyer-proofline"><span>Bounded report intake</span><span>Finding lifecycle</span><span>Ticket and chat integrations</span></div>
         </div>
-        <div class="motion-system motion-security-operations" role="img" aria-label="Animated security report intake flowing to validation, ownership, and an engineering ticket">
+        <div class="motion-system motion-security-operations" role="img" aria-label="Incoming vulnerability reports are investigated one by one and leave as validated or disputed verdicts">
     <div class="motion-head"><span>operations://intake-route</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>INBOX</span><strong>researcher report</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>API</span><strong>scan finding</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>HUMAN</span><strong>manual escalation</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Finding operations</strong><span>Resolve the target, validate the claim, assign the work</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>STATE</span><strong>validated</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>OWNER</span><strong>platform team</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>TICKET</span><strong>SEC-194</strong></div></div>
+      <div class="motion-grid" aria-hidden="true"></div>
+      
+      <div class="mv-sort">
+        <div class="sort-queue">
+          <div class="sort-chip c1">report · XSS in search</div>
+          <div class="sort-chip c2">scan · SQLi candidate</div>
+          <div class="sort-chip c3">report · SSRF via proxy</div>
+          <div class="sort-chip c4">issue · open redirect</div>
+        </div>
+        <div class="sort-lens"><small>ZEROQUARRY</small><b>investigating</b><i class="lens-ring" aria-hidden="true"></i></div>
+        <div class="sort-out">
+          <div class="sort-verdict ok v1">✓ validated · SEC-191</div>
+          <div class="sort-verdict no v2">✗ disputed · noise</div>
+          <div class="sort-verdict ok v3">✓ validated · SEC-194</div>
+          <div class="sort-verdict no v4">✗ duplicate of SEC-188</div>
+        </div>
+      </div>
     </div>
-    <div class="motion-foot"><span class="pulse-dot"></span><span>every handoff keeps the original evidence and decision history</span></div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>each claim is investigated before it becomes engineering work</span></div>
   </div>
       </div>
     </div>

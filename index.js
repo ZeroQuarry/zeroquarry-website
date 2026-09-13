@@ -120,6 +120,13 @@
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
 
+  // Insurance: if the observer is slow or blocked, drop the hidden state
+  // entirely after a few seconds so content can never stay invisible.
+  window.setTimeout(() => {
+    root.classList.add("reveal-timeout");
+    observer.disconnect();
+  }, 4000);
+
   plans.forEach(([containerSelector, childSelector, step, cap]) => {
     document.querySelectorAll(containerSelector).forEach((container) => {
       if (container.closest(".nav, .mobile-nav")) return;
@@ -132,6 +139,25 @@
       });
     });
   });
+})();
+
+// Evidence page documents fan in once when scrolled into view, then rest.
+// Without JS or with reduced motion the fanned stack is the default state.
+(function () {
+  const stack = document.querySelector(".mv-docs");
+  if (!stack || !("IntersectionObserver" in window)) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const play = () => {
+    window.clearTimeout(fallback);
+    observer.disconnect();
+    stack.classList.add("play");
+  };
+  const observer = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) play();
+  }, { threshold: 0.35 });
+  observer.observe(stack);
+  // Never leave the reports hidden if the scroll observer is slow or blocked.
+  const fallback = window.setTimeout(play, 4000);
 })();
 
 // Desktop navigation flyouts open on hover and close when the pointer leaves.

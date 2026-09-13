@@ -2709,6 +2709,11 @@ section.section > .container { position: relative; z-index: 1; }
   from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: none; }
 }
+html.js.reveal-timeout [data-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
 @keyframes glow-breathe {
   0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
   50% { opacity: 1; transform: translateX(-50%) scale(1.1); }

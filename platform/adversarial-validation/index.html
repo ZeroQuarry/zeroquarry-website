@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260912-theme1" />
+<link rel="stylesheet" href="/marketing.css?v=20260912-motion1" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260912-theme1" defer></script>
+<script src="/index.js?v=20260912-motion1" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Adversarial validation","item":"https://zeroquarry.com/platform/adversarial-validation/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does adversarial review guarantee a finding is correct?","acceptedAnswer":{"@type":"Answer","text":"No automated review can remove the need for product context and human judgment. It makes the validation process explicit and creates stronger evidence for that decision."}},{"@type":"Question","name":"What happens to rejected findings?","acceptedAnswer":{"@type":"Answer","text":"They are not silently deleted. Review verdicts, rebuttals, confidence, and human lifecycle decisions remain visible so the outcome can be audited or revisited."}},{"@type":"Question","name":"Can we ask the system to explain a finding differently?","acceptedAnswer":{"@type":"Answer","text":"Yes. Finding and report discussions can request a shorter engineer handoff, safer reproduction path, alternative PoC, or challenge to a specific assumption."}}]}</script>
 </head>
@@ -118,15 +118,22 @@
           </div>
           <div class="buyer-proofline"><span>Evidence-first findings</span><span>Vendor-style challenge</span><span>Human decision history</span></div>
         </div>
-        <div class="motion-system motion-adversarial-validation" role="img" aria-label="Animated adversarial validation of a vulnerability claim using context and proof">
+        <div class="motion-system motion-adversarial-validation" role="img" aria-label="A vulnerability claim rallies between a researcher building it and a vendor challenging it until it is sustained with confidence 0.94">
     <div class="motion-head"><span>review://claim-challenge</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>CLAIM</span><strong>tenant boundary bypass</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>CONTEXT</span><strong>role and deployment state</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>PROOF</span><strong>reproduction request</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Skeptical finding review</strong><span>A separate reviewer tries to break the claim</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>VERDICT</span><strong>sustained</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>CONFIDENCE</span><strong>0.91</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>DECISION</span><strong>ready for owner</strong></div></div>
+      <div class="motion-grid" aria-hidden="true"></div>
+      
+      <div class="mv-rally">
+        <div class="rally-camp camp-red"><span>Researcher</span><strong>builds the claim</strong></div>
+        <div class="rally-arena">
+          <div class="rally-claim">[ZQC-281] invoice update skips the tenant ownership check</div>
+          <div class="rally-mark m1">evidence attached</div>
+          <div class="rally-mark m2">rebuttal answered</div>
+          <div class="rally-confidence"><span>confidence</span><div class="rally-bar"><i></i></div><b><em>0.61</em><em>0.78</em><em>0.94</em></b></div>
+          <div class="rally-verdict">SUSTAINED · 0.94</div>
+        </div>
+        <div class="rally-camp camp-blue"><span>Vendor</span><strong>tries to break it</strong></div>
+      </div>
     </div>
     <div class="motion-foot"><span class="pulse-dot"></span><span>severity says how bad; confidence says how likely the claim is to hold</span></div>
   </div>
