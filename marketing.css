@@ -2134,7 +2134,31 @@
 }
 
 /* ---------- patch (remediation) ---------- */
-.mv-patch { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 16px; max-width: 560px; margin: 0 auto; width: 100%; }
+.mv-patch { grid-template-columns: minmax(0, 1fr); align-content: center; gap: 14px; max-width: 580px; margin: 0 auto; width: 100%; }
+.patch-finding {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 11px 14px;
+  border: 1px solid color-mix(in srgb, var(--red) 35%, transparent);
+  border-left: 3px solid var(--red);
+  border-radius: 8px;
+  background: var(--red-soft);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.55;
+}
+.pf-tag {
+  padding: 2px 8px;
+  border: 1px solid color-mix(in srgb, var(--red) 40%, transparent);
+  border-radius: 5px;
+  color: var(--red);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.pf-text { color: var(--ink-2); }
 .patch-file {
   display: flex;
   justify-content: space-between;
@@ -2194,28 +2218,27 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .dl.plus { width: 0; overflow: hidden; animation: patchType 10s steps(1, end) infinite; }
-  .dl.plus.p1 { animation-name: patchP1; }
-  .dl.plus.p2 { animation-name: patchP2; }
-  .chk { animation: 10s steps(1) infinite; }
+  /* Story beat: ZeroQuarry's finding lands first, the fix types in, the
+     gates tick green. Base styles above are the resting state. */
+  .patch-finding { animation: patchFinding 10s ease-out infinite; }
+  .dl.minus { animation: patchMinus 10s ease-out infinite; }
+  .dl.plus { width: 0; overflow: hidden; }
+  .dl.plus.p1 { animation: patchPlus 10s steps(1, end) infinite both; }
+  .chk { animation: 10s steps(1) infinite both; }
   .chk.k1 { animation-name: patchChk1; }
   .chk.k2 { animation-name: patchChk2; }
   .chk.k3 { animation-name: patchChk3; }
   .chk.k4 { animation-name: patchChk4; }
   .chk.k4 i { animation: retestPulse 10s ease-out infinite; }
 
-  @keyframes patchP1 { 0%, 12% { width: 0; } 34%, 100% { width: 100%; } }
-  @keyframes patchP2 { 0%, 38% { width: 0; } 62%, 100% { width: 100%; } }
-  @keyframes patchChk1 { 0%, 60% { border-color: var(--line-2); color: var(--ink-3); } 62%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
-  @keyframes patchChk2 { 0%, 68% { border-color: var(--line-2); color: var(--ink-3); } 70%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
-  @keyframes patchChk3 { 0%, 76% { border-color: var(--line-2); color: var(--ink-3); } 78%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
-  @keyframes patchChk4 { 0%, 84% { border-color: var(--line-2); color: var(--ink-3); } 86%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
-  @keyframes retestPulse { 0%, 84% { box-shadow: none; } 90%, 100% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 15%, transparent); } }
-}
-.patch-diff .dl.plus { animation-fill-mode: both; }
-.chk, .chk i { animation-fill-mode: both; }
-@media (prefers-reduced-motion: no-preference) {
-  .dl.plus, .chk, .chk.k4 i { animation-fill-mode: both; }
+  @keyframes patchFinding { 0%, 4% { opacity: 0; transform: translateY(-6px); } 7%, 100% { opacity: 1; transform: none; } }
+  @keyframes patchMinus { 0%, 7% { opacity: 0; } 10%, 100% { opacity: 1; } }
+  @keyframes patchPlus { 0%, 16% { width: 0; } 44%, 100% { width: 100%; } }
+  @keyframes patchChk1 { 0%, 58% { border-color: var(--line-2); color: var(--ink-3); } 60%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
+  @keyframes patchChk2 { 0%, 66% { border-color: var(--line-2); color: var(--ink-3); } 68%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
+  @keyframes patchChk3 { 0%, 74% { border-color: var(--line-2); color: var(--ink-3); } 76%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
+  @keyframes patchChk4 { 0%, 82% { border-color: var(--line-2); color: var(--ink-3); } 84%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
+  @keyframes retestPulse { 0%, 82% { box-shadow: none; } 90%, 100% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 15%, transparent); } }
 }
 
 /* ---------- containment (private execution) ---------- */

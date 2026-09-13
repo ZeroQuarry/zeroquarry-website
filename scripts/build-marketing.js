@@ -708,7 +708,7 @@ const motionVisuals = {
     variant: "patch",
     label: "remediation://controlled-change",
     foot: "ZeroQuarryBot proposes · your gates and merge authority decide",
-    aria: "A patch adding a missing nonce applies to a code diff, then CI, review, merge, and retest checks turn green",
+    aria: "ZeroQuarry flags JWT algorithm confusion in auth middleware, a one-line patch restricts verification to RS256, and CI, review, merge, and retest checks turn green",
   },
   "private-execution": {
     variant: "containment",
@@ -859,11 +859,11 @@ function renderSortMotion(key, visual) {
 function renderPatchMotion(key, visual) {
   return motionShell(key, visual, `
       <div class="mv-patch">
-        <div class="patch-file"><span>templates/report.php</span><em>finding ZQ-2042</em></div>
+        <div class="patch-finding"><span class="pf-tag">ZQ-2042</span><span class="pf-text">jwt.verify() accepts HS256 + RS256 with one key — forged token reached /api/account as admin</span></div>
+        <div class="patch-file"><span>auth-svc/middleware/jwt.ts</span><em>critical · patch drafted</em></div>
         <div class="patch-diff">
-          <div class="dl minus">- Content-Security-Policy: default-src *</div>
-          <div class="dl plus p1">+ Content-Security-Policy: default-src 'self'</div>
-          <div class="dl plus p2">+ script-src 'nonce-4f8a1c'</div>
+          <div class="dl minus">- jwt.verify(token, publicKey)</div>
+          <div class="dl plus p1">+ jwt.verify(token, publicKey, { algorithms: ["RS256"] })</div>
         </div>
         <div class="patch-checks">
           <span class="chk k1"><i></i>CI</span>
