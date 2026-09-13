@@ -910,7 +910,6 @@ function renderDocumentsMotion(key, visual) {
           <div class="doc doc-c"><span class="doc-tag">PDF</span><b>Customer Report</b><i></i><i></i><i></i><em>customer-ready summary</em></div>
         </div>
         <div class="doc-seal"><span>hashed</span><span>timestamped</span><span>share-controlled</span></div>
-        <p class="docs-caption">${escapeHtml(visual.foot)}</p>
       </div>`;
 }
 
