@@ -832,7 +832,10 @@ function renderRallyMotion(key, visual) {
 function renderLoopMotion(key, visual) {
   return motionShell(key, visual, `
       <div class="mv-loop">
-        <div class="loop-ring" aria-hidden="true"><i class="loop-orbit"><b class="loop-packet"></b></i></div>
+        <div class="loop-ring" aria-hidden="true">
+          <svg viewBox="0 0 300 210" preserveAspectRatio="none"><ellipse cx="150" cy="105" rx="149" ry="104"/></svg>
+          <i class="loop-packet"></i>
+        </div>
         <div class="loop-node loop-zq"><span>ZeroQuarry</span><strong>triage · review · retest</strong></div>
         <div class="loop-node loop-gh"><span>GitHub</span><strong>PR checks · issues · fixes</strong></div>
         <div class="loop-node loop-human"><span>Human</span><strong>review · merge · decide</strong></div>
