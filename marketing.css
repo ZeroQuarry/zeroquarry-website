@@ -1923,9 +1923,9 @@
   .rally-mark.m2 { animation: rallyMark 14s ease-out infinite 2.1s; }
   .rally-bar i { animation: rallyBar 14s ease-in-out infinite; }
   .rally-confidence em { opacity: 0; }
-  .rally-confidence em:nth-child(1) { animation: confNum 14s steps(1) infinite; }
-  .rally-confidence em:nth-child(2) { animation: confNum 14s steps(1) infinite 3s; }
-  .rally-confidence em:nth-child(3) { animation: confNum 14s steps(1) infinite 6.5s; }
+  .rally-confidence em:nth-child(1) { animation: confA 14s steps(1) infinite; }
+  .rally-confidence em:nth-child(2) { animation: confB 14s steps(1) infinite; }
+  .rally-confidence em:nth-child(3) { animation: confC 14s steps(1) infinite; }
   .rally-verdict { animation: rallyVerdict 14s ease-out infinite; }
 
   @keyframes rallyClaim {
@@ -1947,7 +1947,10 @@
   }
   @keyframes rallyMark { 0% { opacity: 0; transform: translateY(6px); } 6%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
   @keyframes rallyBar { 0%, 30% { width: 61%; } 48% { width: 78%; } 68%, 100% { width: 94%; } }
-  @keyframes confNum { 0% { opacity: 0; } 4%, 100% { opacity: 1; } }
+  /* each number has its own visible window, matched to the bar's climb */
+  @keyframes confA { 0%, 3% { opacity: 0; } 4%, 44% { opacity: 1; } 45%, 100% { opacity: 0; } }
+  @keyframes confB { 0%, 47% { opacity: 0; } 48%, 64% { opacity: 1; } 65%, 100% { opacity: 0; } }
+  @keyframes confC { 0%, 67% { opacity: 0; } 68%, 96% { opacity: 1; } 97%, 100% { opacity: 0; } }
   @keyframes rallyVerdict {
     0%, 76% { opacity: 0; transform: rotate(-3deg) scale(1.7); }
     82%, 94% { opacity: 1; transform: rotate(-3deg) scale(1); }
