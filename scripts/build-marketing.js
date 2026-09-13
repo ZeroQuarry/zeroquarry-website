@@ -901,15 +901,17 @@ function renderContainmentMotion(key, visual) {
 // Evidence reporting: three reports arrive and settle into a fanned stack.
 // Plays once on scroll-in and then rests; static fanned stack otherwise.
 function renderDocumentsMotion(key, visual) {
-  return motionShell(key, visual, `
-      <div class="mv-docs">
+  // Frameless on purpose: the fanned reports sit directly in the hero and
+  // speak for themselves, so no panel chrome around them.
+  return `<div class="mv-docs mv-docs-standalone" role="img" aria-label="${escapeHtml(visual.aria)}">
         <div class="doc-stack">
           <div class="doc doc-a"><span class="doc-tag">PDF</span><b>Auditor Report</b><i></i><i></i><i></i><em>control evidence · current</em></div>
           <div class="doc doc-b"><span class="doc-tag">PDF</span><b>Internal Report</b><i></i><i></i><i></i><em>findings · decisions · owners</em></div>
           <div class="doc doc-c"><span class="doc-tag">PDF</span><b>Customer Report</b><i></i><i></i><i></i><em>customer-ready summary</em></div>
         </div>
         <div class="doc-seal"><span>hashed</span><span>timestamped</span><span>share-controlled</span></div>
-      </div>`);
+        <p class="docs-caption">${escapeHtml(visual.foot)}</p>
+      </div>`;
 }
 
 function renderMotionVisual(key) {
