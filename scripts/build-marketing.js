@@ -702,7 +702,7 @@ const motionVisuals = {
     variant: "sort",
     label: "operations://intake-route",
     foot: "each claim is investigated before it becomes engineering work",
-    aria: "Incoming vulnerability reports are investigated one by one and leave as validated or disputed verdicts",
+    aria: "Reports leave a shared inbox, pass beneath the investigating lens one by one, and settle into the ledger as validated or disputed verdicts",
   },
   remediation: {
     variant: "patch",
@@ -846,12 +846,7 @@ function renderLoopMotion(key, visual) {
 function renderSortMotion(key, visual) {
   return motionShell(key, visual, `
       <div class="mv-sort">
-        <div class="sort-queue">
-          <div class="sort-chip c1">report · XSS in search</div>
-          <div class="sort-chip c2">scan · SQLi candidate</div>
-          <div class="sort-chip c3">report · SSRF via proxy</div>
-          <div class="sort-chip c4">issue · open redirect</div>
-        </div>
+        <div class="sort-tray" aria-hidden="true"><i></i><i></i><span>reports in</span></div>
         <div class="sort-lens"><small>ZEROQUARRY</small><b>investigating</b><i class="lens-ring" aria-hidden="true"></i></div>
         <div class="sort-out">
           <div class="sort-verdict ok v1">✓ validated · SEC-191</div>
@@ -859,6 +854,10 @@ function renderSortMotion(key, visual) {
           <div class="sort-verdict ok v3">✓ validated · SEC-194</div>
           <div class="sort-verdict no v4">✗ duplicate of SEC-188</div>
         </div>
+        <div class="sort-chip c1" style="--fy:-72px">report · XSS in search</div>
+        <div class="sort-chip c2" style="--fy:-24px">scan · SQLi candidate</div>
+        <div class="sort-chip c3" style="--fy:24px">report · SSRF proxy</div>
+        <div class="sort-chip c4" style="--fy:72px">issue · open redirect</div>
       </div>`);
 }
 

@@ -2032,9 +2032,30 @@
 }
 
 /* ---------- sort (security operations) ---------- */
-.mv-sort { grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.2fr); gap: 16px; align-items: center; }
-.sort-queue { position: relative; display: grid; gap: 10px; }
+.mv-sort {
+  --fx: 314px;   /* tray -> ledger horizontal travel */
+  --dip: 66px;   /* how far the flight passes below the lens */
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.2fr);
+  gap: 16px;
+  align-items: center;
+}
+.sort-tray {
+  justify-self: center;
+  display: grid;
+  gap: 5px;
+  justify-items: center;
+  padding: 14px 18px;
+  border: 1px dashed var(--line-2);
+  border-radius: 10px;
+}
+.sort-tray i { width: 68px; height: 6px; border-radius: 3px; background: var(--fill-2); }
+.sort-tray i:last-of-type { width: 46px; }
+.sort-tray span { margin-top: 6px; color: var(--ink-3); font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; }
 .sort-chip {
+  position: absolute;
+  left: 4%;
+  top: 50%;
+  z-index: 2;
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -2043,6 +2064,8 @@
   font-family: var(--mono);
   font-size: 10px;
   line-height: 1.4;
+  white-space: nowrap;
+  opacity: 0;
 }
 .sort-lens {
   position: relative;
@@ -2074,26 +2097,41 @@
 .sort-verdict.no { color: var(--ink-3); }
 
 @media (prefers-reduced-motion: no-preference) {
-  .sort-chip { animation: 12s ease-in-out infinite; }
-  .sort-chip.c1 { animation-name: sortC1; }
-  .sort-chip.c2 { animation-name: sortC2; animation-delay: 3s; }
-  .sort-chip.c3 { animation-name: sortC3; animation-delay: 6s; }
-  .sort-chip.c4 { animation-name: sortC4; animation-delay: 9s; }
+  /* One shared path for every report: appear in the tray, fly right while
+     dipping below the lens (inflating as it is investigated), then settle
+     into its ledger row and dissolve as the verdict stamps in. */
+  .sort-chip.c1 { animation: sortFly 12s ease-in-out 0s infinite; }
+  .sort-chip.c2 { animation: sortFly 12s ease-in-out 3s infinite; }
+  .sort-chip.c3 { animation: sortFly 12s ease-in-out 6s infinite; }
+  .sort-chip.c4 { animation: sortFly 12s ease-in-out 9s infinite; }
   .lens-ring { animation: lensSpin 5s linear infinite; }
   .sort-lens b::after { content: "…"; animation: lensDots 1.6s steps(4) infinite; }
   .sort-verdict { opacity: 0; }
-  .sort-verdict.v1 { animation: sortV 12s ease-out infinite; }
-  .sort-verdict.v2 { animation: sortV 12s ease-out infinite 3s; }
-  .sort-verdict.v3 { animation: sortV 12s ease-out infinite 6s; }
-  .sort-verdict.v4 { animation: sortV 12s ease-out infinite 9s; }
+  .sort-verdict.v1 { animation: sortStamp 12s ease-out 6.2s infinite; }
+  .sort-verdict.v2 { animation: sortStamp 12s ease-out 9.2s infinite; }
+  .sort-verdict.v3 { animation: sortStamp 12s ease-out 12.2s infinite; }
+  .sort-verdict.v4 { animation: sortStamp 12s ease-out 15.2s infinite; }
 
-  @keyframes sortC1 { 0% { opacity: 1; transform: none; } 10% { opacity: 1; transform: translate(60%, 30%) scale(1.12); } 22% { opacity: 1; transform: translate(150%, 60%) scale(1); } 26%, 100% { opacity: 0; transform: translate(150%, 60%); } }
-  @keyframes sortC2 { 0% { opacity: 1; transform: none; } 10% { opacity: 1; transform: translate(30%, 130%) scale(1.12); } 22% { opacity: 1; transform: translate(120%, 230%) scale(1); } 26%, 100% { opacity: 0; transform: translate(120%, 230%); } }
-  @keyframes sortC3 { 0% { opacity: 1; transform: none; } 10% { opacity: 1; transform: translate(10%, -40%) scale(1.12); } 22% { opacity: 1; transform: translate(30%, 60%) scale(1); } 26%, 100% { opacity: 0; transform: translate(30%, 60%); } }
-  @keyframes sortC4 { 0% { opacity: 1; transform: none; } 10% { opacity: 1; transform: translate(-20%, -120%) scale(1.12); } 22% { opacity: 1; transform: translate(-60%, -160%) scale(1); } 26%, 100% { opacity: 0; transform: translate(-60%, -160%); } }
-  @keyframes sortV { 0%, 24% { opacity: 0; transform: translateX(-8px); } 30%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  @keyframes sortFly {
+    0%, 4% { opacity: 0; transform: translate(0, 0) scale(0.92); }
+    8%, 12% { opacity: 1; transform: translate(0, 0) scale(1); }
+    26% { opacity: 1; transform: translate(calc(var(--fx) * 0.42), var(--dip)) scale(1.18); }
+    38% { opacity: 1; transform: translate(calc(var(--fx) * 0.68), var(--dip)) scale(1.18); }
+    52% { opacity: 1; transform: translate(var(--fx), var(--fy)) scale(1); }
+    60% { opacity: 0; transform: translate(var(--fx), var(--fy)) scale(1.04); }
+    100% { opacity: 0; transform: translate(var(--fx), var(--fy)) scale(1); }
+  }
+  @keyframes sortStamp {
+    0%, 2% { opacity: 0; transform: translateX(-8px) scale(0.96); }
+    6%, 86% { opacity: 1; transform: none; }
+    92%, 100% { opacity: 0; }
+  }
   @keyframes lensSpin { to { transform: rotate(360deg); } }
   @keyframes lensDots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "…"; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mv-sort .sort-verdict { opacity: 1; }
+  .mv-sort .sort-chip { opacity: 0; }
 }
 
 /* ---------- patch (remediation) ---------- */
@@ -2337,8 +2375,13 @@
   .mv-rally { grid-template-columns: 1fr; gap: 14px; min-height: 0; }
   .rally-arena { order: -1; }
   .rally-camp { justify-items: center; text-align: center; }
-  .mv-sort { grid-template-columns: 1fr; min-height: 0; }
-  .sort-lens { margin: 4px auto; }
+  .mv-sort { --fx: 196px; --dip: 48px; gap: 8px; min-height: 0; }
+  .sort-lens { width: 96px; height: 96px; padding: 8px; }
+  .sort-lens small { font-size: 7px; }
+  .sort-tray { padding: 10px 12px; }
+  .sort-tray i { width: 48px; }
+  .sort-chip { font-size: 9px; padding: 8px 9px; }
+  .sort-verdict { font-size: 9.5px; padding: 8px 9px; }
   .mv-contain { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: 0; }
   .contain-wire { grid-column: 1; grid-row: 2; height: 44px; }
   .contain-wire::before { top: 50%; }
