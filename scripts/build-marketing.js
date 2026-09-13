@@ -702,7 +702,7 @@ const motionVisuals = {
     variant: "sort",
     label: "operations://intake-route",
     foot: "each claim is investigated before it becomes engineering work",
-    aria: "Reports leave a shared inbox, pass beneath the investigating lens one by one, and settle into the ledger as validated or disputed verdicts",
+    aria: "Reports leave a shared inbox, pass beneath the investigating lens one by one, and turn into validated or disputed entries in the ledger",
   },
   remediation: {
     variant: "patch",
@@ -848,16 +848,10 @@ function renderSortMotion(key, visual) {
       <div class="mv-sort">
         <div class="sort-tray" aria-hidden="true"><i></i><i></i><span>reports in</span></div>
         <div class="sort-lens"><small>ZEROQUARRY</small><b>investigating</b><i class="lens-ring" aria-hidden="true"></i></div>
-        <div class="sort-out">
-          <div class="sort-verdict ok v1">✓ validated · SEC-191</div>
-          <div class="sort-verdict no v2">✗ disputed · noise</div>
-          <div class="sort-verdict ok v3">✓ validated · SEC-194</div>
-          <div class="sort-verdict no v4">✗ duplicate of SEC-188</div>
-        </div>
-        <div class="sort-chip c1" style="--fy:-72px">report · XSS in search</div>
-        <div class="sort-chip c2" style="--fy:-24px">scan · SQLi candidate</div>
-        <div class="sort-chip c3" style="--fy:24px">report · SSRF proxy</div>
-        <div class="sort-chip c4" style="--fy:72px">issue · open redirect</div>
+        <div class="sort-item i1 ok" style="--fy:-72px; --d:0s"><span class="face-chip">report · XSS in search</span><span class="face-verdict">✓ validated · SEC-191</span></div>
+        <div class="sort-item i2 no" style="--fy:-24px; --d:3s"><span class="face-chip">scan · SQLi candidate</span><span class="face-verdict">✗ disputed · noise</span></div>
+        <div class="sort-item i3 ok" style="--fy:24px; --d:6s"><span class="face-chip">report · SSRF proxy</span><span class="face-verdict">✓ validated · SEC-194</span></div>
+        <div class="sort-item i4 no" style="--fy:72px; --d:9s"><span class="face-chip">issue · open redirect</span><span class="face-verdict">✗ duplicate of SEC-188</span></div>
       </div>`);
 }
 
