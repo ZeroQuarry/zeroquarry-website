@@ -1002,8 +1002,8 @@ function renderDetail(page, type) {
   return layout({ title: page.title, description: page.description, canonical: `${siteUrl}${canonicalPath}`, active: type === "platform" ? "platform" : "use-cases", body, schemas });
 }
 
-function renderCta(title, text, signupUrl = signupUrls.general, label = "Start free trial") {
-  return `<section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>${escapeHtml(title)}</h2><p>${escapeHtml(text)}</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${signupUrl}">${escapeHtml(label)} <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>`;
+function renderCta(title, text, signupUrl = signupUrls.general, label = "Start free trial", secondary = { href: "/request-scan/", label: "Talk to us" }) {
+  return `<section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>${escapeHtml(title)}</h2><p>${escapeHtml(text)}</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${signupUrl}">${escapeHtml(label)} <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${secondary.href}">${escapeHtml(secondary.label)}</a></div></div></div></section>`;
 }
 
 function homePage() {
@@ -1035,19 +1035,19 @@ function homePage() {
     <div class="container buyer-hero-grid">
       <div>
         <div class="buyer-kicker">AI security operations for software companies</div>
-        <h1 class="buyer-title">Run product security like you already <em>staffed the team.</em></h1>
-        <p class="buyer-lede">ZeroQuarry receives security work, tests source, binaries, and live applications, challenges weak findings, opens fixes, verifies remediation, and packages the evidence customers ask for.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start 30-day trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
+        <h1 class="buyer-title">The AI security team that <em>shows its work.</em></h1>
+        <p class="buyer-lede">ZeroQuarry tests your product continuously, challenges every finding before it becomes your team’s work, verifies each fix, and packages the evidence your customers ask for.</p>
+        <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
         <div class="buyer-proofline"><span>30 days · no card</span><span>1 private product</span><span>25 security runs</span></div>
       </div>
       <div class="finding-panel" aria-label="Illustrative vulnerability disclosure flow, from detection to approved patch">
         <div class="fp-head"><b>case://ZQC-281</b><span class="fp-live"><span class="fp-live-dot"></span>illustrative</span></div>
         <div class="fp-log" id="zq-disclosure-log">
-          <div class="fp-line red"><span class="ts">14:02:04</span><span class="who">Researcher</span><span class="msg">[ZQC-281] Candidate: invoice update may skip the tenant ownership check</span></div>
-          <div class="fp-line blue"><span class="ts">14:02:16</span><span class="who">Vendor</span><span class="msg">[ZQC-281] Contested: middleware could enforce ownership, provide a full source-to-sink</span></div>
-          <div class="fp-line red"><span class="ts">14:02:31</span><span class="who">Researcher</span><span class="msg">[ZQC-281] Revised: invoice query and update mechanism does not apply account filter</span></div>
-          <div class="fp-line red"><span class="ts">14:02:38</span><span class="who">Researcher</span><span class="msg">[ZQC-281] PoC: forged tenant JWT reaches update handler · 200 OK</span></div>
-          <div class="fp-line blue"><span class="ts">14:02:52</span><span class="who">Vendor</span><span class="msg">[ZQC-281] Accepted: PoC reproduction validated. Claim sustained</span></div>
+          <div class="fp-line red fp-in"><span class="ts">14:02:04</span><span class="who">Researcher</span><span class="msg">[ZQC-281] Candidate: invoice update may skip the tenant ownership check</span></div>
+          <div class="fp-line blue fp-in"><span class="ts">14:02:16</span><span class="who">Vendor</span><span class="msg">[ZQC-281] Contested: middleware could enforce ownership, provide a full source-to-sink</span></div>
+          <div class="fp-line red fp-in"><span class="ts">14:02:31</span><span class="who">Researcher</span><span class="msg">[ZQC-281] Revised: invoice query and update mechanism does not apply account filter</span></div>
+          <div class="fp-line red fp-in"><span class="ts">14:02:38</span><span class="who">Researcher</span><span class="msg">[ZQC-281] PoC: forged tenant JWT reaches update handler · 200 OK</span></div>
+          <div class="fp-line blue fp-in"><span class="ts">14:02:52</span><span class="who">Vendor</span><span class="msg">[ZQC-281] Accepted: PoC reproduction validated. Claim sustained</span></div>
           <div class="fp-line sys"><span class="ts">14:03:07</span><span class="who">System</span><span class="msg">[ZQC-281] Evidence report: drafted report with impact and remediation guidance</span></div>
           <div class="fp-line sys"><span class="ts">14:03:15</span><span class="who">System</span><span class="msg">[ZQC-281] Opened PR #482: scope invoice lookup by account_id</span></div>
           <div class="fp-line human"><span class="ts">14:03:44</span><span class="who">Human</span><span class="msg">Merge PR #482</span></div>
@@ -1070,7 +1070,7 @@ function homePage() {
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">You've lived it</div><h2>Security becomes urgent <em>at the worst times.</em></h2></div><p class="section-intro">ZeroQuarry starts with the decisions buyers actually face. Scanner categories come later.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">You've lived it</div><h2>The moments when security lands on your desk.</h2></div><p class="section-intro">Six situations every software team knows. Each one maps to a ZeroQuarry workflow with an owner and an outcome.</p></div>
       <div class="moment-grid">
         ${[["Open-source report queue", "AI scanners create more low-context claims than maintainers have time to validate.", "/open-source/"], ["Enterprise deal", "A buyer asks for current test evidence and how findings are remediated.", "/use-cases/customer-security-reviews/"], ["Risky release", "A change crosses identity, tenant, billing, upload, webhook, or runtime boundaries.", "/use-cases/release-security-review/"], ["Researcher report", "An external claim arrives and someone must resolve the target, reproduce it, and respond.", "/use-cases/inbound-vulnerability-reports/"], ["Fast-moving codebase", "Security review must happen in PR and scheduled workflows without becoming a noisy gate.", "/use-cases/pr-security-review/"], ["Lean security team", "The company needs real coverage before it can hire every AppSec and security-operations specialty.", "/use-cases/startup-security/"]].map(([title, text, href], index) => `<a class="moment-card" href="${href}"><div class="card-code">0${index + 1}</div><h3>${title}</h3><p>${text}</p><span class="card-link">See the workflow <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}
       </div>
@@ -1079,7 +1079,7 @@ function homePage() {
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">One operating loop</div><h2>From trigger to <em>verified outcome.</em></h2></div><p class="section-intro">Point tools find alerts. ZeroQuarry connects the security work that begins before the alert and continues after the report.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">One operating loop</div><h2>From trigger to verified outcome.</h2></div><p class="section-intro">Point tools find alerts. ZeroQuarry connects the security work that begins before the alert and continues after the report.</p></div>
       <div class="operation-rail">
         ${[["Receive", "Change, schedule, API, or report"], ["Assess", "Source, binary, or live target"], ["Validate", "Proof, challenge, rebuttal"], ["Decide", "State, reason, accountable owner"], ["Remediate", "Patch, PR, Jira, ServiceNow"], ["Retest", "Mitigated, verified, or regression"], ["Prove", "Reports, shares, Evidence Room"]].map(([title, text], index) => `<div class="operation-step"><small>0${index + 1}</small><h3>${title}</h3><p>${text}</p></div>`).join("\n")}
       </div>
@@ -1088,34 +1088,27 @@ function homePage() {
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Platform</div><h2>Seven capabilities. One <em>security record.</em></h2></div><p class="section-intro">Use the whole loop or begin with the security motion creating the most operational drag today.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Platform</div><h2>Seven capabilities. One security record.</h2></div><p class="section-intro">Use the whole loop or begin with the security motion creating the most operational drag today.</p></div>
       <div class="capability-grid">
-        ${platformPages.map((page, index) => `<a class="capability-card" href="/platform/${page.slug}/"><div class="card-code">0${index + 1} / Platform</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}
+        ${platformPages.map((page, index) => `<a class="capability-card${page.slug === "adversarial-validation" ? " capability-card--lead" : page.slug === "evidence-reporting" ? " capability-card--wide" : ""}" href="/platform/${page.slug}/"><div class="card-code">0${index + 1} / Platform</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}
       </div>
     </div>
   </section>
 
   <section class="buyer-section">
-    <div class="container split-proof">
-      <div class="proof-copy"><div class="section-label">Why the workflow matters</div><h2>AI speed needs an <em>evidence bar.</em></h2><p>Autonomous pentesting is becoming a crowded claim. ZeroQuarry’s differentiation is what happens around the model: separate investigator and reviewer roles, human lifecycle decisions, controlled remediation, retesting, and evidence that remains useful after the scan finishes.</p><div class="proof-list"><div><span>01</span><p>Severity describes impact. Confidence describes whether the claim is likely to survive review.</p></div><div><span>02</span><p>Disputed and accepted-risk decisions retain reasons instead of disappearing from the record.</p></div><div><span>03</span><p>Generated fixes remain proposals under repository access, approval, CI, and merge controls.</p></div></div><a class="card-link" href="/platform/adversarial-validation/">How adversarial validation works <span aria-hidden="true">-&gt;</span></a></div>
+    <div class="container split-proof split-proof--stack">
+      <div class="proof-copy"><div class="section-label">Why the workflow matters</div><h2>AI speed needs an evidence bar.</h2><p>Autonomous pentesting is becoming a crowded claim. ZeroQuarry’s differentiation is what happens around the model: separate investigator and reviewer roles, human lifecycle decisions, controlled remediation, retesting, and evidence that remains useful after the scan finishes.</p><div class="proof-list"><div><span>01</span><p>Severity describes impact. Confidence describes whether the claim is likely to survive review.</p></div><div><span>02</span><p>Disputed and accepted-risk decisions retain reasons instead of disappearing from the record.</p></div><div><span>03</span><p>Generated fixes remain proposals under repository access, approval, CI, and merge controls.</p></div></div><a class="card-link" href="/platform/adversarial-validation/">How adversarial validation works <span aria-hidden="true">-&gt;</span></a></div>
       <figure class="product-frame"><img src="/assets/product/finding-detail.png" alt="ZeroQuarry finding with evidence, review state, and decision controls" width="1440" height="1000" loading="lazy"></figure>
-    </div>
-  </section>
-
-  <section class="buyer-section soft">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Use cases</div><h2>Start from the decision <em>in front of you.</em></h2></div><p class="section-intro">Each playbook combines the relevant assessment, review, remediation, and evidence capabilities into an operating outcome.</p></div>
-      <div class="use-case-grid"><a class="use-case-card" href="/open-source/"><div class="card-code">OSS / Use case</div><h3>Open source maintainers</h3><p>Validate noisy vulnerability reports against public source and keep the maintainer decision attached to the evidence.</p><span class="card-link">See the program <span aria-hidden="true">-&gt;</span></span></a>${useCasePages.map((page, index) => `<a class="use-case-card" href="/use-cases/${page.slug}/"><div class="card-code">0${index + 1} / Use case</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}</div>
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container split-proof">
-      <div class="proof-copy"><div class="section-label">Research-backed</div><h2>Built where real vulnerability reports <em>land.</em></h2><p>ZeroQuarry’s workflows come from finding, validating, coordinating, and fixing real product vulnerabilities. That work shapes the product more than generic scanner patterns do.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability-triage experience across Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>Validated research patterns feed future prompts, coverage, report language, and evidence structure.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
+      <div class="proof-copy"><div class="section-label">Research-backed</div><h2>Built where real vulnerability reports land.</h2><p>ZeroQuarry’s workflows come from finding, validating, coordinating, and fixing real product vulnerabilities. That work shapes the product more than generic scanner patterns do.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability-triage experience across Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>Validated research patterns feed future prompts, coverage, report language, and evidence structure.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
       <div class="hero-system"><div class="system-head"><span>research://evidence</span><span class="system-status">coordinated</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Opening untrusted Markdown reaches executable behavior</strong><p>Trace the plugin path, prove reachability, and identify the affected configuration.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>Is execution actually reachable?</strong><p>Test default state, permissions, versions, and realistic user action.</p></div><div class="loop-node"><span>OUTCOME</span><strong>Fix, disclose, publish</strong><p>Coordinate the maintainer response before turning the finding into public research.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>public writeups follow responsible disclosure</span></div></div>
     </div>
   </section>
-  ${renderCta("Operations for $2,000 in the first year.", "The Operations package is normally $500 per month. Founding-cohort companies pay $2,000 upfront for 12 months, including a founder-assisted initial assessment and three founder-assisted rescans. If the initial assessment finds nothing previously unknown worth recording, the $2,000 comes back.", `${foundingCohortPath}?utm_source=homepage&utm_medium=owned-site&utm_campaign=operations-founding-cohort-2026&utm_content=final-cta`, "See the cohort offer")}
+  ${renderCta("See what ZeroQuarry finds on your product.", "Run the free 30-day trial on one private product: real assessments, challenged findings, verified fixes, no card required. Want a founder-assisted start instead? The founding cohort packages Operations for $2,000 for 12 months, including a founder-assisted initial assessment and three rescans. If that first assessment finds nothing previously unknown worth recording, the $2,000 comes back.", signupUrls.general, "Start free trial", { href: `${foundingCohortPath}?utm_source=homepage&utm_medium=owned-site&utm_campaign=operations-founding-cohort-2026&utm_content=final-cta`, label: "See the founding cohort" })}
   </main>`;
 
   return layout({ title: "AI Security Operations for Product Teams | ZeroQuarry", description: "ZeroQuarry is an AI security operations platform for continuous application security testing, vulnerability validation, remediation, retesting, and customer evidence.", canonical: `${siteUrl}/`, active: "home", body, schemas });

@@ -54,7 +54,13 @@
   const lines = Array.from(log.querySelectorAll(".fp-line"));
   if (!lines.length) return;
   const FINAL = "MERGED · RETESTED · EVIDENCE PACKED";
+  // The first KEEP steps ship with .fp-in in the markup, so the panel shows
+  // substance at first paint (and without JavaScript). Replays start after
+  // them and the whole loop rests after three full plays.
+  const KEEP = 5;
+  const CYCLES = 3;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    lines.forEach((line) => line.classList.add("fp-in"));
     status.textContent = FINAL;
     return;
   }
@@ -62,12 +68,15 @@
   const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
   async function run() {
-    while (document.body.contains(log)) {
-      lines.forEach((line) => line.classList.remove("fp-in"));
-      log.scrollTop = 0;
-      status.textContent = "REVIEW IN PROGRESS";
-      for (let i = 0; i < lines.length; i++) {
-        await wait(i === 0 ? 900 : 3000);
+    for (let cycle = 0; cycle < CYCLES; cycle++) {
+      if (cycle > 0) {
+        lines.forEach((line, i) => { if (i >= KEEP) line.classList.remove("fp-in"); });
+        log.scrollTop = 0;
+        status.textContent = "REVIEW IN PROGRESS";
+        await wait(1200);
+      }
+      for (let i = KEEP; i < lines.length; i++) {
+        await wait(3000);
         const line = lines[i];
         line.classList.add("fp-in");
         // scroll only once the log actually overflows, and only far enough
@@ -83,6 +92,8 @@
       status.textContent = FINAL;
       await wait(6500);
     }
+    lines.forEach((line) => line.classList.add("fp-in"));
+    status.textContent = FINAL;
   }
   run();
 })();
@@ -94,17 +105,11 @@
   if (!("IntersectionObserver" in window)) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  // Motion budget: entrance choreography lives in the hero only. Body content
+  // renders visible and static so the page settles instead of fading forever.
   const plans = [
     [".buyer-hero-grid > div:first-child", ":scope > *", 90, 450],
-    [".finding-panel, .product-frame, .hero-system, .motion-system", null, 0, 0],
-    [".buyer-section-head, .section-head, .proof-copy", null, 0, 0],
-    [".moment-grid, .capability-grid, .use-case-grid, .outcome-grid, .related-grid, .proof-receipt-grid", ":scope > *", 70, 420],
-    [".operation-rail", ":scope > *", 60, 420],
-    [".workflow-grid, .pricing-grid, .pricing-path-grid, .pricing-addon-grid, .run-metric-grid", ":scope > *", 70, 420],
-    [".faq-list", ":scope > *", 70, 350],
-    [".buyer-cta-panel", ":scope > *", 120, 240],
-    [".trial-strip, .enterprise-strip", null, 0, 0],
-    [".trust-strip .trust-inner", ":scope > *", 60, 300],
+    [".finding-panel", null, 0, 0],
   ];
 
   const observer = new IntersectionObserver((entries) => {
