@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260915-surgical1" />
+<link rel="stylesheet" href="/marketing.css?v=20260915-copy2" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260915-surgical1" defer></script>
+<script src="/index.js?v=20260915-copy2" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://zeroquarry.com/use-cases/"},{"@type":"ListItem","position":3,"name":"Release security review","item":"https://zeroquarry.com/use-cases/release-security-review/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do we need all three scan surfaces for every release?","acceptedAnswer":{"@type":"Answer","text":"No. Use the surfaces that can change the decision. Source is the normal baseline; add binary or live testing when packaging or runtime behavior materially affects risk."}},{"@type":"Question","name":"Can a release review use changed-code scanning?","acceptedAnswer":{"@type":"Answer","text":"Yes, but a major release or significant architecture change may justify a broader source review. The right depth depends on change size, exposure, and prior baseline quality."}},{"@type":"Question","name":"Can ZeroQuarry make the release decision automatically?","acceptedAnswer":{"@type":"Answer","text":"ZeroQuarry provides assessment evidence, review signals, and traceable decisions. Your organization remains responsible for business context and final release authority."}}]}</script>
 </head>
@@ -137,7 +137,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>One release can have <em>three different security truths.</em></h2></div><p class="section-intro">The repository shows intended behavior. The artifact shows packaging and embedded content. Staging shows how identity, routing, configuration, and network controls behave together.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Three different security truths in one release</h2></div><p class="section-intro">The repository shows intended behavior. The artifact shows packaging and embedded content. Staging shows how identity, routing, configuration, and network controls behave together.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
     <h3>Source review</h3>
@@ -173,7 +173,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>Baseline, check the artifact, exercise staging, decide</h2></div><p class="section-intro">The four checks standing behind a go / no-go decision.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Baseline</h3>
@@ -199,7 +199,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>A decision you can defend afterwards</h2></div><p class="section-intro">Coverage across the delivery chain, and a record of why the release shipped.</p></div>
       <div class="outcome-grid"><article class="outcome-card"><h3>A clearer go/no-go decision</h3><p>Separate validated release risk from low-confidence claims and unrelated historical noise.</p></article>
 <article class="outcome-card"><h3>Coverage across the delivery chain</h3><p>Catch failures introduced by code, build, packaging, and runtime configuration.</p></article>
 <article class="outcome-card"><h3>A durable release record</h3><p>Keep the report, findings, exceptions, remediation, and retest aligned to the version that shipped.</p></article></div>
@@ -208,7 +208,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Questions about release review</h2></div><p class="section-intro">Whether every release needs all three surfaces, and how much can be automated.</p></div>
       <div class="faq-list"><details>
     <summary>Do we need all three scan surfaces for every release?</summary>
     <p>No. Use the surfaces that can change the decision. Source is the normal baseline; add binary or live testing when packaging or runtime behavior materially affects risk.</p>
@@ -226,7 +226,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continue through the <em>operating loop.</em></h2></div></div>
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Artifact and staging review</h2></div></div>
       <div class="related-grid"><a class="related-card" href="/platform/security-testing/">
     <div class="card-code">Continue</div>
     <h3>AI security testing</h3>
@@ -245,7 +245,7 @@
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Start with one real security boundary.</h2><p>Use the free trial on your own product, then decide whether the resulting security work is useful enough to keep.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/pr-review">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Review the next release you ship</h2><p>Check the artifact and staging before promotion, and keep the record.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/pr-review">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">

@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260915-surgical1" />
+<link rel="stylesheet" href="/marketing.css?v=20260915-copy2" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260915-surgical1" defer></script>
+<script src="/index.js?v=20260915-copy2" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://zeroquarry.com/use-cases/"},{"@type":"ListItem","position":3,"name":"Pull request security review","item":"https://zeroquarry.com/use-cases/pr-security-review/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can ZeroQuarry scan private GitHub repositories?","acceptedAnswer":{"@type":"Answer","text":"Yes. Store a scoped Git credential in the account and reference its ID from the workflow. The generated workflow explains the setup."}},{"@type":"Question","name":"What happens if the same scan is triggered twice?","acceptedAnswer":{"@type":"Answer","text":"Identical in-progress Git dispatches can be deduplicated, returning the existing scan so CI can follow it instead of starting duplicate work."}},{"@type":"Question","name":"Should auto-fix branches trigger another scan?","acceptedAnswer":{"@type":"Answer","text":"Exclude the ZeroQuarryBot branch namespace from the scan trigger to avoid a feedback loop. The product and docs provide the branch filter."}}]}</script>
 </head>
@@ -137,7 +137,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Make CI raise a <em>useful security signal.</em></h2></div><p class="section-intro">The best PR security process flags consequential changes early, preserves the report outside ephemeral CI logs, and escalates only when the risk justifies deeper work.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Making CI raise a useful security signal</h2></div><p class="section-intro">The best PR security process flags consequential changes early, preserves the report outside ephemeral CI logs, and escalates only when the risk justifies deeper work.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
     <h3>Risk-aware triggers</h3>
@@ -173,7 +173,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>Trigger, investigate, validate, close</h2></div><p class="section-intro">What happens between a pull request opening and its review being resolved.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Trigger</h3>
@@ -199,7 +199,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>Review that keeps pace with the pull requests</h2></div><p class="section-intro">Faster feedback for authors, fewer gates people route around, and history that outlives CI logs.</p></div>
       <div class="outcome-grid"><article class="outcome-card"><h3>Faster security feedback</h3><p>Review a risky change before context is spread across later releases and unrelated refactors.</p></article>
 <article class="outcome-card"><h3>Fewer disruptive gates</h3><p>Tune policy around validated findings instead of blocking on every model suggestion.</p></article>
 <article class="outcome-card"><h3>Persistent change history</h3><p>Keep scans, findings, discussions, fixes, and retests with the product project instead of losing them in an individual CI run.</p></article></div>
@@ -208,7 +208,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Questions about pull request scanning</h2></div><p class="section-intro">Private repositories, duplicate triggers, and whether auto-fix branches should rescan.</p></div>
       <div class="faq-list"><details>
     <summary>Can ZeroQuarry scan private GitHub repositories?</summary>
     <p>Yes. Store a scoped Git credential in the account and reference its ID from the workflow. The generated workflow explains the setup.</p>
@@ -226,7 +226,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continue through the <em>operating loop.</em></h2></div></div>
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continuous security</h2></div></div>
       <div class="related-grid"><a class="related-card" href="/platform/continuous-security/">
     <div class="card-code">Continue</div>
     <h3>Continuous application security</h3>
@@ -245,7 +245,7 @@
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Start with one real security boundary.</h2><p>Use the free trial on your own product, then decide whether the resulting security work is useful enough to keep.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/pr-review">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Turn on review for one repository</h2><p>Start non-blocking, learn the signal, then decide where to gate.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/pr-review">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">

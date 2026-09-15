@@ -55,10 +55,10 @@
   if (!lines.length) return;
   const FINAL = "MERGED · RETESTED · EVIDENCE PACKED";
   // The first KEEP steps ship with .fp-in in the markup, so the panel shows
-  // substance at first paint (and without JavaScript). Replays start after
-  // them and the whole loop rests after three full plays.
+  // substance at first paint (and without JavaScript). The remaining steps play
+  // in once, then the panel rests on the finished case instead of looping.
   const KEEP = 5;
-  const CYCLES = 3;
+  const CYCLES = 1;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     lines.forEach((line) => line.classList.add("fp-in"));
     status.textContent = FINAL;
@@ -76,7 +76,7 @@
         await wait(1200);
       }
       for (let i = KEEP; i < lines.length; i++) {
-        await wait(3000);
+        await wait(2200);
         const line = lines[i];
         line.classList.add("fp-in");
         // scroll only once the log actually overflows, and only far enough
@@ -90,7 +90,7 @@
       }
       await wait(1400);
       status.textContent = FINAL;
-      await wait(6500);
+      await wait(2000);
     }
     lines.forEach((line) => line.classList.add("fp-in"));
     status.textContent = FINAL;

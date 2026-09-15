@@ -21,10 +21,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20260915-surgical1" />
+<link rel="stylesheet" href="/marketing.css?v=20260915-copy2" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
-<script src="/index.js?v=20260915-surgical1" defer></script>
+<script src="/index.js?v=20260915-copy2" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Private execution","item":"https://zeroquarry.com/platform/private-execution/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a private runner fully on-premise or air-gapped?","acceptedAnswer":{"@type":"Answer","text":"No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider."}},{"@type":"Question","name":"Which scans can use private runners?","acceptedAnswer":{"@type":"Answer","text":"Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs."}},{"@type":"Question","name":"Can a failed private job fall back to ZeroQuarry Cloud?","acceptedAnswer":{"@type":"Answer","text":"No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment."}},{"@type":"Question","name":"Do private runners require bring-your-own model keys?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly."}},{"@type":"Question","name":"Can we evaluate private runners before buying Enterprise?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 30-day commercial trial includes self-serve private runner pools. Create a pool, run the generated Docker command, and evaluate a Git-backed source scan or authorized internal target before discussing Enterprise rollout terms."}}]}</script>
 </head>
@@ -143,7 +143,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Private reachability without pretending the control plane is <em>air-gapped.</em></h2></div><p class="section-intro">The runner stays connected to the ZeroQuarry SaaS control plane and the customer-selected LLM provider. The design gives buyers a precise execution and result boundary instead of a vague on-premise claim.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>What runs inside your network</h2></div><p class="section-intro">The runner stays connected to the ZeroQuarry SaaS control plane and the customer-selected LLM provider. The design gives buyers a precise execution and result boundary instead of a vague on-premise claim.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
     <h3>Internal application testing</h3>
@@ -179,7 +179,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>A concrete path through the work.</h2></div><p class="section-intro">ZeroQuarry automates investigation and coordination. Your team keeps control of authorization, risk ownership, and production changes.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>Design, enroll, authorize, operate</h2></div><p class="section-intro">How a customer-controlled runner is set up, and exactly what it is allowed to reach.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Design</h3>
@@ -205,7 +205,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Operational result</div><h2>What the team gets back.</h2></div><p class="section-intro">Useful coverage should lead to faster decisions, cleaner remediation, and evidence that holds up when someone asks for it later.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>A boundary you can describe to a buyer</h2></div><p class="section-intro">Internal attack surface gets covered, and the result boundary stays narrow and explicit.</p></div>
       <div class="outcome-grid"><article class="outcome-card"><h3>Coverage of internal attack surface</h3><p>Assess private applications and APIs that a managed SaaS worker cannot safely reach.</p></article>
 <article class="outcome-card"><h3>A narrower result boundary</h3><p>Keep detailed evidence local when minimized metadata is enough for centralized triage and reporting.</p></article>
 <article class="outcome-card"><h3>Explicit deployment control</h3><p>Give security and infrastructure teams a reviewable model for network reachability, provider access, retries, and revocation.</p></article></div>
@@ -214,7 +214,7 @@
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Details</div><h2>Questions that come up in evaluation.</h2></div><p class="section-intro">These are the product boundaries, controls, and operating details teams usually want to understand first.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Questions about private runners</h2></div><p class="section-intro">Air-gapping, model keys, fallback behaviour, and how to evaluate before you commit.</p></div>
       <div class="faq-list"><details>
     <summary>Is a private runner fully on-premise or air-gapped?</summary>
     <p>No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider.</p>
@@ -240,7 +240,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Continue through the <em>operating loop.</em></h2></div></div>
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Internal targets</h2></div></div>
       <div class="related-grid"><a class="related-card" href="/platform/security-testing/">
     <div class="card-code">Continue</div>
     <h3>AI security testing</h3>
