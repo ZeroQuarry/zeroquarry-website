@@ -1978,7 +1978,7 @@
   background: var(--red);
   box-shadow: 0 0 12px color-mix(in srgb, var(--red) 70%, transparent);
 }
-.loop-node {
+.mv-loop .loop-node {
   position: absolute;
   display: grid;
   gap: 4px;
@@ -1988,8 +1988,8 @@
   background: var(--node-bg);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
 }
-.loop-node span { color: var(--red); font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
-.loop-node strong { color: var(--ink-2); font-family: var(--mono); font-size: 9.5px; font-weight: 500; line-height: 1.4; }
+.mv-loop .loop-node span { color: var(--red); font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+.mv-loop .loop-node strong { color: var(--ink-2); font-family: var(--mono); font-size: 9.5px; font-weight: 500; line-height: 1.4; }
 .loop-zq { left: 50%; top: 4%; transform: translateX(-50%); }
 .loop-gh { right: 1.5%; bottom: 3%; }
 .loop-gh span { color: var(--ink-2); }
@@ -2420,7 +2420,7 @@
 @media (max-width: 640px) {
   .mv-loop { min-height: 0; }
   .loop-ring { transform: scale(0.8); }
-  .loop-node strong { font-size: 8.5px; }
+  .mv-loop .loop-node strong { font-size: 8.5px; }
   .loop-input.in-b { display: none; }
   .rally-claim { max-width: 240px; font-size: 10px; }
   .rally-confidence { width: 160px; }

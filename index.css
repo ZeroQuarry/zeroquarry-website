@@ -2754,3 +2754,10 @@ html.theme-fading, html.theme-fading * {
 /* Trust strip: readable at a glance. */
 .trust-strip .trust-inner { font-size: 12.5px; color: var(--ink-2); }
 .trust-strip .trust-inner b { color: var(--ink); }
+
+
+/* Homepage surgical revision, fix 2 (2026-09-15): side panels distribute
+   their nodes across the panel height so they read composed, not sparse. */
+.hero-system { display: flex; flex-direction: column; }
+.hero-system .loop-map { flex: 1; align-content: stretch; }
+.hero-system .loop-node { align-content: center; }
