@@ -1,21 +1,21 @@
 const platformLinks = [
-  ["/platform/security-testing/", "Security testing", "Source, binary, and live-target assessments"],
-  ["/platform/adversarial-validation/", "Adversarial validation", "Challenge findings before they become work"],
-  ["/platform/continuous-security/", "Continuous security", "PR, scheduled, and API-triggered reviews"],
-  ["/platform/security-operations/", "Security operations", "Intake, decisions, routing, and audit history"],
-  ["/platform/remediation/", "Remediation", "Patches, pull requests, tickets, and retests"],
-  ["/platform/private-execution/", "Private execution", "Customer-controlled runners for internal targets"],
-  ["/platform/evidence-reporting/", "Evidence and reporting", "Reports, controlled sharing, and assurance packs"],
+  ["/platform/security-testing/", "Security testing", "Review your source code or your running app"],
+  ["/platform/adversarial-validation/", "Adversarial validation", "Check a finding is real before it becomes work"],
+  ["/platform/continuous-security/", "Continuous security", "Review every risky change as it lands"],
+  ["/platform/security-operations/", "Security operations", "Track each finding from intake to audit"],
+  ["/platform/remediation/", "Remediation", "Turn findings into reviewed fixes"],
+  ["/platform/private-execution/", "Private execution", "Run scans inside your own network"],
+  ["/platform/evidence-reporting/", "Evidence and reporting", "Give customers and auditors the evidence"],
 ];
 
 const useCaseLinks = [
-  ["/open-source/", "Open source maintainers", "Validate noisy reports and keep the response work together"],
-  ["/use-cases/startup-security/", "Security for growing companies", "Run a credible program before staffing every specialty"],
-  ["/use-cases/pr-security-review/", "Pull request security review", "Review risky changes while context is fresh"],
-  ["/use-cases/release-security-review/", "Release security review", "Test code, artifacts, and staging before promotion"],
-  ["/use-cases/inbound-vulnerability-reports/", "Inbound vulnerability reports", "Turn researcher email into bounded assessment work"],
-  ["/use-cases/customer-security-reviews/", "Customer and audit evidence", "Answer assurance requests with current evidence"],
-  ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure", "Validate, share, and track external findings"],
+  ["/open-source/", "Open source maintainers", "Work out which reports are real, and answer them"],
+  ["/use-cases/startup-security/", "Security for growing companies", "Get real coverage before you hire for it"],
+  ["/use-cases/pr-security-review/", "Pull request security review", "Review risky code while the author still remembers it"],
+  ["/use-cases/release-security-review/", "Release security review", "Check a release before you ship it"],
+  ["/use-cases/inbound-vulnerability-reports/", "Inbound vulnerability reports", "Turn a researcher's email into real work"],
+  ["/use-cases/customer-security-reviews/", "Customer and audit evidence", "Answer customer questions with current evidence"],
+  ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure", "Handle findings that come from outside"],
 ];
 
 // Keep shell behavior and styles on the same cache generation after deploys.
@@ -47,8 +47,8 @@ function siteNav(active = "") {
         <div class="nav-mega nav-mega-platform">
           <div class="nav-mega-intro">
             <span class="nav-overline">Platform</span>
-            <strong>The security operating loop</strong>
-            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <strong>What ZeroQuarry does</strong>
+            <p>Finds security problems in your product and keeps the record of what happened to each one.</p>
             <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
@@ -61,8 +61,8 @@ function siteNav(active = "") {
         <div class="nav-mega nav-mega-use-cases">
           <div class="nav-mega-intro">
             <span class="nav-overline">Use cases</span>
-            <strong>Start with the security moment</strong>
-            <p>Choose the workflow that matches the decision in front of you.</p>
+            <strong>Start from your situation</strong>
+            <p>Pick the one that matches what you are dealing with now.</p>
             <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
@@ -102,7 +102,7 @@ function siteFooter() {
           <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
       <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
         </a>
-        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <p>Independent security testing and evidence for product teams.</p>
         <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
       </div>
       <div class="foot-col legal">

@@ -26,7 +26,7 @@
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
 <script src="/index.js?v=20260915-copy2" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Private execution","item":"https://zeroquarry.com/platform/private-execution/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a private runner fully on-premise or air-gapped?","acceptedAnswer":{"@type":"Answer","text":"No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider."}},{"@type":"Question","name":"Which scans can use private runners?","acceptedAnswer":{"@type":"Answer","text":"Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs."}},{"@type":"Question","name":"Can a failed private job fall back to ZeroQuarry Cloud?","acceptedAnswer":{"@type":"Answer","text":"No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment."}},{"@type":"Question","name":"Do private runners require bring-your-own model keys?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly."}},{"@type":"Question","name":"Can we evaluate private runners before buying Enterprise?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 30-day commercial trial includes self-serve private runner pools. Create a pool, run the generated Docker command, and evaluate a Git-backed source scan or authorized internal target before discussing Enterprise rollout terms."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a private runner fully on-premise or air-gapped?","acceptedAnswer":{"@type":"Answer","text":"No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to ZeroQuarry and directly to the model provider you selected."}},{"@type":"Question","name":"Which scans can use private runners?","acceptedAnswer":{"@type":"Answer","text":"Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs."}},{"@type":"Question","name":"Can a failed private job fall back to ZeroQuarry Cloud?","acceptedAnswer":{"@type":"Answer","text":"No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment."}},{"@type":"Question","name":"Do private runners require bring-your-own model keys?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly."}},{"@type":"Question","name":"Can we evaluate private runners before buying Enterprise?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 30-day commercial trial includes self-serve private runner pools. Create a pool, run the generated Docker command, and evaluate a Git-backed source scan or authorized internal target before discussing Enterprise rollout terms."}}]}</script>
 </head>
 <body>
 <div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
@@ -43,18 +43,18 @@
         <div class="nav-mega nav-mega-platform">
           <div class="nav-mega-intro">
             <span class="nav-overline">Platform</span>
-            <strong>The security operating loop</strong>
-            <p>Find, validate, route, fix, retest, and prove security work.</p>
+            <strong>What ZeroQuarry does</strong>
+            <p>Finds security problems in your product and keeps the record of what happened to each one.</p>
             <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
-            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Source, binary, and live-target assessments</span></a>
-            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Challenge findings before they become work</span></a>
-            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>PR, scheduled, and API-triggered reviews</span></a>
-            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Intake, decisions, routing, and audit history</span></a>
-            <a href="/platform/remediation/"><strong>Remediation</strong><span>Patches, pull requests, tickets, and retests</span></a>
-            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Customer-controlled runners for internal targets</span></a>
-            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Reports, controlled sharing, and assurance packs</span></a>
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Track each finding from intake to audit</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Turn findings into reviewed fixes</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Run scans inside your own network</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Give customers and auditors the evidence</span></a>
           </div>
         </div>
       </details>
@@ -63,18 +63,18 @@
         <div class="nav-mega nav-mega-use-cases">
           <div class="nav-mega-intro">
             <span class="nav-overline">Use cases</span>
-            <strong>Start with the security moment</strong>
-            <p>Choose the workflow that matches the decision in front of you.</p>
+            <strong>Start from your situation</strong>
+            <p>Pick the one that matches what you are dealing with now.</p>
             <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
-            <a href="/open-source/"><strong>Open source maintainers</strong><span>Validate noisy reports and keep the response work together</span></a>
-            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Run a credible program before staffing every specialty</span></a>
-            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky changes while context is fresh</span></a>
-            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Test code, artifacts, and staging before promotion</span></a>
-            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn researcher email into bounded assessment work</span></a>
-            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer assurance requests with current evidence</span></a>
-            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Validate, share, and track external findings</span></a>
+            <a href="/open-source/"><strong>Open source maintainers</strong><span>Work out which reports are real, and answer them</span></a>
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Get real coverage before you hire for it</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky code while the author still remembers it</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Check a release before you ship it</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn a researcher's email into real work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer customer questions with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Handle findings that come from outside</span></a>
           </div>
         </div>
       </details>
@@ -143,7 +143,7 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>What runs inside your network</h2></div><p class="section-intro">The runner stays connected to the ZeroQuarry SaaS control plane and the customer-selected LLM provider. The design gives buyers a precise execution and result boundary instead of a vague on-premise claim.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>What runs inside your network</h2></div><p class="section-intro">The runner stays connected to ZeroQuarry and to the model provider you choose, so you can describe exactly what runs where instead of claiming it is fully on-premise when it is not.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
     <h3>Internal application testing</h3>
@@ -183,12 +183,12 @@
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Design</h3>
-    <p>Choose the network boundary, eligible source or remote modes, returned-result policy, and account-managed models.</p>
+    <p>Choose which networks it may reach, which scan types are allowed, how much detail is returned, and which models it uses.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 02</span>
     <h3>Enroll</h3>
-    <p>Run the generated Docker command on a host that can reach the targets, Git host, LLM providers, and ZeroQuarry control plane.</p>
+    <p>Run the generated Docker command on a host that can reach your targets, your Git host, your model provider, and ZeroQuarry.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 03</span>
@@ -205,10 +205,10 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>A boundary you can describe to a buyer</h2></div><p class="section-intro">Internal attack surface gets covered, and the result boundary stays narrow and explicit.</p></div>
-      <div class="outcome-grid"><article class="outcome-card"><h3>Coverage of internal attack surface</h3><p>Assess private applications and APIs that a managed SaaS worker cannot safely reach.</p></article>
-<article class="outcome-card"><h3>A narrower result boundary</h3><p>Keep detailed evidence local when minimized metadata is enough for centralized triage and reporting.</p></article>
-<article class="outcome-card"><h3>Explicit deployment control</h3><p>Give security and infrastructure teams a reviewable model for network reachability, provider access, retries, and revocation.</p></article></div>
+      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>Internal coverage, on your terms</h2></div><p class="section-intro">It reaches internal systems a hosted scanner cannot, and you decide how much detail leaves your network.</p></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>Coverage of internal systems</h3><p>Assess private applications and APIs that a managed service cannot safely reach.</p></article>
+<article class="outcome-card"><h3>Less detail leaves your network</h3><p>Keep detailed evidence local when a summary is enough for triage and reporting.</p></article>
+<article class="outcome-card"><h3>Explicit deployment control</h3><p>Give security and infrastructure teams something reviewable: which networks it can reach, which providers it calls, and how to revoke it.</p></article></div>
     </div>
   </section>
 
@@ -217,7 +217,7 @@
       <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Questions about private runners</h2></div><p class="section-intro">Air-gapping, model keys, fallback behaviour, and how to evaluate before you commit.</p></div>
       <div class="faq-list"><details>
     <summary>Is a private runner fully on-premise or air-gapped?</summary>
-    <p>No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider.</p>
+    <p>No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to ZeroQuarry and directly to the model provider you selected.</p>
   </details>
 <details>
     <summary>Which scans can use private runners?</summary>
@@ -259,7 +259,7 @@
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Prove the execution boundary on your infrastructure.</h2><p>Create a private runner pool, run the generated Docker command, and evaluate one Git-backed source scan or authorized internal target during the 30-day trial.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=private-execution-trial&utm_content=final-cta">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Run it on your own infrastructure first</h2><p>Set up a private runner, then test it against one internal target during the trial.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=private-execution-trial&utm_content=final-cta">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">
@@ -269,7 +269,7 @@
           <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
       <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
         </a>
-        <p>AI security operations for teams that need more coverage than their headcount can provide.</p>
+        <p>Independent security testing and evidence for product teams.</p>
         <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
       </div>
       <div class="foot-col legal">

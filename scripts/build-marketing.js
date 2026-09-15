@@ -323,13 +323,13 @@ const platformPages = [
     workflowTitle: "Validate, propose, review, retest",
     workflowIntro: "Generation is automated. Repository permission, approval, CI, and merge stay with you.",
     outcomesTitle: "Engineer-ready fixes, verified closed",
-    outcomesIntro: "Less translation work between a finding and a merged patch, plus proof the fix actually held.",
+    outcomesIntro: "Less back and forth between a finding and a merged patch, plus proof that the fix held.",
     faqTitle: "Questions about automated fixes",
     faqIntro: "Auto-merge, the GitHub App, and how to stop the bot in a hurry.",
     relatedTitle: "Retesting and evidence",
     finalCtaTitle: "Watch a finding become a merged fix",
     finalCtaText: "Take one validated finding through proposal, review, and retest inside your own repository.",
-    sectionIntro: "Security automation should reduce translation work without silently approving production changes. ZeroQuarry separates generation, repository permission, operator approval, CI, and merge.",
+    sectionIntro: "Security automation should save effort without approving production changes on its own. ZeroQuarry separates generation, repository permission, operator approval, CI, and merge.",
     capabilities: [
       ["Generated patch revisions", "Create a unified diff, review it, give feedback, and generate a new revision without granting repository write access."],
       ["ZeroQuarryBot pull requests", "Install a GitHub App on selected repositories and open audited PRs from approved proposals."],
@@ -369,14 +369,12 @@ const platformPages = [
     sectionTitle: "What runs inside your network",
     workflowTitle: "Design, enroll, authorize, operate",
     workflowIntro: "How a customer-controlled runner is set up, and exactly what it is allowed to reach.",
-    outcomesTitle: "A boundary you can describe to a buyer",
-    outcomesIntro: "Internal attack surface gets covered, and the result boundary stays narrow and explicit.",
+    outcomesTitle: "Internal coverage, on your terms",
+    outcomesIntro: "It reaches internal systems a hosted scanner cannot, and you decide how much detail leaves your network.",
     faqTitle: "Questions about private runners",
     faqIntro: "Air-gapping, model keys, fallback behaviour, and how to evaluate before you commit.",
     relatedTitle: "Internal targets",
-    finalCtaTitle: "Test the boundary before you commit",
-    finalCtaText: "Evaluate private runners against an internal target during the trial.",
-    sectionIntro: "The runner stays connected to the ZeroQuarry SaaS control plane and the customer-selected LLM provider. The design gives buyers a precise execution and result boundary instead of a vague on-premise claim.",
+    sectionIntro: "The runner stays connected to ZeroQuarry and to the model provider you choose, so you can describe exactly what runs where instead of claiming it is fully on-premise when it is not.",
     capabilities: [
       ["Internal application testing", "Reach authorized RFC1918, loopback, link-local, and internal-DNS targets from inside the customer network while cloud workers retain SSRF protections."],
       ["Private Git source execution", "Clone Git repositories directly on the runner with scoped credentials. Browser source uploads and binary uploads do not use private execution."],
@@ -386,18 +384,18 @@ const platformPages = [
       ["Operational controls", "Separate trust zones into pools, monitor health and leases, drain for maintenance, revoke immediately, and retain an account audit trail."],
     ],
     workflow: [
-      ["Design", "Choose the network boundary, eligible source or remote modes, returned-result policy, and account-managed models."],
-      ["Enroll", "Run the generated Docker command on a host that can reach the targets, Git host, LLM providers, and ZeroQuarry control plane."],
+      ["Design", "Choose which networks it may reach, which scan types are allowed, how much detail is returned, and which models it uses."],
+      ["Enroll", "Run the generated Docker command on a host that can reach your targets, your Git host, your model provider, and ZeroQuarry."],
       ["Authorize", "Allow the pool on selected projects and choose whether ZeroQuarry Cloud remains an approved alternative."],
       ["Operate", "Assign scans explicitly, monitor runner health, and review result and audit behavior without automatic cloud fallback."],
     ],
     outcomes: [
-      ["Coverage of internal attack surface", "Assess private applications and APIs that a managed SaaS worker cannot safely reach."],
-      ["A narrower result boundary", "Keep detailed evidence local when minimized metadata is enough for centralized triage and reporting."],
-      ["Explicit deployment control", "Give security and infrastructure teams a reviewable model for network reachability, provider access, retries, and revocation."],
+      ["Coverage of internal systems", "Assess private applications and APIs that a managed service cannot safely reach."],
+      ["Less detail leaves your network", "Keep detailed evidence local when a summary is enough for triage and reporting."],
+      ["Explicit deployment control", "Give security and infrastructure teams something reviewable: which networks it can reach, which providers it calls, and how to revoke it."],
     ],
     faqs: [
-      ["Is a private runner fully on-premise or air-gapped?", "No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to the ZeroQuarry control plane and directly to the selected LLM provider."],
+      ["Is a private runner fully on-premise or air-gapped?", "No. It executes scans on a customer-controlled Docker host but makes outbound HTTPS calls to ZeroQuarry and directly to the model provider you selected."],
       ["Which scans can use private runners?", "Private pools support Git-backed source scans and authorized remote targets. Source file uploads, archives uploaded through the browser, and binary uploads are not private-runner inputs."],
       ["Can a failed private job fall back to ZeroQuarry Cloud?", "No. A failed or expired attempt is retried in the same private pool. Cloud execution occurs only when a scan creator explicitly selects an allowed cloud environment."],
       ["Do private runners require bring-your-own model keys?", "Yes. Every selected scan, review, and artifact model needs an account-managed provider key so the runner can call that provider directly."],
@@ -406,8 +404,8 @@ const platformPages = [
     related: [["/platform/security-testing/", "AI security testing"], ["/use-cases/release-security-review/", "Release security review"], ["/platform/evidence-reporting/", "Evidence and reporting"]],
     ctaHref: `${signupUrls.general}?utm_source=zeroquarry.com&utm_medium=owned-site&utm_campaign=private-execution-trial&utm_content=hero`,
     ctaLabel: "Start 30-day private-execution trial",
-    finalCtaTitle: "Prove the execution boundary on your infrastructure.",
-    finalCtaText: "Create a private runner pool, run the generated Docker command, and evaluate one Git-backed source scan or authorized internal target during the 30-day trial.",
+    finalCtaTitle: "Run it on your own infrastructure first",
+    finalCtaText: "Set up a private runner, then test it against one internal target during the trial.",
     docsHref: "https://docs.zeroquarry.com/workflows/private-runners",
   },
   {
@@ -472,7 +470,7 @@ const useCasePages = [
     proof: ["One product to a portfolio", "One operating record", "Human control points"],
     sectionTitle: "Security that grows with the product",
     workflowTitle: "The first four weeks",
-    workflowIntro: "A practical sequence for a team standing up its first real security programme.",
+    workflowIntro: "A practical sequence for a team standing up its first real security program.",
     outcomesTitle: "Coverage before you hire for it",
     outcomesIntro: "A security story you can take to a buyer, built on work that is already happening.",
     faqTitle: "Questions from a team without a security leader",
@@ -1108,7 +1106,7 @@ function renderDetail(page, type) {
   </section>
 
   ${renderCta(
-    page.finalCtaTitle || "Start with one real security boundary.",
+    page.finalCtaTitle || "Start with one real product.",
     page.finalCtaText || "Use the free trial on your own product, then decide whether the resulting security work is useful enough to keep.",
     page.slug === "private-execution"
       ? signupUrl.replace("utm_content=hero", "utm_content=final-cta")
@@ -1161,9 +1159,9 @@ function homePage() {
   <section class="buyer-hero">
     <div class="container buyer-hero-grid">
       <div>
-        <div class="buyer-kicker">Continuous, adversarial security testing</div>
-        <h1 class="buyer-title">Find it. Prove it. Fix it. Show the receipt.</h1>
-        <p class="buyer-lede">ZeroQuarry tests your product continuously, puts every finding through a skeptical second pass, opens the fix as a pull request, and keeps the evidence. Anything that does not survive review never reaches your team.</p>
+        <div class="buyer-kicker">Independent security testing for software products</div>
+        <h1 class="buyer-title">Security testing that tells you which findings are real.</h1>
+        <p class="buyer-lede">ZeroQuarry tests your product continuously, then tries to disprove every finding before it reaches you. What survives arrives with a reproduction and a suggested fix.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div>
         <div class="buyer-proofline"><span>30-day trial</span><span>No credit card</span><span>1 private product</span></div>
       </div>
@@ -1206,7 +1204,7 @@ function homePage() {
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Platform</div><h2>Seven capabilities. One loop.</h2></div><p class="section-intro">Receive, assess, validate, decide, remediate, retest, prove. Every capability is a stage of the same loop, and every stage writes to one record. Start where the work is piling up.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Platform</div><h2>Seven capabilities. One loop.</h2></div><p class="section-intro">Each one is a step in the same workflow, and every step writes to the same record. Start with whichever one is causing the most trouble.</p></div>
       <div class="capability-grid">
         ${platformPages.map((page, index) => `<a class="capability-card${page.slug === "adversarial-validation" ? " capability-card--lead" : page.slug === "evidence-reporting" ? " capability-card--wide" : ""}" href="/platform/${page.slug}/"><div class="card-code">0${index + 1} / ${homeStages[page.slug] || "Platform"}</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}
       </div>
@@ -1215,14 +1213,14 @@ function homePage() {
 
   <section class="buyer-section">
     <div class="container split-proof split-proof--stack">
-      <div class="proof-copy"><div class="section-label">Adversarial review</div><h2>AI speed needs an evidence bar.</h2><p>Autonomous scanners are fast and confident. Fast and confident is not the same as correct. Every ZeroQuarry finding passes a second, adversarial pass that tries to break it, the way a vendor's security team would. What survives gets a reproduction, a fix, and a record. What does not survive never reaches your backlog.</p><div class="proof-list"><div><span>01</span><p>Severity is not confidence. A finding can be severe and still be wrong, so we score both and show the evidence behind each.</p></div><div><span>02</span><p>When you dismiss a finding, the reason stays attached. Six months later, an auditor can see why.</p></div><div><span>03</span><p>Fixes arrive as pull requests under your own review, CI, and merge rules. Nothing merges itself.</p></div></div><a class="card-link" href="/platform/adversarial-validation/">How adversarial validation works <span aria-hidden="true">-&gt;</span></a></div>
+      <div class="proof-copy"><div class="section-label">Adversarial review</div><h2>Finding something is easy. Proving it is the hard part.</h2><p>Automated scanners are fast and confident, and often wrong. ZeroQuarry runs a second pass that tries to break each finding, the way a vendor's security team would. If a finding cannot be reproduced, it is dropped rather than handed to your engineers.</p><div class="proof-list"><div><span>01</span><p>A finding can be serious and still be wrong. We score severity and confidence separately, and show you the evidence for both.</p></div><div><span>02</span><p>When you dismiss a finding, the reason stays attached. Six months later, an auditor can see why.</p></div><div><span>03</span><p>Fixes arrive as pull requests under your own review, CI, and merge rules. Nothing merges itself.</p></div></div><a class="card-link" href="/platform/adversarial-validation/">How adversarial validation works <span aria-hidden="true">-&gt;</span></a></div>
       <figure class="product-frame"><img src="/assets/product/finding-detail.png" alt="ZeroQuarry finding with evidence, review state, and decision controls" width="1440" height="1000" loading="lazy"></figure>
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container split-proof">
-      <div class="proof-copy"><div class="section-label">Who builds it</div><h2>Built where real vulnerability reports land.</h2><p>ZeroQuarry comes from fifteen years on the other side of these decisions: triaging inbound reports, deciding which ones earned a CVE, negotiating pen-test scopes, running SOC 2 engagements end-to-end, and publishing coordinated RCE research. The product follows that work, not a scanner's pattern library.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability triage at Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>Every published finding feeds back into prompts, coverage, report language, and evidence structure.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
+      <div class="proof-copy"><div class="section-label">Who builds it</div><h2>Built where real vulnerability reports land.</h2><p>ZeroQuarry is built by someone who spent fifteen years deciding what to do with vulnerability reports, including which ones earned a CVE, and who ran SOC 2 audits and published coordinated RCE research. The product comes out of that work rather than a scanner's rule set.</p><div class="proof-list"><div><span>RCE</span><p>Published coordinated research on exploitable plugin and extension ecosystems.</p></div><div><span>15Y</span><p>Security leadership and vulnerability triage at Elastic, Kong, and Vectara.</p></div><div><span>LOOP</span><p>What we learn from published research goes back into the product.</p></div></div><a class="card-link" href="/research/">Read ZeroQuarry research <span aria-hidden="true">-&gt;</span></a></div>
       <div class="hero-system"><div class="system-head"><span>research://evidence</span><span class="system-status">coordinated</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Opening untrusted Markdown reaches executable behavior</strong><p>Trace the plugin path, prove reachability, and identify the affected configuration.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>Is execution actually reachable?</strong><p>Test default state, permissions, versions, and realistic user action.</p></div><div class="loop-node"><span>OUTCOME</span><strong>Fix, disclose, publish</strong><p>Coordinate the maintainer response before turning the finding into public research.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>public writeups follow responsible disclosure</span></div></div>
     </div>
   </section>
@@ -1239,7 +1237,7 @@ function foundingSecurityCohortPage() {
     ["What is included for the year?", "The cohort includes 12 months of the Operations package, one founder-assisted initial assessment and report, and up to three founder-assisted rescans and report refreshes. Teams may also run additional self-service scans within the Operations plan limits. Model usage is separate."],
     ["What happens after the first year?", "The cohort price applies to the first 12-month term only. There is no automatic renewal under the cohort order form. Any renewal is agreed separately at the price and scope then offered."],
     ["Can the report support SOC 2, ISO 27001, and customer reviews?", "Yes. The report records the tested scope, methodology, findings, evidence, decisions, remediation, and retest status needed for security and compliance review. Any organization-specific report requirements are captured during scoping."],
-    ["What is in scope?", "One written, authorized product boundary agreed before payment: a repository or coherent codebase, a release artifact, or an application/API target. Scope, access, model choice, token budget, success test, and report audience are recorded before testing starts."],
+    ["What is in scope?", "One written, authorized product agreed before payment: a repository or coherent codebase, a release artifact, or an application/API target. Scope, access, model choice, token budget, success test, and report audience are recorded before testing starts."],
   ];
   const body = `<main class="marketing-main">
   <section class="buyer-hero">
@@ -1267,7 +1265,7 @@ function foundingSecurityCohortPage() {
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">The first year</div><h2>Start with the assessment. Keep using the <em>operating system around it.</em></h2></div><p class="section-intro">The initial scan establishes the baseline. The Operations subscription lets the team remediate, rescan, refresh the report, and keep the evidence current through the year.</p></div>
       ${renderCards([
-        ["Scope one real boundary", "Select one product and agree the code, artifact, live target, authorization, and business context that make the evaluation credible."],
+        ["Scope one real product", "Select one product and agree the code, artifact, live target, authorization, and business context that make the evaluation credible."],
         ["Run the assessment", "Investigate the product with deterministic candidates and AI agents, then preserve the source, reasoning, evidence, and project history."],
         ["Challenge the claims", "Use separate adversarial review, proof, and human disposition so weak results do not quietly become engineering work."],
         ["Review what is novel", "Have your designated technical reviewer distinguish newly discovered, valid results from known issues, rejected claims, and low-value observations."],
@@ -1284,7 +1282,7 @@ function foundingSecurityCohortPage() {
         <h2>You have security pressure before you have <em>AppSec headcount.</em></h2>
         <div class="proof-list">
           <div><span>01</span><p>An audit, customer review, launch, or security program calls for testing and current application-security evidence.</p></div>
-          <div><span>02</span><p>An engineering leader can authorize one real product boundary and serve as the designated technical reviewer.</p></div>
+          <div><span>02</span><p>An engineering leader can authorize one real product and serve as the designated technical reviewer.</p></div>
           <div><span>03</span><p>The team wants a validated result and report, not the largest possible alert count.</p></div>
         </div>
       </div>
@@ -1292,7 +1290,7 @@ function foundingSecurityCohortPage() {
         <div class="section-label">What you bring</div>
         <h2>A real product, a reviewer, and <em>a reason to act now.</em></h2>
         <div class="proof-list">
-          <div><span>01</span><p>One authorized repository, release, application, or API boundary that matters to the business.</p></div>
+          <div><span>01</span><p>One authorized repository, release, app, or API that matters to the business.</p></div>
           <div><span>02</span><p>One technical reviewer who can evaluate the findings and record the outcome.</p></div>
           <div><span>03</span><p>One current deadline or security trigger that gives the assessment a clear purpose.</p></div>
         </div>
@@ -1440,8 +1438,8 @@ function foundingSecurityCohortThanksPage() {
       <div>
         <div class="buyer-kicker">Operations cohort application received</div>
         <h1 class="buyer-title">Next we agree where the first year <em>starts.</em></h1>
-        <p class="buyer-lede">ZeroQuarry will review the initial product boundary, technical reviewer, model funding, report requirement, and commercial readiness you submitted. If the cohort is a fit, the next step is a short scoping call to agree the annual Operations order form and initial assessment.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">Review the operating loop <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.startup}?utm_source=operations-cohort-application&utm_medium=owned-site&utm_campaign=operations-founding-cohort-2026&utm_content=thank-you-self-serve">Start self-serve instead</a></div>
+        <p class="buyer-lede">ZeroQuarry will review the product, technical reviewer, model funding, and commercial readiness you submitted. If the cohort is a fit, the next step is a short scoping call to agree the annual Operations order form and initial assessment.</p>
+        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">See how it works <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.startup}?utm_source=operations-cohort-application&utm_medium=owned-site&utm_campaign=operations-founding-cohort-2026&utm_content=thank-you-self-serve">Start self-serve instead</a></div>
         <div class="buyer-proofline"><span>12-month Operations plan</span><span>Initial assessment</span><span>Three rescans</span><span>Guarantee test</span></div>
       </div>
       <div class="hero-system" aria-label="Design-partner application next steps">
@@ -1474,7 +1472,7 @@ function securityPartnerPage() {
         <h1 class="buyer-title">Your client does not need another PDF. They need the <em>finding-to-fix work finished.</em></h1>
         <p class="buyer-lede">A one-client delivery pilot for vCISO, compliance, penetration-testing, and software-advisory firms. You keep the customer relationship. ZeroQuarry helps carry application findings through skeptical validation, engineering decisions, remediation, retesting, and current evidence.</p>
         <div class="buyer-actions"><a class="btn btn-primary" href="${securityPartnerApplication}">Propose one client situation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#partner-model">See the delivery model</a></div>
-        <div class="buyer-proofline"><span>One client</span><span>One product boundary</span><span>12 months</span><span>No reseller commitment</span></div>
+        <div class="buyer-proofline"><span>One client</span><span>One product</span><span>12 months</span><span>No reseller commitment</span></div>
       </div>
       <div class="hero-system" aria-label="Joint security partner delivery loop">
         <div class="system-head"><span>partner://one-client-pilot</span><span class="system-status">2 firms</span></div>
@@ -1507,8 +1505,8 @@ function securityPartnerPage() {
       <div class="buyer-section-head"><div><div class="section-label">One-client delivery model</div><h2>Prove the joint outcome before building <em>a partnership deck.</em></h2></div><p class="section-intro">The first engagement is deliberately bounded. No quotas, exclusivity, certification, or reseller infrastructure is required.</p></div>
       ${renderWorkflow([
         ["Nominate the situation", "Identify one consenting client with a current pentest, compliance, customer-review, launch, or application-security trigger."],
-        ["Agree the boundary", "Define the authorized product, responsibilities, success criteria, commercial model, attribution, model funding, and decision date."],
-        ["Run the operating loop", "Assess the product, challenge findings, record human decisions, and move accepted work into the client’s engineering workflow."],
+        ["Agree the scope", "Define the authorized product, responsibilities, success criteria, commercial model, attribution, model funding, and decision date."],
+        ["Run the whole workflow", "Assess the product, challenge findings, record human decisions, and move accepted work into the client’s engineering workflow."],
         ["Retest and package evidence", "Verify selected remediation and preserve the current finding, decision, fix, and retest record for the client and adviser."],
         ["Make a repeat decision", "Review delivery effort, client value, economics, and fit; then continue, revise the offer, or stop without channel debt."],
       ])}
@@ -1528,7 +1526,7 @@ function securityPartnerPage() {
       </div>
       <div class="proof-copy">
         <div class="section-label">ZeroQuarry owns</div>
-        <h2>The application-security <em>operating loop.</em></h2>
+        <h2>The work that happens <em>after the scan.</em></h2>
         <div class="proof-list">
           <div><span>01</span><p>Product scoping, platform onboarding, assessment workflow, and transparent execution boundaries.</p></div>
           <div><span>02</span><p>Adversarial validation, decision records, remediation support, selected retesting, and current evidence.</p></div>
@@ -1621,7 +1619,7 @@ function securityPartnerThanksPage() {
         <div class="buyer-kicker">Partner pilot proposal received</div>
         <h1 class="buyer-title">Now we test the <em>client situation.</em></h1>
         <p class="buyer-lede">ZeroQuarry will review the service fit, security trigger, delivery shape, and path to one authorized paid engagement. Expect a direct response from Shane rather than an automated partner sequence.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">Review the operating loop <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/founding-security-cohort/">Review the client cohort</a></div>
+        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">See how it works <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/founding-security-cohort/">Review the client cohort</a></div>
         <div class="buyer-proofline"><span>Client fit</span><span>Delivery ownership</span><span>Commercial shape</span><span>Decision date</span></div>
       </div>
       <div class="hero-system" aria-label="Partner pilot proposal review">
@@ -1654,7 +1652,7 @@ function platformHub() {
   <section class="buyer-section soft"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Capability map</div><h2>Choose an entry point. Keep one <em>operating record.</em></h2></div><p class="section-intro">Each capability is useful independently; together they replace the fragmented handoffs between scanners, inboxes, tickets, patch tools, retests, and audit folders.</p></div><div class="capability-grid">${platformPages.map((page, index) => `<a class="capability-card" href="/platform/${page.slug}/"><div class="card-code">0${index + 1}</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">Explore capability <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}</div></div></section>
   <section class="buyer-section"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Operating model</div><h2>The scan is only the beginning.</h2></div><p class="section-intro">ZeroQuarry treats intake, validation, ownership, remediation, retesting, and assurance as first-class security work.</p></div><div class="operation-rail">${[["Receive", "PR, schedule, API, report"], ["Assess", "Source, binary, live"], ["Validate", "Proof and skeptical review"], ["Decide", "State, reason, owner"], ["Remediate", "Patch, PR, ticket"], ["Retest", "Verify or regress"], ["Prove", "Evidence and sharing"]].map(([title, text], i) => `<div class="operation-step"><small>0${i + 1}</small><h3>${title}</h3><p>${text}</p></div>`).join("")}</div></div></section>
   <section class="buyer-section soft"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Designed for control</div><h2>Automation where it scales. Humans where <em>authority matters.</em></h2></div><p class="section-intro">ZeroQuarry can automate investigation and routine coordination without silently authorizing a live test, accepting business risk, exposing evidence, or merging production code.</p></div><div class="outcome-grid"><article class="outcome-card"><h3>Authorization stays explicit</h3><p>Remote targets, sender and repository boundaries, shares, and GitHub access are individually controlled.</p></article><article class="outcome-card"><h3>Decisions retain reasons</h3><p>Validation, dispute, regression, accepted risk, and archive history remain visible and attributable.</p></article><article class="outcome-card"><h3>Production controls remain yours</h3><p>Generated changes flow through installation, enrollment, approval, branch protection, CI, review, and merge.</p></article></div></div></section>
-  ${renderCta("See the complete loop on your product.", "A useful evaluation starts with a real security boundary and follows the result all the way through validation, remediation, and evidence.")}
+  ${renderCta("See what it finds on your product.", "Start with one real product and follow what happens to each finding, all the way to the fix.")}
   </main>`;
   const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Platform", href: "/platform" }]), { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "ZeroQuarry", applicationCategory: "SecurityApplication", operatingSystem: "Web", description: "AI security operations platform for application security testing, validation, remediation, and reporting.", url: `${siteUrl}/platform` }];
   return layout({ title: "AI Security Operations Platform | ZeroQuarry", description: "Explore ZeroQuarry's AI security testing, adversarial validation, continuous security, vulnerability operations, remediation, and evidence capabilities.", canonical: `${siteUrl}/platform`, active: "platform", body, schemas });
@@ -1665,7 +1663,7 @@ function useCasesHub() {
   <section class="buyer-hero"><div class="container buyer-hero-grid"><div><div class="buyer-kicker">ZeroQuarry use cases</div><h1 class="buyer-title">Start with the moment security becomes <em>urgent.</em></h1><p class="buyer-lede">The right workflow depends on the decision: merge a risky PR, ship a release, answer a researcher, satisfy a customer, or build a credible program with a lean team.</p><div class="buyer-actions"><a class="btn btn-primary" href="${signupUrls.general}">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/platform">Explore the platform</a></div></div>${renderMotionVisual("use-case-router")}</div></section>
   <section class="buyer-section soft"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Use-case library</div><h2>Start with a workflow your team already recognizes.</h2></div><p class="section-intro">Each one combines the appropriate assessment surface, validation depth, human decision, remediation path, and evidence output.</p></div><div class="use-case-grid"><a class="use-case-card" href="/open-source/"><div class="card-code">OSS</div><h3>Open source maintainers</h3><p>Validate noisy vulnerability reports against public source and keep the response work together.</p><span class="card-link">See the free program <span aria-hidden="true">-&gt;</span></span></a>${useCasePages.map((page, index) => `<a class="use-case-card" href="/use-cases/${page.slug}/"><div class="card-code">0${index + 1}</div><h3>${escapeHtml(page.eyebrow)}</h3><p>${escapeHtml(page.description)}</p><span class="card-link">See the playbook <span aria-hidden="true">-&gt;</span></span></a>`).join("\n")}</div></div></section>
   <section class="buyer-section"><div class="container"><div class="buyer-section-head"><div><div class="section-label">Security need</div><h2>The same loop, applied where security is <em>breaking down.</em></h2></div><p class="section-intro">Choose the pattern that matches product exposure, customer pressure, change rate, and the cost of a miss.</p></div><div class="stage-table-wrap"><table class="stage-table"><thead><tr><th>Starting point</th><th>Primary concern</th><th>Starting workflow</th><th>What good looks like</th></tr></thead><tbody><tr><td>Establish coverage</td><td>Do we know our critical product risk?</td><td>Source baseline and release review</td><td>Important findings have a decision and one fix has been retested.</td></tr><tr><td>Operate continuously</td><td>Can security keep up with delivery?</td><td>PR review, schedules, issue routing</td><td>Security work moves through engineering without a separate manual program.</td></tr><tr><td>Standardize and prove</td><td>Can we execute consistently and prove it?</td><td>Lifecycle, adversarial review, evidence packs</td><td>Assets, decisions, remediation, exceptions, and retests are traceable.</td></tr></tbody></table></div></div></section>
-  ${renderCta("Which security moment is consuming the most time?", "Start there. ZeroQuarry can expand into the rest of the operating loop once one workflow is producing clear decisions and verified outcomes.")}
+  ${renderCta("Which one is costing you the most time?", "Start there. Once one workflow is giving you clear decisions, adding the next one is easy.")}
   </main>`;
   const schemas = [breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Use cases", href: "/use-cases/" }])];
   return layout({ title: "Application Security and AI Pentesting Use Cases | ZeroQuarry", description: "Explore ZeroQuarry workflows for startup security, pull request review, release testing, inbound reports, customer assurance, and vulnerability disclosure.", canonical: `${siteUrl}/use-cases/`, active: "use-cases", body, schemas });
