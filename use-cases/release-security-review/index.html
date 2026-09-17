@@ -118,16 +118,25 @@
           </div>
           <div class="buyer-proofline"><span>Source baseline</span><span>Shipped artifact</span><span>Staging behavior</span></div>
         </div>
-        <div class="motion-system motion-release-security-review" role="img" aria-label="Animated release review across source, a packaged artifact, and a staging environment">
+        <div class="motion-system motion-release-security-review" role="img" aria-label="A release candidate approaches a promotion gate: one run clears the checkpoints and is promoted, the next is held for fixes">
     <div class="motion-head"><span>release://promotion-gate</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-grid" aria-hidden="true"></div>
       
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>SOURCE</span><strong>release branch</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>ARTIFACT</span><strong>signed package</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>STAGING</span><strong>authorized target</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Release security review</strong><span>Compare what was written, packaged, and deployed</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>RISK</span><strong>release decision</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>ACTION</span><strong>fix before promote</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>REPORT</span><strong>release evidence</strong></div></div>
+      <div class="mv-gate">
+        <div class="gate-checks">
+          <span class="gchk g1"><i></i>source = artifact</span>
+          <span class="gchk g2"><i></i>signature valid</span>
+          <span class="gchk g3"><i></i>staging clean</span>
+        </div>
+        <div class="gate-stage">
+          <i class="gate-lane" aria-hidden="true"></i>
+          <div class="gate-artifact"><span>v1.14.0</span><em>release candidate</em></div>
+          <div class="gate-bar" aria-hidden="true"></div>
+          <div class="gate-badge pass">PROMOTED ✓</div>
+          <div class="gate-badge hold">HOLD · fix before promote</div>
+        </div>
+      </div>
     </div>
     <div class="motion-foot"><span class="pulse-dot"></span><span>surface differences stay attached to the same release decision</span></div>
   </div>

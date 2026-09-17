@@ -118,16 +118,22 @@
           </div>
           <div class="buyer-proofline"><span>GitHub Actions</span><span>Delta-aware review</span><span>Non-blocking to gated rollout</span></div>
         </div>
-        <div class="motion-system motion-pr-security-review" role="img" aria-label="Animated pull-request review using a code diff, product context, and the last baseline">
+        <div class="motion-system motion-pr-security-review" role="img" aria-label="A pull request opens, ZeroQuarry&#39;s review comments land on the two changed files that matter, and the review completes with a suggested fix">
     <div class="motion-head"><span>pull-request://focused-review</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-grid" aria-hidden="true"></div>
       
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>DIFF</span><strong>7 changed files</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>CONTEXT</span><strong>tenant billing path</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>BASELINE</span><strong>last completed scan</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Change-scoped security review</strong><span>Investigate the code that moved while context is fresh</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>CHECK</span><strong>review complete</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>FINDING</span><strong>1 validated issue</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>PATCH</span><strong>proposal ready</strong></div></div>
+      <div class="mv-pr">
+        <div class="pr-head"><span class="pr-num">PR #248</span><span class="pr-title">Add tenant check to billing flows</span><b>7 files · 2 flagged</b></div>
+        <div class="pr-files">
+          <span class="pf">auth/jwt.ts</span><span class="pf hit">billing/update.ts</span><span class="pf">util/log.ts</span><span class="pf hit">api/invoice.ts</span><span class="pf">ui/receipt.tsx</span>
+        </div>
+        <div class="pr-thread">
+          <div class="pr-comment bot"><b>zeroquarry[bot]</b><span>tenant check missing in billing/update.ts — invoice_id reaches the query without an account filter</span></div>
+          <div class="pr-comment sug"><b>suggestion</b><span>scope the lookup by account_id before update</span></div>
+          <div class="pr-comment sys"><b>review complete</b><span>1 validated finding · fix suggested · retest queued</span></div>
+        </div>
+      </div>
     </div>
     <div class="motion-foot"><span class="pulse-dot"></span><span>one focused review consumes one security run</span></div>
   </div>

@@ -838,67 +838,46 @@ const motionVisuals = {
     aria: "Three generated reports, auditor, internal, and customer, settle into an evidence stack that is hashed, timestamped, and share-controlled",
   },
   "startup-security": {
+    variant: "substitute",
     label: "startup://security-baseline",
-    title: "Lean security baseline",
-    detail: "Cover the product before staffing every specialty",
-    inputs: [["REPOSITORY", "main product"], ["RELEASE", "current build"], ["PRESSURE", "first enterprise buyer"]],
-    outputs: [["PRIORITY", "top product risk"], ["FIX", "owner and patch"], ["EVIDENCE", "buyer-ready history"]],
     foot: "begin with one product boundary and expand as the company grows",
-    aria: "Animated startup security baseline producing prioritized risk, a fix, and customer evidence",
+    aria: "ZeroQuarry substitutes for the pentester, appsec engineer, and compliance owner a company has not hired, ending at security-ready with headcount zero",
   },
   "pr-security-review": {
+    variant: "thread",
     label: "pull-request://focused-review",
-    title: "Change-scoped security review",
-    detail: "Investigate the code that moved while context is fresh",
-    inputs: [["DIFF", "7 changed files"], ["CONTEXT", "tenant billing path"], ["BASELINE", "last completed scan"]],
-    outputs: [["CHECK", "review complete"], ["FINDING", "1 validated issue"], ["PATCH", "proposal ready"]],
     foot: "one focused review consumes one security run",
-    aria: "Animated pull-request review using a code diff, product context, and the last baseline",
+    aria: "A pull request opens, ZeroQuarry's review comments land on the two changed files that matter, and the review completes with a suggested fix",
   },
   "release-security-review": {
+    variant: "gate",
     label: "release://promotion-gate",
-    title: "Release security review",
-    detail: "Compare what was written, packaged, and deployed",
-    inputs: [["SOURCE", "release branch"], ["ARTIFACT", "signed package"], ["STAGING", "authorized target"]],
-    outputs: [["RISK", "release decision"], ["ACTION", "fix before promote"], ["REPORT", "release evidence"]],
     foot: "surface differences stay attached to the same release decision",
-    aria: "Animated release review across source, a packaged artifact, and a staging environment",
+    aria: "A release candidate approaches a promotion gate: one run clears the checkpoints and is promoted, the next is held for fixes",
   },
   "inbound-vulnerability-reports": {
+    variant: "email",
     label: "incoming://report-triage",
-    title: "Bounded report intake",
-    detail: "Turn an email into scoped, reviewable security work",
-    inputs: [["SENDER", "approved researcher"], ["REPORT", "forwarded email"], ["ATTACHMENT", "proof and logs"]],
-    outputs: [["TARGET", "project resolved"], ["VERDICT", "claim validated"], ["RESPONSE", "coordinated reply"]],
     foot: "sender, project, target, and authorization boundaries are checked first",
-    aria: "Animated inbound vulnerability report triage from an approved sender to validation and response",
+    aria: "A researcher email unfolds into a numbered case with claim, target, and evidence, and a triage trail from acknowledged to fix routed",
   },
   "customer-security-reviews": {
+    variant: "qa",
     label: "assurance://customer-answer",
-    title: "Current assurance evidence",
-    detail: "Answer from product history instead of rebuilding it",
-    inputs: [["PROJECT", "covered assets"], ["DECISIONS", "risk and ownership"], ["RETESTS", "verified fixes"]],
-    outputs: [["SUMMARY", "current posture"], ["REPORT", "evidence package"], ["SHARE", "controlled access"]],
     foot: "the answer stays current because it is built during normal security work",
-    aria: "Animated customer assurance workflow assembling project coverage, decisions, and retests",
+    aria: "A buyer security questionnaire answers itself, each response citing the report, retest, or share it came from",
   },
   "vulnerability-disclosure": {
+    variant: "timeline",
     label: "disclosure://coordinated-case",
-    title: "Coordinated disclosure case",
-    detail: "Keep proof, communication, remediation, and timing together",
-    inputs: [["CLAIM", "reproducible issue"], ["CONTACT", "vendor channel"], ["TIMELINE", "embargo agreed"]],
-    outputs: [["FIX", "maintainer patch"], ["VERIFY", "retest passed"], ["PUBLISH", "coordinated writeup"]],
     foot: "publication follows verification and the agreed coordination window",
-    aria: "Animated vulnerability disclosure workflow from a claim and timeline through fix, retest, and publication",
+    aria: "A disclosure timeline stamps reported, acknowledged, fix shipped, embargo lift, and publication between researcher and vendor",
   },
   "open-source": {
+    variant: "issue",
     label: "maintainer://report-queue",
-    title: "Maintainer triage loop",
-    detail: "Check the claim before it becomes project work",
-    inputs: [["REPORT", "scanner-generated claim"], ["REPOSITORY", "public source"], ["CONTEXT", "maintainer boundaries"]],
-    outputs: [["VERDICT", "validated or disputed"], ["RETEST", "resolution checked"], ["RECORD", "evidence retained"]],
     foot: "one bounded workflow from incoming claim to maintainer decision",
-    aria: "Animated open-source maintainer workflow validating a scanner report against public source and retaining the decision",
+    aria: "A scanner issue card gets a verification checklist, target mapped, reproduced, PoC validated, and a maintainer verdict stamp",
   },
 };
 
@@ -1024,6 +1003,129 @@ function renderDocumentsMotion(key, visual) {
       </div>`;
 }
 
+// ---- Use-case choreographies. Each expresses the *moment* the page is
+// ---- about, leaning on recognizable objects rather than node diagrams.
+
+// PR security review: a mini PR thread — changed files scope the review,
+// the bot's comments land in sequence, ending with review complete.
+function renderThreadMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-pr">
+        <div class="pr-head"><span class="pr-num">PR #248</span><span class="pr-title">Add tenant check to billing flows</span><b>7 files · 2 flagged</b></div>
+        <div class="pr-files">
+          <span class="pf">auth/jwt.ts</span><span class="pf hit">billing/update.ts</span><span class="pf">util/log.ts</span><span class="pf hit">api/invoice.ts</span><span class="pf">ui/receipt.tsx</span>
+        </div>
+        <div class="pr-thread">
+          <div class="pr-comment bot"><b>zeroquarry[bot]</b><span>tenant check missing in billing/update.ts — invoice_id reaches the query without an account filter</span></div>
+          <div class="pr-comment sug"><b>suggestion</b><span>scope the lookup by account_id before update</span></div>
+          <div class="pr-comment sys"><b>review complete</b><span>1 validated finding · fix suggested · retest queued</span></div>
+        </div>
+      </div>`);
+}
+
+// Release security review: an artifact approaches a promotion gate. First
+// pass clears the checkpoints and is promoted; second pass is held.
+function renderGateMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-gate">
+        <div class="gate-checks">
+          <span class="gchk g1"><i></i>source = artifact</span>
+          <span class="gchk g2"><i></i>signature valid</span>
+          <span class="gchk g3"><i></i>staging clean</span>
+        </div>
+        <div class="gate-stage">
+          <i class="gate-lane" aria-hidden="true"></i>
+          <div class="gate-artifact"><span>v1.14.0</span><em>release candidate</em></div>
+          <div class="gate-bar" aria-hidden="true"></div>
+          <div class="gate-badge pass">PROMOTED ✓</div>
+          <div class="gate-badge hold">HOLD · fix before promote</div>
+        </div>
+      </div>`);
+}
+
+// Inbound vulnerability reports: a raw email unfolds into a structured,
+// numbered case with a triage status trail.
+function renderEmailMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-email">
+        <div class="email-card">
+          <div class="em-head"><span>researcher@example.dev</span><span>to security@</span></div>
+          <div class="em-subject">Reproduced XSS in your contact form</div>
+          <div class="em-body">stored payload executes on submit — PoC and request log attached</div>
+        </div>
+        <div class="email-arrow" aria-hidden="true">-&gt;</div>
+        <div class="case-card">
+          <div class="case-num">ZQC-412</div>
+          <div class="case-field"><span>claim</span><b>stored XSS · contact form</b></div>
+          <div class="case-field"><span>target</span><b>app/contact · mapped to main</b></div>
+          <div class="case-field"><span>evidence</span><b>PoC attached · 2 requests</b></div>
+          <div class="case-status"><span class="cs s1">acknowledged</span><span class="cs s2">triaged</span><span class="cs s3">fix routed</span></div>
+        </div>
+      </div>`);
+}
+
+// Vulnerability disclosure: a dated coordination timeline with both
+// parties, closing on publication.
+function renderTimelineMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-timeline">
+        <div class="tl-parties"><span class="tp-res">Researcher</span><span class="tp-ven">Vendor</span></div>
+        <div class="tl-axis"><i class="tl-fill" aria-hidden="true"></i>
+          <div class="tl-mile up m1" style="--d:0s"><span class="lb"><b>reported</b><em>Mar 04</em></span></div>
+          <div class="tl-mile down m2" style="--d:2.4s"><span class="lb"><b>acknowledged</b><em>Mar 06</em></span></div>
+          <div class="tl-mile up m3" style="--d:4.8s"><span class="lb"><b>fix shipped</b><em>Mar 21</em></span></div>
+          <div class="tl-mile down m4" style="--d:7.2s"><span class="lb"><b>embargo lifts</b><em>Apr 15</em></span></div>
+          <div class="tl-mile up m5" style="--d:9.6s"><span class="lb"><b>published</b><em>Apr 17</em></span></div>
+        </div>
+        <div class="tl-handshake"><span>coordinated writeup · credit shared</span></div>
+      </div>`);
+}
+
+// Customer security reviews: the buyer's questions answer themselves from
+// product history, each with its receipt.
+function renderQaMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-qa">
+        <div class="qa-item"><span class="q">Do you run penetration tests?</span><span class="a"><b>yes</b>pentest report ZQ-1180 · Sep<em>report</em></span></div>
+        <div class="qa-item"><span class="q">How are findings remediated?</span><span class="a"><b>gated</b>patch → review → retest verified · SEC-194<em>retest</em></span></div>
+        <div class="qa-item"><span class="q">Can you share evidence?</span><span class="a"><b>controlled</b>share link sent · expires in 30 days<em>share</em></span></div>
+        <div class="qa-from"><span>enterprise buyer</span><span>security questionnaire</span></div>
+      </div>`);
+}
+
+// Startup security: enterprise security roles get substituted, one by one,
+// by ZeroQuarry coverage — security-ready at headcount zero.
+function renderSubstituteMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-sub">
+        <div class="sub-slots">
+          <div class="sub-slot" style="--d:1.4s"><span class="role">pentester<em>the specialty you hire for</em></span><span class="cov"><b>ZeroQuarry</b>AI pentest · 25 runs a year</span></div>
+          <div class="sub-slot" style="--d:5.6s"><span class="role">appsec engineer<em>triage and remediation queues</em></span><span class="cov"><b>ZeroQuarry</b>validation · patches · retests</span></div>
+          <div class="sub-slot" style="--d:9.8s"><span class="role">compliance owner<em>evidence for every review</em></span><span class="cov"><b>ZeroQuarry</b>evidence packs · buyer reports</span></div>
+          <div class="sub-mover" aria-hidden="true">ZeroQuarry</div>
+        </div>
+        <div class="sub-badge"><span>security-ready</span><em>headcount 0</em></div>
+      </div>`);
+}
+
+// Open source maintainers: one scanner issue card gets a verification
+// checklist and a maintainer verdict.
+function renderIssueMotion(key, visual) {
+  return motionShell(key, visual, `
+      <div class="mv-issue">
+        <div class="issue-card">
+          <div class="is-head"><span class="is-tag">[scanner]</span><b>XSS in search params</b><em>issue #412 · open</em></div>
+          <div class="is-claim">claim: reflected XSS via ?q= on /search</div>
+          <div class="is-checks">
+            <div class="ick k1"><i></i>target mapped · public repo, main branch</div>
+            <div class="ick k2"><i></i>reproduced on main · payload reflects</div>
+            <div class="ick k3"><i></i>PoC validated · 2 requests</div>
+          </div>
+          <div class="is-verdict">reproducible · patch suggested</div>
+        </div>
+      </div>`);
+}
+
 function renderMotionVisual(key) {
   const visual = motionVisuals[key] || motionVisuals["platform-overview"];
   switch (visual.variant) {
@@ -1033,6 +1135,13 @@ function renderMotionVisual(key) {
     case "patch": return renderPatchMotion(key, visual);
     case "containment": return renderContainmentMotion(key, visual);
     case "documents": return renderDocumentsMotion(key, visual);
+    case "thread": return renderThreadMotion(key, visual);
+    case "gate": return renderGateMotion(key, visual);
+    case "email": return renderEmailMotion(key, visual);
+    case "timeline": return renderTimelineMotion(key, visual);
+    case "qa": return renderQaMotion(key, visual);
+    case "substitute": return renderSubstituteMotion(key, visual);
+    case "issue": return renderIssueMotion(key, visual);
     default: return renderRouterMotion(key, visual);
   }
 }

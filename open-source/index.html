@@ -104,16 +104,23 @@
   </div>
 </header>
 <main class="marketing-main">
-  <section class="buyer-hero detail-hero"><div class="container"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><span>Open source maintainers</span></nav><div class="buyer-hero-grid"><div><div class="buyer-kicker">Free for open source</div><h1 class="buyer-title detail-title">Your project is open. Your security inbox should not be a <em>full-time job.</em></h1><p class="buyer-lede">Forward a vulnerability report from your maintainer inbox. ZeroQuarry checks the claim against the public repository, challenges weak evidence, and keeps the decision and follow-up in one place.</p><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Protect an open-source project free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#eligibility">Check eligibility</a></div><div class="buyer-proofline"><span>No card</span><span>No fixed expiration</span><span>One public project</span></div></div><div class="motion-system motion-open-source" role="img" aria-label="Animated open-source maintainer workflow validating a scanner report against public source and retaining the decision">
+  <section class="buyer-hero detail-hero"><div class="container"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><span>Open source maintainers</span></nav><div class="buyer-hero-grid"><div><div class="buyer-kicker">Free for open source</div><h1 class="buyer-title detail-title">Your project is open. Your security inbox should not be a <em>full-time job.</em></h1><p class="buyer-lede">Forward a vulnerability report from your maintainer inbox. ZeroQuarry checks the claim against the public repository, challenges weak evidence, and keeps the decision and follow-up in one place.</p><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Protect an open-source project free <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#eligibility">Check eligibility</a></div><div class="buyer-proofline"><span>No card</span><span>No fixed expiration</span><span>One public project</span></div></div><div class="motion-system motion-open-source" role="img" aria-label="A scanner issue card gets a verification checklist, target mapped, reproduced, PoC validated, and a maintainer verdict stamp">
     <div class="motion-head"><span>maintainer://report-queue</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
-      <div class="motion-grid" aria-hidden="true"></div><div class="motion-scanline" aria-hidden="true"></div>
+      <div class="motion-grid" aria-hidden="true"></div>
       
-      <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>REPORT</span><strong>scanner-generated claim</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>REPOSITORY</span><strong>public source</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>CONTEXT</span><strong>maintainer boundaries</strong></div></div>
-      <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Maintainer triage loop</strong><span>Check the claim before it becomes project work</span><b>active</b></div>
-      <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>VERDICT</span><strong>validated or disputed</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>RETEST</span><strong>resolution checked</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>RECORD</span><strong>evidence retained</strong></div></div>
+      <div class="mv-issue">
+        <div class="issue-card">
+          <div class="is-head"><span class="is-tag">[scanner]</span><b>XSS in search params</b><em>issue #412 · open</em></div>
+          <div class="is-claim">claim: reflected XSS via ?q= on /search</div>
+          <div class="is-checks">
+            <div class="ick k1"><i></i>target mapped · public repo, main branch</div>
+            <div class="ick k2"><i></i>reproduced on main · payload reflects</div>
+            <div class="ick k3"><i></i>PoC validated · 2 requests</div>
+          </div>
+          <div class="is-verdict">reproducible · patch suggested</div>
+        </div>
+      </div>
     </div>
     <div class="motion-foot"><span class="pulse-dot"></span><span>one bounded workflow from incoming claim to maintainer decision</span></div>
   </div></div></div></section>
