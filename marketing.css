@@ -2722,8 +2722,8 @@
 .is-claim { padding: 9px 12px; border-left: 3px solid var(--line-2); border-radius: 3px; background: var(--shade-1); color: var(--ink-2); font-family: var(--mono); font-size: 10.5px; line-height: 1.5; }
 .is-checks { display: grid; gap: 9px; }
 .ick { display: grid; grid-template-columns: 16px 1fr; gap: 9px; align-items: center; color: var(--ink-3); font-size: 11px; }
-.ick i { position: relative; width: 13px; height: 13px; border: 1px solid var(--line-2); border-radius: 50%; }
-.ick i::after { content: ""; position: absolute; left: 3px; top: 1px; width: 4px; height: 7px; border-right: 2px solid transparent; border-bottom: 2px solid transparent; transform: rotate(40deg); }
+.ick i { position: relative; width: 13px; height: 13px; border: 1px solid currentColor; border-radius: 50%; }
+.ick i::after { content: ""; position: absolute; left: 3px; top: 1px; width: 4px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(40deg); }
 .is-verdict {
   justify-self: start;
   padding: 7px 15px;
@@ -2738,12 +2738,30 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .mv-issue .ick i { background: transparent; }
-  html.js .mv-issue .ick { color: var(--ink-3); }
-  html.js .mv-issue .ick.k1 { animation: ickCheck 11s steps(1) infinite both; }
-  html.js .mv-issue .ick.k2 { animation: ickCheck 11s steps(1) infinite both; animation-delay: 2.2s; }
-  html.js .mv-issue .ick.k3 { animation: ickCheck 11s steps(1) infinite both; animation-delay: 4.4s; }
-  html.js .mv-issue .is-verdict { opacity: 0; animation: issStamp 11s ease-out 6.6s infinite both; }
+  /* the checklist builds: each row flies in, then checks itself green */
+  html.js .mv-issue .ick { opacity: 0; }
+  html.js .mv-issue .ick.k1 { animation: ickBuild1 11s ease-out infinite both; }
+  html.js .mv-issue .ick.k2 { animation: ickBuild2 11s ease-out infinite both; }
+  html.js .mv-issue .ick.k3 { animation: ickBuild3 11s ease-out infinite both; }
+  html.js .mv-issue .is-verdict { opacity: 0; animation: issStamp 11s ease-out infinite both; }
 
-  @keyframes ickCheck { 0% { border-color: var(--line-2); color: var(--ink-3); } 6%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
-  @keyframes issStamp { 0%, 3% { opacity: 0; transform: rotate(-2deg) scale(1.6); } 8%, 90% { opacity: 1; transform: rotate(-2deg) scale(1); } 96%, 100% { opacity: 0; } }
+  @keyframes ickBuild1 {
+    0%, 3% { opacity: 0; transform: translateX(-8px); border-color: var(--line-2); color: var(--ink-3); }
+    5% { opacity: 1; transform: none; border-color: var(--line-2); color: var(--ink-3); }
+    9%, 95% { opacity: 1; border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); }
+    99%, 100% { opacity: 0; }
+  }
+  @keyframes ickBuild2 {
+    0%, 20% { opacity: 0; transform: translateX(-8px); border-color: var(--line-2); color: var(--ink-3); }
+    22% { opacity: 1; transform: none; border-color: var(--line-2); color: var(--ink-3); }
+    26%, 95% { opacity: 1; border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); }
+    99%, 100% { opacity: 0; }
+  }
+  @keyframes ickBuild3 {
+    0%, 37% { opacity: 0; transform: translateX(-8px); border-color: var(--line-2); color: var(--ink-3); }
+    39% { opacity: 1; transform: none; border-color: var(--line-2); color: var(--ink-3); }
+    43%, 95% { opacity: 1; border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); }
+    99%, 100% { opacity: 0; }
+  }
+  @keyframes issStamp { 0%, 60% { opacity: 0; transform: rotate(-2deg) scale(1.6); } 65%, 92% { opacity: 1; transform: rotate(-2deg) scale(1); } 97%, 100% { opacity: 0; } }
 }
