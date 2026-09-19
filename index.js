@@ -125,12 +125,22 @@
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
 
-  // Insurance: if the observer is slow or blocked, drop the hidden state
-  // entirely after a few seconds so content can never stay invisible.
-  window.setTimeout(() => {
-    root.classList.add("reveal-timeout");
-    observer.disconnect();
-  }, 4000);
+  // Insurance: if the observer is slow or blocked, periodically reveal
+  // whatever is currently on screen so content can never stay hidden.
+  // Elements below the fold keep observing and reveal on scroll as usual.
+  const sweep = () => {
+    document.querySelectorAll("[data-reveal]:not(.revealed)").forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        el.classList.add("revealed");
+        el.addEventListener("animationend", () => {
+          el.classList.remove("revealed");
+          el.removeAttribute("data-reveal");
+        }, { once: true });
+      }
+    });
+  };
+  window.setInterval(sweep, 2000);
 
   plans.forEach(([containerSelector, childSelector, step, cap]) => {
     document.querySelectorAll(containerSelector).forEach((container) => {

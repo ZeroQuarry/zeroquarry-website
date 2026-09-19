@@ -2454,10 +2454,10 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .pr-comment { opacity: 0; }
-  html.js .pr-comment.bot { animation: prLand 12s ease-out 1.2s infinite both; }
-  html.js .pr-comment.sug { animation: prLand 12s ease-out 4.8s infinite both; }
-  html.js .pr-comment.sys { animation: prLand 12s ease-out 8.4s infinite both; }
-  .pf.hit { animation: prHit 12s ease-in-out infinite; }
+  html.js .pr-comment.bot { animation: prLand 14s ease-out 1.2s infinite both; }
+  html.js .pr-comment.sug { animation: prLand 14s ease-out 4.2s infinite both; }
+  html.js .pr-comment.sys { animation: prLand 14s ease-out 7.2s infinite both; }
+  .pf.hit { animation: prHit 14s ease-in-out infinite; }
 
   @keyframes prLand { 0% { opacity: 0; transform: translateY(9px); } 4%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
   @keyframes prHit { 0%, 6% { border-color: var(--line-2); color: var(--ink-3); } 10%, 90% { border-color: color-mix(in srgb, var(--red) 45%, transparent); color: var(--ink); } 94%, 100% { border-color: var(--line-2); color: var(--ink-3); } }
@@ -2633,9 +2633,9 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .mv-qa .a { opacity: 0; }
-  html.js .qa-item:nth-of-type(1) .a { animation: qaIn 13s ease-out 1s infinite both; }
-  html.js .qa-item:nth-of-type(2) .a { animation: qaIn 13s ease-out 4.6s infinite both; }
-  html.js .qa-item:nth-of-type(3) .a { animation: qaIn 13s ease-out 8.2s infinite both; }
+  html.js .qa-item:nth-of-type(1) .a { animation: qaIn 15s ease-out 1.2s infinite both; }
+  html.js .qa-item:nth-of-type(2) .a { animation: qaIn 15s ease-out 4.4s infinite both; }
+  html.js .qa-item:nth-of-type(3) .a { animation: qaIn 15s ease-out 7.6s infinite both; }
 
   @keyframes qaIn { 0% { opacity: 0; transform: translateY(6px); } 4%, 92% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
 }
