@@ -2454,12 +2454,16 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .pr-comment { opacity: 0; }
-  html.js .pr-comment.bot { animation: prLand 14s ease-out 1.2s infinite both; }
-  html.js .pr-comment.sug { animation: prLand 14s ease-out 4.2s infinite both; }
-  html.js .pr-comment.sys { animation: prLand 14s ease-out 7.2s infinite both; }
-  .pf.hit { animation: prHit 14s ease-in-out infinite; }
+  html.js .pr-comment.bot { animation: prLand1 15s ease-out infinite both; }
+  html.js .pr-comment.sug { animation: prLand2 15s ease-out infinite both; }
+  html.js .pr-comment.sys { animation: prLand3 15s ease-out infinite both; }
+  .pf.hit { animation: prHit 15s ease-in-out infinite; }
 
-  @keyframes prLand { 0% { opacity: 0; transform: translateY(9px); } 4%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+  /* entrances staggered inside the keyframes; the exit is shared so the
+     whole thread clears at once at the cycle reset */
+  @keyframes prLand1 { 0%, 3% { opacity: 0; transform: translateY(9px); } 5%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes prLand2 { 0%, 19% { opacity: 0; transform: translateY(9px); } 21%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes prLand3 { 0%, 37% { opacity: 0; transform: translateY(9px); } 39%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
   @keyframes prHit { 0%, 6% { border-color: var(--line-2); color: var(--ink-3); } 10%, 90% { border-color: color-mix(in srgb, var(--red) 45%, transparent); color: var(--ink); } 94%, 100% { border-color: var(--line-2); color: var(--ink-3); } }
 }
 
@@ -2561,16 +2565,23 @@
 @media (prefers-reduced-motion: no-preference) {
   html.js .mv-email .email-card { animation: emIn 14s ease-out infinite both; }
   html.js .mv-email .case-field, html.js .mv-email .case-num, html.js .mv-email .cs { opacity: 0; }
-  html.js .mv-email .case-num { animation: caseBit 14s ease-out 3.4s infinite both; }
-  html.js .mv-email .case-field:nth-of-type(1) { animation: caseBit 14s ease-out 4.6s infinite both; }
-  html.js .mv-email .case-field:nth-of-type(2) { animation: caseBit 14s ease-out 5.6s infinite both; }
-  html.js .mv-email .case-field:nth-of-type(3) { animation: caseBit 14s ease-out 6.6s infinite both; }
-  html.js .mv-email .cs.s1 { animation: caseBit 14s ease-out 8s infinite both; }
-  html.js .mv-email .cs.s2 { animation: caseBit 14s ease-out 9.2s infinite both; }
-  html.js .mv-email .cs.s3 { animation: caseBit 14s ease-out 10.4s infinite both; }
+  html.js .mv-email .case-num { animation: caseBit1 14s ease-out infinite both; }
+  html.js .mv-email .case-field:nth-of-type(1) { animation: caseBit2 14s ease-out infinite both; }
+  html.js .mv-email .case-field:nth-of-type(2) { animation: caseBit3 14s ease-out infinite both; }
+  html.js .mv-email .case-field:nth-of-type(3) { animation: caseBit4 14s ease-out infinite both; }
+  html.js .mv-email .cs.s1 { animation: caseBit5 14s ease-out infinite both; }
+  html.js .mv-email .cs.s2 { animation: caseBit6 14s ease-out infinite both; }
+  html.js .mv-email .cs.s3 { animation: caseBit7 14s ease-out infinite both; }
 
-  @keyframes emIn { 0% { opacity: 0; transform: translateX(-18px); } 5%, 100% { opacity: 1; transform: none; } }
-  @keyframes caseBit { 0% { opacity: 0; transform: translateY(7px); } 3%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  @keyframes emIn { 0% { opacity: 0; transform: translateX(-18px); } 5%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  /* entrances staggered in keyframes; exit shared at 88-92% */
+  @keyframes caseBit1 { 0%, 23% { opacity: 0; transform: translateY(7px); } 25%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes caseBit2 { 0%, 32% { opacity: 0; transform: translateY(7px); } 34%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes caseBit3 { 0%, 39% { opacity: 0; transform: translateY(7px); } 41%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes caseBit4 { 0%, 46% { opacity: 0; transform: translateY(7px); } 48%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes caseBit5 { 0%, 56% { opacity: 0; transform: translateY(7px); } 58%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes caseBit6 { 0%, 64% { opacity: 0; transform: translateY(7px); } 66%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes caseBit7 { 0%, 73% { opacity: 0; transform: translateY(7px); } 75%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
 }
 
 /* ---------- timeline (vulnerability disclosure) ---------- */
@@ -2612,14 +2623,21 @@
   html.js .tl-mile { opacity: 0; }
   .tl-mile.up { --ty: 8px; }
   .tl-mile.down { --ty: -8px; }
-  html.js .tl-mile { animation: tlPop 14s ease-out var(--d, 0s) infinite both; }
-  html.js .tl-mile::before { animation: tlDot 14s ease-out var(--d, 0s) infinite both; }
+  html.js .tl-mile.m1 { animation: tlMile1 14s ease-out infinite both; }
+  html.js .tl-mile.m2 { animation: tlMile2 14s ease-out infinite both; }
+  html.js .tl-mile.m3 { animation: tlMile3 14s ease-out infinite both; }
+  html.js .tl-mile.m4 { animation: tlMile4 14s ease-out infinite both; }
+  html.js .tl-mile.m5 { animation: tlMile5 14s ease-out infinite both; }
+  html.js .tl-mile::before { border-color: var(--red); background: var(--red); }
   html.js .tl-handshake { opacity: 0; animation: tlShake 14s ease-out infinite both; }
 
-  @keyframes tlFill { 0% { transform: scaleX(0); } 72%, 100% { transform: scaleX(1); } }
-  @keyframes tlPop { 0%, 1% { opacity: 0; transform: translateY(var(--ty, 8px)); } 6%, 93% { opacity: 1; transform: none; } 99%, 100% { opacity: 0; } }
-  @keyframes tlDot { 0%, 1% { border-color: var(--line-2); background: var(--bg); } 6%, 93% { border-color: var(--red); background: var(--red); } 99%, 100% { border-color: var(--line-2); background: var(--bg); } }
-  @keyframes tlShake { 0%, 76% { opacity: 0; transform: translateY(6px); } 81%, 95% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  @keyframes tlFill { 0% { transform: scaleX(0); opacity: 1; } 73%, 88% { transform: scaleX(1); opacity: 1; } 92%, 100% { transform: scaleX(0); opacity: 0; } }
+  @keyframes tlMile1 { 0%, 3% { opacity: 0; transform: translateY(var(--ty, 8px)); } 5%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes tlMile2 { 0%, 20% { opacity: 0; transform: translateY(var(--ty, 8px)); } 22%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes tlMile3 { 0%, 38% { opacity: 0; transform: translateY(var(--ty, 8px)); } 40%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes tlMile4 { 0%, 55% { opacity: 0; transform: translateY(var(--ty, 8px)); } 57%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes tlMile5 { 0%, 72% { opacity: 0; transform: translateY(var(--ty, 8px)); } 74%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes tlShake { 0%, 78% { opacity: 0; transform: translateY(6px); } 82%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
 }
 
 /* ---------- qa (customer security reviews) ---------- */
@@ -2633,11 +2651,13 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .mv-qa .a { opacity: 0; }
-  html.js .qa-item:nth-of-type(1) .a { animation: qaIn 15s ease-out 1.2s infinite both; }
-  html.js .qa-item:nth-of-type(2) .a { animation: qaIn 15s ease-out 4.4s infinite both; }
-  html.js .qa-item:nth-of-type(3) .a { animation: qaIn 15s ease-out 7.6s infinite both; }
+  html.js .qa-item:nth-of-type(1) .a { animation: qaIn1 15s ease-out infinite both; }
+  html.js .qa-item:nth-of-type(2) .a { animation: qaIn2 15s ease-out infinite both; }
+  html.js .qa-item:nth-of-type(3) .a { animation: qaIn3 15s ease-out infinite both; }
 
-  @keyframes qaIn { 0% { opacity: 0; transform: translateY(6px); } 4%, 92% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+  @keyframes qaIn1 { 0%, 4% { opacity: 0; transform: translateY(6px); } 6%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes qaIn2 { 0%, 21% { opacity: 0; transform: translateY(6px); } 23%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes qaIn3 { 0%, 39% { opacity: 0; transform: translateY(6px); } 41%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
 }
 
 /* ---------- substitute (startup security) ---------- */
@@ -2690,9 +2710,9 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .sub-slot .cov { opacity: 0; }
-  html.js .sub-slot:nth-of-type(1) .cov { animation: covIn 15s ease-out 2.2s infinite both; }
-  html.js .sub-slot:nth-of-type(2) .cov { animation: covIn 15s ease-out 6.4s infinite both; }
-  html.js .sub-slot:nth-of-type(3) .cov { animation: covIn 15s ease-out 10.6s infinite both; }
+  html.js .sub-slot:nth-of-type(1) .cov { animation: covIn1 15s ease-out infinite both; }
+  html.js .sub-slot:nth-of-type(2) .cov { animation: covIn2 15s ease-out infinite both; }
+  html.js .sub-slot:nth-of-type(3) .cov { animation: covIn3 15s ease-out infinite both; }
   html.js .sub-mover { animation: subMove 15s ease-in-out infinite both; }
   html.js .sub-badge { opacity: 0; animation: subBadge 15s ease-out infinite both; }
 
@@ -2708,7 +2728,9 @@
     44%, 78% { top: 84%; }
     86%, 100% { opacity: 0; top: 84%; }
   }
-  @keyframes covIn { 0% { opacity: 0; transform: translateX(8px); } 4%, 90% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+  @keyframes covIn1 { 0%, 12% { opacity: 0; transform: translateX(8px); } 14%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes covIn2 { 0%, 32% { opacity: 0; transform: translateX(8px); } 34%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes covIn3 { 0%, 56% { opacity: 0; transform: translateX(8px); } 58%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
   @keyframes subBadge { 0%, 78% { opacity: 0; transform: translateY(6px); } 83%, 96% { opacity: 1; transform: none; } 100% { opacity: 0; } }
 }
 
