@@ -34,6 +34,10 @@ for (const filePath of walk(root)) {
   const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1].trim();
   const h1Count = (html.match(/<h1\b/gi) || []).length;
 
+  // Netlify serves 404.html at the depth of whatever URL missed, so a
+  // page-relative reference resolves against that deep URL and breaks.
+  const servedAtEveryDepth = relativePath === "404.html";
+
   if (!title) errors.push(`${relativePath}: missing title`);
   if (!noindex) {
     if (!/<meta\s+name=["']description["']/i.test(html)) errors.push(`${relativePath}: missing meta description`);
@@ -48,6 +52,10 @@ for (const filePath of walk(root)) {
   for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)) {
     const url = match[1];
     if (/^(?:https?:|mailto:|tel:|data:|javascript:|#|\/\/)/i.test(url)) continue;
+    if (servedAtEveryDepth && !url.startsWith("/")) {
+      errors.push(`${relativePath}: served at every URL depth, reference must be root-relative: ${url}`);
+      continue;
+    }
     if (!localTargetExists(filePath, url)) errors.push(`${relativePath}: unresolved local reference ${url}`);
   }
 }
