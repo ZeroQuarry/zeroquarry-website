@@ -122,6 +122,8 @@ function renderInline(text) {
     tokens.push(`<code>${code}</code>`);
     return token;
   });
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_match, alt, src) =>
+    `<img src="${src.trim()}" alt="${alt}" loading="lazy" decoding="async" />`);
   html = renderLinks(html);
   html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   html = html.replace(/__([^_]+)__/g, '<strong>$1</strong>');
@@ -249,7 +251,7 @@ function slugify(value) {
     .replace(/^-|-$/g, '');
 }
 
-function layout({ title, description, canonical, ogTitle, ogDescription, relativePrefix, body, active = 'Research' }) {
+function layout({ title, description, canonical, ogTitle, ogDescription, ogImageWidth = 1200, ogImageHeight = 630, relativePrefix, body, active = 'Research' }) {
   const socialImage = arguments[0].image;
   const imageUrl = socialImage
     ? socialImage.startsWith('http')
@@ -258,8 +260,8 @@ function layout({ title, description, canonical, ogTitle, ogDescription, relativ
     : '';
   const imageMeta = imageUrl
     ? `<meta property="og:image" content="${escapeAttr(imageUrl)}" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+<meta property="og:image:width" content="${escapeAttr(String(ogImageWidth))}" />
+<meta property="og:image:height" content="${escapeAttr(String(ogImageHeight))}" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="${escapeAttr(imageUrl)}" />`
     : '';
@@ -376,6 +378,8 @@ ${rendered.html}
     ogTitle: post.data.ogTitle,
     ogDescription: post.data.ogDescription,
     image: post.data.image,
+    ogImageWidth: post.data.ogImageWidth,
+    ogImageHeight: post.data.ogImageHeight,
     relativePrefix: '../../',
     body,
   });

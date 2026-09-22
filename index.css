@@ -1641,6 +1641,14 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   background: var(--shade-2);
   overflow-x: auto;
 }
+.article-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 6px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
 .article-body pre code {
   color: var(--ink);
   font-family: var(--mono);

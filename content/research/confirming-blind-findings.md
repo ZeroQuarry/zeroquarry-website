@@ -7,6 +7,9 @@ status: "Shipped"
 description: "ZeroQuarry's scan workers are outbound-only by design, which made blind findings unprovable. A new out-of-band collector gives the agent a sanctioned way to confirm blind SSRF, XXE, and exfiltration with the raw callback as evidence."
 ogTitle: "Blind SSRF, confirmed: how ZeroQuarry's out-of-band collector proves what it can't see"
 ogDescription: "Scan workers with no inbound access could plant blind SSRF payloads but never watch the callback. A new out-of-band collector confirms blind findings with the raw request as evidence, without weakening worker isolation."
+image: "/assets/research/architecture.png"
+ogImageWidth: 3360
+ogImageHeight: 2408
 featuredSummary: "ZeroQuarry scan workers are outbound-only by design, which made blind findings unprovable. A new out-of-band collector gives the agent a sanctioned callback channel so blind SSRF, XXE, and exfiltration ship with the raw request as evidence."
 tags:
   - oob
@@ -48,6 +51,23 @@ There are also caps in code: 200 probes per scan, 500 interactions per scan, 64 
 
 One rule worth stating explicitly: the agent is forbidden from pointing payloads at third-party callback services (interact.sh, webhook.site, requestbin, and friends). Those callbacks leave no evidence in the scan's record, and aiming an authorized target at infrastructure neither of us controls is bad practice I do not want an agent committing on a customer's behalf.
 
+## The collector is one layer, not the plan
+
+The OOB collector closes a proof gap. It is not what keeps the agents contained. It sits on top of an architecture that assumes every agent will be attacked, by the very target it is scanning, from the moment it starts.
+
+![ZeroQuarry platform architecture: a split control plane and data plane, isolated temporary worker containers, a restricted agent toolset, and authorization gates on every scan](/assets/research/architecture.svg)
+
+The diagram above is the whole platform; [open it full-size](/assets/research/architecture.svg) if you want to read the small print. The layers that matter for this post:
+
+1. Authorization comes before anything fires. Scans run only against DNS-verified domains (the same general idea your certificate provider uses to prove you own a domain) or targets covered by a signed engagement. You cannot point ZeroQuarry at arbitrary things; the DNS record is the permission slip.
+2. Workers are ephemeral and unprivileged: one isolated container per job, non-root, minimal capabilities, no host network or socket access, wiped on completion. Agent code never runs on the control plane.
+3. Privilege scales with the scan type. A code scan is never given access to the internet at all. A remote scan's HTTP traffic goes through a regulated request tool that re-validates every request and every redirect against the scan's declared scope, blocks cloud-metadata and internal addresses, and rate-limits the whole thing. The OOB collector's per-scan token namespace is one of the very few allowed callback destinations, and it is minted fresh for every scan.
+4. The LLM gets tools, not a shell: a restricted, registered toolset running under CPU, memory, and process caps. It cannot set up a reverse shell, and when it writes its own Python or curl, that code runs inside the same network jail as the tools, not around them.
+5. A coordinator agent holds the scope: it knows which IPs, domains, and targets each worker should be touching, and deterministic controls watch the same traffic independently of any model's judgment. A wandering worker does not get to rely on the model policing itself.
+6. Results are fenced. Worker output is accepted only for the active leased attempt and is reconciled before it becomes a finding, and remediation ships as pull requests only after explicit human approval.
+
+This is why the question "has anything ever escaped?" has a boring answer. Across thousands of code and remote scans, ZeroQuarry has not had a sandbox escape. I do not credit that to unusually obedient models. For an escape to happen, an agent would have to choose to ignore its instructions, find an exploitable path in the target it was assigned to research that yields RCE or another lateral-movement primitive, use that path to defeat the SSRF, DNS, and IP guards, and then have both the coordinator and the deterministic controls miss the entire sequence while it happened. Each condition is individually unlikely; the design's job is making sure they all have to be true at once.
+
 ## What changes in the findings
 
 Blind SSRF that can reach cloud metadata is a different finding from blind SSRF that cannot, and the agent can now demonstrate which one it found instead of arguing from a response shape. Confirmed callbacks arrive with the raw request or DNS query, source IP, timestamp, and body excerpt on the report page, so a maintainer can reproduce the proof themselves instead of trusting our summary.
@@ -67,6 +87,8 @@ Put those next to each other and the design conclusion is fairly clear. An out-o
 We chose the door. Worker isolation did not move: still outbound-only, still no ingress. What changed is that the one channel the work genuinely needs now exists as a designed thing: single-purpose per scan, readable only with a key the target never gets, poisoning-resistant by construction, and purgeable on completion. An agent escaping its sandbox is an incident. An agent confirming an exploitable SSRF through a sanctioned, audited callback is the scanner working as designed.
 
 There is a symmetry there that I enjoy: the bug class this feature lets us confirm, unauthenticated SSRF reachable from hostile input, is the same class used in nearly every documented sandbox escape. The scanner just got better at finding the exact technique other people's agents use to break out.
+
+That is also why the escape stories all read the same way to me now. When I hear about a sandbox escape, I am less impressed with the model's capabilities and more unimpressed with how little the security team safeguarded the model through its harness.
 
 ## Trying it
 

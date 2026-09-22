@@ -10,7 +10,11 @@
 <meta property="og:description" content="Scan workers with no inbound access could plant blind SSRF payloads but never watch the callback. A new out-of-band collector confirms blind findings with the raw request as evidence, without weakening worker isolation." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zeroquarry.com/research/confirming-blind-findings" />
-
+<meta property="og:image" content="https://zeroquarry.com/assets/research/architecture.png" />
+<meta property="og:image:width" content="3360" />
+<meta property="og:image:height" content="2408" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/research/architecture.png" />
 <link rel="icon" type="image/png" href="../../assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,6 +136,7 @@
       <aside class="article-toc" aria-label="Article sections">
         <a href="#how-it-works">How it works</a>
 <a href="#the-design-problem-the-target-sees-the-callback-url">The design problem: the target sees the callback URL</a>
+<a href="#the-collector-is-one-layer-not-the-plan">The collector is one layer, not the plan</a>
 <a href="#what-changes-in-the-findings">What changes in the findings</a>
 <a href="#the-comparison-everyone-will-make">The comparison everyone will make</a>
 <a href="#trying-it">Trying it</a>
@@ -161,6 +166,19 @@
 </ul>
 <p>There are also caps in code: 200 probes per scan, 500 interactions per scan, 64 KB per stored body, and per-token rate limits. Evidence stays proportional to a scan rather than to a hostile target&#39;s imagination.</p>
 <p>One rule worth stating explicitly: the agent is forbidden from pointing payloads at third-party callback services (interact.sh, webhook.site, requestbin, and friends). Those callbacks leave no evidence in the scan&#39;s record, and aiming an authorized target at infrastructure neither of us controls is bad practice I do not want an agent committing on a customer&#39;s behalf.</p>
+<h2 id="the-collector-is-one-layer-not-the-plan">The collector is one layer, not the plan</h2>
+<p>The OOB collector closes a proof gap. It is not what keeps the agents contained. It sits on top of an architecture that assumes every agent will be attacked, by the very target it is scanning, from the moment it starts.</p>
+<p><img src="/assets/research/architecture.svg" alt="ZeroQuarry platform architecture: a split control plane and data plane, isolated temporary worker containers, a restricted agent toolset, and authorization gates on every scan" loading="lazy" decoding="async" /></p>
+<p>The diagram above is the whole platform; <a href="/assets/research/architecture.svg">open it full-size</a> if you want to read the small print. The layers that matter for this post:</p>
+<ol>
+<li>Authorization comes before anything fires. Scans run only against DNS-verified domains (the same general idea your certificate provider uses to prove you own a domain) or targets covered by a signed engagement. You cannot point ZeroQuarry at arbitrary things; the DNS record is the permission slip.</li>
+<li>Workers are ephemeral and unprivileged: one isolated container per job, non-root, minimal capabilities, no host network or socket access, wiped on completion. Agent code never runs on the control plane.</li>
+<li>Privilege scales with the scan type. A code scan is never given access to the internet at all. A remote scan&#39;s HTTP traffic goes through a regulated request tool that re-validates every request and every redirect against the scan&#39;s declared scope, blocks cloud-metadata and internal addresses, and rate-limits the whole thing. The OOB collector&#39;s per-scan token namespace is one of the very few allowed callback destinations, and it is minted fresh for every scan.</li>
+<li>The LLM gets tools, not a shell: a restricted, registered toolset running under CPU, memory, and process caps. It cannot set up a reverse shell, and when it writes its own Python or curl, that code runs inside the same network jail as the tools, not around them.</li>
+<li>A coordinator agent holds the scope: it knows which IPs, domains, and targets each worker should be touching, and deterministic controls watch the same traffic independently of any model&#39;s judgment. A wandering worker does not get to rely on the model policing itself.</li>
+<li>Results are fenced. Worker output is accepted only for the active leased attempt and is reconciled before it becomes a finding, and remediation ships as pull requests only after explicit human approval.</li>
+</ol>
+<p>This is why the question &quot;has anything ever escaped?&quot; has a boring answer. Across thousands of code and remote scans, ZeroQuarry has not had a sandbox escape. I do not credit that to unusually obedient models. For an escape to happen, an agent would have to choose to ignore its instructions, find an exploitable path in the target it was assigned to research that yields RCE or another lateral-movement primitive, use that path to defeat the SSRF, DNS, and IP guards, and then have both the coordinator and the deterministic controls miss the entire sequence while it happened. Each condition is individually unlikely; the design&#39;s job is making sure they all have to be true at once.</p>
 <h2 id="what-changes-in-the-findings">What changes in the findings</h2>
 <p>Blind SSRF that can reach cloud metadata is a different finding from blind SSRF that cannot, and the agent can now demonstrate which one it found instead of arguing from a response shape. Confirmed callbacks arrive with the raw request or DNS query, source IP, timestamp, and body excerpt on the report page, so a maintainer can reproduce the proof themselves instead of trusting our summary.</p>
 <p>Findings that used to require a human with their own callback infrastructure to verify now arrive already verified. That was the point.</p>
@@ -171,6 +189,7 @@
 <p>Put those next to each other and the design conclusion is fairly clear. An out-of-band callback is not an exotic capability; it is the thing agents improvise when the work needs it and nothing sanctioned exists, and the OpenAI agents improvised exactly that with their message boards. If out-of-band interaction is load-bearing for the work, the real choice is not whether traffic leaves the perimeter. It is whether it leaves through a door you designed, or through a hole somebody finds.</p>
 <p>We chose the door. Worker isolation did not move: still outbound-only, still no ingress. What changed is that the one channel the work genuinely needs now exists as a designed thing: single-purpose per scan, readable only with a key the target never gets, poisoning-resistant by construction, and purgeable on completion. An agent escaping its sandbox is an incident. An agent confirming an exploitable SSRF through a sanctioned, audited callback is the scanner working as designed.</p>
 <p>There is a symmetry there that I enjoy: the bug class this feature lets us confirm, unauthenticated SSRF reachable from hostile input, is the same class used in nearly every documented sandbox escape. The scanner just got better at finding the exact technique other people&#39;s agents use to break out.</p>
+<p>That is also why the escape stories all read the same way to me now. When I hear about a sandbox escape, I am less impressed with the model&#39;s capabilities and more unimpressed with how little the security team safeguarded the model through its harness.</p>
 <h2 id="trying-it">Trying it</h2>
 <p>OOB confirmation is automatic on remote scans; there is nothing to enable. The scan log shows &quot;OOB collector provisioned&quot; when the scan starts, and the report&#39;s Coverage notes tab gains an &quot;Out-of-band callbacks&quot; card once interactions are recorded.</p>
 <p>If you maintain an open-source project and want to see what confirmed findings look like, <a href="https://console.zeroquarry.com/register/open-source?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=confirming-blind-findings">check a public project free</a>. If you are evaluating software before deploying it, <a href="https://console.zeroquarry.com/register?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=confirming-blind-findings">start a 30-day trial</a> or <a href="https://zeroquarry.com/request-scan/?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=confirming-blind-findings">get in touch</a>.</p>
