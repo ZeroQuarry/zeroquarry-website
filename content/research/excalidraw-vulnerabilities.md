@@ -4,7 +4,7 @@ slug: "excalidraw-vulnerabilities"
 date: "2026-05-20"
 author: "Shane Connelly"
 status: "Mitigation available"
-description: "Short answer: the Excalidraw plugin for Obsidian had real attack paths, including attacker-controlled script execution. Mitigations have shipped. Here is what we found."
+description: "Is Excalidraw safe? Mostly yes, with one caveat: the vulnerabilities were in the Obsidian plugin, not the core library, and the fixes have shipped. Here is what we found and how disclosure went."
 ogTitle: "Is Excalidraw safe? Excalidraw plugin vulnerabilities, found and disclosed"
 ogDescription: "Opening a malicious Excalidraw Markdown file could cross trust boundaries and trigger attacker-controlled behavior."
 featured: true
