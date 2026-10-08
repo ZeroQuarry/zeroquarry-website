@@ -9,8 +9,6 @@
   const acceptedValue = 'accepted';
   const declinedValue = 'declined';
   const bannerId = 'cookie-consent-banner';
-  const cohortFormName = 'founding-security-cohort';
-  const cohortSubmissionMarker = 'zq_founding_cohort_submission_pending';
   const partnerFormName = 'security-partner-pilot';
   const partnerSubmissionMarker = 'zq_security_partner_submission_pending';
   let analyticsLoaded = false;
@@ -113,31 +111,6 @@
     }
   }
 
-  function setCohortSubmissionMarker() {
-    try {
-      window.sessionStorage.setItem(cohortSubmissionMarker, '1');
-    } catch (_) {}
-  }
-
-  function hasCohortSubmissionMarker() {
-    try {
-      return window.sessionStorage.getItem(cohortSubmissionMarker) === '1';
-    } catch (_) {
-      return false;
-    }
-  }
-
-  function consumeCohortSubmissionMarker(provider) {
-    const providerKey = cohortSubmissionMarker + '_' + provider;
-    try {
-      if (window.sessionStorage.getItem(providerKey) === '1') return false;
-      window.sessionStorage.setItem(providerKey, '1');
-      return true;
-    } catch (_) {
-      return true;
-    }
-  }
-
   function setPartnerSubmissionMarker() {
     try {
       window.sessionStorage.setItem(partnerSubmissionMarker, '1');
@@ -164,23 +137,6 @@
   }
 
   function trackCurrentPageMilestone(provider) {
-    if (window.location.pathname === '/founding-security-cohort/thanks/'
-      && hasCohortSubmissionMarker()
-      && consumeCohortSubmissionMarker(provider)) {
-      const properties = {
-        campaign_name: 'design-partner-pentest-2026',
-        source_path: window.location.pathname,
-        currency: 'USD',
-        value: 2000,
-      };
-      if (provider === 'google' && window.gtag) {
-        window.gtag('event', 'generate_lead', properties);
-      }
-      if (provider === 'posthog' && window.posthog && window.posthog.capture) {
-        window.posthog.capture('design_partner_application_received', properties);
-      }
-    }
-
     if (window.location.pathname === '/partners/thanks/'
       && hasPartnerSubmissionMarker()
       && consumePartnerSubmissionMarker(provider)) {
@@ -241,14 +197,6 @@
         source_path: window.location.pathname,
         destination_url: destination.origin + destination.pathname,
       });
-    });
-    installTrackedForm({
-      formName: cohortFormName,
-      campaignName: 'design-partner-pentest-2026',
-      startedEvent: 'design_partner_application_started',
-      submittedEvent: 'design_partner_application_submitted',
-      setSubmissionMarker: setCohortSubmissionMarker,
-      value: 2000,
     });
     installTrackedForm({
       formName: partnerFormName,

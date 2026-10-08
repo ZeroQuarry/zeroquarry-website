@@ -14,8 +14,6 @@ const signupUrls = {
   openSource: `${consoleUrl}/register/open-source`,
   customerEvidence: `${consoleUrl}/register/customer-evidence`,
 };
-const foundingCohortPath = "/founding-security-cohort/";
-const foundingCohortApplication = "#apply";
 const securityPartnerPath = "/partners/";
 const securityPartnerApplication = "#partner-apply";
 const signupBySlug = {
@@ -1333,243 +1331,10 @@ function homePage() {
       <div class="hero-system"><div class="system-head"><span>research://evidence</span><span class="system-status">coordinated</span></div><div class="loop-map"><div class="loop-node wide"><span>CLAIM</span><strong>Opening untrusted Markdown reaches executable behavior</strong><p>Trace the plugin path, prove reachability, and identify the affected configuration.</p></div><div class="loop-node"><span>CHALLENGE</span><strong>Is execution actually reachable?</strong><p>Test default state, permissions, versions, and realistic user action.</p></div><div class="loop-node"><span>OUTCOME</span><strong>Fix, disclose, publish</strong><p>Coordinate the maintainer response before turning the finding into public research.</p></div></div><div class="system-foot"><span class="pulse-dot"></span><span>public writeups follow responsible disclosure</span></div></div>
     </div>
   </section>
-  ${renderCta("See what ZeroQuarry finds on your product.", "Run the 30-day trial on one private product: real assessments, challenged findings, verified fixes, no card required. Want a founder-assisted start instead? The founding cohort adds an initial assessment and three rescans. If that first assessment surfaces nothing new worth recording, you get the $2,000 back.", signupUrls.general, "Start free trial", { href: `${foundingCohortPath}?utm_source=homepage&utm_medium=owned-site&utm_campaign=operations-founding-cohort-2026&utm_content=final-cta`, label: "See the founding cohort" })}
+  ${renderCta("See what ZeroQuarry finds on your product.", "Run the 30-day trial on one private product: real assessments, challenged findings, verified fixes, no card required.", signupUrls.general, "Start free trial") }
   </main>`;
 
   return layout({ title: "Continuous security testing that proves every finding | ZeroQuarry", description: "ZeroQuarry tests your product continuously, challenges every finding with adversarial review, opens the fix as a pull request, and keeps the evidence. Findings that do not survive review never reach your team.", canonical: `${siteUrl}/`, active: "home", body, schemas });
-}
-
-function foundingSecurityCohortPage() {
-  const guaranteeFaqs = [
-    ["What earns the $2,000 reimbursement?", "At the initial-assessment review, if the designated technical reviewer cannot identify at least one previously unknown, valid security issue or materially new security-relevant insight worth recording, ZeroQuarry reimburses the entire $2,000 first-year Operations fee. Findings disclosed as known at kickoff do not satisfy the guarantee. A refund ends the Operations subscription."],
-    ["What does not get reimbursed?", "Model-token costs are paid directly through your provider key or under a written hosted-usage cap and are not reimbursed. Testing that cannot complete because access, authorization, or required review participation was withdrawn is handled under the written order form rather than the outcome guarantee."],
-    ["What is included for the year?", "The cohort includes 12 months of the Operations package, one founder-assisted initial assessment and report, and up to three founder-assisted rescans and report refreshes. Teams may also run additional self-service scans within the Operations plan limits. Model usage is separate."],
-    ["What happens after the first year?", "The cohort price applies to the first 12-month term only. There is no automatic renewal under the cohort order form. Any renewal is agreed separately at the price and scope then offered."],
-    ["Can the report support SOC 2, ISO 27001, and customer reviews?", "Yes. The report records the tested scope, methodology, findings, evidence, decisions, remediation, and retest status needed for security and compliance review. Any organization-specific report requirements are captured during scoping."],
-    ["What is in scope?", "One written, authorized product agreed before payment: a repository or coherent codebase, a release artifact, or an application/API target. Scope, access, model choice, token budget, success test, and report audience are recorded before testing starts."],
-  ];
-  const body = `<main class="marketing-main">
-  <section class="buyer-hero">
-    <div class="container buyer-hero-grid">
-      <div>
-        <div class="buyer-kicker">Operations founding cohort · 10 companies</div>
-        <h1 class="buyer-title">One year of Operations for <em>$2,000.</em></h1>
-        <p class="buyer-lede">Operations is normally $500 per month. Cohort companies pay $2,000 upfront for the first year, or $166.67 per month effectively. That includes a founder-assisted initial assessment and report, the Operations platform for 12 months, and three founder-assisted rescans during the year.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for one of 10 places <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="#guarantee">Read the guarantee</a></div>
-        <div class="buyer-proofline"><span>$6,000 monthly-list equivalent</span><span>$2,000 first year</span><span>Model tokens separate</span></div>
-      </div>
-      <div class="hero-system" aria-label="Design partner security assessment operating plan">
-        <div class="system-head"><span>operations-cohort://first-year</span><span class="system-status">10 places</span></div>
-        <div class="loop-map">
-          <div class="loop-node wide"><span>START</span><strong>Run the initial assessment</strong><p>Choose one authorized product boundary, investigate it, challenge the findings, and produce the first report.</p></div>
-          <div class="loop-node"><span>OPERATE</span><strong>Use Operations for a year</strong><p>Keep findings, remediation, reports, schedules, integrations, and evidence in one operating record.</p></div>
-          <div class="loop-node"><span>RESCAN</span><strong>Verify what changes</strong><p>Use three founder-assisted rescans plus additional self-service runs within the Operations limits.</p></div>
-        </div>
-        <div class="system-foot"><span class="pulse-dot"></span><span>10 accepted scopes or applications while cohort places remain</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="buyer-section soft" id="cohort-scope">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">The first year</div><h2>Start with the assessment. Keep using the <em>operating system around it.</em></h2></div><p class="section-intro">The initial scan establishes the baseline. The Operations subscription lets the team remediate, rescan, refresh the report, and keep the evidence current through the year.</p></div>
-      ${renderCards([
-        ["Scope one real product", "Select one product and agree the code, artifact, live target, authorization, and business context that make the evaluation credible."],
-        ["Run the assessment", "Investigate the product with deterministic candidates and AI agents, then preserve the source, reasoning, evidence, and project history."],
-        ["Challenge the claims", "Use separate adversarial review, proof, and human disposition so weak results do not quietly become engineering work."],
-        ["Review what is novel", "Have your designated technical reviewer distinguish newly discovered, valid results from known issues, rejected claims, and low-value observations."],
-        ["Retest the result", "Use focused retests and up to three founder-assisted rescan cycles to verify remediation and identify regressions."],
-        ["Keep the report current", "Refresh the penetration test report as the product and findings change instead of treating the initial PDF as the end of the work."],
-      ])}
-    </div>
-  </section>
-
-  <section class="buyer-section">
-    <div class="container split-proof">
-      <div class="proof-copy">
-        <div class="section-label">Good fit</div>
-        <h2>You have security pressure before you have <em>AppSec headcount.</em></h2>
-        <div class="proof-list">
-          <div><span>01</span><p>An audit, customer review, launch, or security program calls for testing and current application-security evidence.</p></div>
-          <div><span>02</span><p>An engineering leader can authorize one real product and serve as the designated technical reviewer.</p></div>
-          <div><span>03</span><p>The team wants a validated result and report, not the largest possible alert count.</p></div>
-        </div>
-      </div>
-      <div class="proof-copy">
-        <div class="section-label">What you bring</div>
-        <h2>A real product, a reviewer, and <em>a reason to act now.</em></h2>
-        <div class="proof-list">
-          <div><span>01</span><p>One authorized repository, release, app, or API that matters to the business.</p></div>
-          <div><span>02</span><p>One technical reviewer who can evaluate the findings and record the outcome.</p></div>
-          <div><span>03</span><p>One current deadline or security trigger that gives the assessment a clear purpose.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="buyer-section soft" id="build-vs-buy">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Why not Cursor, Codex, or an internal build?</div><h2>Use coding agents for code. Use ZeroQuarry to operate the <em>security decision.</em></h2></div><p class="section-intro">A coding agent can find and fix real bugs. The commercial question is whether your team also wants to build the authorization, skeptical review, human decision trail, remediation workflow, retesting, and reporting around every result.</p></div>
-      <div class="stage-table-wrap">
-        <table class="stage-table">
-          <thead><tr><th>What the team needs</th><th>Coding agent or one-off prompt</th><th>ZeroQuarry</th><th>Build it internally</th></tr></thead>
-          <tbody>
-            <tr><td>Primary job</td><td>Explore, explain, or change code in a developer session.</td><td>Run an authorized finding-to-fix security lifecycle.</td><td>Own and maintain a custom security platform.</td></tr>
-            <tr><td>Skeptical review</td><td>Depends on the prompt and context the operator assembles.</td><td>Separate investigator and adversarial-review roles, followed by human disposition.</td><td>Design, evaluate, and maintain the agent chain and quality bar.</td></tr>
-            <tr><td>Decision record</td><td>Usually a chat, patch, or ad hoc artifact.</td><td>Traceable evidence, confidence, status, rationale, remediation, and retest history.</td><td>Build the data model, controls, integrations, and reporting.</td></tr>
-            <tr><td>Engineering handoff</td><td>Suggest or implement a code change.</td><td>Route accepted work into issues or controlled patch proposals, then retest the original risk.</td><td>Connect every repository, approval path, ticketing system, and CI policy.</td></tr>
-            <tr><td>Customer or audit use</td><td>A useful input, but not a durable security operating record by itself.</td><td>A current report plus the evidence and human decisions behind it.</td><td>Create and govern your own evidence package and review process.</td></tr>
-            <tr><td>Best fit</td><td>A developer investigating or fixing a specific concern.</td><td>A software team under security pressure before dedicated AppSec-platform headcount.</td><td>A well-funded security team that wants platform engineering to be a core capability.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="pricing-footnote">The offer makes this a falsifiable purchase decision: the written success test is whether the assessment produces at least one previously unknown, valid security result worth recording.</p>
-    </div>
-  </section>
-
-  <section class="buyer-section">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">The first-year path</div><h2>Establish the baseline, fix the issues, and <em>scan it again.</em></h2></div><p class="section-intro">The initial assessment has a written success test. The rest of the year is for remediation, changed-code review, rescans, and current evidence.</p></div>
-      ${renderWorkflow([
-        ["Scope and requirements", "Agree the target, authorization, known findings, report audience, evidence requirements, technical reviewer, model funding, and token cap."],
-        ["Assessment and challenge", "Run the assessment, inspect the attack-surface plan, and pressure-test findings through separate adversarial review."],
-        ["Report and guarantee decision", "Record which results are new and valid, assemble the first report, and apply the guarantee. A refund ends the Operations subscription."],
-        ["Operate for 12 months", "Route remediation, run additional self-service reviews, and keep the decision and evidence history attached to the product."],
-        ["Rescan and refresh", "Use up to three founder-assisted rescans and report refreshes during the subscription term."],
-      ])}
-    </div>
-  </section>
-
-  <section class="buyer-section">
-    <div class="container split-proof">
-      <div class="proof-copy">
-        <div class="section-label">What ZeroQuarry commits</div>
-        <h2>Founder attention, a first report, and <em>three return visits.</em></h2>
-        <p>ZeroQuarry will help scope the product, operate the initial assessment, investigate failures, pressure-test claims, produce the first report, and assist with three rescans and report refreshes during the year.</p>
-      </div>
-      <div class="proof-copy">
-        <div class="section-label">What participating teams commit</div>
-        <h2>One real product and <em>candid review.</em></h2>
-        <p>Participating teams provide an authorized target, disclose known findings at kickoff, name an accountable technical reviewer, fund model tokens, and record direct decisions about what was useful, wrong, novel, or commercially valuable. Public attribution or a testimonial is never required.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="buyer-section soft" id="guarantee">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">The guarantee</div><h2>A promise your technical reviewer can <em>actually test.</em></h2></div><p class="section-intro">The scope and success test are agreed in writing before payment, so the guarantee does not depend on an undefined idea of “interesting.”</p></div>
-      <div class="faq-list">${guaranteeFaqs.map(([question, answer]) => `<details><summary>${question}</summary><p>${answer}</p></details>`).join("")}</div>
-    </div>
-  </section>
-
-  <section class="buyer-section">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Commercial terms</div><h2>The Operations package with a <em>first-year cohort discount.</em></h2></div><p class="section-intro">This is an annual Operations subscription, not a one-off scan. The $2,000 first-year price is paid upfront and includes the founder-assisted assessment and rescan support.</p></div>
-      <div class="pricing-addon-grid">
-        <article><span>Operations monthly list</span><h3>$500 / month</h3><p>$6,000 over 12 months when purchased monthly. The standard annual Operations price is $4,800.</p></article>
-        <article><span>Founding-cohort first year</span><h3>$2,000 upfront</h3><p>$166.67 per month effectively. Save $2,800 against standard annual billing and $4,000 against the monthly-list equivalent.</p></article>
-        <article><span>Assessment and rescans</span><h3>Initial + three</h3><p>One founder-assisted assessment and report, plus three founder-assisted rescans and report refreshes during the 12-month term.</p></article>
-      </div>
-      <p class="pricing-footnote">Model usage is separate. Bring provider keys or agree a hosted-usage cap. The cohort order form does not auto-renew; any second-year subscription is agreed separately. If the initial assessment produces no qualifying result and the $2,000 is refunded, Operations access ends.</p>
-    </div>
-  </section>
-
-  <section class="pricing-section compact" id="apply">
-    <div class="container">
-      <div class="contact-panel">
-        <div>
-          <div class="tag">Operations founding cohort</div>
-          <h2>Tell us where the first year should start.</h2>
-          <p>Shane will review your request personally and reply to arrange a short scoping call.</p>
-          <ul class="contact-points"><li>Four quick fields</li><li>No account required</li><li>No payment to apply</li><li>Personal response from the founder</li></ul>
-        </div>
-        <form class="enterprise-form" name="founding-security-cohort" method="POST" action="/founding-security-cohort/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="founding-security-cohort">
-          <input type="hidden" name="offer" value="operations-founding-cohort">
-          <input type="hidden" name="utm_source" value="zeroquarry.com">
-          <input type="hidden" name="utm_medium" value="owned-site">
-          <input type="hidden" name="utm_campaign" value="operations-founding-cohort-2026">
-          <input type="hidden" name="utm_content" value="operations-cohort-application">
-          <input type="hidden" name="utm_term" value="">
-          <input type="hidden" name="gclid" value="">
-          <p class="hidden-field"><label>Do not fill this out: <input name="bot-field"></label></p>
-          <label>Work email<input type="email" name="email" autocomplete="email" required></label>
-          <label>Company<input type="text" name="company" autocomplete="organization" required></label>
-          <label class="full">What do you want tested?<textarea name="target" rows="3" placeholder="Product, repository, application, API, or URL" required></textarea></label>
-          <label class="full">Why now?<textarea name="security-trigger" rows="3" placeholder="Upcoming audit, customer request, launch, pentest, or another reason" required></textarea></label>
-          <button class="btn btn-primary" type="submit">Apply for the Operations cohort <span class="arr">-&gt;</span></button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Ten first-year Operations subscriptions.</h2><p>Pay $2,000 upfront for 12 months of Operations, an initial founder-assisted assessment, and three founder-assisted rescans. If the initial assessment produces no qualifying result, the $2,000 comes back and the subscription ends.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${foundingCohortApplication}">Apply for the cohort <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review Operations pricing</a></div></div></div></section>
-  <script>
-  (() => {
-    const form = document.forms["founding-security-cohort"];
-    if (!form) return;
-    const params = new URLSearchParams(window.location.search);
-    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid"]) {
-      const value = params.get(key);
-      if (value && form.elements[key]) form.elements[key].value = value.slice(0, 160);
-    }
-  })();
-  </script>
-  </main>`;
-  const schemas = [
-    breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: "Operations Founding Cohort", href: foundingCohortPath }]),
-    faqData(guaranteeFaqs.map(([q, a]) => ({ q, a }))),
-    {
-      "@context": "https://schema.org",
-      "@type": "Offer",
-      name: "ZeroQuarry Operations Founding Cohort",
-      price: "2000",
-      priceCurrency: "USD",
-      url: `${siteUrl}${foundingCohortPath}`,
-      description: "Twelve months of ZeroQuarry Operations, one founder-assisted initial assessment and report, and three founder-assisted rescans. Model-token costs are separate.",
-    },
-  ];
-  return layout({
-    title: "Operations Founding Cohort: $2,000 First Year | ZeroQuarry",
-    description: "Get 12 months of ZeroQuarry Operations for $2,000 upfront, including a founder-assisted security assessment and three founder-assisted rescans. Model-token costs are separate.",
-    canonical: `${siteUrl}${foundingCohortPath}`,
-    active: "",
-    body,
-    schemas,
-    socialImageUrl: `${siteUrl}/assets/og-design-partner-pentest.png`,
-  });
-}
-
-function foundingSecurityCohortThanksPage() {
-  const body = `<main class="marketing-main">
-  <section class="buyer-hero">
-    <div class="container buyer-hero-grid">
-      <div>
-        <div class="buyer-kicker">Operations cohort application received</div>
-        <h1 class="buyer-title">Next we agree where the first year <em>starts.</em></h1>
-        <p class="buyer-lede">ZeroQuarry will review the product, technical reviewer, model funding, and commercial readiness you submitted. If the cohort is a fit, the next step is a short scoping call to agree the annual Operations order form and initial assessment.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">See how it works <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="${signupUrls.startup}?utm_source=operations-cohort-application&utm_medium=owned-site&utm_campaign=operations-founding-cohort-2026&utm_content=thank-you-self-serve">Start self-serve instead</a></div>
-        <div class="buyer-proofline"><span>12-month Operations plan</span><span>Initial assessment</span><span>Three rescans</span><span>Guarantee test</span></div>
-      </div>
-      <div class="hero-system" aria-label="Design-partner application next steps">
-        <div class="system-head"><span>operations-cohort://received</span><span class="system-status">review</span></div>
-        <div class="loop-map">
-          <div class="loop-node wide"><span>01</span><strong>Fit and authority</strong><p>Confirm the product is in scope, authorized, and reviewable by an accountable engineer.</p></div>
-          <div class="loop-node"><span>02</span><strong>Annual terms</strong><p>Agree the $2,000 first-year Operations fee, guarantee test, model-token budget, report audience, and rescan support.</p></div>
-          <div class="loop-node"><span>03</span><strong>Start the year</strong><p>Activate Operations and begin the initial assessment after the order form and authorized boundary are agreed.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  </main>`;
-  return layout({
-    title: "Operations Founding Cohort Application Received | ZeroQuarry",
-    description: "ZeroQuarry has received your Operations founding-cohort application.",
-    canonical: `${siteUrl}/founding-security-cohort/thanks/`,
-    active: "",
-    body,
-    robots: "noindex,follow",
-  });
 }
 
 function securityPartnerPage() {
@@ -1647,13 +1412,12 @@ function securityPartnerPage() {
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">First-engagement commercial shape</div><h2>Start with one assessment. Keep operating for <em>the rest of the year.</em></h2></div><p class="section-intro">The client or partner chooses the billing path before any source, target, or customer identity is shared.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">First-engagement commercial shape</div><h2>Start with one assessment. Keep operating <em>after it.</em></h2></div><p class="section-intro">The client or partner chooses the billing path before any source, target, or customer identity is shared.</p></div>
       <div class="pricing-addon-grid">
-        <article><span>Operations founding cohort</span><h3>$2,000 first year</h3><p>Twelve months of Operations, one founder-assisted initial assessment and report, and three founder-assisted rescans and report refreshes.</p></article>
         <article><span>Model execution</span><h3>Keys or hard cap</h3><p>Bring account-managed model keys, or agree a maximum hosted-usage budget before the engagement begins.</p></article>
-        <article><span>Initial-assessment guarantee</span><h3>Full fee back</h3><p>If the client reviewer records no previously unknown, valid result worth recording from the initial assessment, ZeroQuarry reimburses the $2,000 and the Operations subscription ends. Model-token costs remain separate.</p></article>
+        <article><span>Scope</span><h3>One product boundary</h3><p>The engagement covers one authorized product boundary, agreed before any source, target, or customer identity is shared.</p></article>
       </div>
-      <p class="pricing-footnote">Direct, bundled, referral, and subcontracted delivery are all possible. Commercial handling, attribution, confidentiality, responsibilities, scope, and the written guarantee test are agreed before the client introduction. The cohort order form does not auto-renew, and no exclusivity or ongoing partner commitment is required.</p>
+      <p class="pricing-footnote">Direct, bundled, referral, and subcontracted delivery are all possible. Commercial handling, attribution, confidentiality, responsibilities, scope, and the written guarantee test are agreed before the client introduction. Any ongoing partner commitment is not required.</p>
     </div>
   </section>
 
@@ -1689,7 +1453,7 @@ function securityPartnerPage() {
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>One client. One product. One decision.</h2><p>Use a paid engagement to learn whether ZeroQuarry closes the gap between your security advice and the client’s engineering outcome.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${securityPartnerApplication}">Propose the situation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/founding-security-cohort/">See the client cohort</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>One client. One product. One decision.</h2><p>Use a paid engagement to learn whether ZeroQuarry closes the gap between your security advice and the client’s engineering outcome.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="${securityPartnerApplication}">Propose the situation <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review plan pricing</a></div></div></div></section>
   <script>
   (() => {
     const form = document.forms["security-partner-pilot"];
@@ -1728,7 +1492,7 @@ function securityPartnerThanksPage() {
         <div class="buyer-kicker">Partner pilot proposal received</div>
         <h1 class="buyer-title">Now we test the <em>client situation.</em></h1>
         <p class="buyer-lede">ZeroQuarry will review the service fit, security trigger, delivery shape, and path to one authorized paid engagement. Expect a direct response from Shane rather than an automated partner sequence.</p>
-        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">See how it works <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/founding-security-cohort/">Review the client cohort</a></div>
+        <div class="buyer-actions"><a class="btn btn-primary" href="/platform">See how it works <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/pricing">Review plan pricing</a></div>
         <div class="buyer-proofline"><span>Client fit</span><span>Delivery ownership</span><span>Commercial shape</span><span>Decision date</span></div>
       </div>
       <div class="hero-system" aria-label="Partner pilot proposal review">
@@ -1875,7 +1639,6 @@ function pricingPage() {
     ["Is model usage included?", "Hosted model input and output are metered separately at the posted rates below. With an account-managed key, the LLM provider bills you directly and ZeroQuarry does not add those calls to its model-usage invoice; your ZeroQuarry subscription and security-run limits remain unchanged. Private runners require your keys for every selected stage."],
     ["Can we add capacity without changing plans?", "Yes. Add protected products or bundles of 25 monthly security runs. If that becomes a recurring pattern, moving to the next plan will usually provide better economics and more operating controls."],
     ["Can ZeroQuarry support penetration test and compliance evidence?", "Yes. ZeroQuarry assesses the authorized product boundary, challenges the findings, records the methodology and evidence, tracks remediation and retests, and produces the report. Any buyer-specific evidence requirements are captured during scoping."],
-    ["What is the $2,000 founding-cohort offer?", "It is the first year of the Operations package, paid upfront, for ten accepted companies. The standard monthly price is $500 and the standard annual price is $4,800. The cohort includes one founder-assisted initial assessment and report plus three founder-assisted rescans. If the initial assessment produces no previously unknown, valid result worth recording, ZeroQuarry refunds the $2,000 and the subscription ends. Model-token costs are separate."],
   ];
   const body = `<main>
   <section class="pricing-hero">
@@ -1925,7 +1688,7 @@ function pricingPage() {
 
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">Add capacity</div><h2>Expand the constraint you actually hit.</h2></div><div class="aside">Add-ons support temporary launch, diligence, or portfolio pressure without forcing an immediate repackage. Persistent overage is a signal that the next plan will be more economical.</div></div>
-    <div class="pricing-addon-grid"><article><span>Product coverage</span><h3>+$80 / month</h3><p>One additional protected product on annual billing; $100 when billed monthly.</p></article><article><span>Assessment capacity</span><h3>+$40 / month</h3><p>Twenty-five additional security runs on annual billing; $50 when billed monthly.</p></article><article><span>Design-partner assessment</span><h3>$2,000 once</h3><p>One written product boundary, founder-assisted assessment, adversarial review, technical-reviewer session, and penetration test report. <a href="${foundingCohortPath}">See the outcome guarantee.</a></p></article></div>
+    <div class="pricing-addon-grid"><article><span>Product coverage</span><h3>+$80 / month</h3><p>One additional protected product on annual billing; $100 when billed monthly.</p></article><article><span>Assessment capacity</span><h3>+$40 / month</h3><p>Twenty-five additional security runs on annual billing; $50 when billed monthly.</p></article></div>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">
@@ -1967,8 +1730,6 @@ write("index.html", homePage());
 write("platform.html", platformHub());
 write("pricing.html", pricingPage());
 write("request-scan/index.html", requestScanPage());
-write("founding-security-cohort/index.html", foundingSecurityCohortPage());
-write("founding-security-cohort/thanks/index.html", foundingSecurityCohortThanksPage());
 write("partners/index.html", securityPartnerPage());
 write("partners/thanks/index.html", securityPartnerThanksPage());
 write("open-source/index.html", openSourcePage());

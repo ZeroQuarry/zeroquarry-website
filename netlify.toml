@@ -37,3 +37,24 @@ publish = "."
   to = "/platform/continuous-security/"
   status = 301
   force = true
+
+# The $2,000 Operations founding cohort was retired on 8 October 2026. The URL is
+# kept alive as a redirect because it was sent to prospects and may still be in
+# their inboxes; those links should land on pricing, not on a 404.
+[[redirects]]
+  from = "/founding-security-cohort"
+  to = "/pricing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/founding-security-cohort/"
+  to = "/pricing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/founding-security-cohort/thanks/"
+  to = "/pricing"
+  status = 301
+  force = true

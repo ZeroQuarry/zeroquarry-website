@@ -136,9 +136,14 @@ Use **$24,000 annual contract value** as the internal starting anchor. Expand fr
 |---|---:|---:|---|
 | Additional protected product | $100 | $80 | Add a product without immediately repackaging |
 | Additional 25 monthly runs | $50 | $40 | Absorb launch, diligence, or temporary change volume |
-| Design-partner assessment | $2,000 once | Not applicable | One written boundary, founder-assisted assessment, adversarial review, technical-reviewer session, and penetration test report; fee-back outcome guarantee; model-token costs separate |
 
 If both recurring add-ons would cost more than the next plan, quote the next plan instead.
+
+**Retired 8 October 2026.** The $2,000 one-off "design-partner assessment" add-on, and the
+$2,000 first-year Operations founding cohort it tied into, were removed from the site at
+Shane's direction. The cohort page, its form, and every price reference to it are gone, and
+`/founding-security-cohort/` now 301s to `/pricing`. Nothing in the public pricing is
+funded by an upfront founder-led deal any more; engagements are quoted directly.
 
 ## Unit economics and model usage
 

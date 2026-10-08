@@ -1423,7 +1423,10 @@
 
 .pricing-addon-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* auto-fit rather than a fixed 3, so the row fills the width whether there are
+     two add-ons or three. The $2,000 founding-cohort add-on was retired on
+     8 October 2026, leaving this grid two-up on both pricing and partners. */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
 }
 
