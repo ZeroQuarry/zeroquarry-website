@@ -1456,6 +1456,9 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   gap: 54px;
   align-items: start;
 }
+.article-header-grid.no-disclosure {
+  grid-template-columns: minmax(0, 1fr);
+}
 .article-back {
   display: inline-flex;
   margin-bottom: 22px;

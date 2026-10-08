@@ -348,27 +348,14 @@ function renderPost(post) {
     .map((item) => `<span>${escapeHtml(item)}</span>`)
     .join('\n');
 
-  var body = `<main>
-  <article class="research-article">
-    <header class="article-header">
-      <div class="container article-header-grid">
-        <div>
-          <a class="article-back" href="../">Research</a>
-          <div class="article-meta">
-            ${pills}
-          </div>
-          <h1>${escapeHtml(post.data.title)}</h1>
-          <p class="article-dek">${escapeHtml(post.data.description)}</p>
-          <div class="article-actions">
-            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
-          </div>
-        </div>
-
+  var disclosurePanel = '';
+  if (post.data.disclosure !== false) {
+    disclosurePanel = `
         <aside class="disclosure-panel" aria-label="Disclosure status">
           <div class="disclosure-label">Disclosure status</div>
           <div class="disclosure-state">${escapeHtml(post.data.status || 'Research note')}</div>
           `;
-if (post.data.disclosureDetail) { body = body + `
+    if (post.data.disclosureDetail) { disclosurePanel = disclosurePanel + `
           <p>${escapeHtml(post.data.disclosureDetail || '')}</p>
           <dl>
             <div>
@@ -385,7 +372,26 @@ if (post.data.disclosureDetail) { body = body + `
             </div>
           </dl>
           ` }
-body = body + `</aside>
+    disclosurePanel = disclosurePanel + `</aside>`;
+  }
+
+  var body = `<main>
+  <article class="research-article">
+    <header class="article-header">
+      <div class="container article-header-grid${post.data.disclosure === false ? ' no-disclosure' : ''}">
+        <div>
+          <a class="article-back" href="../">Research</a>
+          <div class="article-meta">
+            ${pills}
+          </div>
+          <h1>${escapeHtml(post.data.title)}</h1>
+          <p class="article-dek">${escapeHtml(post.data.description)}</p>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
+          </div>
+        </div>
+
+        ${disclosurePanel}
       </div>
     </header>
 

@@ -4,6 +4,7 @@ slug: "agent-containment"
 date: "2026-10-09"
 author: "Shane Connelly"
 status: "Shipped"
+disclosure: false
 description: "Give an agent a full VM, unlimited tools, peer agents to coordinate with, and an objective of 'solve it no matter what', and of course it escapes. The interesting question is what a harness would look like if containment, not capability, were the design goal. This is ours, mechanism by mechanism."
 ogTitle: "Of course it escapes: agent containment at ZeroQuarry"
 ogDescription: "A full VM, unlimited tools, thousands of peer agents, and a 'solve it no matter what' objective: of course it escapes. The ZeroQuarry containment stack, mechanism by mechanism, from the claim loop to the rate limiter the model cannot see."
