@@ -7,9 +7,9 @@ status: "Shipped"
 description: "Give an agent a full VM, unlimited tools, peer agents to coordinate with, and an objective of 'solve it no matter what', and of course it escapes. The interesting question is what a harness would look like if containment, not capability, were the design goal. This is ours, mechanism by mechanism."
 ogTitle: "Of course it escapes: agent containment at ZeroQuarry"
 ogDescription: "A full VM, unlimited tools, thousands of peer agents, and a 'solve it no matter what' objective: of course it escapes. The ZeroQuarry containment stack, mechanism by mechanism, from the claim loop to the rate limiter the model cannot see."
-image: "/assets/research/agent-containment-layers.png"
-ogImageWidth: 3360
-ogImageHeight: 2360
+image: "/assets/research/agent-containment-stack.png"
+ogImageWidth: 2280
+ogImageHeight: 1920
 featuredSummary: "The 2026 sandbox-escape stories share a harness design, and it is the wrong one for agents that attack systems. ZeroQuarry's containment stack, from the outbound-only claim loop to the registration permission that is clamped twice in code and audited at wrap-up."
 tags:
   - agent-architecture
@@ -28,13 +28,17 @@ So the design question is not whether agents are powerful -- of course they're g
 
 ZeroQuarry points agents at other people's production systems for a living. The question behind this post is one I get frequently in some form: what stops the same thing happening to ZeroQuarry's agents? So this post outlines the containment stack they run inside, layer by layer, from the outside in. I have written a narrower version of one layer before ([the out-of-band collector](https://zeroquarry.com/research/confirming-blind-findings/)); this post is the full tour and assumes nothing from it.
 
-![The four containment layers around a ZeroQuarry scan agent: network, container, tool layer, and the code-assembled brief](/assets/research/agent-containment-layers.svg)
+![Four nested layers around a ZeroQuarry scan agent: network, container, tools, and the code-assembled brief](/assets/research/agent-containment-stack.svg)
+
+*Click any diagram to enlarge.*
 
 ## What the agent is even allowed to point at
 
 Containment starts before the agent exists, at the question "is this target ours to scan?" An account in "self-serve" mode can only scan live targets on DNS domains you have *proven* control of and authorized the agent to scan by publishing a TXT record containing a per-domain challenge token. This is the same general idea your certificate provider uses to prove you're authorized to manage a domain. Larger customers run under a signed engagement instead, which covers defined targets without the DNS dance. Literal IP addresses are refused in self-serve mode, because "I own example.com" is a claim about a name, not about whatever IP it resolves to this week. At launch, a scan that is not marked authorized is refused outright; the authorization is an interlock in the launch path, not a suggestion in a config file.
 
 Only then does a ZeroQuarry worker (which you can think about as an AI pentester agent) exist, and its first property is what it *cannot* do: nothing is able to connect inbound. Workers claim pentest jobs by dialing out to the control plane over HTTPS using a one-use enrollment token, and they post vulnerabilities they find the same way. The pentest agents have no listener, no open port, no inbound firewall rule to forget, and no channel through which a thousand peer agents could coordinate even if one went funny. If nothing can initiate a connection to a worker, the entire class of "reach the agent through the network" escapes has no entry point.
+
+![A scan worker's network conversation: claim jobs and post results over HTTPS to the control plane, in-scope probes to the authorized target, callbacks through the OOB collector, and the refused directions](/assets/research/agent-containment-door.svg)
 
 ## One door, but it's one-way
 
@@ -50,17 +54,21 @@ ZeroQuarry maintains a DNS server for testing DNS exfiltration attacks, which is
 
 The whole channel is metered and the metering is enforced *outside* of the LLM and instead in the harness. By default, we allow 200 probes, 50 redirects, and 120 callbacks per minute per scan.
 
-![A scan worker's network conversation: outbound claim loop to the control plane, in-scope probes to the authorized target, the OOB collector as the one designed door, and the refused directions](/assets/research/agent-containment-network.svg)
+![Inside the out-of-band collector: the target's callback arrives on the public write path, the agent polls with its HMAC-derived key, and the invariants that keep the door a door](/assets/research/agent-containment-oob.svg)
 
 ## The rate limiter sits above the agent
 
-When I tell people the agents are rate-limited, the follow-up question is always "what stops the agent from just disabling the limiter?" The answer is that the limiter is not part of the agent. It is a token bucket inside a specially crafted `http_request` tool, constructed by the platform from the scan's configuration before the model ever runs. Every request acquires from the bucket and if the bucket is empty, the tool waits. Critically: the wait is deliberately not surfaced to the agent. As a result, there is nothing for the model to argue with, nothing to reason around, and nothing to negotiate down. The default is five requests per second, shared across the whole worker so that a fan-out of probes still drains one bucket. So we tell the agent "hey, if you want to make an HTTP request, here is the tool for you to use" but then specifically restrict what that tool can do. It's not the same thing as giving it an unlimited shell with curl and the ability to set its own DNS. The `http_request` tool also enforces other security boundaries. For example, if you have login credentials as part of the scan, the agent never gets to see them: the `http_request` tool embeds credential logic so the agent can call it and see the responses, but never the actual credentials itself. It knows whether logins have succeeded or not, but doesn't have the ability to do brute force password attacks or attempt to exfiltrate credentials to a 3rd party bin for reuse later or accidentally be revealed in logs.
+When I tell people the agents are rate-limited, the follow-up question is always "what stops the agent from just disabling the limiter?" The answer is that the limiter is not part of the agent. It is a token bucket inside a specially crafted `http_request` tool, constructed by the platform from the scan's configuration before the model ever runs. Every request acquires from the bucket and if the bucket is empty, the tool waits. Critically: the wait is deliberately not surfaced to the agent. As a result, there is nothing for the model to argue with, nothing to reason around, and nothing to negotiate down. The default is five requests per second, shared across the whole worker so that a fan-out of probes still drains one bucket. So we tell the agent "hey, if you want to make an HTTP request, here is the tool for you to use" but then specifically restrict what that tool can do. It's not the same thing as giving it an unlimited shell with curl and the ability to set its own DNS.
+
+![Every http_request passes four stages: the agent's call, the scope check, the SSRF guard, the invisible pacing, then a fetch that re-checks every redirect hop](/assets/research/agent-containment-gates.svg) The `http_request` tool also enforces other security boundaries. For example, if you have login credentials as part of the scan, the agent never gets to see them: the `http_request` tool embeds credential logic so the agent can call it and see the responses, but never the actual credentials itself. It knows whether logins have succeeded or not, but doesn't have the ability to do brute force password attacks or attempt to exfiltrate credentials to a 3rd party bin for reuse later or accidentally be revealed in logs.
 
 ## The toolset is the boundary
 
 The model never chooses its tools. The toolset is a fixed list per scan type, assembled in code. A source or binary scan worker (an agent dedicated to scanning source code or binary applications) gets no network tool at all: `http_request` is simply absent, the network tools are filtered out of the prompt, the shell tool refuses network binaries, and the container has no egress as the floor under all three. A remote worker gets `http_request` and a curated recon toolkit, each entry tagged in code as network-capable or not.
 
 The shell is where this gets specific. It runs a binary denylist (curl, wget, nc, socat, ssh, nmap, nuclei and friends), and the denylist is subcommand-aware: `openssl x509` reads a certificate, `openssl s_client` is refused, and the refusal says so plainly: "command 's_client' is not allowed in this scan mode. Use a local alternative." Every shell invocation runs under a `prlimit` envelope: wall clock time limits, memory limits, CPU limits, process count limits. A runaway command is killed and comes back to the model as a clean tool error with the resource budget in it, so the scan continues instead of dying. The model experiences all of this as the shape of reality, which is the point. Containment the agent can perceive is training; the kind it can't is just walls.
+
+![Inside the shell tool: a subcommand-aware denylist, resource limits on every command, and no network tool at all for source and binary scans](/assets/research/agent-containment-shell.svg)
 
 ## The container is boring on purpose
 
@@ -74,7 +82,7 @@ The Docker image is not a sandbox: it's not a kernel-level isolation boundary, a
 
 This is the newest layer, shipped this month, and it's the one that most directly answers "how do you give an agent more power without it becoming the escape?"
 
-![The registration permission lifecycle: off by default, clamped twice in code, briefed with the sanctioned path, audited at wrap-up](/assets/research/agent-containment-permissions.svg)
+![The registration permission lifecycle in four steps: off, clamped twice, briefed with the sanctioned path, audited at wrap-up, with the untrusted-email rule and session guard below](/assets/research/agent-containment-registration.svg)
 
 Say a scan would be far more valuable with a logged-in pass. One of the most common bugs we look for is IDOR (one account able to see or change another account's data), and proving it exists needs two accounts: a victim and an attacker. The naive design says "agents may sign up for accounts" (or not tell them that and let them figure it out) and then let them loose. ZeroQuarry starts from the opposite end: account registration doesn't exist until the operator explicitly turns it on for that scan, and even then it's a bounded number -- clamped to between 1 and 5 in the scan form, and clamped again when the scan actually starts, so a half-written or malformed setting can never give the agents more room than the operator chose. The reason for the ceiling, in the code's own words: IDOR-style testing wants two accounts, and anything past 5 is not a scan but a signup storm.
 
@@ -91,6 +99,8 @@ Underneath everything above is the rule that makes the rest of it trustworthy: e
 Scope itself is enforced twice: once in the brief and once in the tool layer, where every request is checked against the scan's declared targets before any DNS lookup or network connection happens, and every redirect is checked again mid-flight, because a redirect that points the agent right back at the machine it's running on is exactly the trick this guard exists to stop. The hostname check deserves its own sentence: every IP address a name resolves to has to be a public one, because a name that resolves to a mix of public and private addresses is precisely the opening a DNS-rebinding attack needs. If the DNS lookup itself fails, the request doesn't go out either.
 
 The pattern across all of it: prompts persuade, code decides, and we provide well-contained, safety-first tools for every action a pentester agent would need so that it doesn't try to register a thousand new anonymous email addresses, a message board mechanism to collude with, DoSing through thousands of simultaneous curl requests, etc. The model is briefed with reasons so it cooperates with the design, and every rule it's briefed on is separately enforced by a mechanism it can't talk its way around, because the enforcement layer is never another model.
+
+![Who can stop a request, in the order the design relies on them: the tool layer refuses, the container has no egress, and the brief states the rule with the reason](/assets/research/agent-containment-who-says-no.svg)
 
 ## The boring answer
 

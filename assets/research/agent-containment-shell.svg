@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <filter id="ds4" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="760" height="440" fill="#ffffff"/>
+
+  <text x="28" y="40" font-size="19" font-weight="700" fill="#0f172a">Inside the shell tool</text>
+  <text x="28" y="62" font-size="14" fill="#475569">Remote workers get a real shell. Every invocation inside the same rails.</text>
+
+  <rect x="28" y="84" width="704" height="316" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" filter="url(#ds4)"/>
+  <g font-size="14" fill="#334155">
+    <text x="52" y="122" font-weight="700" fill="#0f172a">Binary denylist, subcommand-aware</text>
+    <text x="52" y="146">curl, wget, nc, socat, ssh, nmap, nuclei and friends are refused outright.</text>
+    <text x="52" y="168">openssl x509 reads a certificate; openssl s_client is refused. The tool knows</text>
+    <text x="52" y="190">the difference: "command 's_client' is not allowed in this scan mode."</text>
+    <text x="52" y="228" font-weight="700" fill="#0f172a">Resource limits on every command</text>
+    <text x="52" y="252">Wall clock, memory, CPU time, and process count are capped by the harness.</text>
+    <text x="52" y="274">A runaway command is killed and comes back as a clean tool error with the</text>
+    <text x="52" y="296">budget noted in it, so the scan continues instead of dying.</text>
+    <text x="52" y="334" font-weight="700" fill="#0f172a">For source and binary scans</text>
+    <text x="52" y="358">There is no network tool at all: the tool is absent, the prompt filters network</text>
+    <text x="52" y="380">tools, the shell refuses network binaries, and the container has no egress.</text>
+  </g>
+</svg>

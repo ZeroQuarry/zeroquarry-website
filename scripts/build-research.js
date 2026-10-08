@@ -301,6 +301,36 @@ ${body}
 
 ${siteFooter()}
 
+<script>
+(function () {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-label', 'Enlarged diagram');
+  overlay.innerHTML = '<button class="lightbox-close" type="button">Close</button>' +
+    '<div class="lightbox-stage"><img alt="" /></div>';
+  var stageImg = overlay.querySelector('.lightbox-stage img');
+  document.querySelectorAll('.article-body img').forEach(function (img) {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function () {
+      stageImg.src = img.getAttribute('src');
+      stageImg.alt = img.alt || '';
+      overlay.classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+    });
+  });
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.documentElement.style.overflow = '';
+  }
+  overlay.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeLightbox();
+  });
+  document.body.appendChild(overlay);
+})();
+</script>
+
 </body>
 </html>
 `;

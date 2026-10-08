@@ -1649,6 +1649,49 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   border: 1px solid var(--line);
   border-radius: 8px;
 }
+.article-body img {
+  cursor: zoom-in;
+}
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: none;
+  background: rgba(8, 12, 20, 0.93);
+  overflow: auto;
+  cursor: zoom-out;
+}
+.lightbox-overlay.open {
+  display: block;
+}
+.lightbox-stage {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 64px 24px 40px;
+}
+.lightbox-stage img {
+  width: min(1800px, 96vw);
+  height: auto;
+  background: #ffffff;
+  border-radius: 8px;
+}
+.lightbox-close {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 401;
+  font: 600 13px/1 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #e2e8f0;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid #475569;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.lightbox-close:hover {
+  background: #1e293b;
+}
 .article-body pre code {
   color: var(--ink);
   font-family: var(--mono);
