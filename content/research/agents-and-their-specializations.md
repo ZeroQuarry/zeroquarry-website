@@ -14,6 +14,7 @@ tags:
   - cybersecurity
   - ai-models
   - llm-security
+disclosure: false
 ---
 As part of building out and testing ZeroQuarry, I've run a *lot* of security scans using a *lot* of models across various open source repositories.  There are a lot of
 misconceptions swirling at the time of this writing about the different models and their capabilities with respect to cybersecurity and I wanted to show some *actual*

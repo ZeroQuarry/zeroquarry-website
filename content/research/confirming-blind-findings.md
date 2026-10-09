@@ -16,6 +16,7 @@ tags:
   - ssrf
   - agent-architecture
   - evidence
+disclosure: false
 ---
 
 ZeroQuarry's scan workers have no inbound network access. No open port, no listener, nothing that answers. A worker makes outbound requests to an authorized target and reads the responses, and that is the entire network conversation it is capable of.

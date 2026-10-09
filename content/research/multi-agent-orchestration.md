@@ -12,6 +12,7 @@ featuredSummary: "In the battle of the 'frontier models' and 'bad actors', most 
 tags:
   - architecture
   - model-comparison
+disclosure: false
 ---
 
 A lot of the current conversation about LLMs and cybersecurity is stuck between two extremes.
