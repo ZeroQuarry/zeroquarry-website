@@ -1459,6 +1459,12 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
 .article-header-grid.no-disclosure {
   grid-template-columns: minmax(0, 1fr);
 }
+.article-header-grid.no-disclosure h1 {
+  max-width: none;
+}
+.article-header-grid.no-disclosure .article-dek {
+  max-width: 820px;
+}
 .article-back {
   display: inline-flex;
   margin-bottom: 22px;
@@ -1549,8 +1555,8 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
 }
 .article-layout {
   display: grid;
-  grid-template-columns: 220px minmax(0, 760px);
-  gap: 58px;
+  grid-template-columns: 220px minmax(0, 800px);
+  gap: 52px;
   align-items: start;
   padding-bottom: 120px;
 }
