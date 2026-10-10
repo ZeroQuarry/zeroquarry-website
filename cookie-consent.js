@@ -13,7 +13,41 @@
   const partnerSubmissionMarker = 'zq_security_partner_submission_pending';
   let analyticsLoaded = false;
   let posthogLoaded = false;
+  let posthogReduced = false;
   let marketingTrackingInstalled = false;
+
+  // Consent-free PostHog configuration.
+  //
+  // Counted pageviews are how we learn which pages people land on and from
+  // where, and at this site's volume that is worth having without asking. What
+  // is deliberately switched off is everything that builds a profile or
+  // replays a session:
+  //   disable_persistence - nothing is written to cookies or localStorage, so
+  //                        a visitor cannot be stitched across pages or
+  //                        recognised on a return visit. Events still carry the
+  //                        page, referrer and campaign of the single pageview.
+  //   autocapture off     - no element/click capture, which is behavioural
+  //                        profiling by another name.
+  //   no session recording - recordings replay page content, which can contain
+  //                        anything a visitor typed into a form.
+  //   pageleave off       - unload tracking is a weak fingerprinting signal.
+  //
+  // Accepting analytics replaces this with the full configuration: persistent
+  // identity, cross-subdomain association with the product, and recordings.
+  const REDUCED_MODE = {
+    disable_persistence: true,
+    autocapture: false,
+    session_recording: false,
+    advanced_disable_decide: true,
+    advanced_disable_feature_flags: true,
+    advanced_disable_feature_flags_on_first_load: true,
+    advanced_disable_surveys: true,
+    capture_performance: false,
+    capture_dead_clicks: false,
+    capture_rageclick: false,
+    capture_exceptions: false,
+    respect_dnt: true,
+  };
 
   function getChoice() {
     const match = document.cookie.match(new RegExp('(?:^|;\\s*)' + consentCookieName + '=([^;]+)'));
@@ -179,9 +213,53 @@
     });
   }
 
+  const campaignParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+
+  // Stamped onto console-bound links so the signup that follows can be traced
+  // back to the page that produced it. This reads only the visitor's own URL
+  // and stores nothing — no cookie, no localStorage, no referrer read — so it
+  // is not gated by the analytics consent banner below, and it still works for
+  // the overwhelming majority of visitors who never click "Accept analytics".
+  function attributionParams() {
+    const current = new URL(window.location.href);
+    const params = new URLSearchParams();
+    params.set('ref', current.pathname);
+    for (const key of campaignParams) {
+      const value = current.searchParams.get(key);
+      if (value) params.set(key, value);
+    }
+    return params;
+  }
+
+  function decorateConsoleLink(link) {
+    if (!link || link.dataset.attributionStamped === '1') return;
+    let destination;
+    try {
+      destination = new URL(link.getAttribute('href'), window.location.href);
+    } catch (_) {
+      return;
+    }
+    if (destination.hostname !== 'console.zeroquarry.com') return;
+    if (destination.searchParams.has('ref')) return;
+    link.dataset.attributionStamped = '1';
+    for (const [key, value] of attributionParams()) {
+      destination.searchParams.set(key, value);
+    }
+    link.href = destination.toString();
+  }
+
+  function decorateConsoleLinks(root) {
+    const scope = root || document;
+    if (!scope.querySelectorAll) return;
+    for (const link of scope.querySelectorAll('a[href]')) {
+      decorateConsoleLink(link);
+    }
+  }
+
   function installMarketingTracking() {
     if (marketingTrackingInstalled) return;
     marketingTrackingInstalled = true;
+    decorateConsoleLinks();
     document.addEventListener('click', (event) => {
       const link = event.target && event.target.closest && event.target.closest('a[href]');
       if (!link) return;
@@ -192,6 +270,9 @@
         return;
       }
       if (destination.hostname !== 'console.zeroquarry.com') return;
+      // Catch links added after load, and keep the destination the user
+      // actually lands on in sync with the stamped one.
+      decorateConsoleLink(link);
       captureMarketingEvent('marketing_cta_clicked', {
         cta_text: (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120),
         source_path: window.location.pathname,
@@ -207,21 +288,37 @@
     });
   }
 
-  function loadPostHog() {
+  function loadPostHog(reduced) {
     if (!posthogKey) return;
     if (posthogLoaded) {
+      if (reduced) return;
       if (window.posthog && window.posthog.opt_in_capturing) window.posthog.opt_in_capturing();
+      // Upgrading from the consent-free reduced mode after an accept: turn on
+      // the cross-session identity and session recording that the full
+      // configuration relies on. A failure here must not break the page.
+      if (posthogReduced) {
+        posthogReduced = false;
+        try {
+          window.posthog.set_person_profiles('identified_only');
+          if (window.posthog.sessionRecording && window.posthog.sessionRecording.startSessionRecording) {
+            window.posthog.sessionRecording.startSessionRecording();
+          }
+        } catch (_) {}
+      }
       return;
     }
     posthogLoaded = true;
+    posthogReduced = Boolean(reduced);
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session identify reset opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
     window.posthog.init(posthogKey, {
       api_host: posthogHost,
       ui_host: posthogUiHost,
       person_profiles: 'identified_only',
       capture_pageview: true,
-      capture_pageleave: true,
-      cross_subdomain_cookie: true,
+      capture_pageleave: !posthogReduced,
+      cross_subdomain_cookie: !posthogReduced,
+      // Spread last so the reduced settings win on every key they set.
+      ...(posthogReduced ? REDUCED_MODE : {}),
     });
     window.posthog.opt_in_capturing();
     trackCurrentPageMilestone('posthog');
@@ -255,7 +352,7 @@
     banner.innerHTML = [
       '<div class="cookie-consent__copy">',
       '<h2>Analytics cookies</h2>',
-      '<p>We use Google Analytics and PostHog to understand website traffic and the journey into our product. You can decline and we will not load analytics tracking.</p>',
+      '<p>We count page views with PostHog in a reduced mode that sets no cookies and keeps nothing on your device. If you accept analytics we also load Google Analytics and PostHog with session recording and cross-site measurement. Declining switches off all of it.</p>',
       '</div>',
       '<div class="cookie-consent__actions">',
       '<button class="cookie-consent__button cookie-consent__button--ghost" type="button" data-cookie-consent="decline">Decline</button>',
@@ -291,6 +388,10 @@
       disableAnalytics();
       return;
     }
+    // No choice recorded yet. Count this pageview in the reduced mode — no
+    // cookies, no localStorage, no recording, nothing that identifies anyone —
+    // and still offer the full analytics option.
+    loadPostHog(true);
     createBanner();
   }
 

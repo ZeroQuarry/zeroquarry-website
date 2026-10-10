@@ -6,6 +6,7 @@
     "build:sites": "npm run build && node scripts/build-sites-dist.js",
     "sync:shell": "node scripts/sync-static-shell.js",
     "generate:sitemap": "node scripts/generate-sitemap.js",
-    "validate": "node scripts/validate-site.js"
+    "check:cta-attribution": "node scripts/check-cta-attribution.js",
+    "validate": "node scripts/validate-site.js && node scripts/check-cta-attribution.js"
   }
 }
