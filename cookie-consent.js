@@ -352,11 +352,11 @@
     banner.innerHTML = [
       '<div class="cookie-consent__copy">',
       '<h2>Analytics cookies</h2>',
-      '<p>We count page views with PostHog in a reduced mode that sets no cookies and keeps nothing on your device. If you accept analytics we also load Google Analytics and PostHog with session recording and cross-site measurement. Declining switches off all of it.</p>',
+      '<p>By clicking "Accept All", you agree to the storing of cookies to enhance our navigation, usage analytics, and marketing efforts.</p>',
       '</div>',
       '<div class="cookie-consent__actions">',
       '<button class="cookie-consent__button cookie-consent__button--ghost" type="button" data-cookie-consent="decline">Decline</button>',
-      '<button class="cookie-consent__button cookie-consent__button--primary" type="button" data-cookie-consent="accept">Accept analytics</button>',
+      '<button class="cookie-consent__button cookie-consent__button--primary" type="button" data-cookie-consent="accept">Accept All</button>',
       '<a class="cookie-consent__link" href="' + privacyHref() + '">Privacy policy</a>',
       '</div>',
     ].join('');
