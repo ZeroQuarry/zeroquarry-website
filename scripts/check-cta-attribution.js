@@ -65,6 +65,10 @@ function run(pageUrl, hrefs, storageChoice) {
       sessionStorage: { getItem: () => null, setItem() {} },
     },
   };
+  // cookie-consent.js reuses an existing gtag if present, so installing a
+  // recorder here captures the config object it builds.
+  context.window.gtag = (...args) => { context.gtagCalls.push(args); };
+  context.gtagCalls = [];
   context.globalThis = context;
   const src = fs.readFileSync(path.join(__dirname, '..', 'cookie-consent.js'), 'utf8');
   vm.createContext(context);
@@ -75,7 +79,10 @@ function run(pageUrl, hrefs, storageChoice) {
   return {
     hrefs: links.map((l) => l._attrs.href),
     posthogConfig: initCall ? initCall[1] : null,
-    gaLoaded: Boolean(context.window.gtag),
+    // "Loaded" means GA4 was actually configured. Whether window.gtag exists
+    // is no longer a signal: the sandbox installs a recorder up front.
+    gaLoaded: context.gtagCalls.some((c) => c[0] === 'config'),
+    gaConfig: context.gtagCalls.filter((c) => c[0] === 'config').map((c) => c[2])[0] || null,
     captioned: Boolean(context.window.posthog
       && context.window.posthog._i.some((e) => e === 'opt_out_capturing')),
   };
@@ -151,7 +158,15 @@ check(
   'false',
 );
 check('no choice -> pageviews still counted', String(undecided.posthogConfig.capture_pageview), 'true');
-check('no choice -> Google Analytics NOT loaded', undecided.gaLoaded ? 'yes' : 'no', 'no');
+// GA4 now runs before anyone answers the banner, in a cookieless, signal-free
+// mode. Presence alone is not the assertion: what matters is that it writes no
+// cookie and builds no advertising profile in that state.
+check('no choice -> Google Analytics loaded in reduced mode', undecided.gaLoaded ? 'yes' : 'no', 'yes');
+check('no choice -> GA writes no cookie', String((undecided.gaConfig || {}).client_storage), 'none');
+check('no choice -> GA google signals off', String((undecided.gaConfig || {}).allow_google_signals), 'false');
+check('no choice -> GA ad personalisation off', String((undecided.gaConfig || {}).allow_ad_personalization_signals), 'false');
+check('no choice -> GA ip anonymised', String((undecided.gaConfig || {}).anonymize_ip), 'true');
+check('no choice -> GA no cookie_domain', String((undecided.gaConfig || {}).cookie_domain), 'undefined');
 check(
   'no choice -> CTA still stamped without consent',
   undecided.hrefs[0],

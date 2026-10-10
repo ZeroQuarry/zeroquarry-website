@@ -12,6 +12,7 @@
   const partnerFormName = 'security-partner-pilot';
   const partnerSubmissionMarker = 'zq_security_partner_submission_pending';
   let analyticsLoaded = false;
+  let gaReduced = false;
   let posthogLoaded = false;
   let posthogReduced = false;
   let marketingTrackingInstalled = false;
@@ -114,17 +115,37 @@
     deleteAnalyticsCookies();
   }
 
-  function loadAnalytics() {
+  // Cookieless, signal-free GA4 settings. This is what runs before anyone
+  // answers the banner, so it must not store anything on the device and must
+  // not build an advertising profile:
+  //   client_storage: 'none'          no _ga / _ga_<ID> cookie is written
+  //   allow_google_signals: false     no Google Signals remarketing audience
+  //   allow_ad_personalization_signals: false   no ad-personalisation features
+  //   anonymize_ip: true              IP truncated on Google's side
+  // It still sends page_view so traffic is countable before consent. The cost
+  // is session stitching: without a cookie there is no _ga value for the _gl
+  // cross-domain linker to carry, so marketing -> console attribution now
+  // rests on the Referer header the console records at /register, which does
+  // not need cookies or consent either way.
+  const GA_REDUCED_CONFIG = {
+    client_storage: 'none',
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    anonymize_ip: true,
+  };
+
+  function loadAnalytics(reduced) {
     if (!analyticsId || analyticsLoaded) return;
     analyticsLoaded = true;
+    gaReduced = Boolean(reduced);
     window['ga-disable-' + analyticsId] = false;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () {
       window.dataLayer.push(arguments);
     };
     window.gtag('js', new Date());
-    const config = { anonymize_ip: true };
-    if (/(^|\.)zeroquarry\.com$/i.test(window.location.hostname)) {
+    const config = reduced ? { ...GA_REDUCED_CONFIG } : { anonymize_ip: true };
+    if (!reduced && /(^|\.)zeroquarry\.com$/i.test(window.location.hostname)) {
       config.cookie_domain = 'zeroquarry.com';
     }
     window.gtag('config', analyticsId, config);
@@ -333,7 +354,22 @@
     setChoice(acceptedValue);
     closeBanner();
     loadAnalytics();
+    upgradeAnalytics();
     loadPostHog();
+  }
+
+  // Re-configure GA4 with the full settings once someone accepts, so accepting
+  // actually grants the full configuration rather than leaving the visitor in
+  // the cookieless pre-consent mode forever. GA4 treats a second config for
+  // the same measurement id as an update and starts writing cookies from here.
+  function upgradeAnalytics() {
+    if (!analyticsId || !analyticsLoaded || !gaReduced || !window.gtag) return;
+    gaReduced = false;
+    const config = { anonymize_ip: true };
+    if (/(^|\.)zeroquarry\.com$/i.test(window.location.hostname)) {
+      config.cookie_domain = 'zeroquarry.com';
+    }
+    window.gtag('config', analyticsId, config);
   }
 
   function declineAnalytics() {
@@ -390,7 +426,10 @@
     }
     // No choice recorded yet. Count this pageview in the reduced mode — no
     // cookies, no localStorage, no recording, nothing that identifies anyone —
-    // and still offer the full analytics option.
+    // and still offer the full analytics option. GA4 runs in the same
+    // cookieless, signal-free mode here, so traffic is countable before anyone
+    // answers; accepting only upgrades it to the full configuration.
+    loadAnalytics(true);
     loadPostHog(true);
     createBanner();
   }
