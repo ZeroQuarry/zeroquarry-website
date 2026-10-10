@@ -40,9 +40,13 @@ function filePathToUrl(filePath) {
   return cleanPath === "" ? "/" : `/${cleanPath.replace(/^\/+/, "")}`;
 }
 
+// Non-HTML resources served from the repo root that agents should discover.
+const AGENT_URLS = ["/AGENTS.md", "/llms.txt"];
+
 const urls = findHtmlFiles(ROOT_DIR)
   .filter((filePath) => !fs.readFileSync(filePath, "utf8").match(/<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i))
   .map(filePathToUrl)
+  .concat(AGENT_URLS)
   .sort();
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

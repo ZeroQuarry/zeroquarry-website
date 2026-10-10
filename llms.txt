@@ -1,0 +1,57 @@
+# ZeroQuarry
+
+> ZeroQuarry is an AI security-operations platform that continuously tests software products and proves every finding before it becomes your team's work. It tests source code, shipped binaries, and authorized live applications, challenges every finding with adversarial vendor-style review, proposes fixes as reviewed pull requests, retests remediation, and packages the full history as evidence for customers and auditors.
+
+The operating loop is Receive → Assess → Validate → Decide → Remediate → Retest → Prove. Every step writes to the same project record. Pricing is per account, not per seat, measured in security runs (1 run = a focused PR or changed-file review; 5 runs = a full assessment), with a permanent free plan for open-source maintainers and a 30-day trial that requires no credit card. A machine-readable site and product guide is at [AGENTS.md](https://zeroquarry.com/AGENTS.md).
+
+## Platform
+
+The seven capabilities of the platform. Each is a step in the same workflow and writes to the same record.
+
+- [Platform overview](https://zeroquarry.com/platform): all seven capabilities and the operating loop
+- [AI security testing](https://zeroquarry.com/platform/security-testing/): source, binary, and authorized live-app testing with hybrid SAST plus agent investigation
+- [Adversarial validation](https://zeroquarry.com/platform/adversarial-validation/): every finding must survive skeptical vendor-style review, rebuttal, and reproduction; confidence scored separately from severity
+- [Continuous application security](https://zeroquarry.com/platform/continuous-security/): PR and delta scans via GitHub Actions, schedules, and a public API
+- [AI security operations](https://zeroquarry.com/platform/security-operations/): inbound report intake, finding lifecycle, Jira/ServiceNow/GitHub Issues/Slack routing, audit history
+- [Vulnerability remediation](https://zeroquarry.com/platform/remediation/): patch proposals as audited bot pull requests, safety controls, verified retests
+- [Private execution](https://zeroquarry.com/platform/private-execution/): customer-controlled Docker runners inside your network, outbound-only, minimized result return
+- [Security evidence and reporting](https://zeroquarry.com/platform/evidence-reporting/): evidence room, branded PDF reports, controlled expiring shares, disclosure milestones
+
+## Use cases
+
+Workflows keyed to the moment security becomes urgent. Each links to a playbook with owners and outcomes.
+
+- [Use-case library](https://zeroquarry.com/use-cases/): all workflows plus a maturity model
+- [Open-source maintainers](https://zeroquarry.com/open-source/): free ongoing plan for public projects
+- [Security for growing companies](https://zeroquarry.com/use-cases/startup-security/): real coverage before the first AppSec hire
+- [Pull request security review](https://zeroquarry.com/use-cases/pr-security-review/): AI review of risky changes in CI
+- [Release security review](https://zeroquarry.com/use-cases/release-security-review/): go/no-go from source, artifact, and staging evidence
+- [Binary security review](https://zeroquarry.com/use-cases/binary-security-review/): review shipped APKs, JARs, and firmware without source
+- [Inbound vulnerability reports](https://zeroquarry.com/use-cases/inbound-vulnerability-reports/): turn researcher email into bounded, authorized work
+- [Customer and audit evidence](https://zeroquarry.com/use-cases/customer-security-reviews/): answer "when was this tested?" with current evidence
+- [Vulnerability disclosure](https://zeroquarry.com/use-cases/vulnerability-disclosure/): move from external claim to defensible disclosure
+
+## Research
+
+Published, coordinated-disclosure research by founder Shane Connelly.
+
+- [Research index](https://zeroquarry.com/research/)
+- [Of course it escapes: how ZeroQuarry contains security agents](https://zeroquarry.com/research/agent-containment/)
+- [Confirming blind findings: the out-of-band collector](https://zeroquarry.com/research/confirming-blind-findings/)
+- [ZeroQuarry is finding security vulnerability chains in AI-reviewed code](https://zeroquarry.com/research/security-vulnerabilities-in-ai-reviewed-code/)
+- [Finding and fixing vulnerabilities in an open source Lua coroutine-dispatcher](https://zeroquarry.com/research/copas-concurrency-and-tls-case-study/)
+- [Models and Their Capabilities](https://zeroquarry.com/research/models-capabilities/)
+- [The Future of AI Security Scanning Is Multi-Agent](https://zeroquarry.com/research/future-of-ai-security-is-multi-agent/)
+- [Is Excalidraw safe? What we found in the Obsidian plugin](https://zeroquarry.com/research/excalidraw-vulnerabilities/)
+- [RCE via Markdown in the Obsidian Tasks Plugin](https://zeroquarry.com/research/obsidian-tasks-rce/)
+
+## Company and commercial
+
+- [Pricing](https://zeroquarry.com/pricing): plans from free OSS to Enterprise, run allowances, comparison table, trial terms
+- [About](https://zeroquarry.com/about): company story, method, and founder background
+- [Security partners](https://zeroquarry.com/partners/): delivery pilot for vCISO, compliance, and pentest firms
+- [Talk to us](https://zeroquarry.com/request-scan/): request a working session on a real security decision
+- [Privacy](https://zeroquarry.com/privacy) and [Terms](https://zeroquarry.com/terms)
+- [Documentation](https://docs.zeroquarry.com): product docs, playbooks, workflows, and API reference
+- [Status](https://status.zeroquarry.com): service status
+- [Start free trial](https://console.zeroquarry.com/register): 30 days, one private product, no credit card

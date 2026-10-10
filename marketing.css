@@ -1855,7 +1855,7 @@
    animations only run under prefers-reduced-motion: no-preference.
    ============================================================ */
 
-.mv-rally, .mv-loop, .mv-sort, .mv-patch, .mv-contain, .mv-docs {
+.mv-rally, .mv-loop, .mv-sort, .mv-patch, .mv-contain, .mv-docs, .mv-binary {
   grid-column: 1 / -1;
   position: relative;
   display: grid;
@@ -1960,6 +1960,79 @@
     100% { opacity: 0; }
   }
 }
+
+/* ---------- binary (binary security review) ---------- */
+.mv-binary { grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.85fr) minmax(0, 1.6fr) minmax(0, 0.95fr); gap: 10px; align-items: stretch; min-height: 316px; }
+.bin-card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--node-bg);
+}
+.bin-tag {
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.bin-upload strong,
+.bin-result strong { color: var(--ink); font-family: var(--mono); font-size: 11px; line-height: 1.45; }
+.bin-upload em,
+.bin-result em { overflow-wrap: anywhere; color: var(--ink-2); font-size: 10.5px; font-style: normal; line-height: 1.4; }
+.bin-arc {
+  padding: 7px 9px;
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  animation: motionNodeRead 6.8s ease-in-out infinite;
+}
+.bin-arc.is-nested {
+  margin-left: 8px;
+  border-left: 2px solid color-mix(in srgb, var(--blue) 50%, transparent);
+  animation-delay: 0.9s;
+}
+.bin-arc.is-deeper {
+  margin-left: 16px;
+  border-left: 2px solid color-mix(in srgb, var(--blue) 72%, transparent);
+  animation-delay: 1.8s;
+}
+.bin-list { display: grid; gap: 5px; margin: 0; padding: 0; list-style: none; }
+.bin-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  padding: 5px 8px;
+  border: 1px solid var(--line-2);
+  border-radius: 5px;
+  animation: motionNodeRead 6.8s ease-in-out infinite;
+}
+.bin-list li:nth-child(2) { animation-delay: 0.7s; }
+.bin-list li:nth-child(3) { animation-delay: 1.4s; }
+.bin-list li:nth-child(4) { animation-delay: 2.1s; }
+.bin-list span { overflow: hidden; min-width: 0; color: var(--ink-2); font-family: var(--mono); font-size: 9.5px; text-overflow: ellipsis; white-space: nowrap; }
+.bin-list b { flex: none; color: var(--green); font-family: var(--mono); font-size: 9px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+/* The rejection is the point of this page, so it gets the only red in the panel. */
+.bin-list li.is-skipped {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--red) 32%, transparent);
+  animation-delay: 2.8s;
+}
+.bin-list li.is-skipped span {
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--red) 60%, transparent);
+}
+.bin-list li.is-skipped b { color: var(--red); }
+.bin-result { border-color: color-mix(in srgb, var(--green) 24%, transparent); }
 
 /* ---------- loop (continuous security) ---------- */
 .mv-loop { grid-template-columns: 1fr; }
@@ -2407,6 +2480,8 @@
   .mv-rally { grid-template-columns: 1fr; gap: 14px; min-height: 0; }
   .rally-arena { order: -1; }
   .rally-camp { justify-items: center; text-align: center; }
+  .mv-binary { grid-template-columns: 1fr; gap: 12px; min-height: 0; }
+  .bin-walk { order: -1; }
   .mv-sort { --dip: 96px; gap: 8px; min-height: 0; }
   .sort-lens { width: 96px; height: 96px; padding: 8px; }
   .sort-lens small { font-size: 7px; }

@@ -19,6 +19,7 @@ const securityPartnerApplication = "#partner-apply";
 const signupBySlug = {
   "continuous-security": signupUrls.prReview,
   "pr-security-review": signupUrls.prReview,
+  "binary-security-review": signupUrls.prReview,
   "release-security-review": signupUrls.prReview,
   "security-operations": signupUrls.reportTriage,
   "inbound-vulnerability-reports": signupUrls.reportTriage,
@@ -595,7 +596,7 @@ const useCasePages = [
       ["Can a release review use changed-code scanning?", "Yes, but a major release or significant architecture change may justify a broader source review. The right depth depends on change size, exposure, and prior baseline quality."],
       ["Can ZeroQuarry make the release decision automatically?", "ZeroQuarry provides assessment evidence, review signals, and traceable decisions. Your organization remains responsible for business context and final release authority."],
     ],
-    related: [["/platform/security-testing/", "AI security testing"], ["/platform/adversarial-validation/", "Adversarial validation"], ["/use-cases/customer-security-reviews/", "Customer and audit evidence"]],
+    related: [["/platform/security-testing/", "AI security testing"], ["/platform/adversarial-validation/", "Adversarial validation"], ["/use-cases/binary-security-review/", "Binary security review"]],
   },
   {
     slug: "inbound-vulnerability-reports",
@@ -738,6 +739,51 @@ const useCasePages = [
     ],
     related: [["/platform/adversarial-validation/", "Adversarial validation"], ["/platform/evidence-reporting/", "Evidence and reporting"], ["/use-cases/inbound-vulnerability-reports/", "Inbound vulnerability reports"]],
   },
+  {
+    slug: "binary-security-review",
+    title: "Binary Security Testing for Applications, Mobile, and Firmware | ZeroQuarry",
+    description: "Run binary security tests on uploaded APK, JAR, WAR, and firmware artifacts. Deterministic version discovery, decompilation, and binary-aware agents produce findings an engineer can check.",
+    eyebrow: "Binary security review",
+    h1: "Review the artifact you actually <em>ship.</em>",
+    lede: "Source review stops at the repository. ZeroQuarry takes the built artifact instead - an APK, a jar from your release, a firmware image pulled from a device - and works from the bytes: deterministic component discovery first, then agents reading decompiler output, strings, manifests, and native libraries.",
+    proof: ["APK, JAR, AAR, WAR, EAR", "Firmware images", "Deterministic version discovery"],
+    sectionTitle: "How a binary is identified when there is no source",
+    sectionIntro: "A source review reads files someone wrote. A binary review has to recover identity from the artifact itself, and most of the available ways of doing that are guesses. ZeroQuarry separates the part that can be determined from the part that has to be reasoned about.",
+    workflowTitle: "From shipped artifact to evidence",
+    workflowIntro: "The same pipeline as every other surface, starting from bytes rather than a repository.",
+    outcomesTitle: "Why review the build, not only the repository",
+    outcomesIntro: "Source review has a floor: it can only speak about the code you have. The artifact is a separate question.",
+    faqTitle: "Before you upload something",
+    faqIntro: "Accepted formats, how versions are identified, and what a finding looks like afterwards.",
+    relatedTitle: "Where binary review sits",
+    finalCtaTitle: "Upload the artifact you actually ship",
+    finalCtaText: "Start with the build from your last release and check whether the components inside it are the ones you think are there.",
+    capabilities: [
+      ["Identified by bytes, not by filename", "Extraction is driven by what a file actually is. A firmware image with no extension and an APK renamed to .zip are unpacked the same way, because nothing here is trusted on the strength of its name."],
+      ["Deterministic dependency analysis first", "Component identity is resolved before any model runs, and the result is handed to the agents as context. The investigation starts from real components instead of versions guessed out of strings."],
+      ["Nested archives read in place", "Binary uploads are not unpacked to disk the way a source tree is. A WAR keeps its entries inside the archive, so ZeroQuarry reads carriers straight out of the zip and recurses into the jars under WEB-INF/lib."],
+      ["Version carriers that mean something", "Maven coordinates from pom.properties, pom.xml and Gradle Module Metadata; firmware package databases from dpkg status and the Alpine apk installed-db. These are identity records, not inference."],
+      ["MANIFEST.MF is deliberately not used", "Every jar ships a MANIFEST.MF and the naming is inconsistent between projects. That is exactly where wrong version matches come from, so ZeroQuarry does not read those headers as carriers."],
+      ["Agents work the extracted evidence", "binwalk for firmware and embedded filesystems, jadx for reviewable Java, alongside file, strings and apktool. Agents are pointed at manifests, decompiler output, native libraries, bundled dependencies, and update or authentication flows."],
+    ],
+    workflow: [
+      ["Upload", "Bring the built artifact rather than the repository: the APK from the store build, the jar a customer downloads, the firmware image pulled off a device."],
+      ["Extract", "Content-based unpacking, firmware carving and Java decompilation produce a tree that can actually be read, including the archives nested inside the outer one."],
+      ["Resolve", "Deterministic analysis records exact components and versions from high-precision carriers, and materialises them where a finding's source resolves to a real file."],
+      ["Investigate", "Agents pursue attack paths across the resolved components, decompiled classes and update flows. Triage, adversarial challenge, confidence scoring and reporting then run as they do for source and live targets."],
+    ],
+    outcomes: [
+      ["Coverage of what ships", "The build you publish is a different object from the repository you review, and it is the one your customer downloads."],
+      ["Versions that can be checked", "A finding points at an identity record rather than a string match, so an engineer disputing a version can open the file and settle it instead of arguing about it."],
+      ["One evidence trail", "Binary findings share the same validation, retest and report path as every other surface, so a release decision is not assembled out of two separate systems."],
+    ],
+    faqs: [
+      ["What can I upload?", "Compiled application packages and firmware: APK, JAR, AAR, WAR and EAR archives, plain archives, and firmware images. Binary review currently takes uploaded files rather than a repository clone, and it is a licensed tier capability."],
+      ["How do you know which versions are inside it?", "From carriers that are identity records: Maven coordinates in pom.properties, pom.xml and Gradle Module Metadata, and firmware package databases such as dpkg status and the Alpine apk installed-db. MANIFEST.MF headers are deliberately not parsed, because every jar ships one and the naming is where wrong version matches come from."],
+      ["Do binary findings get the same validation and proofs?", "Yes. Binary findings move through the same triage, adversarial challenge, confidence scoring, proof generation and evidence packaging as any other scan mode, and can be retested against a rebuild."],
+    ],
+    related: [["/platform/security-testing/", "Security testing"], ["/use-cases/release-security-review/", "Release security review"], ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure"]],
+  },
 ];
 
 function renderCards(items, className = "capability-grid") {
@@ -804,6 +850,12 @@ const motionVisuals = {
     label: "review://claim-challenge",
     foot: "severity says how bad; confidence says how likely the claim is to hold",
     aria: "A vulnerability claim rallies between a researcher building it and a vendor challenging it until it is sustained with confidence 0.94",
+  },
+  "binary-security-review": {
+    variant: "binary",
+    label: "binary://carrier-resolution",
+    foot: "a version you can check beats a version you can only argue about",
+    aria: "An uploaded APK is extracted, nested archives are read in place, version carriers are resolved from Maven and firmware package databases while MANIFEST.MF is deliberately not parsed, and an exact component version is resolved to a real file",
   },
   "continuous-security": {
     variant: "loop",
@@ -916,6 +968,43 @@ function renderRallyMotion(key, visual) {
           <div class="rally-verdict">SUSTAINED · 0.94</div>
         </div>
         <div class="rally-camp camp-blue"><span>Vendor</span><strong>tries to break it</strong></div>
+      </div>`);
+}
+
+// Binary review: bytes in, an exact component version out. The visual carries
+// the part that is actually unusual here -- nested archives are read in place
+// rather than unpacked to disk, and MANIFEST.MF is deliberately rejected as a
+// carrier because inconsistent naming in it is where wrong version matches come
+// from. That refusal is the differentiator, so it is shown rather than implied.
+function renderBinaryMotion(key, visual) {
+  const carriers = [
+    ["pom.properties", "maven"],
+    ["gradle .module", "maven"],
+    ["dpkg status", "firmware"],
+    ["apk installed-db", "firmware"],
+  ];
+  return motionShell(key, visual, `
+      <div class="mv-binary">
+        <div class="bin-card bin-upload">
+          <span class="bin-tag">Upload</span>
+          <strong>portal.war</strong>
+          <em>identified by bytes, not by name</em>
+        </div>
+        <div class="bin-card bin-walk">
+          <span class="bin-tag">Extract</span>
+          <div class="bin-arc">portal.war</div>
+          <div class="bin-arc is-nested">WEB-INF/lib</div>
+          <div class="bin-arc is-deeper">service.jar</div>
+        </div>
+        <div class="bin-card bin-carriers">
+          <span class="bin-tag">Carriers</span>
+          <ul class="bin-list">${carriers.map(([name, kind]) => `<li><span>${escapeHtml(name)}</span><b>${escapeHtml(kind)}</b></li>`).join("")}<li class="is-skipped"><span>MANIFEST.MF</span><b>not parsed</b></li></ul>
+        </div>
+        <div class="bin-card bin-result">
+          <span class="bin-tag">Resolved</span>
+          <strong>log4j-core 2.14.1</strong>
+          <em>metadata/pom.properties</em>
+        </div>
       </div>`);
 }
 
@@ -1128,6 +1217,7 @@ function renderMotionVisual(key) {
   const visual = motionVisuals[key] || motionVisuals["platform-overview"];
   switch (visual.variant) {
     case "rally": return renderRallyMotion(key, visual);
+    case "binary": return renderBinaryMotion(key, visual);
     case "loop": return renderLoopMotion(key, visual);
     case "sort": return renderSortMotion(key, visual);
     case "patch": return renderPatchMotion(key, visual);

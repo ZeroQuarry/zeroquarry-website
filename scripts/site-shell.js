@@ -13,6 +13,7 @@ const useCaseLinks = [
   ["/use-cases/startup-security/", "Security for growing companies", "Get real coverage before you hire for it"],
   ["/use-cases/pr-security-review/", "Pull request security review", "Review risky code while the author still remembers it"],
   ["/use-cases/release-security-review/", "Release security review", "Check a release before you ship it"],
+  ["/use-cases/binary-security-review/", "Binary security review", "Find out what is actually inside the build"],
   ["/use-cases/inbound-vulnerability-reports/", "Inbound vulnerability reports", "Turn a researcher's email into real work"],
   ["/use-cases/customer-security-reviews/", "Customer and audit evidence", "Answer customer questions with current evidence"],
   ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure", "Handle findings that come from outside"],

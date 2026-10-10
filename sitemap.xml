@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://zeroquarry.com/</loc></url>
+  <url><loc>https://zeroquarry.com/AGENTS.md</loc></url>
   <url><loc>https://zeroquarry.com/about</loc></url>
+  <url><loc>https://zeroquarry.com/llms.txt</loc></url>
   <url><loc>https://zeroquarry.com/open-source/</loc></url>
   <url><loc>https://zeroquarry.com/partners/</loc></url>
   <url><loc>https://zeroquarry.com/platform</loc></url>
@@ -26,6 +28,7 @@
   <url><loc>https://zeroquarry.com/research/security-vulnerabilities-in-ai-reviewed-code/</loc></url>
   <url><loc>https://zeroquarry.com/terms</loc></url>
   <url><loc>https://zeroquarry.com/use-cases/</loc></url>
+  <url><loc>https://zeroquarry.com/use-cases/binary-security-review/</loc></url>
   <url><loc>https://zeroquarry.com/use-cases/customer-security-reviews/</loc></url>
   <url><loc>https://zeroquarry.com/use-cases/inbound-vulnerability-reports/</loc></url>
   <url><loc>https://zeroquarry.com/use-cases/pr-security-review/</loc></url>

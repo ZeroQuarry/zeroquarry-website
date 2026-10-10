@@ -2,3 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://zeroquarry.com/sitemap.xml
+
+# Machine-readable guides for AI agents:
+# llms.txt: https://zeroquarry.com/llms.txt
+# AGENTS.md: https://zeroquarry.com/AGENTS.md

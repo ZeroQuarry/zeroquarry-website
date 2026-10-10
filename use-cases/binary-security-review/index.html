@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Automated Vulnerability Report Intake and Security Email Triage | ZeroQuarry</title>
-<meta name="description" content="Forward researcher and customer vulnerability reports into bounded AI triage that maps targets, starts assessments, preserves evidence, and routes remediation." />
-<link rel="canonical" href="https://zeroquarry.com/use-cases/inbound-vulnerability-reports/" />
-<meta property="og:title" content="Automated Vulnerability Report Intake and Security Email Triage | ZeroQuarry" />
-<meta property="og:description" content="Forward researcher and customer vulnerability reports into bounded AI triage that maps targets, starts assessments, preserves evidence, and routes remediation." />
+<title>Binary Security Testing for Applications, Mobile, and Firmware | ZeroQuarry</title>
+<meta name="description" content="Run binary security tests on uploaded APK, JAR, WAR, and firmware artifacts. Deterministic version discovery, decompilation, and binary-aware agents produce findings an engineer can check." />
+<link rel="canonical" href="https://zeroquarry.com/use-cases/binary-security-review/" />
+<meta property="og:title" content="Binary Security Testing for Applications, Mobile, and Firmware | ZeroQuarry" />
+<meta property="og:description" content="Run binary security tests on uploaded APK, JAR, WAR, and firmware artifacts. Deterministic version discovery, decompilation, and binary-aware agents produce findings an engineer can check." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://zeroquarry.com/use-cases/inbound-vulnerability-reports/" />
+<meta property="og:url" content="https://zeroquarry.com/use-cases/binary-security-review/" />
 <meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -25,8 +25,8 @@
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
 <script src="/index.js?v=20260915-copy2" defer></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://zeroquarry.com/use-cases/"},{"@type":"ListItem","position":3,"name":"Inbound vulnerability reports","item":"https://zeroquarry.com/use-cases/inbound-vulnerability-reports/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can anyone email the inbox?","acceptedAnswer":{"@type":"Answer","text":"Only messages routed to an active project address and matching an exact sender or allowed domain are processed."}},{"@type":"Question","name":"Can the email tell ZeroQuarry to scan another repository?","acceptedAnswer":{"@type":"Answer","text":"The model can only resolve repositories listed for that project. Reports that cannot map safely are surfaced for review instead of expanding the boundary."}},{"@type":"Question","name":"How should we tune report intake?","acceptedAnswer":{"@type":"Answer","text":"Begin with exact sender addresses and one approved repository. Matching reports start after those checks, so keep the boundary narrow and expand it only after target matching behaves as expected."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Use cases","item":"https://zeroquarry.com/use-cases/"},{"@type":"ListItem","position":3,"name":"Binary security review","item":"https://zeroquarry.com/use-cases/binary-security-review/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What can I upload?","acceptedAnswer":{"@type":"Answer","text":"Compiled application packages and firmware: APK, JAR, AAR, WAR and EAR archives, plain archives, and firmware images. Binary review currently takes uploaded files rather than a repository clone, and it is a licensed tier capability."}},{"@type":"Question","name":"How do you know which versions are inside it?","acceptedAnswer":{"@type":"Answer","text":"From carriers that are identity records: Maven coordinates in pom.properties, pom.xml and Gradle Module Metadata, and firmware package databases such as dpkg status and the Alpine apk installed-db. MANIFEST.MF headers are deliberately not parsed, because every jar ships one and the naming is where wrong version matches come from."}},{"@type":"Question","name":"Do binary findings get the same validation and proofs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Binary findings move through the same triage, adversarial challenge, confidence scoring, proof generation and evidence packaging as any other scan mode, and can be retested against a rebuild."}}]}</script>
 </head>
 <body>
 <div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
@@ -107,40 +107,47 @@
 <main class="marketing-main">
   <section class="buyer-hero detail-hero">
     <div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/use-cases/">Use cases</a><span>/</span><span>Inbound vulnerability reports</span></nav>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/use-cases/">Use cases</a><span>/</span><span>Binary security review</span></nav>
       <div class="buyer-hero-grid">
         <div>
-          <div class="buyer-kicker">Inbound vulnerability reports</div>
-          <h1 class="buyer-title detail-title">Turn a researcher email into <em>bounded assessment work.</em></h1>
-          <p class="buyer-lede">Project-specific inboxes, sender allowlists, approved repositories, remote-scan controls, and manual or automatic kickoff convert incoming reports into structured investigation without expanding scope silently.</p>
+          <div class="buyer-kicker">Binary security review</div>
+          <h1 class="buyer-title detail-title">Review the artifact you actually <em>ship.</em></h1>
+          <p class="buyer-lede">Source review stops at the repository. ZeroQuarry takes the built artifact instead - an APK, a jar from your release, a firmware image pulled from a device - and works from the bytes: deterministic component discovery first, then agents reading decompiler output, strings, manifests, and native libraries.</p>
           <div class="buyer-actions">
-            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/report-triage">Start free trial <span class="arr">-&gt;</span></a>
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/pr-review">Start free trial <span class="arr">-&gt;</span></a>
             <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
           </div>
-          <div class="buyer-proofline"><span>Project-specific inboxes</span><span>Allowed senders and targets</span><span>Manual or automatic kickoff</span></div>
+          <div class="buyer-proofline"><span>APK, JAR, AAR, WAR, EAR</span><span>Firmware images</span><span>Deterministic version discovery</span></div>
         </div>
-        <div class="motion-system motion-inbound-vulnerability-reports" role="img" aria-label="A researcher email unfolds into a numbered case with claim, target, and evidence, and a triage trail from acknowledged to fix routed">
-    <div class="motion-head"><span>incoming://report-triage</span><span class="motion-live">processing</span></div>
+        <div class="motion-system motion-binary-security-review" role="img" aria-label="An uploaded APK is extracted, nested archives are read in place, version carriers are resolved from Maven and firmware package databases while MANIFEST.MF is deliberately not parsed, and an exact component version is resolved to a real file">
+    <div class="motion-head"><span>binary://carrier-resolution</span><span class="motion-live">processing</span></div>
     <div class="motion-canvas">
       <div class="motion-grid" aria-hidden="true"></div>
       
-      <div class="mv-email">
-        <div class="email-card">
-          <div class="em-head"><span>researcher@example.dev</span><span>to security@</span></div>
-          <div class="em-subject">Reproduced XSS in your contact form</div>
-          <div class="em-body">stored payload executes on submit — PoC and request log attached</div>
+      <div class="mv-binary">
+        <div class="bin-card bin-upload">
+          <span class="bin-tag">Upload</span>
+          <strong>portal.war</strong>
+          <em>identified by bytes, not by name</em>
         </div>
-        <div class="email-arrow" aria-hidden="true">-&gt;</div>
-        <div class="case-card">
-          <div class="case-num">ZQC-412</div>
-          <div class="case-field"><span>claim</span><b>stored XSS · contact form</b></div>
-          <div class="case-field"><span>target</span><b>app/contact · mapped to main</b></div>
-          <div class="case-field"><span>evidence</span><b>PoC attached · 2 requests</b></div>
-          <div class="case-status"><span class="cs s1">acknowledged</span><span class="cs s2">triaged</span><span class="cs s3">fix routed</span></div>
+        <div class="bin-card bin-walk">
+          <span class="bin-tag">Extract</span>
+          <div class="bin-arc">portal.war</div>
+          <div class="bin-arc is-nested">WEB-INF/lib</div>
+          <div class="bin-arc is-deeper">service.jar</div>
+        </div>
+        <div class="bin-card bin-carriers">
+          <span class="bin-tag">Carriers</span>
+          <ul class="bin-list"><li><span>pom.properties</span><b>maven</b></li><li><span>gradle .module</span><b>maven</b></li><li><span>dpkg status</span><b>firmware</b></li><li><span>apk installed-db</span><b>firmware</b></li><li class="is-skipped"><span>MANIFEST.MF</span><b>not parsed</b></li></ul>
+        </div>
+        <div class="bin-card bin-result">
+          <span class="bin-tag">Resolved</span>
+          <strong>log4j-core 2.14.1</strong>
+          <em>metadata/pom.properties</em>
         </div>
       </div>
     </div>
-    <div class="motion-foot"><span class="pulse-dot"></span><span>sender, project, target, and authorization boundaries are checked first</span></div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>a version you can check beats a version you can only argue about</span></div>
   </div>
       </div>
     </div>
@@ -148,115 +155,115 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Where an inbound report goes</h2></div><p class="section-intro">A report often arrives in one system, becomes a ticket in another, and turns into ad hoc testing somewhere else. ZeroQuarry keeps the original claim and the resulting assessment inside the owning product history.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>How a binary is identified when there is no source</h2></div><p class="section-intro">A source review reads files someone wrote. A binary review has to recover identity from the artifact itself, and most of the available ways of doing that are guesses. ZeroQuarry separates the part that can be determined from the part that has to be reasoned about.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
-    <h3>Project routing</h3>
-    <p>Give each product project its own incoming address so reports land with the correct asset history.</p>
+    <h3>Identified by bytes, not by filename</h3>
+    <p>Extraction is driven by what a file actually is. A firmware image with no extension and an APK renamed to .zip are unpacked the same way, because nothing here is trusted on the strength of its name.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">02</div>
-    <h3>Sender allowlists</h3>
-    <p>Process exact researchers, partner addresses, or trusted domains instead of creating an open public trigger.</p>
+    <h3>Deterministic dependency analysis first</h3>
+    <p>Component identity is resolved before any model runs, and the result is handed to the agents as context. The investigation starts from real components instead of versions guessed out of strings.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">03</div>
-    <h3>Repository boundaries</h3>
-    <p>List the GitHub repositories the triage model may select for each project.</p>
+    <h3>Nested archives read in place</h3>
+    <p>Binary uploads are not unpacked to disk the way a source tree is. A WAR keeps its entries inside the archive, so ZeroQuarry reads carriers straight out of the zip and recurses into the jars under WEB-INF/lib.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">04</div>
-    <h3>Remote-scan control</h3>
-    <p>Keep live-target testing disabled unless that project has an explicit and stable authorization boundary.</p>
+    <h3>Version carriers that mean something</h3>
+    <p>Maven coordinates from pom.properties, pom.xml and Gradle Module Metadata; firmware package databases from dpkg status and the Alpine apk installed-db. These are identity records, not inference.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">05</div>
-    <h3>Review before kickoff</h3>
-    <p>Start with automatic dispatch off so operators can inspect proposed target, scan type, and notes.</p>
+    <h3>MANIFEST.MF is deliberately not used</h3>
+    <p>Every jar ships a MANIFEST.MF and the naming is inconsistent between projects. That is exactly where wrong version matches come from, so ZeroQuarry does not read those headers as carriers.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">06</div>
-    <h3>Connected remediation</h3>
-    <p>Validate resulting findings, record the decision, route ownership, and create a controlled share or disclosure when appropriate.</p>
+    <h3>Agents work the extracted evidence</h3>
+    <p>binwalk for firmware and embedded filesystems, jadx for reviewable Java, alongside file, strings and apktool. Agents are pointed at manifests, decompiler output, native libraries, bundled dependencies, and update or authentication flows.</p>
   </article></div>
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>Receive, resolve, assess, respond</h2></div><p class="section-intro">What happens between a researcher's email and a defensible answer.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>From shipped artifact to evidence</h2></div><p class="section-intro">The same pipeline as every other surface, starting from bytes rather than a repository.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
-    <h3>Receive</h3>
-    <p>Forward the report to the assigned project inbox from an allowed sender.</p>
+    <h3>Upload</h3>
+    <p>Bring the built artifact rather than the repository: the APK from the store build, the jar a customer downloads, the firmware image pulled off a device.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 02</span>
-    <h3>Resolve</h3>
-    <p>The triage model identifies target, scan type, and useful notes inside the configured boundary.</p>
+    <h3>Extract</h3>
+    <p>Content-based unpacking, firmware carving and Java decompilation produce a tree that can actually be read, including the archives nested inside the outer one.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 03</span>
-    <h3>Assess</h3>
-    <p>An operator approves the work or the project starts it automatically after the rules are trusted.</p>
+    <h3>Resolve</h3>
+    <p>Deterministic analysis records exact components and versions from high-precision carriers, and materialises them where a finding&#39;s source resolves to a real file.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 04</span>
-    <h3>Respond</h3>
-    <p>Validate findings, route remediation, and track the external communication when needed.</p>
+    <h3>Investigate</h3>
+    <p>Agents pursue attack paths across the resolved components, decompiled classes and update flows. Triage, adversarial challenge, confidence scoring and reporting then run as they do for source and live targets.</p>
   </article></div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>Faster triage, without losing the thread</h2></div><p class="section-intro">One connected record, from the original claim to the assessment it triggered.</p></div>
-      <div class="outcome-grid"><article class="outcome-card"><h3>Faster time to technical assessment</h3><p>Reduce the manual translation between an external claim and a scoped reproduction plan.</p></article>
-<article class="outcome-card"><h3>Safer automation boundary</h3><p>Constrain what an untrusted email can cause the platform to investigate.</p></article>
-<article class="outcome-card"><h3>One connected record</h3><p>Keep intake, findings, decisions, remediation, and disclosure with the product that owns the risk.</p></article></div>
+      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>Why review the build, not only the repository</h2></div><p class="section-intro">Source review has a floor: it can only speak about the code you have. The artifact is a separate question.</p></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>Coverage of what ships</h3><p>The build you publish is a different object from the repository you review, and it is the one your customer downloads.</p></article>
+<article class="outcome-card"><h3>Versions that can be checked</h3><p>A finding points at an identity record rather than a string match, so an engineer disputing a version can open the file and settle it instead of arguing about it.</p></article>
+<article class="outcome-card"><h3>One evidence trail</h3><p>Binary findings share the same validation, retest and report path as every other surface, so a release decision is not assembled out of two separate systems.</p></article></div>
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Questions about inbound report intake</h2></div><p class="section-intro">Who can email in, what the automation may do, and how to tune the noise.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Before you upload something</h2></div><p class="section-intro">Accepted formats, how versions are identified, and what a finding looks like afterwards.</p></div>
       <div class="faq-list"><details>
-    <summary>Can anyone email the inbox?</summary>
-    <p>Only messages routed to an active project address and matching an exact sender or allowed domain are processed.</p>
+    <summary>What can I upload?</summary>
+    <p>Compiled application packages and firmware: APK, JAR, AAR, WAR and EAR archives, plain archives, and firmware images. Binary review currently takes uploaded files rather than a repository clone, and it is a licensed tier capability.</p>
   </details>
 <details>
-    <summary>Can the email tell ZeroQuarry to scan another repository?</summary>
-    <p>The model can only resolve repositories listed for that project. Reports that cannot map safely are surfaced for review instead of expanding the boundary.</p>
+    <summary>How do you know which versions are inside it?</summary>
+    <p>From carriers that are identity records: Maven coordinates in pom.properties, pom.xml and Gradle Module Metadata, and firmware package databases such as dpkg status and the Alpine apk installed-db. MANIFEST.MF headers are deliberately not parsed, because every jar ships one and the naming is where wrong version matches come from.</p>
   </details>
 <details>
-    <summary>How should we tune report intake?</summary>
-    <p>Begin with exact sender addresses and one approved repository. Matching reports start after those checks, so keep the boundary narrow and expand it only after target matching behaves as expected.</p>
+    <summary>Do binary findings get the same validation and proofs?</summary>
+    <p>Yes. Binary findings move through the same triage, adversarial challenge, confidence scoring, proof generation and evidence packaging as any other scan mode, and can be retested against a rebuild.</p>
   </details></div>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Coordinated disclosure</h2></div></div>
-      <div class="related-grid"><a class="related-card" href="/platform/security-operations/">
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Where binary review sits</h2></div></div>
+      <div class="related-grid"><a class="related-card" href="/platform/security-testing/">
     <div class="card-code">Continue</div>
-    <h3>AI security operations</h3>
+    <h3>Security testing</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/use-cases/release-security-review/">
+    <div class="card-code">Continue</div>
+    <h3>Release security review</h3>
     <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
   </a>
 <a class="related-card" href="/use-cases/vulnerability-disclosure/">
     <div class="card-code">Continue</div>
     <h3>Vulnerability disclosure</h3>
     <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
-  </a>
-<a class="related-card" href="/platform/adversarial-validation/">
-    <div class="card-code">Continue</div>
-    <h3>Adversarial validation</h3>
-    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
   </a></div>
     </div>
   </section>
 
-  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Route the next report through it</h2><p>Forward the next inbound claim and compare the answer with your current process.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/report-triage">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Upload the artifact you actually ship</h2><p>Start with the build from your last release and check whether the components inside it are the ones you think are there.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register/pr-review">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
   </main>
 <footer class="site-footer buyer-footer">
   <div class="container">
