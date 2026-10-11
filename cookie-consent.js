@@ -386,14 +386,11 @@
     banner.className = 'cookie-consent';
     banner.setAttribute('aria-label', 'Cookie consent');
     banner.innerHTML = [
-      '<div class="cookie-consent__copy">',
-      '<h2>Analytics cookies</h2>',
-      '<p>By clicking "Accept All", you agree to the storing of cookies to enhance our navigation, usage analytics, and marketing efforts.</p>',
-      '</div>',
+      '<p class="cookie-consent__copy">By clicking "Accept All", you agree to the storing of cookies to enhance our navigation, usage analytics, and '
+        + '<a class="cookie-consent__link" href="' + privacyHref() + '">marketing efforts</a>.</p>',
       '<div class="cookie-consent__actions">',
       '<button class="cookie-consent__button cookie-consent__button--ghost" type="button" data-cookie-consent="decline">Decline</button>',
       '<button class="cookie-consent__button cookie-consent__button--primary" type="button" data-cookie-consent="accept">Accept All</button>',
-      '<a class="cookie-consent__link" href="' + privacyHref() + '">Privacy policy</a>',
       '</div>',
     ].join('');
 
