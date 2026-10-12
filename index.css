@@ -1650,6 +1650,43 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   background: var(--shade-2);
   overflow-x: auto;
 }
+.article-table-wrap {
+  margin: 24px 0 28px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.article-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.article-table th,
+.article-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.article-table th {
+  background: var(--shade-2);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.article-table td {
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.article-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.article-table td:first-child {
+  color: var(--ink);
+  font-weight: 600;
+}
 .article-body img {
   display: block;
   width: 100%;

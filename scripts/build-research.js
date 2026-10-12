@@ -141,6 +141,29 @@ function flushParagraph(paragraph, html) {
   paragraph.length = 0;
 }
 
+function splitTableRow(line) {
+  return line
+    .replace(/^\s*\|/, '')
+    .replace(/\|\s*$/, '')
+    .split('|')
+    .map((cell) => cell.trim());
+}
+
+function isTableSeparator(line) {
+  const cells = splitTableRow(line);
+  return cells.length > 0 && cells.every((cell) => /^:?-{2,}:?$/.test(cell));
+}
+
+function renderTable(rows) {
+  const header = splitTableRow(rows[0]);
+  const body = rows.slice(1).map(splitTableRow);
+  const head = header.map((cell) => `<th>${renderInline(cell)}</th>`).join('');
+  const bodyRows = body
+    .map((cells) => `<tr>${cells.map((cell) => `<td>${renderInline(cell)}</td>`).join('')}</tr>`)
+    .join('\n');
+  return `<div class="article-table-wrap"><table class="article-table"><thead><tr>${head}</tr></thead><tbody>\n${bodyRows}\n</tbody></table></div>`;
+}
+
 function renderMarkdown(markdown) {
   const lines = markdown.split('\n');
   const html = [];
@@ -149,6 +172,7 @@ function renderMarkdown(markdown) {
   let list = null;
   let blockquote = [];
   let code = null;
+  let table = null;
 
   function closeList() {
     if (!list) return;
@@ -164,12 +188,19 @@ function renderMarkdown(markdown) {
     blockquote = [];
   }
 
+  function closeTable() {
+    if (!table) return;
+    html.push(renderTable(table.rows));
+    table = null;
+  }
+
   for (const line of lines) {
     const fence = line.match(/^```(.*)$/);
     if (fence) {
       flushParagraph(paragraph, html);
       closeList();
       closeBlockquote();
+      closeTable();
       if (code) {
         html.push(`<pre><code class="language-${escapeAttr(code.lang)}">${escapeHtml(code.lines.join('\n'))}</code></pre>`);
         code = null;
@@ -188,8 +219,28 @@ function renderMarkdown(markdown) {
       flushParagraph(paragraph, html);
       closeList();
       closeBlockquote();
+      closeTable();
       continue;
     }
+
+    const isPipeRow = /^\s*\|/.test(line);
+    if (isPipeRow) {
+      flushParagraph(paragraph, html);
+      closeList();
+      closeBlockquote();
+      if (table && isTableSeparator(line)) {
+        table.separator = line;
+        continue;
+      }
+      if (table && table.separator) {
+        table.rows.push(line);
+        continue;
+      }
+      closeTable();
+      table = { rows: [line], separator: null };
+      continue;
+    }
+    closeTable();
 
     const heading = line.match(/^(#{2,3})\s+(.+)$/);
     if (heading) {
@@ -233,6 +284,8 @@ function renderMarkdown(markdown) {
 
     paragraph.push(line.trim());
   }
+
+  closeTable();
 
   flushParagraph(paragraph, html);
   closeList();
