@@ -10,12 +10,19 @@
   const declinedValue = 'declined';
   const bannerId = 'cookie-consent-banner';
   const partnerFormName = 'security-partner-pilot';
+  const oaiPixelId = (script && script.dataset.oaiPixelId) || '';
+  const oaiSdkUrl = 'https://bzrcdn.openai.com/sdk/oaiq.min.js';
+  const requestScanFormName = 'request-scan';
+  const requestScanSubmissionMarker = 'zq_request_scan_submission_pending';
   const partnerSubmissionMarker = 'zq_security_partner_submission_pending';
   let analyticsLoaded = false;
   let gaReduced = false;
   let posthogLoaded = false;
   let posthogReduced = false;
   let marketingTrackingInstalled = false;
+  let oaiPixelLoaded = false;
+  let oaiPixelConsentGranted = false;
+  let oaiPixelObserved = false;
 
   // Consent-free PostHog configuration.
   //
@@ -277,6 +284,48 @@
     }
   }
 
+  function setRequestScanSubmissionMarker() {
+    try {
+      window.sessionStorage.setItem(requestScanSubmissionMarker, '1');
+    } catch (_) {}
+  }
+
+  function hasRequestScanSubmissionMarker() {
+    try {
+      return window.sessionStorage.getItem(requestScanSubmissionMarker) === '1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function consumeRequestScanSubmissionMarker() {
+    try {
+      if (window.sessionStorage.getItem(requestScanSubmissionMarker + '_sent') === '1') {
+        return false;
+      }
+      window.sessionStorage.setItem(requestScanSubmissionMarker + '_sent', '1');
+      return true;
+    } catch (_) {
+      return true;
+    }
+  }
+
+  function trackRequestScanMilestone() {
+    // A Netlify form posts to a thank-you page, so the submit fires here and
+    // the completion is counted on /request-scan/thanks/. Two events, not one,
+    // because a lead who abandons the form after submitting is a different
+    // problem from a lead who never starts.
+    if (window.location.pathname === '/request-scan/thanks/'
+      && hasRequestScanSubmissionMarker()
+      && consumeRequestScanSubmissionMarker()) {
+      captureMarketingEvent('request_scan_submitted', {
+        campaign_name: 'request-scan',
+        source_path: window.location.pathname,
+      });
+      oaiMeasure('lead_created', { type: 'customer_action' });
+    }
+  }
+
   function installMarketingTracking() {
     if (marketingTrackingInstalled) return;
     marketingTrackingInstalled = true;
@@ -307,6 +356,64 @@
       submittedEvent: 'partner_pilot_proposal_submitted',
       setSubmissionMarker: setPartnerSubmissionMarker,
     });
+    installTrackedForm({
+      formName: requestScanFormName,
+      campaignName: 'request-scan',
+      startedEvent: 'request_scan_started',
+      submittedEvent: 'request_scan_submitted',
+      setSubmissionMarker: setRequestScanSubmissionMarker,
+    });
+  }
+
+  // ChatGPT Ads measurement pixel.
+  //
+  // Unlike GA4 and PostHog, this one is not loaded in any reduced mode. The
+  // site's own privacy notice promises that a visitor who has not answered the
+  // banner gets no cookies and nothing stored on their device; this pixel
+  // holds a first-party `__oppref` click identifier, and the SDK has no mode
+  // that runs without it. So it waits for an accept, and does nothing at all
+  // for a decline. The Conversions API sender in the console covers the
+  // visitors this misses.
+  //
+  // Consent is set *before* init on every path, because the SDK defaults to
+  // granted: initialising first and calling consent(false) afterwards would
+  // already have sent the ping. `oaiq('consent', true)` is held until init so
+  // that setting consent and initialising cannot be reordered by accident.
+  function oaiConsent(flag) {
+    oaiPixelConsentGranted = flag;
+    if (window.oaiq) window.oaiq('consent', flag);
+  }
+
+  function loadOaiPixel() {
+    if (!oaiPixelId || oaiPixelLoaded) return;
+    oaiPixelLoaded = true;
+    (function (w, d, s, u) {
+      if (w.oaiq) return;
+      const q = function () { q.q.push(arguments); };
+      q.q = [];
+      w.oaiq = q;
+      const js = d.createElement(s);
+      js.async = true;
+      js.src = u;
+      const first = d.getElementsByTagName(s)[0];
+      first.parentNode.insertBefore(js, first);
+    })(window, document, 'script', oaiSdkUrl);
+    window.oaiq('consent', false);
+    if (oaiPixelConsentGranted) window.oaiq('consent', true);
+    window.oaiq('init', { pixelId: oaiPixelId });
+    oaiPixelObserved = true;
+  }
+
+  function oaiMeasure(eventName, data, options) {
+    if (!oaiPixelId || !oaiPixelConsentGranted || !window.oaiq) return;
+    if (typeof window.oaiq !== 'function') return;
+    if (!oaiPixelObserved) {
+      // The SDK's queue is only safe to push onto after init has been
+      // queued, which loadOaiPixel does.
+      loadOaiPixel();
+    }
+    if (options) window.oaiq('measure', eventName, data, options);
+    else window.oaiq('measure', eventName, data);
   }
 
   function loadPostHog(reduced) {
@@ -356,6 +463,8 @@
     loadAnalytics();
     upgradeAnalytics();
     loadPostHog();
+    oaiConsent(true);
+    loadOaiPixel();
   }
 
   // Re-configure GA4 with the full settings once someone accepts, so accepting
@@ -415,6 +524,12 @@
     if (choice === acceptedValue) {
       loadAnalytics();
       loadPostHog();
+      oaiConsent(true);
+      loadOaiPixel();
+      // After the loaders, not before: captureMarketingEvent drops an event
+      // when neither analytics nor PostHog is loaded yet, which is exactly
+      // what happened when this ran first.
+      trackRequestScanMilestone();
       return;
     }
     if (choice === declinedValue) {
@@ -428,6 +543,7 @@
     // answers; accepting only upgrades it to the full configuration.
     loadAnalytics(true);
     loadPostHog(true);
+    trackRequestScanMilestone();
     createBanner();
   }
 
@@ -436,6 +552,8 @@
     decline: declineAnalytics,
     open: createBanner,
     reset: function () {
+      if (window.oaiq) window.oaiq('consent', false);
+      oaiPixelConsentGranted = false;
       try {
         window.localStorage.removeItem(storageKey);
       } catch (_) {}

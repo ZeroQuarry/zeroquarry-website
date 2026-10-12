@@ -7,7 +7,8 @@
     "sync:shell": "node scripts/sync-static-shell.js",
     "generate:sitemap": "node scripts/generate-sitemap.js",
     "check:cta-attribution": "node scripts/check-cta-attribution.js",
-    "validate": "node scripts/validate-site.js && node scripts/check-cta-attribution.js && node scripts/check-analytics-consent.js",
-    "check:analytics-consent": "node scripts/check-analytics-consent.js"
+    "validate": "node scripts/validate-site.js && node scripts/check-cta-attribution.js && node scripts/check-analytics-consent.js && node scripts/check-oai-pixel.js",
+    "check:analytics-consent": "node scripts/check-analytics-consent.js",
+    "check:oai-pixel": "node scripts/check-oai-pixel.js"
   }
 }

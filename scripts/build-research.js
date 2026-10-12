@@ -285,7 +285,7 @@ ${imageMeta}
 <link rel="stylesheet" href="${relativePrefix}index.css" />
 <link rel="stylesheet" href="${relativePrefix}marketing.css?v=${assetVersion}" />
 <link rel="stylesheet" href="${relativePrefix}cookie-consent.css" />
-<script src="${relativePrefix}cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" defer></script>
+<script src="${relativePrefix}cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
 <script src="${relativePrefix}index.js?v=${assetVersion}" defer></script>
 </head>
 <body>
