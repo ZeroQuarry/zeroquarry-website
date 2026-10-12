@@ -36,6 +36,7 @@ Workflows keyed to the moment security becomes urgent. Each links to a playbook 
 Published, coordinated-disclosure research by founder Shane Connelly.
 
 - [Research index](https://zeroquarry.com/research/)
+- [I built a game with LLMs in a weekend. Internet scanners hacked it in two hours.](https://zeroquarry.com/research/mechquarry-hacked-in-two-hours/)
 - [Of course it escapes: how ZeroQuarry contains security agents](https://zeroquarry.com/research/agent-containment/)
 - [Confirming blind findings: the out-of-band collector](https://zeroquarry.com/research/confirming-blind-findings/)
 - [ZeroQuarry is finding security vulnerability chains in AI-reviewed code](https://zeroquarry.com/research/security-vulnerabilities-in-ai-reviewed-code/)

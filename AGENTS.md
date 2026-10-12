@@ -115,7 +115,7 @@ This is a static site served from [zeroquarry.com](https://zeroquarry.com). The 
 | [/platform](https://zeroquarry.com/platform) | Platform overview: all seven capabilities and the operating loop |
 | [/platform/&lt;capability&gt;/](https://zeroquarry.com/platform/security-testing/) | Seven capability deep-dives (see capability map above) |
 | [/use-cases/](https://zeroquarry.com/use-cases/) | Use-case library with a maturity model (establish → operate → prove) |
-| [/research/](https://zeroquarry.com/research/) | Eight published research posts: agent containment, blind-finding confirmation, AI-reviewed code vulnerabilities, Obsidian/Copas disclosures, multi-agent thesis |
+| [/research/](https://zeroquarry.com/research/) | Nine published research posts: the MechQuarry account of an LLM-built server hacked in two hours, agent containment, blind-finding confirmation, AI-reviewed code vulnerabilities, Obsidian/Copas disclosures, multi-agent thesis |
 | [/pricing](https://zeroquarry.com/pricing) | Plans, run metric, comparison table, add-ons, trial terms |
 | [/about](https://zeroquarry.com/about) | Company story, four-phase method, founder background |
 | [/partners/](https://zeroquarry.com/partners/) | Security-partner pilot for vCISO, compliance, and pentest firms |
