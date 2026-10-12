@@ -43,16 +43,21 @@ function check(name, condition, detail) {
  * `window.oaiq.q` before the real SDK boots, which is what the deployed site
  * does too, so reading that queue is reading the real integration.
  */
-function run({ pageUrl = 'https://zeroquarry.com/', priorChoice = null, pixelId = PIXEL_ID } = {}) {
+function run({ pageUrl = 'https://zeroquarry.com/', priorChoice = null, pixelId = PIXEL_ID,
+             session = {}, posthogKey = '' } = {}) {
   const localStore = new Map();
   if (priorChoice) localStore.set('zeroquarry_cookie_consent', priorChoice);
+  // Session storage survives a same-tab navigation, which is how the submit
+  // marker reaches the thank-you page. Passing entries in simulates arriving
+  // there after a submission rather than typing the URL.
+  const sessionStore = new Map(Object.entries(session));
   const scripts = [];
 
   const document = {
     currentScript: {
       dataset: {
         analyticsId: 'G-ZRT44MWJT1',
-        posthogKey: '',
+        posthogKey,
         posthogHost: 'https://events.zeroquarry.com',
         posthogUiHost: 'https://us.posthog.com',
         ...(pixelId ? { oaiPixelId: pixelId } : {}),
@@ -82,9 +87,19 @@ function run({ pageUrl = 'https://zeroquarry.com/', priorChoice = null, pixelId 
       setItem: (k, v) => localStore.set(k, v),
       removeItem: (k) => localStore.delete(k),
     },
-    sessionStorage: { getItem: () => null, setItem() {} },
+    sessionStorage: {
+      getItem: (k) => (sessionStore.has(k) ? sessionStore.get(k) : null),
+      setItem: (k, v) => sessionStore.set(k, v),
+    },
   };
-  window.gtag = () => {};
+  const gtagCalls = [];
+  window.gtag = (...args) => { gtagCalls.push(args); };
+  // Stand in for the PostHog SDK. The loader installs the real bootstrap
+  // snippet, which wraps whatever is already on window.posthog, so this has to
+  // mimic the SDK's queue shape: it pushes [method, ...args] through `push`.
+  // A capture therefore arrives as ['capture', eventName, properties].
+  const posthogCalls = [];
+  window.posthog = { push: (entry) => { posthogCalls.push(entry); } };
   window.window = window;
 
   const context = { console, URL, URLSearchParams, setTimeout, document, window };
@@ -97,6 +112,9 @@ function run({ pageUrl = 'https://zeroquarry.com/', priorChoice = null, pixelId 
   // still be the pre-init one and would report an empty queue.
   const queue = () => ((window.oaiq && window.oaiq.q) || []);
   return {
+    gtagCalls: () => gtagCalls.slice(),
+    posthogCalls: () => posthogCalls.slice(),
+    sessionStore,
     calls: () => queue().slice(),
     commands: (name) => queue().filter((c) => c[0] === name),
     sdkRequested: () => scripts.some((s) => String(s.src || '').includes('bzrcdn.openai.com')),
@@ -165,6 +183,62 @@ console.log('\nreset() withdraws consent');
   check('consent denied on reset',
     (r.commands('consent').slice(-1)[0] || [])[1] === false,
     JSON.stringify(r.commands('consent')));
+}
+
+console.log('\nrequest-scan lead conversion, for a visitor who accepted analytics');
+{
+  const marker = { zq_request_scan_submission_pending: '1' };
+  const r = run({ pageUrl: 'https://zeroquarry.com/request-scan/thanks/',
+    priorChoice: 'accepted', session: marker, posthogKey: 'phc_test' });
+  const gtagEvents = r.gtagCalls().filter((c) => c[0] === 'event').map((c) => c[1]);
+  const posthogEvents = r.posthogCalls().map((c) => c[1]);
+  check('GA4 records request_scan_submitted', gtagEvents.includes('request_scan_submitted'),
+    JSON.stringify(gtagEvents));
+  check('PostHog records request_scan_submitted', posthogEvents.includes('request_scan_submitted'),
+    JSON.stringify(posthogEvents));
+  check('the pixel records lead_created',
+    r.commands('measure').some((c) => c[1] === 'lead_created'),
+    JSON.stringify(r.commands('measure')));
+  check('lead_created uses the customer_action shape',
+    r.commands('measure').some((c) => c[1] === 'lead_created'
+      && c[2] && c[2].type === 'customer_action'));
+}
+
+console.log('\na visitor who has not accepted still gets counted, but not by the pixel');
+{
+  // This is the deliberate asymmetry, and it is worth pinning so it cannot be
+  // "fixed" by accident: without consent the pixel must stay silent, while GA4
+  // in reduced mode still counts the page and the lead event. A non-consenting
+  // lead is visible in Netlify's submissions log and the email notification,
+  // which is the backstop until they reach the console.
+  const marker = { zq_request_scan_submission_pending: '1' };
+  const r = run({ pageUrl: 'https://zeroquarry.com/request-scan/thanks/', session: marker });
+  const gtagEvents = r.gtagCalls().filter((c) => c[0] === 'event').map((c) => c[1]);
+  check('GA4 still records request_scan_submitted', gtagEvents.includes('request_scan_submitted'));
+  check('the pixel does not fire', r.commands('measure').length === 0);
+  check('the SDK is not even loaded', !r.sdkRequested());
+}
+
+console.log('\na direct visit to the thank-you page is not a conversion');
+{
+  const r = run({ pageUrl: 'https://zeroquarry.com/request-scan/thanks/' });
+  check('no request_scan_submitted',
+    !r.gtagCalls().some((c) => c[1] === 'request_scan_submitted'));
+  check('no lead_created', r.commands('measure').length === 0);
+}
+
+console.log('\nthe conversion is counted once, not on every reload');
+{
+  const first = run({ pageUrl: 'https://zeroquarry.com/request-scan/thanks/',
+    session: { zq_request_scan_submission_pending: '1' } });
+  check('first visit counts it',
+    first.gtagCalls().some((c) => c[1] === 'request_scan_submitted'));
+  // Carry the session forward exactly as the browser would across a reload.
+  const carried = Object.fromEntries(first.sessionStore);
+  const reload = run({ pageUrl: 'https://zeroquarry.com/request-scan/thanks/', session: carried });
+  check('reload does not count it again',
+    !reload.gtagCalls().some((c) => c[1] === 'request_scan_submitted'),
+    JSON.stringify(reload.gtagCalls().filter((c) => c[0] === 'event').map((c) => c[1])));
 }
 
 console.log('');
