@@ -1680,18 +1680,10 @@ function openSourcePage() {
 }
 
 function term(label, tip) {
-  return `<span class="term">${label}<span class="term-q" tabindex="0" aria-label="${escapeHtml(label)}: ${escapeHtml(tip)}">?</span><span class="term-tip" role="tooltip">${escapeHtml(tip)}</span></span>`;
+  return `<span class="term" tabindex="0" aria-label="${escapeHtml(label)}: ${escapeHtml(tip)}">${label}<span class="term-tip" role="tooltip">${escapeHtml(tip)}</span></span>`;
 }
 
 function pricingPage() {
-  const rates = [
-    ["GPT-5 nano", "$0.40", "$1.60"],
-    ["Claude Haiku 4", "$1.00", "$5.00"],
-    ["GPT-5 mini", "$3.00", "$12.00"],
-    ["Claude Sonnet 4.5 / 4.6", "$4.00", "$20.00"],
-    ["GPT-4o", "$5.00", "$15.00"],
-    ["GPT-5", "$15.00", "$60.00"],
-  ];
   const comparisonGroups = [
     { name: "Capacity", rows: [
       ["Protected products", "1 public", "1", "1", "5", "15", "Custom", "One product or service with its own codebase, release boundary, and evidence history. A monorepo can count as one product; unrelated products with separate owners count separately."],
@@ -1733,7 +1725,7 @@ function pricingPage() {
     ["What counts as a protected product?", "One customer-facing product or service with a coherent codebase, release boundary, and evidence history. A monorepo can still be one product; unrelated products with separate owners and risk decisions count separately."],
     ["Is this priced per seat?", "No. Each listed price covers the whole account and includes multiple collaborators. Developer includes 3 people and Coverage includes 15, so inviting engineering, product, or leadership does not multiply the subscription bill."],
     ["Why does this cost more than one coding-agent seat?", "A coding agent helps one developer produce code. ZeroQuarry independently tests the product, challenges vulnerability claims, retains risk decisions, moves remediation, verifies fixes, and produces evidence for customers and auditors. The entry price stays in developer-tool territory; the product outcome is a continuous security operation."],
-    ["Is model usage included?", "Hosted model input and output are metered separately at the posted rates below. With your own provider key, the LLM provider bills you directly and ZeroQuarry does not add those calls to its model-usage invoice; your ZeroQuarry subscription and credit limits remain unchanged. Private runners require your keys for every selected stage."],
+    ["Is model usage included?", "Hosted model input and output are metered separately from the subscription. With your own provider key, the LLM provider bills you directly and ZeroQuarry does not add those calls to its model-usage invoice; your ZeroQuarry subscription and credit limits remain unchanged. Private runners require your keys for every selected stage."],
     ["Can we add capacity without changing plans?", "Yes. Add protected products or bundles of 25 monthly credits. If that becomes a recurring pattern, moving to the next plan will usually provide better economics and more operating controls."],
     ["Can ZeroQuarry support penetration test and compliance evidence?", "Yes. ZeroQuarry assesses the authorized product boundary, challenges the findings, records the methodology and evidence, tracks remediation and retests, and produces the report. Any buyer-specific evidence requirements are captured during scoping."],
   ];
@@ -1781,12 +1773,6 @@ function pricingPage() {
   <section class="pricing-section compact"><div class="container">
     <div class="section-head"><div><div class="tag">Add capacity</div><h2>Expand the constraint you actually <em>hit.</em></h2></div></div>
     <div class="pricing-addon-grid"><article><span>Product coverage</span><h3>+$80 / month</h3><p>One additional ${term("protected product", "One product or service with its own codebase, release boundary, and evidence history. A monorepo can count as one; unrelated products with separate owners count separately.")} on annual billing; $100 when billed monthly.</p></article><article><span>Assessment capacity</span><h3>+$40 / month</h3><p>Twenty-five additional credits on annual billing; $50 when billed monthly. A focused review spends 1 credit; a full assessment spends 5.</p></article></div>
-  </div></section>
-
-  <section class="pricing-section compact"><div class="container">
-    <div class="section-head"><div><div class="tag">Model usage</div><h2>Choose who funds the <em>model calls.</em></h2></div></div>
-    <div class="compare-wrap"><table class="compare-table rates-table"><thead><tr><th>Model</th><th>Input / 1M tokens</th><th>Output / 1M tokens</th></tr></thead><tbody>${rates.map(([model, input, output]) => `<tr><th scope="row">${model}</th><td>${input}</td><td>${output}</td></tr>`).join("")}</tbody></table></div>
-    <p class="rates-note">Or bring your own provider key: the provider bills those calls directly, and ZeroQuarry adds nothing to them.</p>
   </div></section>
 
   <section class="pricing-section compact"><div class="container">

@@ -1240,7 +1240,7 @@
   padding-inline: 18px;
 }
 
-/* ---- Term tooltips (the little "?" beside jargon) ---- */
+/* ---- Defined terms (dashed underline + hover tooltip) ---- */
 /* Plan bullets style every descendant span as a checkbox
    (.plan-list li span), so these rules use two-class selectors and
    reset everything that rule leaks. */
@@ -1252,40 +1252,21 @@
   height: auto;
   margin: 0;
   border: 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ink-2) 55%, transparent);
   border-radius: 0;
   background: none;
+  cursor: help;
+  outline: none;
 }
 .term::after,
 .plan-list li .term::after {
   content: none;
 }
-.term .term-q {
-  display: inline-grid;
-  place-items: center;
-  width: 14px;
-  height: 14px;
-  margin: 0 0 0 4px;
-  border: 1px solid color-mix(in srgb, var(--ink-2) 45%, transparent);
-  border-radius: 50%;
-  background: transparent;
-  color: var(--ink-2);
-  font-family: var(--mono);
-  font-size: 9px;
-  line-height: 1;
-  vertical-align: 1px;
-  cursor: help;
-  user-select: none;
-}
-.term .term-q::after {
-  content: none;
-}
-.term:hover .term-q,
-.term .term-q:focus {
-  border-color: var(--red);
-  color: var(--red);
-}
-.term .term-q:focus {
-  outline: none;
+.term:hover,
+.term:focus,
+.plan-list li .term:hover,
+.plan-list li .term:focus {
+  border-bottom-color: var(--red);
 }
 .term .term-tip {
   position: absolute;
@@ -1315,7 +1296,7 @@
   content: none;
 }
 .term:hover .term-tip,
-.term .term-q:focus + .term-tip {
+.term:focus .term-tip {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
@@ -1327,13 +1308,8 @@
   transform: translateX(0) translateY(2px);
 }
 .compare-table .term:hover .term-tip,
-.compare-table .term .term-q:focus + .term-tip {
+.compare-table .term:focus .term-tip {
   transform: translateX(0) translateY(0);
-}
-.rates-note {
-  margin: 14px 2px 0;
-  color: var(--ink-2);
-  font-size: 13px;
 }
 
 .trial-strip h3,
