@@ -506,8 +506,8 @@ const useCasePages = [
   },
   {
     slug: "pr-security-review",
-    title: "AI Pull Request Security Review and CI/CD Security Testing | ZeroQuarry",
-    description: "Run AI pull request security reviews in GitHub Actions, focus on changed code, validate findings, open remediation work, and retest merged fixes.",
+    title: "Pull request security scanning and automated fix PRs | ZeroQuarry",
+    description: "Pull request security scanning in GitHub Actions: changed-code review, validated findings, and an automated fix pull request opened under your normal review.",
     eyebrow: "Pull request security review",
     h1: "Catch security regressions while the author still remembers <em>why the code changed.</em>",
     lede: "Trigger a ZeroQuarry source review from GitHub Actions, focus the investigation on the diff and adjacent data flow, then route validated results into tickets or reviewable fix pull requests.",
