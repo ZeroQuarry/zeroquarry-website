@@ -36,8 +36,8 @@ The numbers across the first 2 passes:
 
 | Pass | Date | Findings recorded | Earlier findings rechecked | Of those, fixed |
 |---|---|---|---|---|
-| 1 | 21 Sep | 49 (3 critical) | — | — |
-| 2 | 8 Oct | 21 (1 high) | 49 | 28 |
+| 1 | 21 Sep | 34 (3 critical) | — | — |
+| 2 | 8 Oct | 21 (1 high) | 49 | 15 |
 
 When you rescan a target with ZeroQuarry, it looks at the delta between the 2 to determine what has been fixed and what has not, so you get a remediation report.  You also get suggested PRs/git patches. (I've since closed the high-severity finding as well.)
 

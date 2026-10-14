@@ -143,8 +143,8 @@
 <p>The first scan returned 34 findings. Three of them were critical, and the one that matters most here is an unauthenticated arbitrary file read: the catch-all static file handler served any file inside the application root, with no allowlist of permitted paths. An anonymous request could read the SQLite database and the <code>.env</code> file holding the secrets. It scored 9.8. ZeroQuarry&#39;s independent reviewer agent, whose only job is to try to kill the finding, accepted it at 90%+ confidence.</p>
 <p>The numbers across the first 2 passes:</p>
 <div class="article-table-wrap"><table class="article-table"><thead><tr><th>Pass</th><th>Date</th><th>Findings recorded</th><th>Earlier findings rechecked</th><th>Of those, fixed</th></tr></thead><tbody>
-<tr><td>1</td><td>21 Sep</td><td>49 (3 critical)</td><td>—</td><td>—</td></tr>
-<tr><td>2</td><td>8 Oct</td><td>21 (1 high)</td><td>49</td><td>28</td></tr>
+<tr><td>1</td><td>21 Sep</td><td>34 (3 critical)</td><td>—</td><td>—</td></tr>
+<tr><td>2</td><td>8 Oct</td><td>21 (1 high)</td><td>49</td><td>15</td></tr>
 </tbody></table></div>
 <p>When you rescan a target with ZeroQuarry, it looks at the delta between the 2 to determine what has been fixed and what has not, so you get a remediation report.  You also get suggested PRs/git patches. (I&#39;ve since closed the high-severity finding as well.)</p>
 <h2 id="this-is-the-message-that-i-hear-from-users-as-well">This is the message that I hear from users as well</h2>
