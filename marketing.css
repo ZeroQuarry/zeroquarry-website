@@ -1240,46 +1240,102 @@
   padding-inline: 18px;
 }
 
-.run-metric-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--surface);
+/* ---- Term tooltips (the little "?" beside jargon) ---- */
+/* Plan bullets style every descendant span as a checkbox
+   (.plan-list li span), so these rules use two-class selectors and
+   reset everything that rule leaks. */
+.term,
+.plan-list li .term {
+  position: relative;
+  white-space: nowrap;
+  width: auto;
+  height: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
 }
-
-.run-metric-grid article {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 18px;
-  padding: 26px 24px;
-  border-right: 1px solid var(--line);
+.term::after,
+.plan-list li .term::after {
+  content: none;
 }
-
-.run-metric-grid article:last-child {
-  border-right: 0;
-}
-
-.run-number {
-  display: grid;
-  width: 48px;
-  height: 48px;
+.term .term-q {
+  display: inline-grid;
   place-items: center;
-  border: 1px solid color-mix(in srgb, var(--red) 48%, transparent);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--red) 8%, transparent);
+  width: 14px;
+  height: 14px;
+  margin: 0 0 0 4px;
+  border: 1px solid color-mix(in srgb, var(--ink-2) 45%, transparent);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1;
+  vertical-align: 1px;
+  cursor: help;
+  user-select: none;
+}
+.term .term-q::after {
+  content: none;
+}
+.term:hover .term-q,
+.term .term-q:focus {
+  border-color: var(--red);
+  color: var(--red);
+}
+.term .term-q:focus {
+  outline: none;
+}
+.term .term-tip {
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+  width: 250px;
+  height: auto;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: var(--surface);
   color: var(--ink);
-  font-family: var(--serif);
-  font-size: 28px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: normal;
+  text-align: left;
+  box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s;
+  pointer-events: none;
+  z-index: 30;
+}
+.term .term-tip::after {
+  content: none;
+}
+.term:hover .term-tip,
+.term .term-q:focus + .term-tip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+/* Table tooltips sit in the leftmost column; centering would push them
+   outside the scroll container's left edge and get clipped. */
+.compare-table .term-tip {
+  left: 0;
+  transform: translateX(0) translateY(2px);
+}
+.compare-table .term:hover .term-tip,
+.compare-table .term .term-q:focus + .term-tip {
+  transform: translateX(0) translateY(0);
+}
+.rates-note {
+  margin: 14px 2px 0;
+  color: var(--ink-2);
+  font-size: 13px;
 }
 
-.run-number.included {
-  border-color: color-mix(in srgb, var(--green) 45%, transparent);
-  background: color-mix(in srgb, var(--green) 8%, transparent);
-}
-
-.run-metric-grid h3,
 .trial-strip h3,
 .pricing-addon-grid h3 {
   margin: 0 0 8px;
@@ -1290,7 +1346,6 @@
   line-height: 1.1;
 }
 
-.run-metric-grid p,
 .trial-strip p,
 .pricing-addon-grid p {
   margin: 0;
@@ -1669,18 +1724,8 @@
     grid-template-columns: 1fr;
   }
 
-  .run-metric-grid,
   .pricing-addon-grid {
     grid-template-columns: 1fr;
-  }
-
-  .run-metric-grid article {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .run-metric-grid article:last-child {
-    border-bottom: 0;
   }
 }
 

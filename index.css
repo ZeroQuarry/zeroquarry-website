@@ -851,7 +851,9 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
   padding: 4px 7px;
   border: 1px solid color-mix(in srgb, var(--red) 34%, transparent);
   border-radius: 4px;
-  background: var(--red-soft);
+  /* Opaque: the ribbon straddles the card's top border, and a translucent
+     fill lets that border strike through the text. */
+  background: color-mix(in srgb, var(--red) 14%, var(--bg));
   color: var(--red);
   font-family: var(--mono);
   font-size: 9.5px;

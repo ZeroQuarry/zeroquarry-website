@@ -1,6 +1,6 @@
 # AGENTS.md — zeroquarry.com
 
-This file is written for AI agents. It gives you a factual map of what ZeroQuarry is and what it does, then shows you how to find your way around this website. Everything below is drawn from the site's own pages; the linked page is always the source of truth. Last reviewed: 2026-10-10.
+This file is written for AI agents. It gives you a factual map of what ZeroQuarry is and what it does, then shows you how to find your way around this website. Everything below is drawn from the site's own pages; the linked page is always the source of truth. Last reviewed: 2026-10-14.
 
 If you are a coding agent working in this repository, skip to "Working in this repository" at the end.
 
@@ -32,6 +32,7 @@ Tests source code, shipped binaries, and authorized live applications as one pro
 - Binary analysis: decompiles and reviews APKs, JARs, firmware, installers, and archives.
 - Authorized live app and API testing within explicit host and authentication boundaries.
 - Multi-model orchestration: separate models for investigation, adversarial review, and artifact generation.
+- Dependency and infrastructure review: manifests checked against OSV advisories with worker-confirmed reachability, CycloneDX/SPDX SBOM export with VEX dispositions, and infrastructure-as-code checks for Terraform, Kubernetes, Helm, Dockerfile, and Compose.
 
 ### 2. Adversarial validation — [/platform/adversarial-validation/](https://zeroquarry.com/platform/adversarial-validation/)
 The flagship differentiator: every finding must survive a skeptical counterparty.
@@ -51,11 +52,12 @@ Reviews every risky change as it lands, while it is still small enough to unders
 Gives every vulnerability a path from intake to resolution.
 - Project-specific email inboxes with sender allowlists and approved target boundaries turn researcher reports into bounded, authorized work.
 - Finding lifecycle management with audit history: actors, models, stages, outcomes, and reasons.
-- Routing to Jira, ServiceNow, GitHub Issues, and Slack; account-wide search.
+- Routing to Jira, ServiceNow, GitHub Issues, Linear, and Slack; account-wide search.
 
 ### 5. Vulnerability remediation — [/platform/remediation/](https://zeroquarry.com/platform/remediation/)
 Closes the distance between evidence and a reviewed fix.
 - Generated patch revisions (unified diff, feedback, iterations) without granting repository write access.
+- Deterministic dependency-bump patches for vulnerable dependencies, with regenerated lockfiles across six ecosystems.
 - ZeroQuarryBot opens audited GitHub pull requests — it never auto-merges.
 - Layered safety controls: kill switches, explicit enrollment, base-branch settings, file deny-lists, and size limits.
 - Focused retests record each finding as fixed, still present, or inconclusive.
@@ -90,18 +92,18 @@ Eight workflows keyed to the moment security becomes urgent — each links to a 
 
 ## Pricing at a glance
 
-Account pricing, not per-seat. The value metric is the **security run**: a focused pull-request or changed-file review is 1 run; a full source, binary, or authorized live assessment is 5 runs; reports, decisions, and follow-through cost 0 runs. Annual billing saves 20%.
+Account pricing, not per-seat. The value metric is the **credit**: a focused pull-request or changed-file review spends 1 credit; a full source, binary, or authorized live assessment spends 5; validation, reports, decisions, evidence sharing, and follow-through spend 0. Annual billing saves 20%. (The product's scan-wizard and register pages still call credits "security runs" — buyer-facing marketing copy says credits.)
 
-| Plan | Annual | Monthly | Products | Runs/mo |
+| Plan | Annual | Monthly | Products | Credits/mo |
 |---|---|---|---|---|
-| OSS | Free, permanent | Free | 1 public | 5 |
+| OSS | Free, permanent | Free | 1 public (any major forge) | 5 |
 | Developer | $40/mo | $50 | 1 private | 10 |
 | Coverage | $160/mo | $200 | 1 protected | 50 |
 | Operations | $400/mo | $500 | 5 | 200 |
 | Portfolio | $800/mo | $1,000 | 15 | 600 |
 | Enterprise | Custom | Custom | Custom | Custom |
 
-The 30-day trial needs no credit card and covers one private product with 25 security runs and three collaborators. Model usage is billed separately; bring-your-own provider keys are supported. Full detail and the feature comparison table: [/pricing](https://zeroquarry.com/pricing).
+The 30-day trial needs no credit card and covers one private product with 25 credits and three collaborators. Model usage is billed separately; bring-your-own provider keys are supported. The OSS plan is a public-repository scanning account: report intake, adversarial validation, retests, disclosure tracking, and Linear filing are included, but it has no evidence room, controlled shares, patch proposals, or triage center, and it runs on the maintainer's own model key. Full detail and the feature comparison table: [/pricing](https://zeroquarry.com/pricing).
 
 ## Navigating this website
 

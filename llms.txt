@@ -2,7 +2,7 @@
 
 > ZeroQuarry is an AI security-operations platform that continuously tests software products and proves every finding before it becomes your team's work. It tests source code, shipped binaries, and authorized live applications, challenges every finding with adversarial vendor-style review, proposes fixes as reviewed pull requests, retests remediation, and packages the full history as evidence for customers and auditors.
 
-The operating loop is Receive → Assess → Validate → Decide → Remediate → Retest → Prove. Every step writes to the same project record. Pricing is per account, not per seat, measured in security runs (1 run = a focused PR or changed-file review; 5 runs = a full assessment), with a permanent free plan for open-source maintainers and a 30-day trial that requires no credit card. A machine-readable site and product guide is at [AGENTS.md](https://zeroquarry.com/AGENTS.md).
+The operating loop is Receive → Assess → Validate → Decide → Remediate → Retest → Prove. Every step writes to the same project record. Pricing is per account, not per seat, measured in credits (a focused PR or changed-file review spends 1 credit; a full assessment spends 5; reports, decisions, and sharing spend none), with a permanent free plan for open-source maintainers and a 30-day trial that requires no credit card. A machine-readable site and product guide is at [AGENTS.md](https://zeroquarry.com/AGENTS.md).
 
 ## Platform
 
