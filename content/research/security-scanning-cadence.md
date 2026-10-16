@@ -19,9 +19,9 @@ tags:
 
 In July, an AI agent escaped an evaluation sandbox and compromised part of Hugging Face's production infrastructure. Hugging Face reported unauthorized access to a limited set of internal datasets and service credentials; OpenAI later said its models had circumvented controls meant to isolate them from the internet. In my [agent containment post](https://zeroquarry.com/research/agent-containment/), I looked at how and why this happens from the lab side: give an agent broad access and an objective to solve a problem, and sandbox escapes shouldn't surprise anyone. ([Hugging Face's incident report](https://huggingface.co/blog/security-incident-july-2026), [OpenAI's account](https://openai.com/index/hugging-face-incident-and-the-road-ahead/))
 
-That leaves a second question on the organization side: were they being attacked negligent? Did they even scan their own software? If they did, how did *so much* get through?
+That leaves a second question on the organization side: were they being negligent? Did they even scan their own software? If they did, how did *so much* get through?
 
-In most breaches, nobody skipped security. Many of them work under controls such as SOC 2 or ISO 27001, and enterprise customers or contracts often ask for penetration-test reports or evidence of code scanning. There has been a long-standing set of tools to help with that work. The names are an alphabet soup: SAST, DAST, SCA, IAST, and more. Here's what they mean in plain language, and what each can actually see.
+In most breaches, nobody skipped security. Many of these organizations work under controls such as SOC 2 or ISO 27001, and enterprise customers or contracts often ask for penetration-test reports or evidence of code scanning. There has been a long-standing set of tools to help with that work. The names are an alphabet soup: SAST, DAST, SCA, IAST, and more. Here's what they mean in plain language, and what each can actually see.
 
 ## What security scanners actually see
 
@@ -52,29 +52,26 @@ The good pentesters I've worked with don't just run scanners. They use Burp to p
 
 Consider authorization, for example. A scanner may test hundreds of requests, but a pentester might spend two days asking a narrower question: should account A be able to read account B's invoices? That depends on the application's rules and the relationship between two users. Neither user's request may look wrong in isolation to a scanner.
 
-The difference is that a good pentester uses the tools as tools. They build a theory about how the application works, write code or try a manual sequence when the scanners don't fit, then work to prove what they suspect. That takes time. A good firm charges for the people and hours it takes to explore and produce evidence.
-
-If you have the budget, you might pay for that once a year.
+The difference is that a good pentester uses the tools as tools. They build a theory about how the application works, write code or try a manual sequence when the scanners don't fit, then work to prove what they suspect. That takes time. A good firm charges for the people and hours it takes to explore and produce evidence. If you have the budget, you might pay for that once a year.
 
 ![A year of software change against the pentest window it gets: three test durations, from a one-week report to a three- or four-week human test, with the rest of the year running](/assets/research/scanning-cadence-year.svg)
 
-For the other eleven months, the application keeps changing. The pentester's findings describe a codebase that mostly doesn't exist any more so you try to plug the holes with a bunch of static analyzers running on every commit and maybe a fuzzer or automated suite every week or month. This is exactly the state many of these organizations got into. They're running production code that no one with judgment has examined since last year's test. The engineers aren't careless, it's just that the incentive structure prices examination annually while the release cycle moves weekly.
+For the other eleven months, the application keeps changing. The pentester's findings describe a codebase that mostly doesn't exist any more so you try to plug the holes with a bunch of static analyzers running on every commit and maybe a fuzzer or automated suite every week or month. This is exactly the state many of these hacked organizations got into. They're running production code that no one with judgment has examined since last year's test. The engineers aren't careless, it's just that the incentive structure prices examination annually while the release cycle moves weekly.
 
 ![Two accounts and a sequence of actions reveal an authorization flaw that neither code pattern nor request alone exposes](/assets/research/scanning-cadence-gap-classes.svg)
 
 ## What changed when attackers got cheaper
 
-The timing mismatch predates AI. AI changes the other side of the equation: attackers can spend more time looking, trying variations, and following a trail than a human team can afford to do manually. The eleven months between examinations are now more valuable to someone looking for a way in.
+The timing mismatch predates AI, but AI changes the other side of the equation: attackers can spend more time looking, trying variations, and following a trail than a human team can afford to do manually. The eleven months between examinations are now more valuable to someone looking for a way in.
 
-You can work out your own gap with five questions:
+You can work out your own "how many months" gap with 4 questions:
 
 1. When did someone last examine the **running** application, not just its source code?
 2. Did that examination rely on reasoning or by simple, static rules?
-3. How long is the interval between examinations, and who set it?
-4. How much has the codebase changed since then?
-5. Which tool categories do you use, and which gaps have you been assuming they cover?
+3. How much has the codebase changed since then?
+4. Which tool categories do you use, and which gaps have you been assuming they cover?
 
-The interval is typically the revealing number. A weekly examination is a continuous program while an annual one is a compliance artifact, however good the test itself was. This isn't because teams are lazy or bad at software development. Auditors ask them to look once or twice a year, their budget may only stretch that far, and the software keeps changing every week.
+An annual review is little more than a compliance artifact, however good the test itself was. This isn't because teams are lazy or bad at software development. Auditors ask them to look once or twice a year, their budget may only stretch that far, and the software keeps changing every week.
 
 ## From AI-powered tools to tools for AI
 
@@ -84,12 +81,14 @@ ZeroQuarry is built the other way around. ZeroQuarry's agents can use SAST, SCA,
 
 ![A scanner pipeline that ends at a model, beside an agent choosing which scanning tools to call next](/assets/research/scanning-cadence-tools-as-tools.svg)
 
-ZeroQuarry's agents get the same suite a pentester has: fuzzing, scanning for secrets, analyzing package manifests, running static analysis of code, building SBOMs. They also get tools that only make sense for an agent, like a tool to register an OOB callback, or a tool to register up to N e-mail addresses so the agent can test IDOR.
+ZeroQuarry's agents get the same suite a pentester would use: fuzzers, scanners for secrets, package manifest analyzers, static code analysis tools, and tools to build SBOMs. They also get tools that traditional software scanners couldn't use becaues they only make sense for an agent, like a tool to register an OOB callback or a tool to register up to N e-mail addresses so the agent can test IDOR.
 
-That second set is where the distinction actually lives. A model reading a scanner's output cannot decide to allocate a disposable mailbox for a user it has never seen, and then go and test whether that user can read another user's invoices.
+A model on a tool with AI bolted on at the end reading a scanner's output can't decide to allocate a disposable mailbox for a user it has never seen, and then go and test whether that user can read another user's invoices.
 
-It's also what upgrades a dependency finding. When a scan turns up a dated package in the pipeline, the agent doesn't just record the advisory against it. It goes and checks whether that code is actually reachable in the running application, and attaches a vulnerability exploitability (VEX) statement with the agent's reasoning attached rather than advisory metadata alone. The SBOM is the receipt, not the differentiator, and it's the sort of artifact a good pentester hands over, produced on every scan instead of once a year.
+To circle back to the dependabot example, this difference is also what ZeroQuarry does to upgrade a dependency finding. When a scan turns up a dated package in the pipeline, the agent doesn't just record the advisory against it. It goes and checks whether that code is actually reachable in the running application, and attaches a vulnerability exploitability (VEX) statement with the agent's reasoning attached rather than advisory metadata alone. The SBOM is really just the receipt in this example, not the differentiator. A marked-up SBOM is the sort of artifact a good pentester hands over, produced on every scan instead of once a year.
 
-So back to the companies getting hacked: again, are they negligent? No, not at all. They are executing standard security playbooks in a world that outpaced those playbooks. To defend against AI-driven threats, engineering teams have two options: freeze release cycles to match the speed of traditional pentesting, or run continuous, intelligent testing that mimics a multi-week human pentest on every build.
+So back to the companies getting hacked: again, are they negligent? No, not at all. They are executing standard security playbooks in a world that outpaced those playbooks. To defend against AI-driven threats, engineering teams have two options: freeze release cycles to match the speed of traditional pentesting, or run continuous, intelligent testing that mimics a multi-week human pentest, but done much more frequently than they've been required to do.
 
 ZeroQuarry is built for teams choosing the second option.
+
+If you maintain an open-source project and want to see what ZeroQuarry agents find in yours, [check a public project free](https://console.zeroquarry.com/register/open-source?utm_source=zeroquarry&utm_medium=research&utm_campaign=agent-containment). If you are evaluating software before deploying it, [start a 30-day trial](https://console.zeroquarry.com/register?utm_source=zeroquarry&utm_medium=research&utm_campaign=agent-containment) or [get in touch](https://zeroquarry.com/request-scan/?utm_source=zeroquarry&utm_medium=research&utm_campaign=agent-containment).

@@ -52,3 +52,5 @@ So obviously I should have run a scan first before even deploying this to a test
 If you're shipping LLM-written code to a public server, whether you like it or not, someone (or more likely, some *thing*) is already scanning it.
 
 It should be you, first.
+
+If you maintain an open-source project and want to see what ZeroQuarry agents find in yours, [check a public project free](https://console.zeroquarry.com/register/open-source?utm_source=zeroquarry&utm_medium=research&utm_campaign=agent-containment). If you are evaluating software before deploying it, [start a 30-day trial](https://console.zeroquarry.com/register?utm_source=zeroquarry&utm_medium=research&utm_campaign=agent-containment) or [get in touch](https://zeroquarry.com/request-scan/?utm_source=zeroquarry&utm_medium=research&utm_campaign=agent-containment).
