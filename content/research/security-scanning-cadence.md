@@ -38,7 +38,7 @@ Security questionnaires lump these categories together, but each looks at a fund
 
 You can stitch open-source tools together and a competent team can get a long way with them. You also own the rules, the noise, and the work of keeping the whole setup current. Commercial products bundle these categories and sometimes add proprietary capabilities and buying one can be a sensible way to buy back some of that maintenance.
 
-Over time, static analyzers have added smarter rule sets, secret scanners check if tokens are live, and fuzzers get better at boundary conditions. But improving a scanner is a "faster horse" problem: a better scanner is still just a scanner staring at the same thin slice of the system.
+Over time, static analyzers have added smarter rule sets, secret scanners started checking if tokens are live, and fuzzers got better at boundary conditions. But improving a scanner is a "faster horse" problem: a better scanner is still just a scanner staring at the same thin slice of the system.
 
 Noise is part of that story too. If you use Dependabot on a codebase that's more than a year old, look at your open PRs from the bot by replacing `YOURORG` with, well, you know:
 
@@ -50,9 +50,9 @@ An old open dependency PR doesn't prove the scanner is wrong: you don't *need* t
 
 The good pentesters I've worked with don't just run scanners. They use Burp to probe a running application, a static analyser to understand a code path, and a proxy to rewrite requests. The tools do repetitive work well and then the human builds a theory about how the application should behave, then tries to break it.
 
-Consider authorization, for example. A scanner may test hundreds of requests, but a pentester might spend two days asking a narrower question: should account A be able to read account B's invoices? That depends on the application's rules and the relationship between two users. Neither user's request may look wrong in isolation to a scanner.
+Consider authorization, for example. A scanner may test hundreds of requests, but a pentester might spend two days asking a narrow: is there any way I can get account A to be able to read account B's invoices? That depends on the application's rules and the relationship between two users -- the actual business logic underneath -- and nothing may look wrong at all in isolation to a scanner.
 
-The difference is that a good pentester uses the tools as tools. They build a theory about how the application works, write code or try a manual sequence when the scanners don't fit, then work to prove what they suspect. That takes time. A good firm charges for the people and hours it takes to explore and produce evidence. If you have the budget, you might pay for that once a year.
+The good pentester uses the tools as tools, but knows they need to think about the business and application logic to determine if there's a real vulnerability. They build a theory about how the application works, write code or try a manual sequence when the scanners don't fit, then work to prove what they suspect. That takes time. A good firm charges for the people and hours it takes to explore and produce evidence. If you have the budget, you might pay for that once a year.
 
 ![A year of software change against the pentest window it gets: three test durations, from a one-week report to a three- or four-week human test, with the rest of the year running](/assets/research/scanning-cadence-year.svg)
 
