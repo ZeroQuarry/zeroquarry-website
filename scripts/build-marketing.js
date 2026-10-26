@@ -1189,7 +1189,7 @@ function renderSubstituteMotion(key, visual) {
           <div class="sub-slot" style="--d:1.4s"><span class="role">pentester<em>the specialty you hire for</em></span><span class="cov"><b>ZeroQuarry</b>AI pentest · 25 runs a year</span></div>
           <div class="sub-slot" style="--d:5.6s"><span class="role">appsec engineer<em>triage and remediation queues</em></span><span class="cov"><b>ZeroQuarry</b>validation · patches · retests</span></div>
           <div class="sub-slot" style="--d:9.8s"><span class="role">compliance owner<em>evidence for every review</em></span><span class="cov"><b>ZeroQuarry</b>evidence packs · buyer reports</span></div>
-          <div class="sub-mover" aria-hidden="true">ZeroQuarry</div>
+          <div class="sub-track" aria-hidden="true"><div class="sub-mover">ZeroQuarry</div></div>
         </div>
         <div class="sub-badge"><span>security-ready</span><em>headcount 0</em></div>
       </div>`);

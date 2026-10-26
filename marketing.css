@@ -693,7 +693,7 @@
 }
 
 .console-enter {
-  animation: consoleLineIn 360ms ease-out both;
+  animation: consoleLineIn 360ms var(--ease-out) both;
 }
 
 .operation-rail {
@@ -856,8 +856,14 @@
 .related-card:hover {
   border-color: var(--line-2);
   background: var(--fill-2);
-  transform: translateY(-2px);
   box-shadow: var(--shadow-card);
+}
+/* The 2px lift is motion; keep it off touch, where taps fire a stuck hover. */
+@media (hover: hover) and (pointer: fine) {
+  .moment-card:hover,
+  .capability-card:hover,
+  .use-case-card:hover,
+  .related-card:hover { transform: translateY(-2px); }
 }
 
 .card-code {
@@ -1288,7 +1294,7 @@
   box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.45);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.12s ease, transform 0.12s ease, visibility 0.12s;
+  transition: opacity 0.15s var(--ease-out), transform 0.15s var(--ease-out), visibility 0.15s;
   pointer-events: none;
   z-index: 30;
 }
@@ -1845,9 +1851,12 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
+    /* Loops stop and movement transitions are dropped, but color/opacity
+       fades keep their normal pace — reduced motion is gentler, not dead. */
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    transition-property: color, background-color, background, border-color,
+      outline-color, opacity, visibility, fill, box-shadow !important;
   }
 }
 
@@ -1924,7 +1933,9 @@
 .rally-confidence { display: grid; justify-items: center; gap: 6px; width: 200px; }
 .rally-confidence > span { color: var(--ink-3); font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
 .rally-bar { position: relative; width: 100%; height: 6px; border: 1px solid var(--line-2); border-radius: 999px; overflow: hidden; }
-.rally-bar i { position: absolute; inset: 0; right: auto; width: 94%; border-radius: 999px; background: linear-gradient(90deg, color-mix(in srgb, var(--blue) 55%, transparent), var(--green)); }
+/* The fill is full-width and revealed by clip-path, so the climb animates
+   the compositor instead of layout; `round` keeps the pill caps. */
+.rally-bar i { position: absolute; inset: 0; border-radius: 999px; background: linear-gradient(90deg, color-mix(in srgb, var(--blue) 55%, transparent), var(--green)); clip-path: inset(0 6% 0 0 round 3px); }
 .rally-confidence b { position: relative; height: 14px; color: var(--green); font-family: var(--mono); font-size: 11px; font-weight: 500; }
 .rally-confidence em { position: absolute; left: 50%; transform: translateX(-50%); font-style: normal; }
 .rally-verdict {
@@ -1943,14 +1954,14 @@
   .camp-red { animation: rallyRed 14s ease-in-out infinite; }
   .camp-blue { animation: rallyBlue 14s ease-in-out infinite; }
   .rally-mark { opacity: 0; }
-  .rally-mark.m1 { animation: rallyMark 14s ease-out infinite; }
-  .rally-mark.m2 { animation: rallyMark 14s ease-out infinite 2.1s; }
+  .rally-mark.m1 { animation: rallyMark 14s var(--ease-out) infinite; }
+  .rally-mark.m2 { animation: rallyMark 14s var(--ease-out) infinite 2.1s; }
   .rally-bar i { animation: rallyBar 14s ease-in-out infinite; }
   .rally-confidence em { opacity: 0; }
   .rally-confidence em:nth-child(1) { animation: confA 14s steps(1) infinite; }
   .rally-confidence em:nth-child(2) { animation: confB 14s steps(1) infinite; }
   .rally-confidence em:nth-child(3) { animation: confC 14s steps(1) infinite; }
-  .rally-verdict { animation: rallyVerdict 14s ease-out infinite; }
+  .rally-verdict { animation: rallyVerdict 14s var(--ease-out) infinite; }
 
   @keyframes rallyClaim {
     0%, 9% { transform: translateX(-52px); border-color: color-mix(in srgb, var(--red) 55%, transparent); }
@@ -1970,7 +1981,7 @@
     16%, 22%, 46%, 52% { border-color: color-mix(in srgb, var(--blue) 60%, transparent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 12%, transparent); }
   }
   @keyframes rallyMark { 0% { opacity: 0; transform: translateY(6px); } 6%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
-  @keyframes rallyBar { 0%, 30% { width: 61%; } 48% { width: 78%; } 68%, 100% { width: 94%; } }
+  @keyframes rallyBar { 0%, 30% { clip-path: inset(0 39% 0 0 round 3px); } 48% { clip-path: inset(0 22% 0 0 round 3px); } 68%, 100% { clip-path: inset(0 6% 0 0 round 3px); } }
   /* each number has its own visible window, matched to the bar's climb */
   @keyframes confA { 0%, 3% { opacity: 0; } 4%, 44% { opacity: 1; } 45%, 100% { opacity: 0; } }
   @keyframes confB { 0%, 47% { opacity: 0; } 48%, 64% { opacity: 1; } 65%, 100% { opacity: 0; } }
@@ -2138,6 +2149,7 @@
 /* ---------- sort (security operations) ---------- */
 .mv-sort {
   --dip: 104px;  /* flight passes below the lens AND below the ledger rows */
+  container-type: inline-size;  /* cqw units below measure the panel width */
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(0, 1.2fr);
   gap: 16px;
   align-items: center;
@@ -2195,7 +2207,11 @@
   /* One shared path for every report card: appear in the tray, fly right
      while dipping below the lens (inflating as it is investigated), then
      settle into its ledger row where it turns into its verdict in place —
-     label crossfade, border flash, and a small confirmation pulse. */
+     label crossfade, border flash, and a small confirmation pulse.
+     Position is transform-only: the base rule parks each card on its
+     ledger row (left: 66%) and the flight is a translate back toward the
+     tray. The px terms carry the 18px panel padding's share of the old
+     left-percentage deltas (62/33/15% × 36px). */
   .sort-item.i1, .sort-item.i3 { animation: sortFlyOk 12s ease-in-out var(--d, 0s) infinite; }
   .sort-item.i2, .sort-item.i4 { animation: sortFlyNo 12s ease-in-out var(--d, 0s) infinite; }
   .sort-item .face-chip { animation: faceChip 12s ease-in-out var(--d, 0s) infinite; }
@@ -2204,25 +2220,25 @@
   .sort-lens b::after { content: "…"; animation: lensDots 1.6s steps(4) infinite; }
 
   @keyframes sortFlyOk {
-    0%, 4% { opacity: 0; left: 4%; top: 50%; border-color: var(--line); transform: scale(0.92); }
-    8%, 12% { opacity: 1; left: 4%; top: 50%; border-color: var(--line); transform: none; }
-    26% { left: 33%; top: 50%; transform: translate(0, var(--dip)) scale(1.18); }
-    38% { left: 51%; top: 50%; transform: translate(0, var(--dip)) scale(1.18); }
-    52% { left: 66%; top: calc(50% + var(--fy)); border-color: color-mix(in srgb, var(--green) 40%, transparent); transform: none; }
-    58% { border-color: color-mix(in srgb, var(--green) 70%, transparent); transform: scale(1.05); }
-    66% { border-color: color-mix(in srgb, var(--green) 40%, transparent); transform: none; }
-    88% { opacity: 1; left: 66%; top: calc(50% + var(--fy)); }
-    94%, 100% { opacity: 0; left: 66%; top: calc(50% + var(--fy)); transform: none; }
+    0%, 4% { opacity: 0; translate: calc(-62cqw - 22.32px) calc(var(--fy) * -1); scale: 0.92; border-color: var(--line); }
+    8%, 12% { opacity: 1; translate: calc(-62cqw - 22.32px) calc(var(--fy) * -1); scale: 1; border-color: var(--line); }
+    26% { translate: calc(-33cqw - 11.88px) calc(var(--dip) - var(--fy)); scale: 1.18; }
+    38% { translate: calc(-15cqw - 5.4px) calc(var(--dip) - var(--fy)); scale: 1.18; }
+    52% { translate: 0 0; scale: 1; border-color: color-mix(in srgb, var(--green) 40%, transparent); }
+    58% { border-color: color-mix(in srgb, var(--green) 70%, transparent); scale: 1.05; }
+    66% { border-color: color-mix(in srgb, var(--green) 40%, transparent); scale: 1; }
+    88% { opacity: 1; }
+    94%, 100% { opacity: 0; translate: 0 0; scale: 1; }
   }
   @keyframes sortFlyNo {
-    0%, 4% { opacity: 0; left: 4%; top: 50%; transform: scale(0.92); }
-    8%, 12% { opacity: 1; left: 4%; top: 50%; transform: none; }
-    26% { left: 33%; top: 50%; transform: translate(0, var(--dip)) scale(1.18); }
-    38% { left: 51%; top: 50%; transform: translate(0, var(--dip)) scale(1.18); }
-    52% { left: 66%; top: calc(50% + var(--fy)); transform: none; }
-    58% { transform: scale(1.05); }
-    66%, 88% { opacity: 1; left: 66%; top: calc(50% + var(--fy)); transform: none; }
-    94%, 100% { opacity: 0; left: 66%; top: calc(50% + var(--fy)); transform: none; }
+    0%, 4% { opacity: 0; translate: calc(-62cqw - 22.32px) calc(var(--fy) * -1); scale: 0.92; }
+    8%, 12% { opacity: 1; translate: calc(-62cqw - 22.32px) calc(var(--fy) * -1); scale: 1; }
+    26% { translate: calc(-33cqw - 11.88px) calc(var(--dip) - var(--fy)); scale: 1.18; }
+    38% { translate: calc(-15cqw - 5.4px) calc(var(--dip) - var(--fy)); scale: 1.18; }
+    52% { translate: 0 0; scale: 1; }
+    58% { scale: 1.05; }
+    66%, 88% { opacity: 1; translate: 0 0; scale: 1; }
+    94%, 100% { opacity: 0; translate: 0 0; scale: 1; }
   }
   @keyframes faceChip {
     0%, 5% { opacity: 0; }
@@ -2324,20 +2340,22 @@
 @media (prefers-reduced-motion: no-preference) {
   /* Story beat: ZeroQuarry's finding lands first, the fix types in, the
      gates tick green. Base styles above are the resting state. */
-  .patch-finding { animation: patchFinding 10s ease-out infinite; }
-  .dl.minus { animation: patchMinus 10s ease-out infinite; }
-  .dl.plus { width: 0; overflow: hidden; }
+  .patch-finding { animation: patchFinding 10s var(--ease-out) infinite; }
+  .dl.minus { animation: patchMinus 10s var(--ease-out) infinite; }
+  /* clip-path "types" the line in left to right; width on an inline
+     element never applied, so this is also the first time the beat plays. */
+  .dl.plus { display: inline-block; clip-path: inset(0 100% 0 0); }
   .dl.plus.p1 { animation: patchPlus 10s steps(1, end) infinite both; }
   .chk { animation: 10s steps(1) infinite both; }
   .chk.k1 { animation-name: patchChk1; }
   .chk.k2 { animation-name: patchChk2; }
   .chk.k3 { animation-name: patchChk3; }
   .chk.k4 { animation-name: patchChk4; }
-  .chk.k4 i { animation: retestPulse 10s ease-out infinite; }
+  .chk.k4 i { animation: retestPulse 10s var(--ease-out) infinite; }
 
   @keyframes patchFinding { 0%, 4% { opacity: 0; transform: translateY(-6px); } 7%, 100% { opacity: 1; transform: none; } }
   @keyframes patchMinus { 0%, 7% { opacity: 0; } 10%, 100% { opacity: 1; } }
-  @keyframes patchPlus { 0%, 16% { width: 0; } 44%, 100% { width: 100%; } }
+  @keyframes patchPlus { 0%, 16% { clip-path: inset(0 100% 0 0); } 44%, 100% { clip-path: inset(0 0 0 0); } }
   @keyframes patchChk1 { 0%, 58% { border-color: var(--line-2); color: var(--ink-3); } 60%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
   @keyframes patchChk2 { 0%, 66% { border-color: var(--line-2); color: var(--ink-3); } 68%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
   @keyframes patchChk3 { 0%, 74% { border-color: var(--line-2); color: var(--ink-3); } 76%, 100% { border-color: color-mix(in srgb, var(--green) 45%, transparent); color: var(--green); } }
@@ -2475,11 +2493,11 @@
   /* Base state is the resting fan; the entrance only supplies its "from"
      keyframes with backwards fill, so the end state never depends on the
      animation finishing. */
-  html.js .mv-docs.play .doc { animation: docIn 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  html.js .mv-docs.play .doc { animation: docIn 0.75s var(--ease-out) backwards; }
   html.js .mv-docs.play .doc-a { animation-delay: 0.05s; }
   html.js .mv-docs.play .doc-b { animation-delay: 0.2s; }
   html.js .mv-docs.play .doc-c { animation-delay: 0.35s; }
-  html.js .mv-docs.play .doc-seal { animation: docSeal 0.5s ease-out 0.75s backwards; }
+  html.js .mv-docs.play .doc-seal { animation: docSeal 0.5s var(--ease-out) 0.75s backwards; }
 
   @keyframes docIn {
     from { opacity: 0; transform: translateY(56px) rotate(0deg) scale(0.94); }
@@ -2553,9 +2571,9 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .pr-comment { opacity: 0; }
-  html.js .pr-comment.bot { animation: prLand1 15s ease-out infinite both; }
-  html.js .pr-comment.sug { animation: prLand2 15s ease-out infinite both; }
-  html.js .pr-comment.sys { animation: prLand3 15s ease-out infinite both; }
+  html.js .pr-comment.bot { animation: prLand1 15s var(--ease-out) infinite both; }
+  html.js .pr-comment.sug { animation: prLand2 15s var(--ease-out) infinite both; }
+  html.js .pr-comment.sys { animation: prLand3 15s var(--ease-out) infinite both; }
   .pf.hit { animation: prHit 15s ease-in-out infinite; }
 
   /* entrances staggered inside the keyframes; the exit is shared so the
@@ -2567,7 +2585,7 @@
 }
 
 /* ---------- gate (release security review) ---------- */
-.mv-gate { grid-column: 1 / -1; position: relative; display: grid; align-content: start; gap: 18px; min-height: 0; padding: 16px 0 6px; }
+.mv-gate { grid-column: 1 / -1; position: relative; container-type: inline-size; display: grid; align-content: start; gap: 18px; min-height: 0; padding: 16px 0 6px; }
 .gate-checks { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
 .gchk { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--ink-3); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
 .gchk i { position: relative; width: 12px; height: 12px; border: 1px solid var(--line-2); border-radius: 50%; }
@@ -2612,23 +2630,25 @@
 @media (prefers-reduced-motion: no-preference) {
   html.js .gate-artifact { animation: gateRide 24s ease-in-out infinite both; }
   html.js .gate-bar { animation: gateBar 24s ease-in-out infinite both; }
-  html.js .gate-badge.pass { animation: gatePass 24s ease-out infinite both; }
-  html.js .gate-badge.hold { animation: gateHold 24s ease-out infinite both; }
+  html.js .gate-badge.pass { animation: gatePass 24s var(--ease-out) infinite both; }
+  html.js .gate-badge.hold { animation: gateHold 24s var(--ease-out) infinite both; }
   html.js .gchk.g1 { animation: gchk1 24s steps(1) infinite both; }
   html.js .gchk.g2 { animation: gchk2 24s steps(1) infinite both; }
   html.js .gchk.g3 { animation: gchk3 24s steps(1) infinite both; }
   html.js .gchk.g3.bad { animation: gchk3bad 24s steps(1) infinite both; }
 
-  /* two runs per loop: promote, then hold */
+  /* two runs per loop: promote, then hold. The artifact is parked at its
+     base left: 6% and rides by translate (cqw tracks the panel width);
+     the vertical centering stays in the untouched `transform` rule. */
   @keyframes gateRide {
-    0% { left: 6%; opacity: 0; }
-    2%, 22% { left: 23%; opacity: 1; }
-    29%, 33% { left: 62%; opacity: 1; }
-    37% { left: 62%; opacity: 0; }
-    44% { left: 6%; opacity: 0; }
-    48%, 60% { left: 23%; opacity: 1; }
-    62%, 88% { left: 23%; opacity: 1; }
-    93%, 100% { left: 23%; opacity: 0; }
+    0% { translate: 0 0; opacity: 0; }
+    2%, 22% { translate: 17cqw 0; opacity: 1; }
+    29%, 33% { translate: 56cqw 0; opacity: 1; }
+    37% { translate: 56cqw 0; opacity: 0; }
+    44% { translate: 0 0; opacity: 0; }
+    48%, 60% { translate: 17cqw 0; opacity: 1; }
+    62%, 88% { translate: 17cqw 0; opacity: 1; }
+    93%, 100% { translate: 17cqw 0; opacity: 0; }
   }
   @keyframes gateBar {
     0%, 18% { transform: translate(-50%, -50%); opacity: 1; }
@@ -2662,15 +2682,15 @@
 .case-status .cs.s3 { border-color: color-mix(in srgb, var(--green) 40%, transparent); color: var(--green); }
 
 @media (prefers-reduced-motion: no-preference) {
-  html.js .mv-email .email-card { animation: emIn 14s ease-out infinite both; }
+  html.js .mv-email .email-card { animation: emIn 14s var(--ease-out) infinite both; }
   html.js .mv-email .case-field, html.js .mv-email .case-num, html.js .mv-email .cs { opacity: 0; }
-  html.js .mv-email .case-num { animation: caseBit1 14s ease-out infinite both; }
-  html.js .mv-email .case-field:nth-of-type(1) { animation: caseBit2 14s ease-out infinite both; }
-  html.js .mv-email .case-field:nth-of-type(2) { animation: caseBit3 14s ease-out infinite both; }
-  html.js .mv-email .case-field:nth-of-type(3) { animation: caseBit4 14s ease-out infinite both; }
-  html.js .mv-email .cs.s1 { animation: caseBit5 14s ease-out infinite both; }
-  html.js .mv-email .cs.s2 { animation: caseBit6 14s ease-out infinite both; }
-  html.js .mv-email .cs.s3 { animation: caseBit7 14s ease-out infinite both; }
+  html.js .mv-email .case-num { animation: caseBit1 14s var(--ease-out) infinite both; }
+  html.js .mv-email .case-field:nth-of-type(1) { animation: caseBit2 14s var(--ease-out) infinite both; }
+  html.js .mv-email .case-field:nth-of-type(2) { animation: caseBit3 14s var(--ease-out) infinite both; }
+  html.js .mv-email .case-field:nth-of-type(3) { animation: caseBit4 14s var(--ease-out) infinite both; }
+  html.js .mv-email .cs.s1 { animation: caseBit5 14s var(--ease-out) infinite both; }
+  html.js .mv-email .cs.s2 { animation: caseBit6 14s var(--ease-out) infinite both; }
+  html.js .mv-email .cs.s3 { animation: caseBit7 14s var(--ease-out) infinite both; }
 
   @keyframes emIn { 0% { opacity: 0; transform: translateX(-18px); } 5%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
   /* entrances staggered in keyframes; exit shared at 88-92% */
@@ -2722,13 +2742,13 @@
   html.js .tl-mile { opacity: 0; }
   .tl-mile.up { --ty: 8px; }
   .tl-mile.down { --ty: -8px; }
-  html.js .tl-mile.m1 { animation: tlMile1 14s ease-out infinite both; }
-  html.js .tl-mile.m2 { animation: tlMile2 14s ease-out infinite both; }
-  html.js .tl-mile.m3 { animation: tlMile3 14s ease-out infinite both; }
-  html.js .tl-mile.m4 { animation: tlMile4 14s ease-out infinite both; }
-  html.js .tl-mile.m5 { animation: tlMile5 14s ease-out infinite both; }
+  html.js .tl-mile.m1 { animation: tlMile1 14s var(--ease-out) infinite both; }
+  html.js .tl-mile.m2 { animation: tlMile2 14s var(--ease-out) infinite both; }
+  html.js .tl-mile.m3 { animation: tlMile3 14s var(--ease-out) infinite both; }
+  html.js .tl-mile.m4 { animation: tlMile4 14s var(--ease-out) infinite both; }
+  html.js .tl-mile.m5 { animation: tlMile5 14s var(--ease-out) infinite both; }
   html.js .tl-mile::before { border-color: var(--red); background: var(--red); }
-  html.js .tl-handshake { opacity: 0; animation: tlShake 14s ease-out infinite both; }
+  html.js .tl-handshake { opacity: 0; animation: tlShake 14s var(--ease-out) infinite both; }
 
   @keyframes tlFill { 0% { transform: scaleX(0); opacity: 1; } 73%, 88% { transform: scaleX(1); opacity: 1; } 92%, 100% { transform: scaleX(0); opacity: 0; } }
   @keyframes tlMile1 { 0%, 3% { opacity: 0; transform: translateY(var(--ty, 8px)); } 5%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
@@ -2750,9 +2770,9 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .mv-qa .a { opacity: 0; }
-  html.js .qa-item:nth-of-type(1) .a { animation: qaIn1 15s ease-out infinite both; }
-  html.js .qa-item:nth-of-type(2) .a { animation: qaIn2 15s ease-out infinite both; }
-  html.js .qa-item:nth-of-type(3) .a { animation: qaIn3 15s ease-out infinite both; }
+  html.js .qa-item:nth-of-type(1) .a { animation: qaIn1 15s var(--ease-out) infinite both; }
+  html.js .qa-item:nth-of-type(2) .a { animation: qaIn2 15s var(--ease-out) infinite both; }
+  html.js .qa-item:nth-of-type(3) .a { animation: qaIn3 15s var(--ease-out) infinite both; }
 
   @keyframes qaIn1 { 0%, 4% { opacity: 0; transform: translateY(6px); } 6%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
   @keyframes qaIn2 { 0%, 21% { opacity: 0; transform: translateY(6px); } 23%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
@@ -2778,6 +2798,9 @@
 .sub-slot .role em { color: var(--ink-3); font-size: 9px; font-style: normal; }
 .sub-slot .cov { display: grid; gap: 2px; color: var(--green); font-family: var(--mono); font-size: 10px; }
 .sub-slot .cov b { color: var(--green); }
+/* Zero-content overlay sized by its insets, so size containment costs
+   nothing and cqh below measures the height the mover travels through. */
+.sub-track { position: absolute; inset: 0; container-type: size; pointer-events: none; }
 .sub-mover {
   position: absolute;
   left: 50%; top: 8%;
@@ -2809,23 +2832,25 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .sub-slot .cov { opacity: 0; }
-  html.js .sub-slot:nth-of-type(1) .cov { animation: covIn1 15s ease-out infinite both; }
-  html.js .sub-slot:nth-of-type(2) .cov { animation: covIn2 15s ease-out infinite both; }
-  html.js .sub-slot:nth-of-type(3) .cov { animation: covIn3 15s ease-out infinite both; }
+  html.js .sub-slot:nth-of-type(1) .cov { animation: covIn1 15s var(--ease-out) infinite both; }
+  html.js .sub-slot:nth-of-type(2) .cov { animation: covIn2 15s var(--ease-out) infinite both; }
+  html.js .sub-slot:nth-of-type(3) .cov { animation: covIn3 15s var(--ease-out) infinite both; }
   html.js .sub-mover { animation: subMove 15s ease-in-out infinite both; }
-  html.js .sub-badge { opacity: 0; animation: subBadge 15s ease-out infinite both; }
+  html.js .sub-badge { opacity: 0; animation: subBadge 15s var(--ease-out) infinite both; }
 
+  /* The chip is parked at its base top: 8% and descends by translate in
+     track-height units; the centering stays in the untouched `transform`. */
   @keyframes subMove {
-    0%, 3% { top: 8%; transform: translate(-50%, -50%) scale(0.94); opacity: 0; }
-    7% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    10% { top: 8%; }
-    14% { top: 27%; }
-    17%, 20% { top: 34%; }
-    27% { top: 44%; }
-    31%, 34% { top: 58%; }
-    41% { top: 68%; }
-    44%, 78% { top: 84%; }
-    86%, 100% { opacity: 0; top: 84%; }
+    0%, 3% { translate: 0 0; scale: 0.94; opacity: 0; }
+    7% { opacity: 1; scale: 1; }
+    10% { translate: 0 0; }
+    14% { translate: 0 19cqh; }
+    17%, 20% { translate: 0 26cqh; }
+    27% { translate: 0 36cqh; }
+    31%, 34% { translate: 0 50cqh; }
+    41% { translate: 0 60cqh; }
+    44%, 78% { translate: 0 76cqh; }
+    86%, 100% { opacity: 0; translate: 0 76cqh; }
   }
   @keyframes covIn1 { 0%, 12% { opacity: 0; transform: translateX(8px); } 14%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
   @keyframes covIn2 { 0%, 32% { opacity: 0; transform: translateX(8px); } 34%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
@@ -2861,10 +2886,10 @@
   html.js .mv-issue .ick i { background: transparent; }
   /* the checklist builds: each row flies in, then checks itself green */
   html.js .mv-issue .ick { opacity: 0; }
-  html.js .mv-issue .ick.k1 { animation: ickBuild1 11s ease-out infinite both; }
-  html.js .mv-issue .ick.k2 { animation: ickBuild2 11s ease-out infinite both; }
-  html.js .mv-issue .ick.k3 { animation: ickBuild3 11s ease-out infinite both; }
-  html.js .mv-issue .is-verdict { opacity: 0; animation: issStamp 11s ease-out infinite both; }
+  html.js .mv-issue .ick.k1 { animation: ickBuild1 11s var(--ease-out) infinite both; }
+  html.js .mv-issue .ick.k2 { animation: ickBuild2 11s var(--ease-out) infinite both; }
+  html.js .mv-issue .ick.k3 { animation: ickBuild3 11s var(--ease-out) infinite both; }
+  html.js .mv-issue .is-verdict { opacity: 0; animation: issStamp 11s var(--ease-out) infinite both; }
 
   @keyframes ickBuild1 {
     0%, 3% { opacity: 0; transform: translateX(-8px); border-color: var(--line-2); color: var(--ink-3); }
