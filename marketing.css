@@ -2683,6 +2683,8 @@
 
 @media (prefers-reduced-motion: no-preference) {
   html.js .mv-email .email-card { animation: emIn 14s var(--ease-out) infinite both; }
+  html.js .mv-email .email-arrow { animation: emArrow 14s var(--ease-out) infinite both; }
+  html.js .mv-email .case-card { animation: caseBox 14s var(--ease-out) infinite both; }
   html.js .mv-email .case-field, html.js .mv-email .case-num, html.js .mv-email .cs { opacity: 0; }
   html.js .mv-email .case-num { animation: caseBit1 14s var(--ease-out) infinite both; }
   html.js .mv-email .case-field:nth-of-type(1) { animation: caseBit2 14s var(--ease-out) infinite both; }
@@ -2693,6 +2695,10 @@
   html.js .mv-email .cs.s3 { animation: caseBit7 14s var(--ease-out) infinite both; }
 
   @keyframes emIn { 0% { opacity: 0; transform: translateX(-18px); } 5%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  @keyframes emArrow { 0%, 13% { opacity: 0; transform: translateX(-6px); } 16%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
+  /* the numbered case box arrives with its number (caseBit1) so the loop
+     never shows an empty box waiting for contents */
+  @keyframes caseBox { 0%, 23% { opacity: 0; transform: translateY(7px); } 25%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
   /* entrances staggered in keyframes; exit shared at 88-92% */
   @keyframes caseBit1 { 0%, 23% { opacity: 0; transform: translateY(7px); } 25%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
   @keyframes caseBit2 { 0%, 32% { opacity: 0; transform: translateY(7px); } 34%, 88% { opacity: 1; transform: none; } 92%, 100% { opacity: 0; } }
