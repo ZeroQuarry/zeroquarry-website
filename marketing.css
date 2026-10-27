@@ -508,6 +508,7 @@
   align-items: center;
   padding: 38px 16px;
   overflow: hidden;
+  container-type: inline-size;  /* lets variants adapt to the panel, not the viewport */
 }
 
 .motion-grid {
@@ -2065,6 +2066,14 @@
 }
 .bin-list li.is-skipped b { color: var(--red); }
 .bin-result { border-color: color-mix(in srgb, var(--green) 24%, transparent); }
+/* The four-column walk needs ~150px for the extract card; the mono chips
+   cannot wrap, so below that width they overflow into the carriers column.
+   Panel-width (container) query, not viewport: the panel sits at ~560px on
+   desktop regardless of screen size. The ≤940px viewport rule below still
+   wins for true mobile single-column. */
+@container (max-width: 799px) {
+  .mv-binary { grid-template-columns: repeat(2, minmax(0, 1fr)); min-height: 0; }
+}
 
 /* ---------- loop (continuous security) ---------- */
 .mv-loop { grid-template-columns: 1fr; }
