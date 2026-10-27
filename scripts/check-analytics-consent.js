@@ -94,6 +94,12 @@ function run({ priorChoice = null } = {}) {
     get gtagScriptRequested() {
       return head.scripts.some((s) => String(s.src || '').includes('googletagmanager.com'));
     },
+    // The consent stub queues every method call as [name, ...args] onto the
+    // window.posthog array itself (only init() lands on ._i), so this sees
+    // set_config / opt_in_capturing / opt_out_capturing the loader asked for.
+    get posthogCalls() {
+      return Array.isArray(window.posthog) ? window.posthog.filter(Array.isArray) : [];
+    },
     store: localStore,
     api: window.zeroQuarryCookieConsent,
   };
@@ -122,6 +128,11 @@ console.log('\nprior accepted -> GA4 runs in the full configuration');
         JSON.stringify(cfg.client_storage));
   check('cookie_domain is zeroquarry.com', cfg.cookie_domain === 'zeroquarry.com');
   check('ip anonymised', cfg.anonymize_ip === true);
+  // A fresh full init already has persistence and the cross-subdomain
+  // cookie; the mid-session upgrade call below is only for a page that
+  // started in the consent-free mode.
+  check('fresh full init queues no set_config',
+        !r.posthogCalls.some(([op]) => op === 'set_config'));
 }
 
 console.log('\nprior declined -> GA4 never loads');
@@ -142,6 +153,17 @@ console.log('\naccepting after a reduced load actually upgrades');
         JSON.stringify(upgraded.client_storage));
   check('upgrade sets cookie_domain', upgraded.cookie_domain === 'zeroquarry.com');
   check('choice recorded as accepted', r.store.get('zeroquarry_cookie_consent') === 'accepted');
+  // PostHog was initialised with disable_persistence before the banner was
+  // answered, so consent alone switches nothing — the identity this visitor
+  // got on this page only ever reaches the console (or the next page) if
+  // persistence and the cross-subdomain cookie are turned back on here.
+  const setConfig = r.posthogCalls.find(([op]) => op === 'set_config');
+  check('upgrade re-enables persistence mid-session',
+        Boolean(setConfig) && setConfig[1].disable_persistence === false,
+        JSON.stringify(setConfig ? setConfig[1] : null));
+  check('upgrade enables the cross-subdomain cookie',
+        Boolean(setConfig) && setConfig[1].cross_subdomain_cookie === true,
+        JSON.stringify(setConfig ? setConfig[1] : null));
 }
 
 console.log('\ndeclining after a reduced load switches GA4 off');
