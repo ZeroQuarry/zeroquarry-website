@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The attack surface your SBOM can&#39;t see | ZeroQuarry Research</title>
+<meta name="description" content="Agent frameworks, MCP configs, system prompts in string constants, model names pinned in code, imports that don&#39;t exist: none of it is a package, so none of it reaches a scanner&#39;s inventory or an SBOM. Code scans now cover the AI surface -- and it&#39;s the same scan you already run." />
+<link rel="canonical" href="https://zeroquarry.com/research/ai-surface" />
+<meta property="og:title" content="The attack surface your SBOM can&#39;t see" />
+<meta property="og:description" content="A tool registration is an authorization model outside your identity system. A system prompt is executable. A model pin is a dependency with vendor terms. None of it reaches a scanner&#39;s inventory. Now it does." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeroquarry.com/research/ai-surface" />
+
+<link rel="icon" type="image/png" href="../../assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index.css" />
+<link rel="stylesheet" href="../../marketing.css?v=20261014-credits" />
+<link rel="stylesheet" href="../../cookie-consent.css" />
+<script src="../../cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
+<script src="../../index.js?v=20261014-credits" defer></script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>What ZeroQuarry does</strong>
+            <p>Finds security problems in your product and keeps the record of what happened to each one.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Track each finding from intake to audit</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Turn findings into reviewed fixes</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Run scans inside your own network</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Give customers and auditors the evidence</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start from your situation</strong>
+            <p>Pick the one that matches what you are dealing with now.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/open-source/"><strong>Open source maintainers</strong><span>Work out which reports are real, and answer them</span></a>
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Get real coverage before you hire for it</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky code while the author still remembers it</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Check a release before you ship it</span></a>
+            <a href="/use-cases/binary-security-review/"><strong>Binary security review</strong><span>Find out what is actually inside the build</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn a researcher's email into real work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer customer questions with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Handle findings that come from outside</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/" aria-current="page">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+<a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
+    </div>
+    <details class="mobile-nav">
+      <summary>Browse ZeroQuarry</summary>
+      <nav class="mobile-nav-panel" aria-label="Mobile primary">
+        <a href="/">Why ZeroQuarry</a>
+        <a href="/platform">Platform</a>
+        <a href="/use-cases/">Use cases</a>
+        <a href="/research/" aria-current="page">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <article class="research-article">
+    <header class="article-header">
+      <div class="container article-header-grid no-disclosure">
+        <div>
+          <a class="article-back" href="../">Research</a>
+          <div class="article-meta">
+            <span>Shane Connelly</span>
+<span>October 28, 2026</span>
+<span>ai-surface</span>
+<span>sast</span>
+          </div>
+          <h1>The attack surface your SBOM can&#39;t see</h1>
+          <p class="article-dek">Agent frameworks, MCP configs, system prompts in string constants, model names pinned in code, imports that don&#39;t exist: none of it is a package, so none of it reaches a scanner&#39;s inventory or an SBOM. Code scans now cover the AI surface -- and it&#39;s the same scan you already run.</p>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
+          </div>
+        </div>
+
+        
+      </div>
+    </header>
+
+    <div class="container article-layout">
+      <aside class="article-toc" aria-label="Article sections">
+        <a href="#what-the-inventory-actually-picks-up">What the inventory actually picks up</a>
+<a href="#prompt-injection-needs-a-producer-not-a-chat-window">Prompt injection needs a producer, not a chat window</a>
+<a href="#hallucinated-dependencies-before-the-attacker-registers-them">Hallucinated dependencies, before the attacker registers them</a>
+<a href="#aibom-the-dependency-your-manifest-never-captured">AIBOM: the dependency your manifest never captured</a>
+<a href="#authorship-detection-is-a-guess-with-a-dashboard">Authorship detection is a guess with a dashboard</a>
+<a href="#how-it-ships">How it ships</a>
+      </aside>
+
+      <div class="article-body">
+<p>Open a source tree from 2020 and you&#39;d find source files, package manifests, and maybe a Dockerfile. Open one from this month and you&#39;ll also find a <code>.mcp.json</code> describing which external servers an agent may call, an <code>AGENTS.md</code> steering every coding agent that touches the repo, a <code>.claude/</code> directory, system prompts embedded as string constants, and model names pinned in code. Our own product repo has all five. None of them are packages, so none of them appear in a software inventory. None of them are the language the scanners parse, so none of them appear in a finding. They are, mechanically, the most interesting attack surface in the repo: a tool registration with broad permissions is an authorization model living outside your identity system, a system prompt is code that executes on whatever the model does next, and a pinned model name is a dependency with a license and a vendor&#39;s terms attached.</p>
+<p>No scanner inventories any of it. Not the incumbents, not the AI-native tools, and not ZeroQuarry -- until now. Code scans are getting an AI-surface pass: the inventory, injection leads, hallucinated-dependency detection, and a model-license export that come out of the scan you already run. This post is the release post, written before the code ships. Writing it first is a habit I picked up as a PM: the post is the spec the code has to keep up with, published early enough that we can&#39;t quietly descope it. Everything below is committed design.</p>
+<p><img src="/assets/research/ai-surface-inventory.svg" alt="The AI surface is three things the code does: what it calls (SDKs and model identifiers), what it embeds (system prompts, skill and agent instruction files), and what it delegates to (MCP servers, tool registrations, agent configs with their permission scope)" loading="lazy" decoding="async" /></p>
+<h2 id="what-the-inventory-actually-picks-up">What the inventory actually picks up</h2>
+<p>The first piece is an inventory pass that runs at scan time and records what the code calls, embeds, and delegates to: agent frameworks and LLM provider SDKs, MCP client and server configurations, skill and agent instruction files, system prompts embedded in code, tool registrations and their permission scope, and referenced model identifiers. The template for this already exists in the product: our infrastructure-as-code inventory works the same way, a deterministic pass that builds a picture the agent reasons about whether or not any rule fires.</p>
+<p>Two kinds of cheap hygiene checks ride along, because the same pass sees them: auto-approve style flags in agent configs (the <code>--yolo</code> class, where an agent gets shell access and the config file says not to worry about it), and secrets that sit within reach of agent tooling. Those aren&#39;t vulnerabilities on their own. They&#39;re the kind of thing a reviewer wants flagged before the agent that reads the config is the same kind of agent that could abuse it.</p>
+<p>The inventory lands as a durable artifact next to the scan report, and it feeds the coordinator&#39;s rubric, so the investigating agent reasons about the discovered surface even where no rule fires. If a repo wires up an MCP server with write access and a system prompt that instructs the agent to fetch URLs from user input, that connection should be visible to something that can reason about it instead of only to whoever happens to open the config file.</p>
+<h2 id="prompt-injection-needs-a-producer-not-a-chat-window">Prompt injection needs a producer, not a chat window</h2>
+<p>Prompt injection has sat at #1 on the OWASP LLM Top 10 since that list existed, and most of what ships to &quot;scan&quot; for it is a chat window where you paste code and an LLM opines. That approach drowns, because injection is a dataflow question: does untrusted content reach prompt construction, and does model or tool output reach a dangerous sink? The untrusted content classes are well understood (fetched web pages, file and document loaders, RAG chunks, issue and comment ingestion, third-party tool and MCP outputs). The dangerous sinks are the classics: exec, shell, SQL, HTML, eval. The chain between them is where the exploit lives.</p>
+<p>Pure LLM scanning drowns in that chain and pure static analysis lies about it (the static tool will happily flag every place a string touches an LLM call, including the ten thousand that are harmless). This is exactly the shape our pipeline is built for: deterministic rules produce leads, a coordinator agent argues reachability and context, and adversarial validation attacks whatever survives (I wrote about what that review chain does to scanner noise earlier, in <a href="/research/confirming-blind-findings/">the out-of-band collector post</a> and the AI-reviewed code study). The two rule classes we&#39;re shipping -- untrusted content reaching prompt construction, and model or tool output reaching dangerous sinks -- produce those leads for the first time. Until now the pipeline had no candidates for the #1 item on the LLM risk list. That was ours to fix.</p>
+<p><img src="/assets/research/ai-surface-pipeline.svg" alt="Two clean-room rule classes feed the existing pipeline: untrusted content reaching prompt construction, and model or tool output reaching dangerous sinks. Rules produce leads, never verdicts; adjudication and adversarial validation do the rest." loading="lazy" decoding="async" /></p>
+<h2 id="hallucinated-dependencies-before-the-attacker-registers-them">Hallucinated dependencies, before the attacker registers them</h2>
+<p>When a coding model suggests an import that doesn&#39;t exist, that name sits in your code as a fact waiting to be weaponized: the attacker registers the package, and the next clean install runs their code. The research community gave this a name, slopsquatting, and it&#39;s the dependency-confusion problem all over again with a new generator of the names.</p>
+<p>The check itself is mechanical: imports and references that don&#39;t resolve in the authoritative public registry become leads, never automatic findings. Not automatic, because an unresolved import is usually something boring -- a monorepo-internal package, a private registry artifact -- and a scanner that cries hallucination at every internal package gets muted. So the check carries a tenant allowlist for private registries and internal packages, and what&#39;s left after the allowlist is a small list of names worth a human&#39;s ten seconds. &quot;Worth a human&#39;s ten seconds&quot; is the bar the whole feature is tuned to; it&#39;s the same bar our SCA reachability confirmation applies before an advisory becomes a finding.</p>
+<p><img src="/assets/research/ai-surface-slopsquatting.svg" alt="A model suggests an import that doesn&#39;t exist. The registry check finds nothing. The name becomes a lead, filtered by the tenant&#39;s allowlist, instead of silently shipping -- and instead of becoming the attacker&#39;s package name six weeks later." loading="lazy" decoding="async" /></p>
+<h2 id="aibom-the-dependency-your-manifest-never-captured">AIBOM: the dependency your manifest never captured</h2>
+<p>Ask a compliance team what models their product uses and watch what happens: someone greps the code for API keys, someone asks engineering, and the answer arrives as a spreadsheet that&#39;s stale by the next merge. Enterprise security questionnaires have started asking for a model inventory explicitly, and there&#39;s a reason the answer is hard: a pinned HuggingFace model or a hardcoded provider-model reference is a real dependency, with a license and provider terms (does the provider train on your inputs? what&#39;s the retention? what are the output-use restrictions?), and no dependency manifest captures it.</p>
+<p>The standards now exist to make this an export instead of a PDF: CycloneDX has an ML-BOM profile and SPDX 3.0 has an AI profile. We&#39;re adding a curated registry of model licenses and provider terms beside the existing license pipeline (the one that normalizes npm/PyPI/crates licenses into SPDX expressions), and exporting through the existing SBOM machinery. The discipline carries over too: unknown stays unknown, never guessed, the same conservative normalization our SPDX alias table uses. A model card that doesn&#39;t state a license ships as &quot;license unknown&quot;, not as a cheerful default.</p>
+<p><img src="/assets/research/ai-surface-aibom.svg" alt="A pinned model identifier in code resolves against a curated registry of model licenses and provider terms, and exports as a CycloneDX ML-BOM or SPDX 3.0 AI-profile section next to the existing SBOM download." loading="lazy" decoding="async" /></p>
+<h2 id="authorship-detection-is-a-guess-with-a-dashboard">Authorship detection is a guess with a dashboard</h2>
+<p>While we were designing this, an adjacent market was born: vendors claiming to detect whether code was written by AI, complete with percentages. Watch what that product does when you test it. A human who writes in the same idiom breaks it. A detector trained on last year&#39;s models breaks on this year&#39;s models. The false-positive rate never survives contact with a real repository. Authorship is a fact about history, and the artifact in front of you cannot prove facts about history. A vendor selling authorship detection is selling the guess.</p>
+<p>What&#39;s checkable is better anyway: what the code calls, what it embeds, what it delegates to, and whether the failure patterns AI introduces are present -- a dependency that doesn&#39;t exist, untrusted input reaching a prompt, an agent config more permissive than anyone would defend in review. Those are facts about the artifact. If a scanner demo shows authorship percentages, the question that ends the pitch is: what does it say when a human writes the same pattern?</p>
+<p><img src="/assets/research/ai-surface-boundary.svg" alt="The authorship-detection pitch versus the artifact: what vendors claim (AI-written code, percentages, AI-free badges), the question that ends the pitch, and what&#39;s actually checkable by reading the repo." loading="lazy" decoding="async" /></p>
+<h2 id="how-it-ships">How it ships</h2>
+<p>One design decision above all the rest: this is a capability of the existing code scan, not a new module, scan type, or SKU. You run a source scan the way you already do; the AI surface inventory, the injection leads, and the hallucinated-dependency checks run inside it; findings land in the report tagged so you can filter them; the AIBOM download sits beside the SBOM download. Reports get an AI surface section and a coverage-card addition so &quot;did you scan for what AI introduces?&quot; has an artifact as an answer.</p>
+<p>Shipping is in three phases: detection first (inventory, injection rule pack, hallucinated-dependency check), then the compliance artifact (AIBOM export), then the report surface and docs. The code for the first pieces is in development now; I&#39;ll update this post as each lands. Phase ordering can slip. The inventory can&#39;t, because the report surface and the findings tagging both read from it, so it goes first.</p>
+<p>If you maintain an open-source project, you can already <a href="https://console.zeroquarry.com/register/open-source?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=ai-surface">scan it for free</a>, and you&#39;ll get this as it ships. If you&#39;re evaluating software before deploying it, <a href="https://console.zeroquarry.com/register?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=ai-surface">start a 30-day trial</a> or <a href="https://zeroquarry.com/request-scan/?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=ai-surface">get in touch</a>.</p>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
+        </a>
+        <p>Independent security testing and evidence for product teams.</p>
+        <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/private-execution/">Private execution</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/open-source/">Open source maintainers</a>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/binary-security-review/">Binary security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/partners/">Security partners</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-label', 'Enlarged diagram');
+  overlay.innerHTML = '<button class="lightbox-close" type="button">Close</button>' +
+    '<div class="lightbox-stage"><img alt="" /></div>';
+  var stageImg = overlay.querySelector('.lightbox-stage img');
+  document.querySelectorAll('.article-body img').forEach(function (img) {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function () {
+      stageImg.src = img.getAttribute('src');
+      stageImg.alt = img.alt || '';
+      overlay.classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+    });
+  });
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.documentElement.style.overflow = '';
+  }
+  overlay.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeLightbox();
+  });
+  document.body.appendChild(overlay);
+})();
+</script>
+
+</body>
+</html>
