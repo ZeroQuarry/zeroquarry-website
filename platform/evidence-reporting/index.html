@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Security Evidence, Pentest Reports, and Customer Assurance | ZeroQuarry</title>
-<meta name="description" content="Create penetration test PDF reports, asset evidence packs, controlled finding shares, disclosure records, and audit trails for customers and auditors." />
+<meta name="description" content="Generate customer and auditor reports from real security work, track disclosures to third parties, and add independent signatures to the evidence you share." />
 <link rel="canonical" href="https://zeroquarry.com/platform/evidence-reporting/" />
 <meta property="og:title" content="Security Evidence, Pentest Reports, and Customer Assurance | ZeroQuarry" />
-<meta property="og:description" content="Create penetration test PDF reports, asset evidence packs, controlled finding shares, disclosure records, and audit trails for customers and auditors." />
+<meta property="og:description" content="Generate customer and auditor reports from real security work, track disclosures to third parties, and add independent signatures to the evidence you share." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zeroquarry.com/platform/evidence-reporting/" />
 <meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
@@ -21,12 +21,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20261014-credits" />
+<link rel="stylesheet" href="/marketing.css?v=20261102-agents" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
-<script src="/index.js?v=20261014-credits" defer></script>
+<script src="/index.js?v=20261102-agents" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Security evidence and reporting","item":"https://zeroquarry.com/platform/evidence-reporting/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does the Evidence Room prove compliance?","acceptedAnswer":{"@type":"Answer","text":"No. It packages assessment evidence and history. Your organization still determines control scope, test frequency, reviewer requirements, and framework assertions."}},{"@type":"Question","name":"Can a recipient see the rest of our scan?","acceptedAnswer":{"@type":"Answer","text":"A secure share exposes only the selected findings. It does not grant the recipient access to the rest of the report, project, or account."}},{"@type":"Question","name":"What is included in a PDF report?","acceptedAnswer":{"@type":"Answer","text":"The default customer-facing PDF contains report context and aggregate severity counts without finding names or exploit details. An authorized operator can explicitly include detailed findings, evidence, branding, and disclaimers."}}]}</script>
 </head>
 <body>
 <div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
@@ -48,6 +47,7 @@
             <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
+            <a href="/platform/agents/"><strong>For agents</strong><span>MCP, skills, and checks for your coding agents</span></a>
             <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
             <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
             <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
@@ -112,12 +112,12 @@
         <div>
           <div class="buyer-kicker">Security evidence and reporting</div>
           <h1 class="buyer-title detail-title">Make security work <em>provable</em> when someone asks.</h1>
-          <p class="buyer-lede">Package current evidence by asset, export reviewed reports, share only the findings a recipient needs, and retain the decision history behind remediation, retest, and accepted risk.</p>
+          <p class="buyer-lede">When a customer or auditor asks for proof, ZeroQuarry turns the security work you have already done into a report they can rely on, with disclosure records and independent third-party signatures where you need them.</p>
           <div class="buyer-actions">
             <a class="btn btn-primary" href="https://console.zeroquarry.com/register/customer-evidence">Start free trial <span class="arr">-&gt;</span></a>
             <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
           </div>
-          <div class="buyer-proofline"><span>Asset-level Evidence Room</span><span>Pentest-style PDF exports</span><span>Expiring finding shares</span></div>
+          <div class="buyer-proofline"><span>Customer-ready reports</span><span>Disclosure records</span><span>Third-party signatures</span></div>
         </div>
         <div class="mv-docs mv-docs-standalone" role="img" aria-label="Three generated reports, auditor, internal, and customer, settle into an evidence stack that is hashed, timestamped, and share-controlled">
         <div class="doc-stack">
@@ -133,37 +133,23 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Evidence produced by the work itself</h2></div><p class="section-intro">Reconstructing security history from tickets and chat during a customer review is expensive. The resulting story is usually incomplete.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">What you can do</div><h2>Evidence your auditors and customers can rely on</h2></div><p class="section-intro">When a customer or auditor asks for evidence, the answers usually live in tickets, chat threads, and old scans. Rebuilding that story by hand takes days and still comes out incomplete. ZeroQuarry keeps the record as you work, so the report is already written.</p></div>
       <div class="capability-grid"><article class="capability-card">
     <div class="card-code">01</div>
-    <h3>Evidence Room</h3>
-    <p>See completed work by actual Git repository, URL, upload, or path and export the latest report for selected assets.</p>
+    <h3>Generate reports for customers and auditors</h3>
+    <p>Build a customer-ready PDF from the assessments, fixes, and retests already on record: what was tested, what was found, and what happened next. Branding and disclaimers are applied for you, and a share link can expose only the findings a specific recipient needs.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">02</div>
-    <h3>Report and finding exports</h3>
-    <p>Create Markdown, single-file HTML, or PDF outputs. Customer-facing PDFs default to aggregate severity context; include detailed finding evidence only for authorized recipients.</p>
+    <h3>Track disclosures to third parties</h3>
+    <p>When you tell a customer, vendor, or coordinator about a vulnerability, ZeroQuarry keeps every milestone: reported, acknowledged, fixed, advisory published, credit given, closed. Months later you can still answer who was told what, and when.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">03</div>
-    <h3>Controlled secure shares</h3>
-    <p>Give a named recipient read-only access to selected findings through a password-protected, expiring, revocable link.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">04</div>
-    <h3>Disclosure tracking</h3>
-    <p>Preserve reported, acknowledged, fixed, advisory, bounty, credit, and closure milestones for external issues.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">05</div>
-    <h3>Audit history</h3>
-    <p>Show investigation stages, model resolution, human actors, outcomes, lifecycle changes, and reasons.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">06</div>
-    <h3>Branding and disclaimers</h3>
-    <p>Apply account and tier settings to customer-facing reports without rewriting historical evidence.</p>
+    <h3>Independent third-party signatures</h3>
+    <p>Bring in an independent security partner to review and sign the report before it goes out, so customers and auditors see a signature from outside your team, not just your own word.</p>
   </article></div>
+      
     </div>
   </section>
 
@@ -190,6 +176,7 @@
     <h3>Deliver</h3>
     <p>Export a static pack or use a time-bounded share, then revoke access when the review ends.</p>
   </article></div>
+      
     </div>
   </section>
 
@@ -203,24 +190,6 @@
   </section>
 
   <section class="buyer-section">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Questions about reports and the Evidence Room</h2></div><p class="section-intro">What a PDF contains, what a recipient can see, and what this does not claim to prove.</p></div>
-      <div class="faq-list"><details>
-    <summary>Does the Evidence Room prove compliance?</summary>
-    <p>No. It packages assessment evidence and history. Your organization still determines control scope, test frequency, reviewer requirements, and framework assertions.</p>
-  </details>
-<details>
-    <summary>Can a recipient see the rest of our scan?</summary>
-    <p>A secure share exposes only the selected findings. It does not grant the recipient access to the rest of the report, project, or account.</p>
-  </details>
-<details>
-    <summary>What is included in a PDF report?</summary>
-    <p>The default customer-facing PDF contains report context and aggregate severity counts without finding names or exploit details. An authorized operator can explicitly include detailed findings, evidence, branding, and disclaimers.</p>
-  </details></div>
-    </div>
-  </section>
-
-  <section class="buyer-section soft">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Customer reviews</h2></div></div>
       <div class="related-grid"><a class="related-card" href="/use-cases/customer-security-reviews/">
@@ -257,6 +226,7 @@
       <div class="foot-col legal">
         <h5>Platform</h5>
         <a href="/platform">Overview</a>
+        <a href="/platform/agents/">For agents</a>
         <a href="/platform/security-testing/">Security testing</a>
         <a href="/platform/adversarial-validation/">Adversarial validation</a>
         <a href="/platform/continuous-security/">Continuous security</a>

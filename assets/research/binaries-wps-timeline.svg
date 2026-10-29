@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 440" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="760" height="440" fill="#ffffff"/>
+
+  <text x="28" y="40" font-size="19" font-weight="700" fill="#0f172a">Sixteen years of shipping, one week of exposure</text>
+  <text x="28" y="62" font-size="14" fill="#475569">The WPSplinter bug, from the code's first build to a stage in Paris.</text>
+
+  <!-- timeline -->
+  <line x1="50" y1="200" x2="710" y2="200" stroke="#94a3b8" stroke-width="3"/>
+
+  <!-- 2010 (above) -->
+  <circle cx="80" cy="200" r="8" fill="#475569"/>
+  <text x="80" y="126" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">2010</text>
+  <text x="80" y="146" font-size="11" fill="#475569" text-anchor="middle">WPS Monitor ships to</text>
+  <text x="80" y="162" font-size="11" fill="#475569" text-anchor="middle">router makers</text>
+  <line x1="80" y1="172" x2="80" y2="190" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- 2010s (below) -->
+  <circle cx="230" cy="200" r="8" fill="#475569"/>
+  <text x="230" y="242" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">2010s</text>
+  <text x="230" y="262" font-size="11" fill="#475569" text-anchor="middle">millions of devices:</text>
+  <text x="230" y="278" font-size="11" fill="#475569" text-anchor="middle">Proximus, VOO, Orange,</text>
+  <text x="230" y="294" font-size="11" fill="#475569" text-anchor="middle">TP-Link, Netgear, AT&amp;T...</text>
+  <line x1="230" y1="210" x2="230" y2="230" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- 2018 (above) -->
+  <circle cx="420" cy="200" r="8" fill="#d97706"/>
+  <text x="420" y="126" font-size="13" font-weight="700" fill="#92400e" text-anchor="middle">2018</text>
+  <text x="420" y="146" font-size="11" fill="#92400e" text-anchor="middle">Broadcom swaps in hostapd,</text>
+  <text x="420" y="162" font-size="11" fill="#92400e" text-anchor="middle">old code declared obsolete</text>
+  <line x1="420" y1="172" x2="420" y2="190" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- Jul 2026 (below) -->
+  <circle cx="545" cy="200" r="8" fill="#dc2626"/>
+  <text x="545" y="242" font-size="13" font-weight="700" fill="#991b1b" text-anchor="middle">Jul 18, 2026</text>
+  <text x="545" y="262" font-size="11" fill="#7f1d1d" text-anchor="middle">90-day disclosure</text>
+  <text x="545" y="278" font-size="11" fill="#7f1d1d" text-anchor="middle">clock starts</text>
+  <line x1="545" y1="210" x2="545" y2="230" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- Oct 16 (above) -->
+  <circle cx="665" cy="200" r="8" fill="#dc2626"/>
+  <text x="665" y="126" font-size="13" font-weight="700" fill="#991b1b" text-anchor="middle">Oct 16, 2026</text>
+  <text x="665" y="146" font-size="11" fill="#7f1d1d" text-anchor="middle">Hexacon: root from</text>
+  <text x="665" y="162" font-size="11" fill="#7f1d1d" text-anchor="middle">across the street;</text>
+  <text x="665" y="178" font-size="11" fill="#7f1d1d" text-anchor="middle">HN front page</text>
+  <line x1="665" y1="188" x2="665" y2="190" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <!-- summary boxes -->
+  <rect x="50" y="330" width="280" height="80" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="190" y="356" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">Sixteen years of exposure,</text>
+  <text x="190" y="376" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">found reportedly in under a week</text>
+  <text x="190" y="396" font-size="11.5" fill="#64748b" text-anchor="middle">by one researcher working with AI models</text>
+
+  <rect x="360" y="330" width="372" height="80" rx="12" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="546" y="352" font-size="12.5" font-weight="700" fill="#991b1b" text-anchor="middle">October 2026: Broadcom declines a CVE.</text>
+  <text x="546" y="372" font-size="12" fill="#7f1d1d" text-anchor="middle">No Belgian patches as of mid-October.</text>
+  <text x="546" y="390" font-size="12" fill="#7f1d1d" text-anchor="middle">eCos devices: possibly no migration path, ever.</text>
+
+  <text x="380" y="432" font-size="0" fill="none"> </text>
+</svg>

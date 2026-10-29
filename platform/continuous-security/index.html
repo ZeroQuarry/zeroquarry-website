@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Continuous Application Security Testing for CI/CD and Pull Requests | ZeroQuarry</title>
-<meta name="description" content="Run continuous application security with PR scans, GitHub Actions, scheduled rescans, changed-code analysis, APIs, Slack, and scan lineage." />
+<meta name="description" content="Run continuous application security with PR scans, GitHub Actions, scheduled rescans, changed-code analysis, APIs, MCP, Slack, and scan lineage." />
 <link rel="canonical" href="https://zeroquarry.com/platform/continuous-security/" />
 <meta property="og:title" content="Continuous Application Security Testing for CI/CD and Pull Requests | ZeroQuarry" />
-<meta property="og:description" content="Run continuous application security with PR scans, GitHub Actions, scheduled rescans, changed-code analysis, APIs, Slack, and scan lineage." />
+<meta property="og:description" content="Run continuous application security with PR scans, GitHub Actions, scheduled rescans, changed-code analysis, APIs, MCP, Slack, and scan lineage." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zeroquarry.com/platform/continuous-security/" />
 <meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
@@ -21,12 +21,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20261014-credits" />
+<link rel="stylesheet" href="/marketing.css?v=20261102-agents" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
-<script src="/index.js?v=20261014-credits" defer></script>
+<script src="/index.js?v=20261102-agents" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Continuous application security","item":"https://zeroquarry.com/platform/continuous-security/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Should every pull request block on ZeroQuarry?","acceptedAnswer":{"@type":"Answer","text":"Usually not at first. Start with report-only visibility, learn the finding profile, then introduce a reviewed threshold for the branches and changes that justify it."}},{"@type":"Question","name":"What is the difference between CI and scheduled scans?","acceptedAnswer":{"@type":"Answer","text":"CI associates security review with an engineering event. Schedules provide independent baseline coverage and only run a new scan when the repository commit changes."}},{"@type":"Question","name":"Does a delta scan inspect only the edited lines?","acceptedAnswer":{"@type":"Answer","text":"No. Changed files define the focus, but agents can follow nearby calls and data flow when the security impact crosses the diff boundary."}}]}</script>
 </head>
 <body>
 <div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
@@ -48,6 +47,7 @@
             <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
+            <a href="/platform/agents/"><strong>For agents</strong><span>MCP, skills, and checks for your coding agents</span></a>
             <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
             <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
             <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
@@ -112,7 +112,7 @@
         <div>
           <div class="buyer-kicker">Continuous application security</div>
           <h1 class="buyer-title detail-title">Review risk while the change is still <em>small enough to understand.</em></h1>
-          <p class="buyer-lede">Trigger AI code security reviews from GitHub Actions, the API, or a native schedule. Delta scans focus on changed files and nearby data flow while lineages preserve the wider product history.</p>
+          <p class="buyer-lede">Trigger AI code security reviews from GitHub Actions, the API, or a native schedule, or let your agents directly manage security scans through MCP. Delta scans focus on changed files and nearby data flow while lineages preserve the wider product history.</p>
           <div class="buyer-actions">
             <a class="btn btn-primary" href="https://console.zeroquarry.com/register/pr-review">Start free trial <span class="arr">-&gt;</span></a>
             <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
@@ -163,24 +163,25 @@
 <article class="capability-card">
     <div class="card-code">04</div>
     <h3>Public API</h3>
-    <p>Create, monitor, cancel, rescan, search, share, and export through the same account and tier boundaries as the console.</p>
+    <p>Create, monitor, cancel, rescan, search, share, and export through the same account and tier limits as the console.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">05</div>
-    <h3>Practical gating</h3>
-    <p>Start non-blocking, then gate on reviewed critical or high findings when the team understands the signal profile.</p>
+    <h3>Agentic integration</h3>
+    <p>Let your agents perform security analysis directly through MCP.</p>
   </article>
 <article class="capability-card">
     <div class="card-code">06</div>
     <h3>Notifications and handoff</h3>
     <p>Send completion summaries to email or Slack and move accepted findings into tickets or pull requests.</p>
   </article></div>
+      
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>From baseline to escalated release review</h2></div><p class="section-intro">One broad assessment first, then pull requests, schedules, and API calls keep it current.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>From baseline to escalated release review</h2></div><p class="section-intro">One broad assessment first, then pull requests, schedules, API calls, and agent calls through MCP keep it current.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Baseline</h3>
@@ -189,7 +190,7 @@
 <article class="workflow-card">
     <span>STEP 02</span>
     <h3>Trigger</h3>
-    <p>Dispatch on high-risk pull requests, main-branch changes, or an independent schedule.</p>
+    <p>Dispatch on high-risk pull requests, main-branch changes, an independent schedule, or an agent call through MCP.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 03</span>
@@ -201,38 +202,20 @@
     <h3>Escalate</h3>
     <p>Move consequential changes into a broader source, binary, or live-target release review.</p>
   </article></div>
+      
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>Continuous coverage without continuous noise</h2></div><p class="section-intro">Shorter feedback loops and controlled spend, with history that outlives CI logs.</p></div>
-      <div class="outcome-grid"><article class="outcome-card"><h3>Shorter feedback loops</h3><p>Catch authorization, webhook, parser, billing, and tenant-boundary regressions before context disappears.</p></article>
-<article class="outcome-card"><h3>Controlled scan spend</h3><p>Use change focus, no-change skips, deduplication, and stage-specific models to match depth to risk.</p></article>
-<article class="outcome-card"><h3>Evidence-backed remediation checks</h3><p>Record each selected previous finding as fixed, still present, or inconclusive instead of treating absence from a new scan as proof of a fix.</p></article>
-<article class="outcome-card"><h3>Security history by product</h3><p>Keep repeated assessments and retests in one project instead of burying evidence in CI logs.</p></article></div>
+      <div class="outcome-grid"><article class="outcome-card"><h3>Shorter feedback loops</h3><p>Catch authorization, webhook, parser, billing, and tenant-isolation regressions before context disappears.</p></article>
+<article class="outcome-card"><h3>Controlled scan spend</h3><p>ZeroQuarry can skip scans on no changes, deduplicate vulnerability findings, use stage-specific models on agents to match depth/risk, and focus on just the changes to reduce costs.</p></article>
+<article class="outcome-card"><h3>Evidence-backed remediation checks</h3><p>Record each selected previous vulnerability finding as fixed, still present, or inconclusive instead of treating absence from a new scan as proof of a fix.</p></article></div>
     </div>
   </section>
 
   <section class="buyer-section">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Before you wire this into CI</h2></div><p class="section-intro">Gating, what a delta scan really covers, and whether every pull request should block.</p></div>
-      <div class="faq-list"><details>
-    <summary>Should every pull request block on ZeroQuarry?</summary>
-    <p>Usually not at first. Start with report-only visibility, learn the finding profile, then introduce a reviewed threshold for the branches and changes that justify it.</p>
-  </details>
-<details>
-    <summary>What is the difference between CI and scheduled scans?</summary>
-    <p>CI associates security review with an engineering event. Schedules provide independent baseline coverage and only run a new scan when the repository commit changes.</p>
-  </details>
-<details>
-    <summary>Does a delta scan inspect only the edited lines?</summary>
-    <p>No. Changed files define the focus, but agents can follow nearby calls and data flow when the security impact crosses the diff boundary.</p>
-  </details></div>
-    </div>
-  </section>
-
-  <section class="buyer-section soft">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Pull request and release review</h2></div></div>
       <div class="related-grid"><a class="related-card" href="/use-cases/pr-security-review/">
@@ -269,6 +252,7 @@
       <div class="foot-col legal">
         <h5>Platform</h5>
         <a href="/platform">Overview</a>
+        <a href="/platform/agents/">For agents</a>
         <a href="/platform/security-testing/">Security testing</a>
         <a href="/platform/adversarial-validation/">Adversarial validation</a>
         <a href="/platform/continuous-security/">Continuous security</a>

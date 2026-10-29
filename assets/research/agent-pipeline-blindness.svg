@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="760" height="470" fill="#ffffff"/>
+
+  <text x="28" y="40" font-size="19" font-weight="700" fill="#0f172a">Correlated blindness, and the fix that isn't "another review"</text>
+  <text x="28" y="62" font-size="14" fill="#475569">Different weights, same civilization: writer and grader share a training diet and its blind spots.</text>
+
+  <!-- Venn: writer + same-shaped review -->
+  <circle cx="220" cy="200" r="110" fill="#faf5ff" fill-opacity="0.85" stroke="#7c3aed" stroke-width="2.5"/>
+  <circle cx="360" cy="200" r="110" fill="#f8fafc" fill-opacity="0.85" stroke="#475569" stroke-width="2.5"/>
+  <text x="160" y="130" font-size="13.5" font-weight="700" fill="#5b21b6">the model that</text>
+  <text x="160" y="148" font-size="13.5" font-weight="700" fill="#5b21b6">wrote it</text>
+  <text x="160" y="168" font-size="11.5" fill="#4c1d95">objective: ship</text>
+  <text x="330" y="130" font-size="13.5" font-weight="700" fill="#334155">the model that</text>
+  <text x="330" y="148" font-size="13.5" font-weight="700" fill="#334155">graded it</text>
+  <text x="330" y="168" font-size="11.5" fill="#475569">objective: score</text>
+  <!-- overlap label -->
+  <rect x="248" y="230" width="90" height="0" fill="none"/>
+  <text x="292" y="196" font-size="12.5" font-weight="700" fill="#0f172a" text-anchor="middle">shared</text>
+  <text x="292" y="214" font-size="12.5" font-weight="700" fill="#0f172a" text-anchor="middle">blind spot</text>
+  <text x="292" y="232" font-size="11" fill="#475569" text-anchor="middle">same idioms,</text>
+  <text x="292" y="248" font-size="11" fill="#475569" text-anchor="middle">same training diet</text>
+
+  <!-- Validator circle offset -->
+  <circle cx="590" cy="200" r="110" fill="#f0fdf4" fill-opacity="0.9" stroke="#16a34a" stroke-width="3"/>
+  <text x="590" y="140" font-size="13.5" font-weight="700" fill="#166534" text-anchor="middle">the validator</text>
+  <text x="590" y="162" font-size="11.5" fill="#14532d" text-anchor="middle">objective: reject the claim</text>
+  <text x="590" y="186" font-size="12" fill="#14532d" text-anchor="middle">reproduces, attacks the</text>
+  <text x="590" y="204" font-size="12" fill="#14532d" text-anchor="middle">evidence, argues severity;</text>
+  <text x="590" y="228" font-size="12" fill="#14532d" text-anchor="middle">fails differently because</text>
+  <text x="590" y="246" font-size="12" fill="#14532d" text-anchor="middle">it wants a different thing</text>
+  <text x="590" y="264" font-size="11" font-weight="600" fill="#166534" text-anchor="middle">the residue after the</text>
+  <text x="590" y="280" font-size="11" font-weight="600" fill="#166534" text-anchor="middle">fight is what humans read</text>
+
+  <!-- iShortn caption -->
+  <rect x="28" y="330" width="704" height="74" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="48" y="356" font-size="13" font-weight="700" fill="#334155">The cleanest case we've published: iShortn</text>
+  <text x="48" y="378" font-size="12.5" fill="#475569">The project already ran AI code review. It had found locally plausible concerns -- and missed both attack</text>
+  <text x="48" y="396" font-size="12.5" fill="#475569">paths ZeroQuarry's agents found, one of which the review had looked directly at.</text>
+
+  <text x="380" y="436" font-size="13.5" font-weight="600" fill="#334155" text-anchor="middle">Adding a second same-shaped review doesn't decorrelate much.</text>
+  <text x="380" y="456" font-size="13.5" font-weight="600" fill="#334155" text-anchor="middle">Changing the reviewer's objective does.</text>
+</svg>

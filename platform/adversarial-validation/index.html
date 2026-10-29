@@ -21,12 +21,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20261014-credits" />
+<link rel="stylesheet" href="/marketing.css?v=20261102-agents" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
-<script src="/index.js?v=20261014-credits" defer></script>
+<script src="/index.js?v=20261102-agents" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"Adversarial validation","item":"https://zeroquarry.com/platform/adversarial-validation/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does adversarial review guarantee a finding is correct?","acceptedAnswer":{"@type":"Answer","text":"No automated review can remove the need for product context and human judgment. It makes the validation process explicit and creates stronger evidence for that decision."}},{"@type":"Question","name":"What happens to rejected findings?","acceptedAnswer":{"@type":"Answer","text":"They are not silently deleted. Review verdicts, rebuttals, confidence, and human lifecycle decisions remain visible so the outcome can be audited or revisited."}},{"@type":"Question","name":"Can we ask the system to explain a finding differently?","acceptedAnswer":{"@type":"Answer","text":"Yes. Finding and report discussions can request a shorter engineer handoff, safer reproduction path, alternative PoC, or challenge to a specific assumption."}}]}</script>
 </head>
 <body>
 <div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
@@ -48,6 +47,7 @@
             <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
+            <a href="/platform/agents/"><strong>For agents</strong><span>MCP, skills, and checks for your coding agents</span></a>
             <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
             <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
             <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
@@ -144,63 +144,75 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Separating real findings from noise</h2></div><p class="section-intro">Instead of hiding uncertain alerts at an arbitrary score, ZeroQuarry records why a claim survived, changed, or was disputed.</p></div>
-      <div class="capability-grid"><article class="capability-card">
-    <div class="card-code">01</div>
-    <h3>Adversarial vendor review</h3>
-    <p>A separate review pass checks reachability, context mitigations, intended behavior, evidence quality, and practical exploitability.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">02</div>
-    <h3>Researcher rebuttal</h3>
-    <p>The original side responds to the challenge with more evidence, revises the claim, or retracts it.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">03</div>
-    <h3>Confidence separate from severity</h3>
-    <p>See how likely a finding is to survive review without confusing that judgment with potential impact.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">04</div>
-    <h3>Proofs and reproducible context</h3>
-    <p>Attach PoCs, source locations, HTTP sequences, or deployable test packages when the assessment supports them.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">05</div>
-    <h3>Finding discussion</h3>
-    <p>Ask follow-up questions, request different reproduction steps, or challenge assumptions over several rounds.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">06</div>
-    <h3>Lifecycle decisions</h3>
-    <p>Record candidate, validated, disputed, mitigated, retested, regression, accepted-risk, and archived states with reasons.</p>
-  </article></div>
+      <div class="buyer-section-head"><div><div class="section-label">How validation works</div><h2>Separating real findings from noise</h2></div><p class="section-intro">A model grading another model&#39;s homework sounds like turtles all the way down. It is not, because the argument does not end in another model&#39;s opinion: it ends in something you can run against your product, and then a human decision. Here is one complete argument.</p></div>
+      <div class="deploy-pipeline"><div class="pipeline-step">
+    <small>01</small>
+    <div class="pipeline-body">
+      <h3>The claim</h3>
+      <p>A researcher agent files a claim: invoice update skips the tenant ownership check. It attaches the source location and a cross-tenant request sequence. Starting confidence: 0.61.</p>
+    </div>
+    <span class="pipeline-tag">Researcher</span>
+  </div>
+<div class="pipeline-step">
+    <small>02</small>
+    <div class="pipeline-body">
+      <h3>The challenge</h3>
+      <p>A separate reviewer tries to reject it. First idea: the endpoint is admin-only. It checks the product and finds the role check runs after the ownership write, so the challenge fails.</p>
+    </div>
+    <span class="pipeline-tag">Independent review</span>
+  </div>
+<div class="pipeline-step">
+    <small>03</small>
+    <div class="pipeline-body">
+      <h3>The rebuttal</h3>
+      <p>The researcher does not just repeat the claim. It answers with the exact code path and a runnable proof of concept that reproduces the write as a normal tenant.</p>
+    </div>
+    <span class="pipeline-tag">Researcher</span>
+  </div>
+<div class="pipeline-step">
+    <small>04</small>
+    <div class="pipeline-body">
+      <h3>The verdict</h3>
+      <p>The claim is sustained and confidence rises to 0.94. If the challenge had held instead, the claim would have been revised or retracted, with the reason written down either way.</p>
+    </div>
+    <span class="pipeline-tag">Evidence</span>
+  </div>
+<div class="pipeline-step">
+    <small>05</small>
+    <div class="pipeline-body">
+      <h3>The decision</h3>
+      <p>A human records the lifecycle state and owns the risk. Rejected findings are not deleted: the verdicts, rebuttals, and reasons stay on file where anyone can audit them later.</p>
+    </div>
+    <span class="pipeline-tag">Your decision</span>
+  </div></div>
+      <div class="judge-note"><h3>Why this is not turtles all the way down</h3><div class="judge-grid"><div><h4>The reviewer must reject, not grade</h4><p>A grader can lazily agree with whatever it reads. This reviewer only passes a claim by failing to break it, so agreement is never the easy path.</p></div><div><h4>Evidence, not another opinion</h4><p>Challenges are answered with things that run: proofs of concept, HTTP sequences, deployable test packages against the actual product. Where the evidence runs, the argument stops.</p></div><div><h4>A human closes the loop</h4><p>The verdict arrives as a recommendation with the whole argument attached. People record the decision, and automation never silently accepts a risk on your behalf.</p></div></div></div>
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>Claim, challenge, rebuttal, decision</h2></div><p class="section-intro">Discovery and validation are deliberately separate jobs. This is the argument between them.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How you use it</div><h2>You see the whole argument, and you decide</h2></div><p class="section-intro">The argument runs on its own. Reading it, pushing on it, and deciding what happens next stay with your team.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
-    <h3>Claim</h3>
-    <p>The assessment records technical impact, severity, affected surface, evidence, and reproduction context.</p>
+    <h3>Read the argument</h3>
+    <p>Open a finding and see the full claim, challenge, and rebuttal trail instead of a bare alert with a score.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 02</span>
-    <h3>Challenge</h3>
-    <p>A skeptical reviewer attempts to disprove the issue in the product&#39;s actual context.</p>
+    <h3>Push on it</h3>
+    <p>Ask follow-up questions, request a different reproduction, or challenge an assumption over several rounds.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 03</span>
-    <h3>Rebut</h3>
-    <p>The researcher sustains, revises, or retracts instead of merely repeating the conclusion.</p>
+    <h3>Decide</h3>
+    <p>Record the lifecycle state, such as validated, disputed, accepted risk, or archived, with a written reason.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 04</span>
-    <h3>Decide</h3>
-    <p>A human records the operating state and routes accepted work to the correct owner.</p>
+    <h3>Revisit</h3>
+    <p>Retests and regressions update the record, and past disputes stay auditable instead of silently deleted.</p>
   </article></div>
+      
     </div>
   </section>
 
@@ -214,24 +226,6 @@
   </section>
 
   <section class="buyer-section">
-    <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Questions about challenging findings</h2></div><p class="section-intro">What happens to rejected findings, and how much a review can honestly guarantee.</p></div>
-      <div class="faq-list"><details>
-    <summary>Does adversarial review guarantee a finding is correct?</summary>
-    <p>No automated review can remove the need for product context and human judgment. It makes the validation process explicit and creates stronger evidence for that decision.</p>
-  </details>
-<details>
-    <summary>What happens to rejected findings?</summary>
-    <p>They are not silently deleted. Review verdicts, rebuttals, confidence, and human lifecycle decisions remain visible so the outcome can be audited or revisited.</p>
-  </details>
-<details>
-    <summary>Can we ask the system to explain a finding differently?</summary>
-    <p>Yes. Finding and report discussions can request a shorter engineer handoff, safer reproduction path, alternative PoC, or challenge to a specific assumption.</p>
-  </details></div>
-    </div>
-  </section>
-
-  <section class="buyer-section soft">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Disclosure and remediation</h2></div></div>
       <div class="related-grid"><a class="related-card" href="/use-cases/pr-security-review/">
@@ -268,6 +262,7 @@
       <div class="foot-col legal">
         <h5>Platform</h5>
         <a href="/platform">Overview</a>
+        <a href="/platform/agents/">For agents</a>
         <a href="/platform/security-testing/">Security testing</a>
         <a href="/platform/adversarial-validation/">Adversarial validation</a>
         <a href="/platform/continuous-security/">Continuous security</a>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 500" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.15"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="760" height="500" fill="#ffffff"/>
+
+  <text x="28" y="40" font-size="19" font-weight="700" fill="#0f172a">What a firmware scan actually does</text>
+  <text x="28" y="62" font-size="14" fill="#475569">The workload ZeroQuarry's agents run on every image -- and the honesty gate.</text>
+
+  <!-- stage 1 -->
+  <rect x="24" y="92" width="110" height="130" rx="12" fill="#f8fafc" stroke="#475569" stroke-width="2" filter="url(#ds)"/>
+  <text x="79" y="120" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">Firmware</text>
+  <text x="79" y="138" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">image</text>
+  <text x="79" y="164" font-size="10.5" fill="#475569" text-anchor="middle">what ships:</text>
+  <text x="79" y="180" font-size="10.5" fill="#475569" text-anchor="middle">kernel, rootfs,</text>
+  <text x="79" y="196" font-size="10.5" fill="#475569" text-anchor="middle">vendor blobs</text>
+
+  <!-- stage 2 -->
+  <rect x="148" y="92" width="110" height="130" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="2" filter="url(#ds)"/>
+  <text x="203" y="120" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">Unpack</text>
+  <text x="203" y="148" font-size="10.5" fill="#475569" text-anchor="middle">binwalk for</text>
+  <text x="203" y="164" font-size="10.5" fill="#475569" text-anchor="middle">embedded fs;</text>
+  <text x="203" y="186" font-size="10.5" fill="#475569" text-anchor="middle">a rootfs holds</text>
+  <text x="203" y="202" font-size="10.5" fill="#475569" text-anchor="middle">tens of 1000s</text>
+
+  <!-- stage 3 -->
+  <rect x="272" y="92" width="110" height="130" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="2" filter="url(#ds)"/>
+  <text x="327" y="120" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">Inventory</text>
+  <text x="327" y="148" font-size="10.5" fill="#475569" text-anchor="middle">binaries, configs,</text>
+  <text x="327" y="164" font-size="10.5" fill="#475569" text-anchor="middle">certs, keys,</text>
+  <text x="327" y="186" font-size="10.5" fill="#475569" text-anchor="middle">SCA pre-pass</text>
+  <text x="327" y="202" font-size="10.5" fill="#475569" text-anchor="middle">rides along</text>
+
+  <!-- stage 4 -->
+  <rect x="396" y="92" width="110" height="130" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="2" filter="url(#ds)"/>
+  <text x="451" y="120" font-size="13" font-weight="700" fill="#334155" text-anchor="middle">Decompile</text>
+  <text x="451" y="148" font-size="10.5" fill="#475569" text-anchor="middle">jadx, apktool,</text>
+  <text x="451" y="164" font-size="10.5" fill="#475569" text-anchor="middle">cfr: DEX/JAR</text>
+  <text x="451" y="186" font-size="10.5" fill="#475569" text-anchor="middle">into reviewable</text>
+  <text x="451" y="202" font-size="10.5" fill="#475569" text-anchor="middle">Java</text>
+
+  <!-- stage 5 -->
+  <rect x="520" y="92" width="110" height="130" rx="12" fill="#faf5ff" stroke="#7c3aed" stroke-width="2.5" filter="url(#ds)"/>
+  <text x="575" y="120" font-size="13" font-weight="700" fill="#5b21b6" text-anchor="middle">Investigate</text>
+  <text x="575" y="148" font-size="10.5" fill="#4c1d95" text-anchor="middle">coordinator</text>
+  <text x="575" y="164" font-size="10.5" fill="#4c1d95" text-anchor="middle">schedules agents;</text>
+  <text x="575" y="186" font-size="10.5" fill="#4c1d95" text-anchor="middle">"delegate,</text>
+  <text x="575" y="202" font-size="10.5" fill="#4c1d95" text-anchor="middle">don't probe"</text>
+
+  <!-- stage 6 -->
+  <rect x="644" y="92" width="92" height="130" rx="12" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5" filter="url(#ds)"/>
+  <text x="690" y="120" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">PoC</text>
+  <text x="690" y="138" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">gate</text>
+  <text x="690" y="164" font-size="10.5" fill="#14532d" text-anchor="middle">grounding +</text>
+  <text x="690" y="180" font-size="10.5" fill="#14532d" text-anchor="middle">self-checks</text>
+  <text x="690" y="202" font-size="10.5" fill="#14532d" text-anchor="middle">before report</text>
+
+  <line x1="134" y1="157" x2="146" y2="157" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="258" y1="157" x2="270" y2="157" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="382" y1="157" x2="394" y2="157" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="506" y1="157" x2="518" y2="157" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="630" y1="157" x2="642" y2="157" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- honesty box -->
+  <rect x="24" y="248" width="712" height="140" rx="14" fill="#fffbeb" stroke="#d97706" stroke-width="2" filter="url(#ds)"/>
+  <text x="44" y="276" font-size="14" font-weight="700" fill="#92400e">The gate exists because our own first PoCs were fiction that looked like reproductions</text>
+  <text x="44" y="300" font-size="12.5" fill="#92400e">An ASUS RT-AX55 firmware scan, late October 2026: eight critical findings, every PoC framed the</text>
+  <text x="44" y="318" font-size="12.5" fill="#92400e">config protocol wrong -- invented message types, magic bytes nowhere in the 633 KB binary,</text>
+  <text x="44" y="336" font-size="12.5" fill="#92400e">cleartext on a channel a sibling finding proves is encrypted. All eight passed the old syntax-only gate.</text>
+  <text x="44" y="366" font-size="12.5" font-weight="700" fill="#92400e">Now: every framing constant must occur in the target binary, and the PoC must tell success from failure.</text>
+
+  <text x="380" y="426" font-size="13.5" font-weight="600" fill="#334155" text-anchor="middle">What took a specialist week in 2024 takes a scan hours in 2026, and scanning a fleet's worth</text>
+  <text x="380" y="446" font-size="13.5" font-weight="600" fill="#334155" text-anchor="middle">of images for one bug class is a batch job, not a consultancy. The gate keeps that honest.</text>
+  <text x="380" y="472" font-size="12.5" fill="#64748b" text-anchor="middle">"Build-specific, here are some candidates" reads as what it is: a confession the agent never read the binary.</text>
+</svg>

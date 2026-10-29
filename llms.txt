@@ -6,9 +6,10 @@ The operating loop is Receive → Assess → Validate → Decide → Remediate �
 
 ## Platform
 
-The seven capabilities of the platform. Each is a step in the same workflow and writes to the same record.
+The capabilities of the platform. Each is a step in the same workflow and writes to the same record.
 
-- [Platform overview](https://zeroquarry.com/platform): all seven capabilities and the operating loop
+- [Platform overview](https://zeroquarry.com/platform): all capabilities and the operating loop
+- [For agents](https://zeroquarry.com/platform/agents/): agentic security for coding agents — run scans over MCP, security skills delivered over MCP, AI-surface inventory, prompt-injection paths, hallucinated-dependency (slopsquatting) detection, and model/provider license export (AIBOM)
 - [AI security testing](https://zeroquarry.com/platform/security-testing/): source, binary, and authorized live-app testing with hybrid SAST plus agent investigation
 - [Adversarial validation](https://zeroquarry.com/platform/adversarial-validation/): every finding must survive skeptical vendor-style review, rebuttal, and reproduction; confidence scored separately from severity
 - [Continuous application security](https://zeroquarry.com/platform/continuous-security/): PR and delta scans via GitHub Actions, schedules, and a public API

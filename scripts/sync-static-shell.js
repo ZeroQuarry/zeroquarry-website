@@ -8,10 +8,16 @@ const pages = [
   ["404.html", ""],
   ["privacy.html", ""],
   ["terms.html", ""],
+  ["platform/agents/index.html", "platform"],
 ];
 
+function shellPrefix(relativePath) {
+  // Depth-aware: "about.html" is root-level, "platform/agents/index.html" is two levels down.
+  return "../".repeat(relativePath.split("/").length - 1);
+}
+
 function ensureMarketingStyles(html, relativePath) {
-  const prefix = relativePath.includes("/") ? "../" : "";
+  const prefix = shellPrefix(relativePath);
   if (!html.includes(`${prefix}index.css`)) {
     html = html.replace(
       /(<link rel="stylesheet" href="[^"]*styles\.css" \/>)/,
@@ -33,7 +39,7 @@ function ensureMarketingStyles(html, relativePath) {
 }
 
 function ensureShellBehavior(html, relativePath) {
-  const prefix = relativePath.includes("/") ? "../" : "";
+  const prefix = shellPrefix(relativePath);
   const script = `<script src="${prefix}index.js?v=${assetVersion}" defer></script>`;
   if (/src="[^\"]*index\.js(?:\?[^\"]*)?"/.test(html)) {
     return html.replace(

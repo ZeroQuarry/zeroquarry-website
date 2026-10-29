@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agentic Security for Your Coding Agents | ZeroQuarry</title>
+<meta name="description" content="The security layer your coding agents call: run scans over MCP, load security skills, catch agent mistakes like slopsquatting, and export model licenses with your SBOM." />
+<link rel="canonical" href="https://zeroquarry.com/platform/agents/" />
+<meta property="og:title" content="Agentic Security for Your Coding Agents | ZeroQuarry" />
+<meta property="og:description" content="The security layer your coding agents call: run scans over MCP, load security skills, catch agent mistakes like slopsquatting, and export model licenses with your SBOM." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://zeroquarry.com/platform/agents/" />
+<meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
+<link rel="icon" type="image/png" href="/assets/favicon.png" />
+<script>function __zqTheme(){var t=null;try{var q=new URLSearchParams(location.search).get("theme");var s=localStorage.getItem("zq-theme");t=q==="light"||q==="dark"?q:(s==="light"||s==="dark"?s:null)}catch(e){}document.documentElement.dataset.theme=t||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.classList.add("js")}__zqTheme()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css" />
+<link rel="stylesheet" href="../../marketing.css?v=20261102-agents" />
+<link rel="stylesheet" href="/marketing.css?v=20261102-agents" />
+<link rel="stylesheet" href="/cookie-consent.css" />
+<script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
+<script src="/index.js?v=20261102-agents" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"By agents, for agents","item":"https://zeroquarry.com/platform/agents/"}]}</script>
+</head>
+<body>
+<div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster" name="primary-nav">
+        <summary aria-current="page">Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>What ZeroQuarry does</strong>
+            <p>Finds security problems in your product and keeps the record of what happened to each one.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/agents/"><strong>For agents</strong><span>MCP, skills, and checks for your coding agents</span></a>
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Track each finding from intake to audit</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Turn findings into reviewed fixes</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Run scans inside your own network</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Give customers and auditors the evidence</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start from your situation</strong>
+            <p>Pick the one that matches what you are dealing with now.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/open-source/"><strong>Open source maintainers</strong><span>Work out which reports are real, and answer them</span></a>
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Get real coverage before you hire for it</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky code while the author still remembers it</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Check a release before you ship it</span></a>
+            <a href="/use-cases/binary-security-review/"><strong>Binary security review</strong><span>Find out what is actually inside the build</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn a researcher's email into real work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer customer questions with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Handle findings that come from outside</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+<a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
+    </div>
+    <details class="mobile-nav">
+      <summary>Browse ZeroQuarry</summary>
+      <nav class="mobile-nav-panel" aria-label="Mobile primary">
+        <a href="/">Why ZeroQuarry</a>
+        <a href="/platform" aria-current="page">Platform</a>
+        <a href="/use-cases/">Use cases</a>
+        <a href="/research/">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+      </nav>
+    </details>
+  </div>
+</header>
+<main class="marketing-main">
+  <section class="buyer-hero detail-hero">
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">ZeroQuarry</a><span>/</span><a href="/platform">Platform</a><span>/</span><span>By agents, for agents</span></nav>
+      <div class="buyer-hero-grid">
+        <div>
+          <div class="buyer-kicker">By agents, for agents</div>
+          <h1 class="buyer-title detail-title">Agentic security for <em>your agents.</em></h1>
+          <p class="buyer-lede">Your agents write a growing share of your product. They are good at making it work and bad at making it safe. ZeroQuarry is the security layer they can call: an MCP server that runs real scans, skills that teach them what to look for, and checks for the mistakes agents actually make.</p>
+          <div class="buyer-actions">
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
+            <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the skills docs</a>
+          </div>
+          <div class="buyer-proofline"><span>Scans over MCP</span><span>Skills over the wire</span><span>AIBOM with model licenses</span></div>
+        </div>
+        <div class="agent-chat" role="img" aria-label="A developer asks their agent to vet a GitHub repository before integrating it, the agent runs a ZeroQuarry scan over MCP, and the answer reports two validated findings">
+          <div class="chat-msg user">
+            <span class="chat-who">you</span>
+            <p>I'm considering integrating github.com/foo/bar into this codebase. Can you check that it's secure first?</p>
+          </div>
+          <div class="chat-tool"><span aria-hidden="true">-&gt;</span> mcp &middot; zeroquarry &middot; scan source github.com/foo/bar</div>
+          <div class="chat-msg agent">
+            <span class="chat-who">agent</span>
+            <p>Ran it through ZeroQuarry. Two findings worth your attention:</p>
+            <ul>
+              <li><b>Hardcoded cloud key</b> in config/loader.py &mdash; critical, validated with a working reproduction.</li>
+              <li><b>Hallucinated dependency</b> &mdash; one import does not resolve in the registry. Flagged as slopsquatting bait.</li>
+            </ul>
+            <p>I'd hold off until both are fixed or accepted. Want the full report?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">The gap</div><h2>Your agents ship code. Nobody is checking it.</h2></div><p class="section-intro">The review loop checks whether generated code works, not whether it is safe, so the vulnerabilities ship the same way the features do: fast, merged, and on to the next task. And traditional scanners were not built for what this code now carries: agent frameworks, MCP configs, embedded prompts, model calls, and the failure modes that come with them.</p></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">What your agents get</div><h2>A security team your agent can call</h2></div><p class="section-intro">ZeroQuarry connects to the harness your team already uses and does the security work inside it. Here is what is on the other end of the connection.</p></div>
+      <div class="deploy-pipeline"><div class="pipeline-step">
+    <small>01</small>
+    <div class="pipeline-body">
+      <h3>Run real scans over MCP</h3>
+      <p>Your agent starts scans, watches progress, and reads validated results as tools. No dashboard required and nothing to copy-paste: the findings arrive where the code does.</p>
+    </div>
+    <span class="pipeline-tag">MCP server</span>
+  </div>
+<div class="pipeline-step">
+    <small>02</small>
+    <div class="pipeline-body">
+      <h3>Security skills, delivered over the wire</h3>
+      <p>ZeroQuarry serves its skill pack over MCP, so your agent learns how to run the right scan and read it correctly: code review, dependency checks, firmware, authorized remote testing. Load them from the server or install them from the public docs, and every connected agent picks up the new playbook.</p>
+    </div>
+    <span class="pipeline-tag">MCP skills</span>
+  </div>
+<div class="pipeline-step">
+    <small>03</small>
+    <div class="pipeline-body">
+      <h3>An inventory of your AI surface</h3>
+      <p>Scans now find the AI in your code: agent frameworks, LLM SDKs, MCP client and server configs, embedded system prompts, and tool registrations with their permissions. Including the risky defaults, like auto-approve flags and secrets an agent can reach.</p>
+    </div>
+    <span class="pipeline-tag">AI surface</span>
+  </div>
+<div class="pipeline-step">
+    <small>04</small>
+    <div class="pipeline-body">
+      <h3>Prompt-injection paths, checked</h3>
+      <p>Untrusted content that reaches a prompt, and model output that reaches exec, shell, SQL, or HTML: that injection-to-execution chain generates candidates like any other finding, then faces the same adversarial validation.</p>
+    </div>
+    <span class="pipeline-tag">Prompt injection</span>
+  </div>
+<div class="pipeline-step">
+    <small>05</small>
+    <div class="pipeline-body">
+      <h3>The mistakes agents actually make</h3>
+      <p>An import that does not resolve in the public registry is a hallucinated dependency and a slopsquatting target. Those become investigated leads with evidence, never silent passes and never a checklist checkbox.</p>
+    </div>
+    <span class="pipeline-tag">Slopsquatting</span>
+  </div>
+<div class="pipeline-step">
+    <small>06</small>
+    <div class="pipeline-body">
+      <h3>Licenses for the AI stack</h3>
+      <p>A pinned model carries a license and provider terms that no dependency manifest records. ZeroQuarry captures model and provider licenses, including terms like training-on-input and retention, and exports them beside your SBOM as CycloneDX ML-BOM and SPDX 3.0 AI profile.</p>
+    </div>
+    <span class="pipeline-tag">AIBOM</span>
+  </div></div>
+      <div class="explain-box">
+        <h3>What is slopsquatting?</h3>
+        <p>Coding agents hallucinate package names: they guess a library that sounds right, and it does not exist. Attackers watch for exactly that. They register the hallucinated name and publish a malicious package, so the next agent that helpfully installs the "missing" dependency installs theirs. The defense is unglamorous and effective: every import that fails to resolve in the authoritative registry gets flagged and investigated before anything is installed.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="buyer-section soft">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Wire it up</div><h2>Four steps and your agent has security</h2></div><p class="section-intro">Everything runs through the harness your team already uses. If your agent can call tools, it can call ZeroQuarry.</p></div>
+      <div class="workflow-grid"><article class="workflow-card">
+    <span>STEP 01</span>
+    <h3>Connect the server</h3>
+    <p>Point your agent at ZeroQuarry's MCP server and authenticate with a zq_ API key scoped to mcp.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 02</span>
+    <h3>Load the skills</h3>
+    <p>Pull the skill pack from the server over MCP, or install the skill directories from the public docs.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 03</span>
+    <h3>Ask in plain English</h3>
+    <p>"Can you check this library before we integrate it?" Your agent picks the right scan and runs it.</p>
+  </article>
+<article class="workflow-card">
+    <span>STEP 04</span>
+    <h3>Keep the record</h3>
+    <p>Agent-run scans land in the same project history as everything else, so the evidence exists when a customer or auditor asks.</p>
+  </article></div>
+    </div>
+  </section>
+
+  <section class="buyer-section">
+    <div class="container">
+      <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>Behind the tools your agent calls</h2></div></div>
+      <div class="related-grid"><a class="related-card" href="/platform/security-testing/">
+    <div class="card-code">Continue</div>
+    <h3>AI security testing</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/platform/adversarial-validation/">
+    <div class="card-code">Continue</div>
+    <h3>Adversarial validation</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a>
+<a class="related-card" href="/platform/evidence-reporting/">
+    <div class="card-code">Continue</div>
+    <h3>Evidence and reporting</h3>
+    <span class="card-link">Explore <span aria-hidden="true">-&gt;</span></span>
+  </a></div>
+    </div>
+  </section>
+
+  <section class="buyer-cta"><div class="container"><div class="buyer-cta-panel"><div><h2>Give your agent a security team</h2><p>Connect the MCP server, load the skills, and let the next "is this library safe?" get a real answer.</p></div><div class="buyer-actions"><a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a><a class="btn btn-ghost" href="/request-scan/">Talk to us</a></div></div></div></section>
+  </main>
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
+        </a>
+        <p>Independent security testing and evidence for product teams.</p>
+        <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/agents/">For agents</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/private-execution/">Private execution</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/open-source/">Open source maintainers</a>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/binary-security-review/">Binary security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/partners/">Security partners</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -64,7 +64,7 @@ function faqData(faqs) {
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.q,
-      acceptedAnswer: { "@type": "Answer", text: faq.a },
+      acceptedAnswer: { "@type": "Answer", text: String(faq.a).replace(/<[^>]*>/g, "") },
     })),
   };
 }
@@ -121,36 +121,37 @@ const platformPages = [
   {
     slug: "security-testing",
     title: "AI Security Testing for Source Code, Binaries, and Live Applications | ZeroQuarry",
-    description: "Run AI penetration testing and application security reviews across source code, shipped binaries, and authorized live targets in one project history.",
+    description: "ZeroQuarry scans for vulnerabilities across code, binary builds, and live deployments, and follows every finding from source to production.",
     eyebrow: "AI security testing",
     h1: "Test source, artifacts, and live behavior as <em>one product.</em>",
-    lede: "ZeroQuarry combines AI code security review, binary analysis, and authorized live application testing so teams can follow vulnerabilities across build, packaging, and runtime boundaries.",
+    lede: "ZeroQuarry's AI agents test your code, binary builds, and live deployments, and follow every vulnerability from source to production.",
     image: "/assets/product/report-overview.png",
     imageAlt: "ZeroQuarry security assessment report showing findings and review controls",
-    proof: ["Source repositories", "Binary artifacts", "Authorized live targets"],
-    sectionTitle: "Reviewing code, artifacts, and runtime together",
+    proof: ["Source repositories", "Binary artifacts", "Live targets"],
+    sectionLabel: "What we scan",
+    sectionTitle: "Reviewing code, artifacts, and runtimes together",
     workflowTitle: "Scope, investigate, validate, act",
+    workflowLabel: "How you use it",
     workflowIntro: "Source, binary, and live testing follow the same four steps, and every step writes to the same project history.",
-    outcomesTitle: "What changes after the first assessment",
+    workflowNote: `A team of AI agents does this work. <a href="/platform/agents/">Meet the agents <span aria-hidden="true">-&gt;</span></a>`,
+    outcomesTitle: "What you get",
     outcomesIntro: "Fuller coverage of the product, and a record you can hand to someone else without rebuilding it.",
     faqTitle: "Before you point it at a real repository",
     faqIntro: "Private repositories, live targets, and how this differs from a scanner.",
     relatedTitle: "Releases and pull requests",
     finalCtaTitle: "Run the first assessment on your own product",
     finalCtaText: "Point ZeroQuarry at one repository and see what a combined source, binary, and live review turns up.",
-    sectionIntro: "A source finding can disappear during packaging. Another issue may only become exploitable at runtime. Keeping every surface in one project makes those differences visible.",
-    capabilities: [
-      ["Hybrid static and agent analysis", "Use a bounded deterministic SAST pre-pass to generate investigation candidates, then have agents test reachability, product context, control flow, and impact before recording findings."],
-      ["Source code review", "Trace authorization, data flow, unsafe parsers, secrets, dependency use, and business-logic failures across repositories or uploaded archives."],
-      ["Binary analysis", "Expand and decompile APKs, JARs, firmware, installers, and archives to review the artifact customers actually receive."],
-      ["Live application testing", "Probe web applications and APIs inside explicit host, authentication, and authorization boundaries."],
-      ["Focused assessment notes", "Give the coordinator product context, sensitive boundaries, and recent-change details without preventing broader investigation."],
-      ["Multi-model orchestration", "Resolve separate models for investigation, adversarial review, and artifact generation while keeping one report."],
-      ["Project and lineage history", "Group assessment versions by product or service and preserve targets, findings, retests, logs, and artifacts."],
+    sectionIntro: "Vulnerabilities found in source code can disappear when they go through your build system. Some vulnerabilities only show up based on deployment infrastructure that shows up during a live pentest. ZeroQuarry keeps all of these visible together.",
+    pipeline: [
+      ["Third-party dependencies", "Your product runs on open-source packages you did not write. ZeroQuarry scans them for known vulnerabilities and for slopsquatting, where attackers publish malicious packages under the names AI coding assistants sometimes make up and wait for a developer to install one.", "SAST + slopsquatting"],
+      ["Your source code", "ZeroQuarry's AI agents read your code the way a security reviewer would, tracing authorization, data flow, input handling, secrets, and business logic across your repositories. Every reported finding includes the evidence that shows it is real.", "AI agent review"],
+      ["Your release builds", "Most teams ship through Docker, packaging scripts, or a build pipeline, and what goes in is not always what comes out. ZeroQuarry scans the artifact your customers actually receive: images, binaries, installers, and archives.", "Artifact scan"],
+      ["Your deployment", "Infrastructure-as-code decides what the internet can reach and what stays closed, and ZeroQuarry scans it. The software around your product, like API gateways, load balancers, and logging systems, can block vulnerabilities (by rejecting unauthorized access) or introduce new ones (path traversal, SSRF).", "IaC scan"],
+      ["Your live product", "Finally, ZeroQuarry's agents pentest the running product the way an attacker would. That shows which vulnerabilities survived all the way to something an attacker can reach, and which new ones appeared along the way.", "Live pentest"],
     ],
     workflow: [
-      ["Scope", "Choose the product project, target surface, credentials, authorization, and business context."],
-      ["Investigate", "Coordinator and specialist agents map the target and follow high-value attack paths."],
+      ["Scope", "Pick the product project and what to scan: a repository, a build, or a live app. Then add credentials and business context."],
+      ["Investigate", "ZeroQuarry's AI agents map your product and follow the attack paths that matter most."],
       ["Validate", "Triage, proof generation, and optional vendor-style review pressure-test the claims."],
       ["Act", "Route accepted findings into fixes, tickets, retests, disclosures, or evidence packs."],
     ],
@@ -160,9 +161,9 @@ const platformPages = [
       ["A repeatable assessment record", "Keep every target, version, decision, and retest connected to the product it belongs to."],
     ],
     faqs: [
-      ["Is ZeroQuarry a SAST or DAST scanner?", "ZeroQuarry combines a bounded deterministic SAST pre-pass with agent-led source investigation, binary analysis, and authorized live testing. Static matches are investigation candidates, not alerts presented as validated vulnerabilities."],
+      ["Is ZeroQuarry a SAST or DAST scanner?", "ZeroQuarry can do the things traditional SAST and DAST scanners do (scanning for vulnerabilities in code, your APIs, and websites) but can do much more. Its advanced team of AI agents can tie these different scan targets together and understand how they're built and where vulnerabilities may surface between each layer."],
       ["Can it test private repositories?", "Yes. Accounts can configure scoped HTTPS or SSH Git credentials, and CI workflows can reference the saved credential without placing it in the scan payload."],
-      ["Can ZeroQuarry test production?", "Remote testing requires explicit authorization and scope. Use a staging or production-like environment when active probes could create risk, and keep the allowed host boundary narrow."],
+      ["Can ZeroQuarry test production?", `Yes. ZeroQuarry can perform a penetration test on your production APIs, websites, and apps. Read more about how we keep agents contained in <a href="/research/agent-containment/">our agent containment post</a>.`],
     ],
     related: [["/use-cases/release-security-review/", "Release security review"], ["/use-cases/pr-security-review/", "Pull request security review"], ["/platform/private-execution/", "Private execution"]],
   },
@@ -176,60 +177,53 @@ const platformPages = [
     image: "/assets/product/finding-detail.png",
     imageAlt: "ZeroQuarry finding detail with validation state and decision controls",
     proof: ["Evidence-first findings", "Vendor-style challenge", "Human decision history"],
+    sectionLabel: "How validation works",
     sectionTitle: "Separating real findings from noise",
-    workflowTitle: "Claim, challenge, rebuttal, decision",
-    workflowIntro: "Discovery and validation are deliberately separate jobs. This is the argument between them.",
+    workflowTitle: "You see the whole argument, and you decide",
+    workflowLabel: "How you use it",
+    workflowIntro: "The argument runs on its own. Reading it, pushing on it, and deciding what happens next stay with your team.",
     outcomesTitle: "Less noise in the engineering backlog",
     outcomesIntro: "Reviewed findings with visible evidence, and a written reason attached to every decision.",
-    faqTitle: "Questions about challenging findings",
-    faqIntro: "What happens to rejected findings, and how much a review can honestly guarantee.",
     relatedTitle: "Disclosure and remediation",
     finalCtaTitle: "See how your own findings hold up",
     finalCtaText: "Bring a finding you already have and watch the challenge process run against it.",
-    sectionIntro: "Instead of hiding uncertain alerts at an arbitrary score, ZeroQuarry records why a claim survived, changed, or was disputed.",
-    capabilities: [
-      ["Adversarial vendor review", "A separate review pass checks reachability, context mitigations, intended behavior, evidence quality, and practical exploitability."],
-      ["Researcher rebuttal", "The original side responds to the challenge with more evidence, revises the claim, or retracts it."],
-      ["Confidence separate from severity", "See how likely a finding is to survive review without confusing that judgment with potential impact."],
-      ["Proofs and reproducible context", "Attach PoCs, source locations, HTTP sequences, or deployable test packages when the assessment supports them."],
-      ["Finding discussion", "Ask follow-up questions, request different reproduction steps, or challenge assumptions over several rounds."],
-      ["Lifecycle decisions", "Record candidate, validated, disputed, mitigated, retested, regression, accepted-risk, and archived states with reasons."],
+    sectionIntro: "A model grading another model's homework sounds like turtles all the way down. It is not, because the argument does not end in another model's opinion: it ends in something you can run against your product, and then a human decision. Here is one complete argument.",
+    pipeline: [
+      ["The claim", "A researcher agent files a claim: invoice update skips the tenant ownership check. It attaches the source location and a cross-tenant request sequence. Starting confidence: 0.61.", "Researcher"],
+      ["The challenge", "A separate reviewer tries to reject it. First idea: the endpoint is admin-only. It checks the product and finds the role check runs after the ownership write, so the challenge fails.", "Independent review"],
+      ["The rebuttal", "The researcher does not just repeat the claim. It answers with the exact code path and a runnable proof of concept that reproduces the write as a normal tenant.", "Researcher"],
+      ["The verdict", "The claim is sustained and confidence rises to 0.94. If the challenge had held instead, the claim would have been revised or retracted, with the reason written down either way.", "Evidence"],
+      ["The decision", "A human records the lifecycle state and owns the risk. Rejected findings are not deleted: the verdicts, rebuttals, and reasons stay on file where anyone can audit them later.", "Your decision"],
     ],
+    sectionExtra: `<div class="judge-note"><h3>Why this is not turtles all the way down</h3><div class="judge-grid"><div><h4>The reviewer must reject, not grade</h4><p>A grader can lazily agree with whatever it reads. This reviewer only passes a claim by failing to break it, so agreement is never the easy path.</p></div><div><h4>Evidence, not another opinion</h4><p>Challenges are answered with things that run: proofs of concept, HTTP sequences, deployable test packages against the actual product. Where the evidence runs, the argument stops.</p></div><div><h4>A human closes the loop</h4><p>The verdict arrives as a recommendation with the whole argument attached. People record the decision, and automation never silently accepts a risk on your behalf.</p></div></div></div>`,
     workflow: [
-      ["Claim", "The assessment records technical impact, severity, affected surface, evidence, and reproduction context."],
-      ["Challenge", "A skeptical reviewer attempts to disprove the issue in the product's actual context."],
-      ["Rebut", "The researcher sustains, revises, or retracts instead of merely repeating the conclusion."],
-      ["Decide", "A human records the operating state and routes accepted work to the correct owner."],
+      ["Read the argument", "Open a finding and see the full claim, challenge, and rebuttal trail instead of a bare alert with a score."],
+      ["Push on it", "Ask follow-up questions, request a different reproduction, or challenge an assumption over several rounds."],
+      ["Decide", "Record the lifecycle state, such as validated, disputed, accepted risk, or archived, with a written reason."],
+      ["Revisit", "Retests and regressions update the record, and past disputes stay auditable instead of silently deleted."],
     ],
     outcomes: [
       ["Less alert fatigue", "Engineering sees reviewed claims with a visible evidence trail. Unsupported suggestions are filtered out earlier."],
       ["Defensible decisions", "Disputes and accepted risks carry reasons that can be understood later."],
       ["Safer external sharing", "Challenge high-impact findings before they reach customers, vendors, or bounty programs."],
     ],
-    faqs: [
-      ["Does adversarial review guarantee a finding is correct?", "No automated review can remove the need for product context and human judgment. It makes the validation process explicit and creates stronger evidence for that decision."],
-      ["What happens to rejected findings?", "They are not silently deleted. Review verdicts, rebuttals, confidence, and human lifecycle decisions remain visible so the outcome can be audited or revisited."],
-      ["Can we ask the system to explain a finding differently?", "Yes. Finding and report discussions can request a shorter engineer handoff, safer reproduction path, alternative PoC, or challenge to a specific assumption."],
-    ],
     related: [["/use-cases/pr-security-review/", "Pull request security review"], ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure"], ["/platform/remediation/", "Remediation"]],
   },
   {
     slug: "continuous-security",
     title: "Continuous Application Security Testing for CI/CD and Pull Requests | ZeroQuarry",
-    description: "Run continuous application security with PR scans, GitHub Actions, scheduled rescans, changed-code analysis, APIs, Slack, and scan lineage.",
+    description: "Run continuous application security with PR scans, GitHub Actions, scheduled rescans, changed-code analysis, APIs, MCP, Slack, and scan lineage.",
     eyebrow: "Continuous application security",
     h1: "Review risk while the change is still <em>small enough to understand.</em>",
-    lede: "Trigger AI code security reviews from GitHub Actions, the API, or a native schedule. Delta scans focus on changed files and nearby data flow while lineages preserve the wider product history.",
+    lede: "Trigger AI code security reviews from GitHub Actions, the API, or a native schedule, or let your agents directly manage security scans through MCP. Delta scans focus on changed files and nearby data flow while lineages preserve the wider product history.",
     image: "/assets/product/scheduled-rescan.png",
     imageAlt: "ZeroQuarry scheduled rescan controls for changed-code and full reviews",
     proof: ["PR and push triggers", "Scheduled rescans", "Changed-code focus"],
     sectionTitle: "Running review on every change without flooding CI",
     workflowTitle: "From baseline to escalated release review",
-    workflowIntro: "One broad assessment first, then pull requests, schedules, and API calls keep it current.",
+    workflowIntro: "One broad assessment first, then pull requests, schedules, API calls, and agent calls through MCP keep it current.",
     outcomesTitle: "Continuous coverage without continuous noise",
     outcomesIntro: "Shorter feedback loops and controlled spend, with history that outlives CI logs.",
-    faqTitle: "Before you wire this into CI",
-    faqIntro: "Gating, what a delta scan really covers, and whether every pull request should block.",
     relatedTitle: "Pull request and release review",
     finalCtaTitle: "Start with one repository and one week",
     finalCtaText: "Turn on pull request review, then decide whether the signal is worth gating on.",
@@ -238,26 +232,20 @@ const platformPages = [
       ["GitHub Actions workflow", "Install a maintained workflow that dispatches repository scans on pull requests, pushes, schedules, or manual runs."],
       ["Delta scans", "Use Git history to focus the next assessment on changed files and adjacent data flow after the first baseline."],
       ["Native schedules", "Attach daily, weekly, or monthly coverage to a Git lineage, skip unchanged commits, and optionally recheck unresolved findings."],
-      ["Public API", "Create, monitor, cancel, rescan, search, share, and export through the same account and tier boundaries as the console."],
-      ["Practical gating", "Start non-blocking, then gate on reviewed critical or high findings when the team understands the signal profile."],
+      ["Public API", "Create, monitor, cancel, rescan, search, share, and export through the same account and tier limits as the console."],
+      ["Agentic integration", "Let your agents perform security analysis directly through MCP."],
       ["Notifications and handoff", "Send completion summaries to email or Slack and move accepted findings into tickets or pull requests."],
     ],
     workflow: [
       ["Baseline", "Create the project and complete one broad source assessment for the repository."],
-      ["Trigger", "Dispatch on high-risk pull requests, main-branch changes, or an independent schedule."],
+      ["Trigger", "Dispatch on high-risk pull requests, main-branch changes, an independent schedule, or an agent call through MCP."],
       ["Review", "Validate important results and avoid treating an unreviewed model output as a release decision."],
       ["Escalate", "Move consequential changes into a broader source, binary, or live-target release review."],
     ],
     outcomes: [
-      ["Shorter feedback loops", "Catch authorization, webhook, parser, billing, and tenant-boundary regressions before context disappears."],
-      ["Controlled scan spend", "Use change focus, no-change skips, deduplication, and stage-specific models to match depth to risk."],
-      ["Evidence-backed remediation checks", "Record each selected previous finding as fixed, still present, or inconclusive instead of treating absence from a new scan as proof of a fix."],
-      ["Security history by product", "Keep repeated assessments and retests in one project instead of burying evidence in CI logs."],
-    ],
-    faqs: [
-      ["Should every pull request block on ZeroQuarry?", "Usually not at first. Start with report-only visibility, learn the finding profile, then introduce a reviewed threshold for the branches and changes that justify it."],
-      ["What is the difference between CI and scheduled scans?", "CI associates security review with an engineering event. Schedules provide independent baseline coverage and only run a new scan when the repository commit changes."],
-      ["Does a delta scan inspect only the edited lines?", "No. Changed files define the focus, but agents can follow nearby calls and data flow when the security impact crosses the diff boundary."],
+      ["Shorter feedback loops", "Catch authorization, webhook, parser, billing, and tenant-isolation regressions before context disappears."],
+      ["Controlled scan spend", "ZeroQuarry can skip scans on no changes, deduplicate vulnerability findings, use stage-specific models on agents to match depth/risk, and focus on just the changes to reduce costs."],
+      ["Evidence-backed remediation checks", "Record each selected previous vulnerability finding as fixed, still present, or inconclusive instead of treating absence from a new scan as proof of a fix."],
     ],
     related: [["/use-cases/pr-security-review/", "Pull request security review"], ["/use-cases/release-security-review/", "Release security review"], ["/platform/security-testing/", "Security testing"]],
   },
@@ -314,28 +302,27 @@ const platformPages = [
     description: "Move validated vulnerabilities into patches, GitHub auto-fix pull requests, Jira, ServiceNow, GitHub Issues, and focused security retests.",
     eyebrow: "Vulnerability remediation",
     h1: "Close the distance between <em>evidence and a reviewed fix.</em>",
-    lede: "Generate focused diffs, stage audited auto-fix proposals, open pull requests through ZeroQuarryBot, or hand findings into the team’s ticketing system. Retest the result in the same lineage.",
+    lede: "Generate security patches and stage auto-fix proposals for security problems, open pull requests through ZeroQuarryBot, or hand findings into your ticketing system. Retest the result in the same lineage.",
     image: "/assets/product/github-autofix.png",
     imageAlt: "ZeroQuarryBot installation and kill-switch controls for auto-fix pull requests",
     proof: ["Generated patch revisions", "Approval-gated GitHub PRs", "Focused retesting"],
-    sectionTitle: "Fixes arrive as proposals, not commits",
+    sectionLabel: "How a fix happens",
+    sectionTitle: "From validated finding to retested fix",
     workflowTitle: "Validate, propose, review, retest",
-    workflowIntro: "Generation is automated. Repository permission, approval, CI, and merge stay with you.",
+    workflowIntro: "Security patches are generated automatically. Repository permission, approval, CI, and merge stay with you.",
     outcomesTitle: "Engineer-ready fixes, verified closed",
     outcomesIntro: "Less back and forth between a finding and a merged patch, plus proof that the fix held.",
-    faqTitle: "Questions about automated fixes",
-    faqIntro: "Auto-merge, the GitHub App, and how to stop the bot in a hurry.",
     relatedTitle: "Retesting and evidence",
     finalCtaTitle: "Watch a finding become a merged fix",
     finalCtaText: "Take one validated finding through proposal, review, and retest inside your own repository.",
-    sectionIntro: "Security automation should save effort without approving production changes on its own. ZeroQuarry separates generation, repository permission, operator approval, CI, and merge.",
-    capabilities: [
-      ["Generated patch revisions", "Create a unified diff, review it, give feedback, and generate a new revision without granting repository write access."],
-      ["ZeroQuarryBot pull requests", "Install a GitHub App on selected repositories and open audited PRs from approved proposals."],
-      ["Layered safety controls", "Use account and repository kill switches, explicit enrollment, base-branch settings, file deny-lists, size limits, and push caps."],
-      ["Optional auto-push", "After a successful manual workflow, selected repositories can send qualifying proposals straight to PR review without auto-merging."],
-      ["Ticket handoff", "Create Jira or ServiceNow work, or open a prefilled GitHub Issue when code changes are not the right first step."],
-      ["Explicit finding rechecks", "Ask an update scan to retest unresolved lineage findings and record each one as fixed, still present, or inconclusive with current evidence."],
+    sectionIntro: "ZeroQuarry moves a validated finding through patch generation, ticketing, and pull requests automatically. Your team approves the merge, and a retest confirms the fix held.",
+    flow: [
+      ["Detect", "An assessment validates a finding and attaches proof."],
+      ["Generate", "ZeroQuarry drafts a patch you can revise without repository write access."],
+      ["File", "Jira, ServiceNow, or a prefilled GitHub Issue when a ticket fits better."],
+      ["Pull request", "ZeroQuarryBot opens an audited PR from an approved proposal."],
+      ["Approve", "Your review, CI, and branch protection decide. Nothing merges without you."],
+      ["Retest", "An update scan confirms fixed, still present, or inconclusive."],
     ],
     workflow: [
       ["Validate", "Confirm the vulnerability applies to the product before generating or filing remediation work."],
@@ -347,11 +334,6 @@ const platformPages = [
       ["Engineer-ready work", "Reduce the manual translation from vulnerability narrative to code path, reproduction, and candidate change."],
       ["Controlled automation", "Get the speed of generated fixes while preserving explicit repository gates and human merge authority."],
       ["Verified closure", "Differentiate “a fix was merged” from “the security risk was actually retested.”"],
-    ],
-    faqs: [
-      ["Does ZeroQuarry auto-merge security fixes?", "No. ZeroQuarryBot opens pull requests; your repository’s reviewers, CI, branch protection, and merge policy remain in control."],
-      ["Do we have to install the GitHub App to get a patch?", "No. Patch generation can produce a downloadable or revisable diff without repository write access. The GitHub App is only needed for the pull-request workflow."],
-      ["How do we stop the bot quickly?", "An account-wide kill switch stops all pushes, and each repository has its own kill switch. Repository enrollment and GitHub App access add separate permission gates."],
     ],
     related: [["/use-cases/pr-security-review/", "Pull request security review"], ["/platform/adversarial-validation/", "Adversarial validation"], ["/platform/continuous-security/", "Continuous security"]],
   },
@@ -410,31 +392,27 @@ const platformPages = [
   {
     slug: "evidence-reporting",
     title: "Security Evidence, Pentest Reports, and Customer Assurance | ZeroQuarry",
-    description: "Create penetration test PDF reports, asset evidence packs, controlled finding shares, disclosure records, and audit trails for customers and auditors.",
+    description: "Generate customer and auditor reports from real security work, track disclosures to third parties, and add independent signatures to the evidence you share.",
     eyebrow: "Security evidence and reporting",
     h1: "Make security work <em>provable</em> when someone asks.",
-    lede: "Package current evidence by asset, export reviewed reports, share only the findings a recipient needs, and retain the decision history behind remediation, retest, and accepted risk.",
+    lede: "When a customer or auditor asks for proof, ZeroQuarry turns the security work you have already done into a report they can rely on, with disclosure records and independent third-party signatures where you need them.",
     image: "/assets/product/evidence-room.png",
     imageAlt: "ZeroQuarry Evidence Room with target-level security reports and PDF export",
-    proof: ["Asset-level Evidence Room", "Pentest-style PDF exports", "Expiring finding shares"],
-    sectionTitle: "Evidence produced by the work itself",
+    proof: ["Customer-ready reports", "Disclosure records", "Third-party signatures"],
+    sectionLabel: "What you can do",
+    sectionTitle: "Evidence your auditors and customers can rely on",
     workflowTitle: "Build, select, review, deliver",
     workflowIntro: "How a report or an Evidence Room export is assembled from work that already happened.",
     outcomesTitle: "Answers ready before the question arrives",
     outcomesIntro: "Faster assurance responses, with a smaller surface exposed to each recipient.",
-    faqTitle: "Questions about reports and the Evidence Room",
-    faqIntro: "What a PDF contains, what a recipient can see, and what this does not claim to prove.",
     relatedTitle: "Customer reviews",
     finalCtaTitle: "Answer one real assurance request",
     finalCtaText: "Build a report from work you have already done and send it to a customer or auditor.",
-    sectionIntro: "Reconstructing security history from tickets and chat during a customer review is expensive. The resulting story is usually incomplete.",
+    sectionIntro: "When a customer or auditor asks for evidence, the answers usually live in tickets, chat threads, and old scans. Rebuilding that story by hand takes days and still comes out incomplete. ZeroQuarry keeps the record as you work, so the report is already written.",
     capabilities: [
-      ["Evidence Room", "See completed work by actual Git repository, URL, upload, or path and export the latest report for selected assets."],
-      ["Report and finding exports", "Create Markdown, single-file HTML, or PDF outputs. Customer-facing PDFs default to aggregate severity context; include detailed finding evidence only for authorized recipients."],
-      ["Controlled secure shares", "Give a named recipient read-only access to selected findings through a password-protected, expiring, revocable link."],
-      ["Disclosure tracking", "Preserve reported, acknowledged, fixed, advisory, bounty, credit, and closure milestones for external issues."],
-      ["Audit history", "Show investigation stages, model resolution, human actors, outcomes, lifecycle changes, and reasons."],
-      ["Branding and disclaimers", "Apply account and tier settings to customer-facing reports without rewriting historical evidence."],
+      ["Generate reports for customers and auditors", "Build a customer-ready PDF from the assessments, fixes, and retests already on record: what was tested, what was found, and what happened next. Branding and disclaimers are applied for you, and a share link can expose only the findings a specific recipient needs."],
+      ["Track disclosures to third parties", "When you tell a customer, vendor, or coordinator about a vulnerability, ZeroQuarry keeps every milestone: reported, acknowledged, fixed, advisory published, credit given, closed. Months later you can still answer who was told what, and when."],
+      ["Independent third-party signatures", "Bring in an independent security partner to review and sign the report before it goes out, so customers and auditors see a signature from outside your team, not just your own word."],
     ],
     workflow: [
       ["Build", "Create evidence continuously through projects, scan versions, finding states, tickets, and retests."],
@@ -446,11 +424,6 @@ const platformPages = [
       ["Faster assurance responses", "Answer customer, audit, investor, insurance, and internal governance requests from current product history."],
       ["Smaller disclosure surface", "Share selected findings instead of granting access to the workspace or sending the full internal report."],
       ["Defensible risk narratives", "Connect the technical issue to validation, ownership, mitigation, and retest rather than presenting a static scan snapshot."],
-    ],
-    faqs: [
-      ["Does the Evidence Room prove compliance?", "No. It packages assessment evidence and history. Your organization still determines control scope, test frequency, reviewer requirements, and framework assertions."],
-      ["Can a recipient see the rest of our scan?", "A secure share exposes only the selected findings. It does not grant the recipient access to the rest of the report, project, or account."],
-      ["What is included in a PDF report?", "The default customer-facing PDF contains report context and aggregate severity counts without finding names or exploit details. An authorized operator can explicitly include detailed findings, evidence, branding, and disclaimers."],
     ],
     related: [["/use-cases/customer-security-reviews/", "Customer and audit evidence"], ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure"], ["/platform/security-operations/", "Security operations"]],
   },
@@ -566,8 +539,6 @@ const useCasePages = [
     workflowIntro: "The four checks standing behind a go / no-go decision.",
     outcomesTitle: "A decision you can defend afterwards",
     outcomesIntro: "Coverage across the delivery chain, and a record of why the release shipped.",
-    faqTitle: "Questions about release review",
-    faqIntro: "Whether every release needs all three surfaces, and how much can be automated.",
     relatedTitle: "Artifact and staging review",
     finalCtaTitle: "Review the next release you ship",
     finalCtaText: "Check the artifact and staging before promotion, and keep the record.",
@@ -591,57 +562,44 @@ const useCasePages = [
       ["Coverage across the delivery chain", "Catch failures introduced by code, build, packaging, and runtime configuration."],
       ["A durable release record", "Keep the report, findings, exceptions, remediation, and retest aligned to the version that shipped."],
     ],
-    faqs: [
-      ["Do we need all three scan surfaces for every release?", "No. Use the surfaces that can change the decision. Source is the normal baseline; add binary or live testing when packaging or runtime behavior materially affects risk."],
-      ["Can a release review use changed-code scanning?", "Yes, but a major release or significant architecture change may justify a broader source review. The right depth depends on change size, exposure, and prior baseline quality."],
-      ["Can ZeroQuarry make the release decision automatically?", "ZeroQuarry provides assessment evidence, review signals, and traceable decisions. Your organization remains responsible for business context and final release authority."],
-    ],
     related: [["/platform/security-testing/", "AI security testing"], ["/platform/adversarial-validation/", "Adversarial validation"], ["/use-cases/binary-security-review/", "Binary security review"]],
   },
   {
     slug: "inbound-vulnerability-reports",
     title: "Automated Vulnerability Report Intake and Security Email Triage | ZeroQuarry",
-    description: "Forward researcher and customer vulnerability reports into bounded AI triage that maps targets, starts assessments, preserves evidence, and routes remediation.",
+    description: "Forward researcher emails to ZeroQuarry for automated triage: findings validated or invalidated with evidence, and a record your auditors can check.",
     eyebrow: "Inbound vulnerability reports",
-    h1: "Turn a researcher email into <em>bounded assessment work.</em>",
-    lede: "Project-specific inboxes, sender allowlists, approved repositories, remote-scan controls, and manual or automatic kickoff convert incoming reports into structured investigation without expanding scope silently.",
+    h1: "Turn a security researcher email into <em>automated triage.</em>",
+    lede: "Just forward the e-mails you get from external pentesters and ZeroQuarry will validate or invalidate their findings automatically.",
     image: "/assets/product/email-triage.png",
     imageAlt: "ZeroQuarry email triage settings with allowlists and project routing",
     proof: ["Project-specific inboxes", "Allowed senders and targets", "Manual or automatic kickoff"],
-    sectionTitle: "Where an inbound report goes",
-    workflowTitle: "Receive, resolve, assess, respond",
-    workflowIntro: "What happens between a researcher's email and a defensible answer.",
+    sectionLabel: "The mess",
+    sectionTitle: "Most of it is noise. You still have to answer every one.",
+    workflowTitle: "Forward the email. ZeroQuarry does the rest.",
+    workflowLabel: "How it works",
+    workflowIntro: "What happens between a researcher's email and a defensible answer, with the safeguards that keep an untrusted email from steering the platform.",
     outcomesTitle: "Faster triage, without losing the thread",
     outcomesIntro: "One connected record, from the original claim to the assessment it triggered.",
-    faqTitle: "Questions about inbound report intake",
-    faqIntro: "Who can email in, what the automation may do, and how to tune the noise.",
     relatedTitle: "Coordinated disclosure",
     finalCtaTitle: "Route the next report through it",
     finalCtaText: "Forward the next inbound claim and compare the answer with your current process.",
-    sectionIntro: "A report often arrives in one system, becomes a ticket in another, and turns into ad hoc testing somewhere else. ZeroQuarry keeps the original claim and the resulting assessment inside the owning product history.",
+    sectionIntro: "Not every vulnerability email is sloppy, but a lot of it is: scanner output pasted into a template, the same header findings on repeat, and AI-generated reports that read well and fall apart the moment anyone tries to reproduce them.",
     capabilities: [
-      ["Project routing", "Give each product project its own incoming address so reports land with the correct asset history."],
-      ["Sender allowlists", "Process exact researchers, partner addresses, or trusted domains instead of creating an open public trigger."],
-      ["Repository boundaries", "List the GitHub repositories the triage model may select for each project."],
-      ["Remote-scan control", "Keep live-target testing disabled unless that project has an explicit and stable authorization boundary."],
-      ["Review before kickoff", "Start with automatic dispatch off so operators can inspect proposed target, scan type, and notes."],
-      ["Connected remediation", "Validate resulting findings, record the decision, route ownership, and create a controlled share or disclosure when appropriate."],
+      ["The header treadmill", "SPF records, missing CSP headers, cookie flags. The same handful of scanner findings on a loop, every month, each one expecting a reply."],
+      ["AI-generated report spam", "Findings that sound impressive and mean nothing: no reproduction, no impact, sometimes no real target. Writing them is free now, so they arrive by the dozen."],
+      ["The obligation to respond", "You cannot quietly ignore them. Each one needs a check and a filed ticket to prove somebody looked, because the paper trail is what your auditors ask to see."],
     ],
     workflow: [
-      ["Receive", "Forward the report to the assigned project inbox from an allowed sender."],
-      ["Resolve", "The triage model identifies target, scan type, and useful notes inside the configured boundary."],
-      ["Assess", "An operator approves the work or the project starts it automatically after the rules are trusted."],
-      ["Respond", "Validate findings, route remediation, and track the external communication when needed."],
+      ["Forward", "Send the report to your project's inbox. Only allowed senders are processed, so the inbox is not an open trigger."],
+      ["Triage", "The model maps the claim to the repositories that project allows. Anything it cannot map safely waits for a person instead of expanding scope."],
+      ["Validate", "ZeroQuarry runs the assessment and challenges the claim: confirmed with evidence, or invalidated with the reason on file."],
+      ["File", "Every report gets its record: acknowledged, triaged, validated or rejected, routed to remediation or closed. The audit trail writes itself."],
     ],
     outcomes: [
       ["Faster time to technical assessment", "Reduce the manual translation between an external claim and a scoped reproduction plan."],
-      ["Safer automation boundary", "Constrain what an untrusted email can cause the platform to investigate."],
+      ["Automation that stays scoped", "Constrain what an untrusted email can cause the platform to investigate."],
       ["One connected record", "Keep intake, findings, decisions, remediation, and disclosure with the product that owns the risk."],
-    ],
-    faqs: [
-      ["Can anyone email the inbox?", "Only messages routed to an active project address and matching an exact sender or allowed domain are processed."],
-      ["Can the email tell ZeroQuarry to scan another repository?", "The model can only resolve repositories listed for that project. Reports that cannot map safely are surfaced for review instead of expanding the boundary."],
-      ["How should we tune report intake?", "Begin with exact sender addresses and one approved repository. Matching reports start after those checks, so keep the boundary narrow and expand it only after target matching behaves as expected."],
     ],
     related: [["/platform/security-operations/", "AI security operations"], ["/use-cases/vulnerability-disclosure/", "Vulnerability disclosure"], ["/platform/adversarial-validation/", "Adversarial validation"]],
   },
@@ -794,6 +752,21 @@ function renderCards(items, className = "capability-grid") {
   </article>`).join("\n")}</div>`;
 }
 
+function renderPipeline(items) {
+  return `<div class="deploy-pipeline">${items.map((item, index) => `<div class="pipeline-step">
+    <small>${String(index + 1).padStart(2, "0")}</small>
+    <div class="pipeline-body">
+      <h3>${escapeHtml(item[0])}</h3>
+      <p>${escapeHtml(item[1])}</p>
+    </div>
+    <span class="pipeline-tag">${escapeHtml(item[2])}</span>
+  </div>`).join("\n")}</div>`;
+}
+
+function renderFlow(items) {
+  return `<div class="operation-rail rail-6">${items.map((item, index) => `<div class="operation-step"><small>${String(index + 1).padStart(2, "0")}</small><h3>${escapeHtml(item[0])}</h3><p>${escapeHtml(item[1])}</p></div>`).join("")}</div>`;
+}
+
 function renderWorkflow(items) {
   return `<div class="workflow-grid">${items.map((item, index) => `<article class="workflow-card">
     <span>STEP ${String(index + 1).padStart(2, "0")}</span>
@@ -805,7 +778,7 @@ function renderWorkflow(items) {
 function renderFaqs(faqs) {
   return `<div class="faq-list">${faqs.map((faq) => `<details>
     <summary>${escapeHtml(faq[0])}</summary>
-    <p>${escapeHtml(faq[1])}</p>
+    <p>${faq[1]}</p>
   </details>`).join("\n")}</div>`;
 }
 
@@ -839,10 +812,10 @@ const motionVisuals = {
   "security-testing": {
     label: "assessment://surface-map",
     title: "Multi-surface assessment",
-    detail: "Follow risk across build and runtime boundaries",
+    detail: "Scans code, binary builds, and live deployments",
     inputs: [["SOURCE", "auth/middleware.ts"], ["BINARY", "release/app.apk"], ["LIVE", "api.product.com"]],
     outputs: [["FINDING", "cross-tenant read"], ["PROOF", "request replay"], ["SCOPE", "product / release 42"]],
-    foot: "the target surface changes, the evidence standard stays the same",
+    foot: "ZeroQuarry scans for vulnerabilities across all of the work you do",
     aria: "Animated assessment of source code, a release binary, and a live application producing a finding and proof",
   },
   "adversarial-validation": {
@@ -872,7 +845,7 @@ const motionVisuals = {
   remediation: {
     variant: "patch",
     label: "remediation://controlled-change",
-    foot: "ZeroQuarryBot proposes · your gates and merge authority decide",
+    foot: "ZeroQuarryBot proposes · you decide",
     aria: "ZeroQuarry flags JWT algorithm confusion in auth middleware, a one-line patch restricts verification to RS256, and CI, review, merge, and retest checks turn green",
   },
   "private-execution": {
@@ -902,13 +875,13 @@ const motionVisuals = {
   "release-security-review": {
     variant: "gate",
     label: "release://promotion-gate",
-    foot: "surface differences stay attached to the same release decision",
+    foot: "source, artifact, and staging findings land in the same release record",
     aria: "A release candidate approaches a promotion gate: one run clears the checkpoints and is promoted, the next is held for fixes",
   },
   "inbound-vulnerability-reports": {
     variant: "email",
     label: "incoming://report-triage",
-    foot: "sender, project, target, and authorization boundaries are checked first",
+    foot: "sender, project, target, and authorization are checked first",
     aria: "A researcher email unfolds into a numbered case with claim, target, and evidence, and a triage trail from acknowledged to fix routed",
   },
   "customer-security-reviews": {
@@ -1241,10 +1214,12 @@ function renderDetail(page, type) {
   const canonicalPath = isPlatform ? `/platform/${page.slug}/` : `/use-cases/${page.slug}/`;
   const signupUrl = page.ctaHref || signupBySlug[page.slug] || signupUrls.general;
   const signupLabel = page.ctaLabel || "Start free trial";
-  const faqs = page.faqs.map(([q, a]) => ({ q, a }));
+  // FAQ answers may carry links; the visible list renders them as HTML, the schema gets plain text.
+  const hasFaqs = Array.isArray(page.faqs) && page.faqs.length > 0;
+  const faqs = hasFaqs ? page.faqs.map(([q, a]) => ({ q, a })) : [];
   const schemas = [
     breadcrumbData([{ name: "ZeroQuarry", href: "/" }, { name: baseLabel, href: baseHref }, { name: page.eyebrow, href: canonicalPath }]),
-    faqData(faqs),
+    ...(hasFaqs ? [faqData(faqs)] : []),
   ];
 
   const body = `<main class="marketing-main">
@@ -1269,15 +1244,17 @@ function renderDetail(page, type) {
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>${page.sectionTitle}</h2></div><p class="section-intro">${escapeHtml(page.sectionIntro)}</p></div>
-      ${renderCards(page.capabilities)}
+      <div class="buyer-section-head"><div><div class="section-label">${page.sectionLabel || "Capabilities"}</div><h2>${page.sectionTitle}</h2></div><p class="section-intro">${escapeHtml(page.sectionIntro)}</p></div>
+      ${page.pipeline ? renderPipeline(page.pipeline) : page.flow ? renderFlow(page.flow) : renderCards(page.capabilities)}
+      ${page.sectionExtra || ""}
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>${page.workflowTitle || "How it runs"}</h2></div><p class="section-intro">${page.workflowIntro || ""}</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">${page.workflowLabel || "How it runs"}</div><h2>${page.workflowTitle || "How it runs"}</h2></div><p class="section-intro">${page.workflowIntro || ""}</p></div>
       ${renderWorkflow(page.workflow)}
+      ${page.workflowNote ? `<p class="section-note">${page.workflowNote}</p>` : ""}
     </div>
   </section>
 
@@ -1287,15 +1264,15 @@ function renderDetail(page, type) {
       <div class="outcome-grid">${page.outcomes.map(([title, text]) => `<article class="outcome-card"><h3>${escapeHtml(title)}</h3><p>${escapeHtml(text)}</p></article>`).join("\n")}</div>
     </div>
   </section>
-
+${hasFaqs ? `
   <section class="buyer-section">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>${page.faqTitle || "Evaluation FAQ"}</h2></div><p class="section-intro">${page.faqIntro || ""}</p></div>
       ${renderFaqs(page.faqs)}
     </div>
   </section>
-
-  <section class="buyer-section soft">
+` : ""}
+  <section class="${hasFaqs ? "buyer-section soft" : "buyer-section"}">
     <div class="container">
       <div class="buyer-section-head"><div><div class="section-label">Related workflows</div><h2>${page.relatedTitle || "Related workflows"}</h2></div></div>
       ${renderRelated(page.related)}

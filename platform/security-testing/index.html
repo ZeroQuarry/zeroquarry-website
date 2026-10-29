@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AI Security Testing for Source Code, Binaries, and Live Applications | ZeroQuarry</title>
-<meta name="description" content="Run AI penetration testing and application security reviews across source code, shipped binaries, and authorized live targets in one project history." />
+<meta name="description" content="ZeroQuarry scans for vulnerabilities across code, binary builds, and live deployments, and follows every finding from source to production." />
 <link rel="canonical" href="https://zeroquarry.com/platform/security-testing/" />
 <meta property="og:title" content="AI Security Testing for Source Code, Binaries, and Live Applications | ZeroQuarry" />
-<meta property="og:description" content="Run AI penetration testing and application security reviews across source code, shipped binaries, and authorized live targets in one project history." />
+<meta property="og:description" content="ZeroQuarry scans for vulnerabilities across code, binary builds, and live deployments, and follows every finding from source to production." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zeroquarry.com/platform/security-testing/" />
 <meta property="og:image" content="https://zeroquarry.com/assets/og-zeroquarry.png" />
@@ -21,12 +21,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/index.css" />
-<link rel="stylesheet" href="/marketing.css?v=20261014-credits" />
+<link rel="stylesheet" href="/marketing.css?v=20261102-agents" />
 <link rel="stylesheet" href="/cookie-consent.css" />
 <script src="/cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
-<script src="/index.js?v=20261014-credits" defer></script>
+<script src="/index.js?v=20261102-agents" defer></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ZeroQuarry","item":"https://zeroquarry.com/"},{"@type":"ListItem","position":2,"name":"Platform","item":"https://zeroquarry.com/platform"},{"@type":"ListItem","position":3,"name":"AI security testing","item":"https://zeroquarry.com/platform/security-testing/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ZeroQuarry a SAST or DAST scanner?","acceptedAnswer":{"@type":"Answer","text":"ZeroQuarry combines a bounded deterministic SAST pre-pass with agent-led source investigation, binary analysis, and authorized live testing. Static matches are investigation candidates, not alerts presented as validated vulnerabilities."}},{"@type":"Question","name":"Can it test private repositories?","acceptedAnswer":{"@type":"Answer","text":"Yes. Accounts can configure scoped HTTPS or SSH Git credentials, and CI workflows can reference the saved credential without placing it in the scan payload."}},{"@type":"Question","name":"Can ZeroQuarry test production?","acceptedAnswer":{"@type":"Answer","text":"Remote testing requires explicit authorization and scope. Use a staging or production-like environment when active probes could create risk, and keep the allowed host boundary narrow."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ZeroQuarry a SAST or DAST scanner?","acceptedAnswer":{"@type":"Answer","text":"ZeroQuarry can do the things traditional SAST and DAST scanners do (scanning for vulnerabilities in code, your APIs, and websites) but can do much more. Its advanced team of AI agents can tie these different scan targets together and understand how they're built and where vulnerabilities may surface between each layer."}},{"@type":"Question","name":"Can it test private repositories?","acceptedAnswer":{"@type":"Answer","text":"Yes. Accounts can configure scoped HTTPS or SSH Git credentials, and CI workflows can reference the saved credential without placing it in the scan payload."}},{"@type":"Question","name":"Can ZeroQuarry test production?","acceptedAnswer":{"@type":"Answer","text":"Yes. ZeroQuarry can perform a penetration test on your production APIs, websites, and apps. Read more about how we keep agents contained in our agent containment post."}}]}</script>
 </head>
 <body>
 <div class="bg-flair" aria-hidden="true"><div class="bg-grid"></div><div class="bg-glow-red"></div></div>
@@ -48,6 +48,7 @@
             <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
+            <a href="/platform/agents/"><strong>For agents</strong><span>MCP, skills, and checks for your coding agents</span></a>
             <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
             <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
             <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
@@ -112,12 +113,12 @@
         <div>
           <div class="buyer-kicker">AI security testing</div>
           <h1 class="buyer-title detail-title">Test source, artifacts, and live behavior as <em>one product.</em></h1>
-          <p class="buyer-lede">ZeroQuarry combines AI code security review, binary analysis, and authorized live application testing so teams can follow vulnerabilities across build, packaging, and runtime boundaries.</p>
+          <p class="buyer-lede">ZeroQuarry&#39;s AI agents test your code, binary builds, and live deployments, and follow every vulnerability from source to production.</p>
           <div class="buyer-actions">
             <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
             <a class="btn btn-ghost" href="https://docs.zeroquarry.com">Read the documentation</a>
           </div>
-          <div class="buyer-proofline"><span>Source repositories</span><span>Binary artifacts</span><span>Authorized live targets</span></div>
+          <div class="buyer-proofline"><span>Source repositories</span><span>Binary artifacts</span><span>Live targets</span></div>
         </div>
         <div class="motion-system motion-security-testing" role="img" aria-label="Animated assessment of source code, a release binary, and a live application producing a finding and proof">
     <div class="motion-head"><span>assessment://surface-map</span><span class="motion-live">processing</span></div>
@@ -126,11 +127,11 @@
       
       <div class="motion-column motion-inputs"><div class="motion-node" style="--node-delay:0s"><span>SOURCE</span><strong>auth/middleware.ts</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>BINARY</span><strong>release/app.apk</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>LIVE</span><strong>api.product.com</strong></div></div>
       <div class="motion-rail rail-in" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="motion-core"><small>ZEROQUARRY</small><strong>Multi-surface assessment</strong><span>Follow risk across build and runtime boundaries</span><b>active</b></div>
+      <div class="motion-core"><small>ZEROQUARRY</small><strong>Multi-surface assessment</strong><span>Scans code, binary builds, and live deployments</span><b>active</b></div>
       <div class="motion-rail rail-out" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="motion-column motion-outputs"><div class="motion-node" style="--node-delay:0s"><span>FINDING</span><strong>cross-tenant read</strong></div><div class="motion-node" style="--node-delay:1.15s"><span>PROOF</span><strong>request replay</strong></div><div class="motion-node" style="--node-delay:2.3s"><span>SCOPE</span><strong>product / release 42</strong></div></div>
     </div>
-    <div class="motion-foot"><span class="pulse-dot"></span><span>the target surface changes, the evidence standard stays the same</span></div>
+    <div class="motion-foot"><span class="pulse-dot"></span><span>ZeroQuarry scans for vulnerabilities across all of the work you do</span></div>
   </div>
       </div>
     </div>
@@ -138,57 +139,63 @@
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Capabilities</div><h2>Reviewing code, artifacts, and runtime together</h2></div><p class="section-intro">A source finding can disappear during packaging. Another issue may only become exploitable at runtime. Keeping every surface in one project makes those differences visible.</p></div>
-      <div class="capability-grid"><article class="capability-card">
-    <div class="card-code">01</div>
-    <h3>Hybrid static and agent analysis</h3>
-    <p>Use a bounded deterministic SAST pre-pass to generate investigation candidates, then have agents test reachability, product context, control flow, and impact before recording findings.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">02</div>
-    <h3>Source code review</h3>
-    <p>Trace authorization, data flow, unsafe parsers, secrets, dependency use, and business-logic failures across repositories or uploaded archives.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">03</div>
-    <h3>Binary analysis</h3>
-    <p>Expand and decompile APKs, JARs, firmware, installers, and archives to review the artifact customers actually receive.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">04</div>
-    <h3>Live application testing</h3>
-    <p>Probe web applications and APIs inside explicit host, authentication, and authorization boundaries.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">05</div>
-    <h3>Focused assessment notes</h3>
-    <p>Give the coordinator product context, sensitive boundaries, and recent-change details without preventing broader investigation.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">06</div>
-    <h3>Multi-model orchestration</h3>
-    <p>Resolve separate models for investigation, adversarial review, and artifact generation while keeping one report.</p>
-  </article>
-<article class="capability-card">
-    <div class="card-code">07</div>
-    <h3>Project and lineage history</h3>
-    <p>Group assessment versions by product or service and preserve targets, findings, retests, logs, and artifacts.</p>
-  </article></div>
+      <div class="buyer-section-head"><div><div class="section-label">What we scan</div><h2>Reviewing code, artifacts, and runtimes together</h2></div><p class="section-intro">Vulnerabilities found in source code can disappear when they go through your build system. Some vulnerabilities only show up based on deployment infrastructure that shows up during a live pentest. ZeroQuarry keeps all of these visible together.</p></div>
+      <div class="deploy-pipeline"><div class="pipeline-step">
+    <small>01</small>
+    <div class="pipeline-body">
+      <h3>Third-party dependencies</h3>
+      <p>Your product runs on open-source packages you did not write. ZeroQuarry scans them for known vulnerabilities and for slopsquatting, where attackers publish malicious packages under the names AI coding assistants sometimes make up and wait for a developer to install one.</p>
+    </div>
+    <span class="pipeline-tag">SAST + slopsquatting</span>
+  </div>
+<div class="pipeline-step">
+    <small>02</small>
+    <div class="pipeline-body">
+      <h3>Your source code</h3>
+      <p>ZeroQuarry&#39;s AI agents read your code the way a security reviewer would, tracing authorization, data flow, input handling, secrets, and business logic across your repositories. Every reported finding includes the evidence that shows it is real.</p>
+    </div>
+    <span class="pipeline-tag">AI agent review</span>
+  </div>
+<div class="pipeline-step">
+    <small>03</small>
+    <div class="pipeline-body">
+      <h3>Your release builds</h3>
+      <p>Most teams ship through Docker, packaging scripts, or a build pipeline, and what goes in is not always what comes out. ZeroQuarry scans the artifact your customers actually receive: images, binaries, installers, and archives.</p>
+    </div>
+    <span class="pipeline-tag">Artifact scan</span>
+  </div>
+<div class="pipeline-step">
+    <small>04</small>
+    <div class="pipeline-body">
+      <h3>Your deployment</h3>
+      <p>Infrastructure-as-code decides what the internet can reach and what stays closed, and ZeroQuarry scans it. The software around your product, like API gateways, load balancers, and logging systems, can block vulnerabilities (by rejecting unauthorized access) or introduce new ones (path traversal, SSRF).</p>
+    </div>
+    <span class="pipeline-tag">IaC scan</span>
+  </div>
+<div class="pipeline-step">
+    <small>05</small>
+    <div class="pipeline-body">
+      <h3>Your live product</h3>
+      <p>Finally, ZeroQuarry&#39;s agents pentest the running product the way an attacker would. That shows which vulnerabilities survived all the way to something an attacker can reach, and which new ones appeared along the way.</p>
+    </div>
+    <span class="pipeline-tag">Live pentest</span>
+  </div></div>
+      
     </div>
   </section>
 
   <section class="buyer-section">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">How it runs</div><h2>Scope, investigate, validate, act</h2></div><p class="section-intro">Source, binary, and live testing follow the same four steps, and every step writes to the same project history.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">How you use it</div><h2>Scope, investigate, validate, act</h2></div><p class="section-intro">Source, binary, and live testing follow the same four steps, and every step writes to the same project history.</p></div>
       <div class="workflow-grid"><article class="workflow-card">
     <span>STEP 01</span>
     <h3>Scope</h3>
-    <p>Choose the product project, target surface, credentials, authorization, and business context.</p>
+    <p>Pick the product project and what to scan: a repository, a build, or a live app. Then add credentials and business context.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 02</span>
     <h3>Investigate</h3>
-    <p>Coordinator and specialist agents map the target and follow high-value attack paths.</p>
+    <p>ZeroQuarry&#39;s AI agents map your product and follow the attack paths that matter most.</p>
   </article>
 <article class="workflow-card">
     <span>STEP 03</span>
@@ -200,12 +207,13 @@
     <h3>Act</h3>
     <p>Route accepted findings into fixes, tickets, retests, disclosures, or evidence packs.</p>
   </article></div>
+      <p class="section-note">A team of AI agents does this work. <a href="/platform/agents/">Meet the agents <span aria-hidden="true">-&gt;</span></a></p>
     </div>
   </section>
 
   <section class="buyer-section soft">
     <div class="container">
-      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>What changes after the first assessment</h2></div><p class="section-intro">Fuller coverage of the product, and a record you can hand to someone else without rebuilding it.</p></div>
+      <div class="buyer-section-head"><div><div class="section-label">Outcomes</div><h2>What you get</h2></div><p class="section-intro">Fuller coverage of the product, and a record you can hand to someone else without rebuilding it.</p></div>
       <div class="outcome-grid"><article class="outcome-card"><h3>Broader product coverage</h3><p>Review code, shipped artifacts, and live behavior without splitting history across unrelated tools.</p></article>
 <article class="outcome-card"><h3>More useful findings</h3><p>Prioritize evidence, reachability, impact, and product context over pattern matches.</p></article>
 <article class="outcome-card"><h3>A repeatable assessment record</h3><p>Keep every target, version, decision, and retest connected to the product it belongs to.</p></article></div>
@@ -217,7 +225,7 @@
       <div class="buyer-section-head"><div><div class="section-label">Evaluation FAQ</div><h2>Before you point it at a real repository</h2></div><p class="section-intro">Private repositories, live targets, and how this differs from a scanner.</p></div>
       <div class="faq-list"><details>
     <summary>Is ZeroQuarry a SAST or DAST scanner?</summary>
-    <p>ZeroQuarry combines a bounded deterministic SAST pre-pass with agent-led source investigation, binary analysis, and authorized live testing. Static matches are investigation candidates, not alerts presented as validated vulnerabilities.</p>
+    <p>ZeroQuarry can do the things traditional SAST and DAST scanners do (scanning for vulnerabilities in code, your APIs, and websites) but can do much more. Its advanced team of AI agents can tie these different scan targets together and understand how they're built and where vulnerabilities may surface between each layer.</p>
   </details>
 <details>
     <summary>Can it test private repositories?</summary>
@@ -225,7 +233,7 @@
   </details>
 <details>
     <summary>Can ZeroQuarry test production?</summary>
-    <p>Remote testing requires explicit authorization and scope. Use a staging or production-like environment when active probes could create risk, and keep the allowed host boundary narrow.</p>
+    <p>Yes. ZeroQuarry can perform a penetration test on your production APIs, websites, and apps. Read more about how we keep agents contained in <a href="/research/agent-containment/">our agent containment post</a>.</p>
   </details></div>
     </div>
   </section>
@@ -267,6 +275,7 @@
       <div class="foot-col legal">
         <h5>Platform</h5>
         <a href="/platform">Overview</a>
+        <a href="/platform/agents/">For agents</a>
         <a href="/platform/security-testing/">Security testing</a>
         <a href="/platform/adversarial-validation/">Adversarial validation</a>
         <a href="/platform/continuous-security/">Continuous security</a>

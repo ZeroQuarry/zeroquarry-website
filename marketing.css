@@ -918,6 +918,24 @@
   counter-reset: ops;
 }
 
+.operation-rail.rail-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* The two-col class outranks the shared rail breakpoints, so restate them. */
+@media (max-width: 1180px) {
+  .operation-rail.rail-6 {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .operation-rail.rail-6 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .operation-step {
   position: relative;
   padding: 26px 18px 22px;
@@ -1091,6 +1109,227 @@
   line-height: 1.6;
 }
 
+/* Progressive pipeline: one row per stage of how code reaches customers,
+   used on the security-testing page. */
+.deploy-pipeline {
+  border-top: 1px solid var(--line-strong);
+}
+
+.pipeline-step {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: start;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.pipeline-step small {
+  padding-top: 5px;
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.pipeline-step h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.pipeline-step p {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--ink-3);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.pipeline-tag {
+  justify-self: end;
+  margin-top: 4px;
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Adversarial-validation page: why the claim-challenge loop is not a
+   second opinion from another model. */
+.judge-note {
+  margin-top: 40px;
+}
+
+.judge-note h3 {
+  margin: 0 0 24px;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.judge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.judge-grid h4 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.judge-grid p {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .judge-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ---------- agents page: agent chat example + slopsquatting explainer ---------- */
+.agent-chat {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid var(--frame-border);
+  border-radius: 12px;
+  background: var(--panel-2);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+}
+
+.chat-msg {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--fill-1);
+}
+
+.chat-msg.user {
+  border-left: 3px solid var(--red);
+}
+
+.chat-msg.agent {
+  border-left: 3px solid var(--green);
+}
+
+.chat-who {
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.chat-msg p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+.chat-msg ul {
+  display: grid;
+  gap: 6px;
+  margin: 2px 0 0;
+  padding-left: 18px;
+}
+
+.chat-msg li {
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.chat-msg li b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.chat-tool {
+  justify-self: center;
+  padding: 7px 14px;
+  border: 1px dashed var(--line-2);
+  border-radius: 999px;
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+.explain-box {
+  margin-top: 36px;
+  padding: 24px 28px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--red);
+  border-radius: 10px;
+  background: var(--fill-1);
+}
+
+.explain-box h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.explain-box p {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 13.5px;
+  line-height: 1.7;
+  max-width: 88ch;
+}
+
+@media (max-width: 640px) {
+  .pipeline-step {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .pipeline-tag {
+    grid-column: 2;
+    justify-self: start;
+    margin-top: 12px;
+  }
+}
+
+.section-note {
+  margin: 22px 0 0;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+.section-note a {
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.section-note a:hover {
+  color: var(--red);
+}
+
 .outcome-card {
   border-top: 2px solid color-mix(in srgb, var(--red) 65%, transparent);
 }
@@ -1164,6 +1403,16 @@
   color: var(--ink-3);
   font-size: 13px;
   line-height: 1.65;
+}
+
+.faq-list p a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.faq-list p a:hover {
+  color: var(--red);
 }
 
 .buyer-cta {
@@ -2596,7 +2845,7 @@
 /* ---------- gate (release security review) ---------- */
 .mv-gate { grid-column: 1 / -1; position: relative; container-type: inline-size; display: grid; align-content: start; gap: 18px; min-height: 0; padding: 16px 0 6px; }
 .gate-checks { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-.gchk { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--ink-3); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+.gchk { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--panel-2); color: var(--ink-3); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; position: relative; z-index: 2; }
 .gchk i { position: relative; width: 12px; height: 12px; border: 1px solid var(--line-2); border-radius: 50%; }
 .gchk i::after { content: ""; position: absolute; left: 3px; top: 1px; width: 4px; height: 7px; border-right: 2px solid transparent; border-bottom: 2px solid transparent; transform: rotate(40deg); }
 .gchk.bad i::before { content: ""; position: absolute; left: 3px; top: 1px; width: 4px; height: 7px; border-right: 2px solid transparent; border-bottom: 2px solid transparent; transform: rotate(-40deg); }
@@ -2617,7 +2866,7 @@
 .gate-artifact em { color: var(--ink-3); font-size: 9.5px; font-style: normal; }
 .gate-bar {
   position: absolute; left: 50%; top: 50%;
-  width: 10px; height: 148px;
+  width: 10px; height: 90px;
   transform: translate(-50%, -50%);
   border-radius: 5px;
   background: repeating-linear-gradient(45deg, var(--red) 0 8px, color-mix(in srgb, var(--red) 55%, transparent) 8px 16px);
@@ -2661,7 +2910,7 @@
   }
   @keyframes gateBar {
     0%, 18% { transform: translate(-50%, -50%); opacity: 1; }
-    21%, 29% { transform: translate(-50%, -190%); opacity: 0.85; }
+    21%, 29% { transform: translate(-50%, -140%); opacity: 1; }
     34%, 100% { transform: translate(-50%, -50%); opacity: 1; }
   }
   @keyframes gatePass { 0%, 35% { opacity: 0; } 37%, 43% { opacity: 1; } 47%, 100% { opacity: 0; } }

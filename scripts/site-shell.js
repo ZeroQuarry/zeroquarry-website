@@ -1,4 +1,5 @@
 const platformLinks = [
+  ["/platform/agents/", "For agents", "MCP, skills, and checks for your coding agents"],
   ["/platform/security-testing/", "Security testing", "Review your source code or your running app"],
   ["/platform/adversarial-validation/", "Adversarial validation", "Check a finding is real before it becomes work"],
   ["/platform/continuous-security/", "Continuous security", "Review every risky change as it lands"],
@@ -20,7 +21,7 @@ const useCaseLinks = [
 ];
 
 // Keep shell behavior and styles on the same cache generation after deploys.
-const assetVersion = "20261014-credits";
+const assetVersion = "20261102-agents";
 
 function linkCurrent(active, value) {
   return active === value ? ' aria-current="page"' : "";
