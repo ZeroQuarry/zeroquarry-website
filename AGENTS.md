@@ -165,3 +165,15 @@ For coding agents: this is the zeroquarry.com marketing site, a static HTML/CSS/
 - Shared header/footer markup is synced across pages by `scripts/sync-static-shell.js` — change the shell in `scripts/site-shell.js`, then run `npm run sync:shell`.
 - Netlify redirects live in `netlify.toml`.
 - This file (`AGENTS.md`) is served at `https://zeroquarry.com/AGENTS.md` — keep it accurate when product claims, pricing, or the page set change.
+
+### Publishing a research post
+
+Posts live in `content/research/*.md`. The build skips any post whose frontmatter has `draft: true`, so an unpublished post is invisible to the site, the sitemap, and `llms.txt`.
+
+1. In the frontmatter, set `status` (`Shipped` / `Mitigation available` / `Account` / `Research`) and flip `draft` to `false`.
+2. Export an OG image from the post's hero SVG into `assets/research/<slug>-og.png` and add `image` / `ogImageWidth` / `ogImageHeight`.
+3. Run `npm run build`, then `npm run validate` — both must pass before the post goes out.
+4. Add the post to the research list in `llms.txt` and to the `/research/` line in the page map above.
+5. Commit the built HTML under `research/<slug>/index.html` and the regenerated `sitemap.xml` alongside the markdown source — the built pages are what deploy.
+
+Unpublished drafts also exist as untracked preview directories under `research/` (built with a `noindex` meta so they stay out of the sitemap). `git add research/` sweeps those previews in; stage the published paths explicitly instead.
