@@ -171,7 +171,7 @@ For coding agents: this is the zeroquarry.com marketing site, a static HTML/CSS/
 Posts live in `content/research/*.md`. The build skips any post whose frontmatter has `draft: true`, so an unpublished post is invisible to the site, the sitemap, and `llms.txt`.
 
 1. In the frontmatter, set `status` (`Shipped` / `Mitigation available` / `Account` / `Research`) and flip `draft` to `false`.
-2. Export an OG image from the post's hero SVG into `assets/research/<slug>-og.png` and add `image` / `ogImageWidth` / `ogImageHeight`.
+2. Export an OG image from the post's hero SVG into `assets/research/<slug>-og.png` and add `image` / `ogImageWidth` / `ogImageHeight`. Render every diagram in the post and look at it before shipping — screenshot the SVG at 2x (headless Chrome: `--headless --force-device-scale-factor=2 --screenshot=out.png --window-size=760,490 file://<svg>`) and check the rendered image, not the markup. A text baseline that lands on a box border gets clipped by it, and the source will not show it; two such defects shipped to a draft in the 2026-10-28 batch and were only caught at render-check.
 3. Run `npm run build`, then `npm run validate` — both must pass before the post goes out.
 4. Add the post to the research list in `llms.txt` and to the `/research/` line in the page map above.
 5. Commit the built HTML under `research/<slug>/index.html` and the regenerated `sitemap.xml` alongside the markdown source — the built pages are what deploy.
