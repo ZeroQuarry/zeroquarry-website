@@ -37,6 +37,8 @@ Workflows keyed to the moment security becomes urgent. Each links to a playbook 
 Published, coordinated-disclosure research by founder Shane Connelly.
 
 - [Research index](https://zeroquarry.com/research/)
+- [Every finding has to survive a reviewer whose job is to reject it](https://zeroquarry.com/research/the-claim-loop/)
+- [The attack surface your SBOM can't see](https://zeroquarry.com/research/ai-surface/)
 - [I built a game with LLMs in a weekend. Internet scanners hacked it in two hours.](https://zeroquarry.com/research/mechquarry-hacked-in-two-hours/)
 - [Of course it escapes: how ZeroQuarry contains security agents](https://zeroquarry.com/research/agent-containment/)
 - [Confirming blind findings: the out-of-band collector](https://zeroquarry.com/research/confirming-blind-findings/)

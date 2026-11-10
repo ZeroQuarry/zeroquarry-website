@@ -20,10 +20,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../index.css" />
-<link rel="stylesheet" href="../marketing.css?v=20261014-credits" />
+<link rel="stylesheet" href="../marketing.css?v=20261102-agents" />
 <link rel="stylesheet" href="../cookie-consent.css" />
 <script src="../cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
-<script src="../index.js?v=20261014-credits" defer></script>
+<script src="../index.js?v=20261102-agents" defer></script>
 </head>
 <body>
 
@@ -50,6 +50,7 @@
             <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
           </div>
           <div class="nav-mega-links">
+            <a href="/platform/agents/"><strong>For agents</strong><span>MCP, skills, and checks for your coding agents</span></a>
             <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
             <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
             <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
@@ -183,12 +184,42 @@
           <h2>Disclosure-safe <em>writeups.</em></h2>
         </div>
         <div class="aside">
-          10 published posts so far. Additional findings are in coordinated disclosure and will be added after fixes or maintainer guidance make publication appropriate.
+          12 published posts so far. Additional findings are in coordinated disclosure and will be added after fixes or maintainer guidance make publication appropriate.
         </div>
       </div>
 
       <div class="research-list">
         <article class="research-card">
+        <a class="research-card-link" href="ai-surface/">
+          <div class="research-card-meta">
+            <span>Shane Connelly</span>
+            <span>October 28, 2026</span>
+            <span class="status-pill">Shipped</span>
+          </div>
+          <h2>The attack surface your SBOM can&#39;t see</h2>
+          <p>A tool registration is an authorization model outside your identity system. A system prompt is executable. A model pin is a dependency with a license and vendor terms. None of it is a package, so none of it reaches a scanner&#39;s inventory. Now it does.</p>
+          <div class="research-card-footer">
+            <span>Read the research</span>
+            <span>-&gt;</span>
+          </div>
+        </a>
+      </article>
+<article class="research-card">
+        <a class="research-card-link" href="the-claim-loop/">
+          <div class="research-card-meta">
+            <span>Shane Connelly</span>
+            <span>October 28, 2026</span>
+            <span class="status-pill">Shipped</span>
+          </div>
+          <h2>Every finding has to survive a reviewer whose job is to reject it</h2>
+          <p>Scanners compete on finding more. Teams drown on deciding which findings are real. ZeroQuarry&#39;s answer is a bounded adversarial loop where the reviewer&#39;s objective is to reject, confidence and severity are scored separately, and the transcript -- not just the verdict -- is the deliverable.</p>
+          <div class="research-card-footer">
+            <span>Read the research</span>
+            <span>-&gt;</span>
+          </div>
+        </a>
+      </article>
+<article class="research-card">
         <a class="research-card-link" href="security-scanning-cadence/">
           <div class="research-card-meta">
             <span>Shane Connelly</span>
@@ -455,6 +486,7 @@
       <div class="foot-col legal">
         <h5>Platform</h5>
         <a href="/platform">Overview</a>
+        <a href="/platform/agents/">For agents</a>
         <a href="/platform/security-testing/">Security testing</a>
         <a href="/platform/adversarial-validation/">Adversarial validation</a>
         <a href="/platform/continuous-security/">Continuous security</a>

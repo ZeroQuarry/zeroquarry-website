@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Every finding has to survive a reviewer whose job is to reject it | ZeroQuarry Research</title>
+<meta name="description" content="Detection is a commodity; deciding is the product. ZeroQuarry runs a bounded adversarial review on every finding: a researcher agent builds the claim, an independent vendor-style reviewer tries to reject it, and the two argue until agreement or a round cap. This is why the loop works, mechanism by mechanism." />
+<link rel="canonical" href="https://zeroquarry.com/research/the-claim-loop" />
+<meta property="og:title" content="Every finding has to survive a reviewer whose job is to reject it" />
+<meta property="og:description" content="A researcher agent claims, a vendor-style reviewer attacks, the claim is repaired with evidence or conceded, and the whole argument goes in the report. Why severity and confidence are scored separately, and why rejected findings are never silently deleted." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeroquarry.com/research/the-claim-loop" />
+<meta property="og:image" content="https://zeroquarry.com/assets/research/the-claim-loop-og.png" />
+<meta property="og:image:width" content="1520" />
+<meta property="og:image:height" content="980" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/research/the-claim-loop-og.png" />
+<link rel="icon" type="image/png" href="../../assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index.css" />
+<link rel="stylesheet" href="../../marketing.css?v=20261102-agents" />
+<link rel="stylesheet" href="../../cookie-consent.css" />
+<script src="../../cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
+<script src="../../index.js?v=20261102-agents" defer></script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>What ZeroQuarry does</strong>
+            <p>Finds security problems in your product and keeps the record of what happened to each one.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/agents/"><strong>For agents</strong><span>MCP, skills, and checks for your coding agents</span></a>
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Track each finding from intake to audit</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Turn findings into reviewed fixes</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Run scans inside your own network</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Give customers and auditors the evidence</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start from your situation</strong>
+            <p>Pick the one that matches what you are dealing with now.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/open-source/"><strong>Open source maintainers</strong><span>Work out which reports are real, and answer them</span></a>
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Get real coverage before you hire for it</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky code while the author still remembers it</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Check a release before you ship it</span></a>
+            <a href="/use-cases/binary-security-review/"><strong>Binary security review</strong><span>Find out what is actually inside the build</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn a researcher's email into real work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer customer questions with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Handle findings that come from outside</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/" aria-current="page">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+<a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
+    </div>
+    <details class="mobile-nav">
+      <summary>Browse ZeroQuarry</summary>
+      <nav class="mobile-nav-panel" aria-label="Mobile primary">
+        <a href="/">Why ZeroQuarry</a>
+        <a href="/platform">Platform</a>
+        <a href="/use-cases/">Use cases</a>
+        <a href="/research/" aria-current="page">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <article class="research-article">
+    <header class="article-header">
+      <div class="container article-header-grid no-disclosure">
+        <div>
+          <a class="article-back" href="../">Research</a>
+          <div class="article-meta">
+            <span>Shane Connelly</span>
+<span>October 28, 2026</span>
+<span>adversarial-validation</span>
+<span>evidence</span>
+          </div>
+          <h1>Every finding has to survive a reviewer whose job is to reject it</h1>
+          <p class="article-dek">Detection is a commodity; deciding is the product. ZeroQuarry runs a bounded adversarial review on every finding: a researcher agent builds the claim, an independent vendor-style reviewer tries to reject it, and the two argue until agreement or a round cap. This is why the loop works, mechanism by mechanism.</p>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
+          </div>
+        </div>
+
+        
+      </div>
+    </header>
+
+    <div class="container article-layout">
+      <aside class="article-toc" aria-label="Article sections">
+        <a href="#the-loop">The loop</a>
+<a href="#confidence-and-severity-are-different-numbers">Confidence and severity are different numbers</a>
+<a href="#the-transcript-is-part-of-the-deliverable">The transcript is part of the deliverable</a>
+<a href="#closing-the-loop">Closing the loop</a>
+      </aside>
+
+      <div class="article-body">
+<p>A security scanner that produces security vulnerability &quot;findings&quot; is table stakes in 2026. Every SAST tool, every AI code reviewer, and every pentest-gone-autonomous produces findings. A lot of talk right now is about whether one model/prompt produces some findings, and that <em>is</em> very important. But if you ask anyone who has run a triage queue, the real PITA is that their scanners produced eighty-three findings of which six are real and the engineer turns off the scanners because they&#39;re too noisy. I spent fifteen years on vulnerability triage teams at Elastic, Kong, and Vectara, and the queue was always a huge pain.</p>
+<p>So when we built ZeroQuarry, the design question I cared about most was &quot;how does a finding earn the right to become an engineer&#39;s task.&quot; What we built was a bounded adversarial loop, and this post explains the mechanism.</p>
+<p><img src="/assets/research/claim-loop-cycle.svg" alt="The claim loop: a researcher agent builds a claim with evidence; an independent vendor-style reviewer tries to reject it (needs more info, rejected); the researcher rebuts with new evidence or concedes; contested findings go back around until agreement or the account&#39;s round cap. The transcript accumulates the whole time." loading="lazy" decoding="async" /></p>
+<h2 id="the-loop">The loop</h2>
+<p>Every finding starts as a claim built by a &quot;researcher agent&quot; -- an agent whose job is to find a vulnerability as a security researcher. It churns out: what the bug is, where it is, and the evidence -- a proof of concept, an HTTP sequence, sometimes a deployable test package. Then an independent reviewer agent takes the claim, and its objective is inverted: it actively tries to <em>reject</em> the assertion that the finding is real the way a vendor&#39;s security team would reject a bug report that doesn&#39;t reproduce.</p>
+<p>If the reviewer is not convinced, the finding comes back as needs-more-info or rejected, and the researcher agent has two moves: repair the claim with better evidence, or concede. Repaired claims go back around and the agents continue having a discussion trying to get the other to concede or give up. (These are bounded with a per-account cap on rounds, because unbounded adversarial loops are how you burn a model budget arguing about HTTP headers. Ask me how I know.) What survives the loop is what ZeroQuarry reports. What doesn&#39;t survive is dropped with its reasons attached, never silently deleted (more on why that&#39;s a product requirement in a second).</p>
+<p>The reviewer is not the researcher with a different system prompt. It runs as a separate stage with its own model selection per stage, it doesn&#39;t share the researcher&#39;s investigation context, and its success condition is opposite.</p>
+<h2 id="confidence-and-severity-are-different-numbers">Confidence and severity are different numbers</h2>
+<p>A finding that survives the loop gets two scores: &quot;severity&quot; is about impact if the thing is real and &quot;confidence&quot; is about how much the evidence supports the claim. Both get updated as the review progresses -- a claim that survived three rounds of attempted rejection carries different confidence than one that sailed through unchallenged, even at identical severity.</p>
+<p>The reason this matters is that the two scores route to different work. A &quot;critical&quot; vulnerability with &quot;high confidence&quot; is an engineering ticket today. A &quot;critical&quot; with &quot;low confidence&quot; is <em>not an engineering ticket yet</em> -- it&#39;s more validation, and paging someone about it is how triage queues lose trust. A &quot;medium&quot; with a working reproduction and a burned rebuttal is often worth more than an unproven &quot;high.&quot; Traditional scanners conflate these into one number (usually severity, usually optimistic), and the conflation is precisely what turns &quot;200 findings&quot; into an unusable queue.</p>
+<p><img src="/assets/research/claim-loop-2x2.svg" alt="Severity against confidence: high-severity high-confidence routes to engineering now; high-severity low-confidence routes to more validation, not a pager; low-severity high-confidence becomes a ticket with evidence attached; low-severity low-confidence is archived with reasons, never silently deleted." loading="lazy" decoding="async" /></p>
+<h2 id="the-transcript-is-part-of-the-deliverable">The transcript is part of the deliverable</h2>
+<p>Every round of the loop is recorded and visible in ZeroQuarry: which model played which role, at which stage, what the challenge was, what the rebuttal was, what changed and why. Months later, when a customer&#39;s auditor or your own CTO asks &quot;why was this dismissed?&quot;, the answer is on file and not just as a checkbox that got ticked by someone who left the company.</p>
+<p><img src="/assets/research/adversarial-loop.png" alt="An example of the agents in ZeroQuarry arguing over whether a &quot;finding&quot; is real" loading="lazy" decoding="async" /></p>
+<p>That record is also the product&#39;s answer to the question auditors often ask. &quot;When was this tested, by what, and what happened to the results&quot; is a SOC 2 conversation, a customer-mandated scan conversation, <em>and</em> an incident postmortem conversation, and it&#39;s the same artifact every time: the finding&#39;s lifecycle (candidate, validated, disputed, mitigated, retested, regression, accepted-risk, archived) with the actors and reasons attached at each step. Evidence isn&#39;t a report you generate at the end; it&#39;s the residue the loop leaves behind.</p>
+<p><img src="/assets/research/claim-loop-transcript.svg" alt="A finding&#39;s lifecycle as a stamped timeline: candidate, challenged (needs more info), rebuttal (revised, new evidence attached), validated, routed to engineering, fixed, retested, reported -- each step carrying its actor, model, and reason." loading="lazy" decoding="async" /></p>
+<h2 id="closing-the-loop">Closing the loop</h2>
+<p>Vulnerability detection is, in some ways, becoming a commodity. Unfortunately, reading through noisy not-real findings is the other commodity that comes along with it. But cutting the noise out and using that to help your team prioritize your decisions is the ZeroQuarry product. If you&#39;re evaluating any security tool -- ours or anyone&#39;s -- the question that sorts vendors faster than any checklist is: what happens to a finding between detection and my engineer&#39;s queue, and can you show me the argument?</p>
+<p>If you maintain an open-source project, <a href="https://console.zeroquarry.com/register/open-source?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=the-claim-loop">check a public project free</a>. If you are evaluating software before deploying it, <a href="https://console.zeroquarry.com/register?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=the-claim-loop">start a 30-day trial</a> or <a href="https://zeroquarry.com/request-scan/?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=the-claim-loop">get in touch</a>.</p>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
+        </a>
+        <p>Independent security testing and evidence for product teams.</p>
+        <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/agents/">For agents</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/private-execution/">Private execution</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/open-source/">Open source maintainers</a>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/binary-security-review/">Binary security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/partners/">Security partners</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-label', 'Enlarged diagram');
+  overlay.innerHTML = '<button class="lightbox-close" type="button">Close</button>' +
+    '<div class="lightbox-stage"><img alt="" /></div>';
+  var stageImg = overlay.querySelector('.lightbox-stage img');
+  document.querySelectorAll('.article-body img').forEach(function (img) {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function () {
+      stageImg.src = img.getAttribute('src');
+      stageImg.alt = img.alt || '';
+      overlay.classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+    });
+  });
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.documentElement.style.overflow = '';
+  }
+  overlay.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeLightbox();
+  });
+  document.body.appendChild(overlay);
+})();
+</script>
+
+</body>
+</html>
