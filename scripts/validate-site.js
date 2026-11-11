@@ -51,7 +51,9 @@ for (const filePath of walk(root)) {
 
   for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/gi)) {
     const url = match[1];
-    if (/^(?:https?:|mailto:|tel:|data:|javascript:|#|\/\/)/i.test(url)) continue;
+    // Any URI with a scheme is external — this includes the app deep links
+    // used by the connect page (cursor://, vscode:, vscode-insiders:, ...).
+    if (/^(?:[a-z][a-z0-9+.-]*:|#|\/\/)/i.test(url)) continue;
     if (servedAtEveryDepth && !url.startsWith("/")) {
       errors.push(`${relativePath}: served at every URL depth, reference must be root-relative: ${url}`);
       continue;

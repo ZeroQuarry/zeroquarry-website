@@ -55,6 +55,7 @@ Published, coordinated-disclosure research by founder Shane Connelly.
 - [About](https://zeroquarry.com/about): company story, method, and founder background
 - [Security partners](https://zeroquarry.com/partners/): delivery pilot for vCISO, compliance, and pentest firms
 - [Talk to us](https://zeroquarry.com/request-scan/): request a working session on a real security decision
+- [Connect your agent](https://zeroquarry.com/connect/): add the ZeroQuarry MCP server to your harness (Claude Code, Cursor, VS Code, Codex, Claude Desktop, or anything MCP-capable) in about a minute — one-click deep links, per-harness commands, and the get_started handoff
 - [Privacy](https://zeroquarry.com/privacy) and [Terms](https://zeroquarry.com/terms)
 - [Documentation](https://docs.zeroquarry.com): product docs, playbooks, workflows, and API reference
 - [Status](https://status.zeroquarry.com): service status

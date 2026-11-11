@@ -3175,3 +3175,362 @@
   }
   @keyframes issStamp { 0%, 60% { opacity: 0; transform: rotate(-2deg) scale(1.6); } 65%, 92% { opacity: 1; transform: rotate(-2deg) scale(1); } 97%, 100% { opacity: 0; } }
 }
+
+/* ---- /connect ---- */
+.connect-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+html:not(.js) .connect-chips { display: none; }
+
+.connect-chip {
+  padding: 9px 18px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: color 0.15s var(--ease-out), border-color 0.15s var(--ease-out), background 0.15s var(--ease-out);
+}
+
+.connect-chip:hover {
+  color: var(--ink);
+  border-color: var(--ink-3);
+}
+
+.connect-chip:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+.connect-chip.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--on-red);
+}
+
+.connect-panels {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.connect-panel {
+  padding: 18px 20px;
+}
+
+.connect-panel + .connect-panel {
+  border-top: 1px solid var(--line);
+}
+
+/* JS on: one panel at a time (chip-selected). JS off: everything stacked. */
+.js .connect-panel { display: none; }
+.js .connect-panel.active { display: block; border-top: 0; }
+
+.connect-panel-lede {
+  margin: 0 0 12px;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 72ch;
+}
+
+.connect-deeplink-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin: 0 0 12px;
+}
+
+.connect-deeplink-hint {
+  color: var(--ink-3);
+  font-size: 12.5px;
+}
+
+.connect-fallback {
+  display: none;
+  margin: 0 0 12px;
+  padding: 12px 14px;
+  border: 1px dashed var(--line-2);
+  border-radius: 10px;
+}
+
+.connect-fallback.show { display: block; }
+
+.connect-fallback p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.connect-cmd { margin: 0 0 14px; }
+
+.connect-cmd-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--red);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.connect-cmd-body {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px 12px 16px;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: var(--fill-1);
+}
+
+.connect-cmd-body code {
+  flex: 1 1 auto;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.connect-copy {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s var(--ease-out), border-color 0.15s var(--ease-out);
+}
+
+.connect-copy:hover {
+  color: var(--ink);
+  border-color: var(--ink-3);
+}
+
+.connect-copy.copied {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.connect-panel-lede code,
+.connect-note code,
+.connect-steps code,
+.connect-mobile code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--fill-1);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.92em;
+}
+
+.connect-note {
+  margin: 10px 0 0;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 78ch;
+}
+
+.connect-note a {
+  color: var(--red);
+  text-decoration: none;
+}
+
+.connect-note a:hover {
+  text-decoration: underline;
+}
+
+.connect-steps {
+  margin: 0 0 18px;
+  padding-left: 22px;
+  color: var(--ink-2);
+  font-size: 14.5px;
+  line-height: 1.8;
+}
+
+.connect-fine {
+  margin: 12px 0 0;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.connect-fine a {
+  color: var(--red);
+  text-decoration: none;
+}
+
+.connect-fine a:hover {
+  text-decoration: underline;
+}
+
+.connect-mobile {
+  display: none;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border: 1px dashed var(--line-2);
+  border-radius: 10px;
+  color: var(--ink-2);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.connect-mobile.show { display: block; }
+
+/* Single-screen flow layout */
+.connect-hero {
+  padding: 46px 0 30px;
+}
+
+.connect-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(30px, 3.2vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.connect-title em {
+  background: linear-gradient(110deg, var(--grad-a) 5%, var(--grad-b) 55%, var(--grad-c) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+}
+
+.connect-sub {
+  margin: 12px 0 0;
+  color: var(--ink-2);
+  font-size: 16.5px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.connect-flow {
+  padding: 6px 0 44px;
+}
+
+.connect-stepbar {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.connect-stepbar .n {
+  color: var(--red);
+}
+
+.connect-step-card {
+  margin-top: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.connect-step-card .connect-cmd {
+  margin-bottom: 10px;
+}
+
+.connect-details {
+  margin-top: 12px;
+}
+
+.connect-details summary {
+  cursor: pointer;
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.connect-details summary:hover {
+  color: var(--ink);
+}
+
+.connect-details p {
+  margin: 10px 0 0;
+  color: var(--ink-3);
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.connect-footlinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.connect-footlinks a {
+  color: var(--red);
+  text-decoration: none;
+}
+
+.connect-footlinks a:hover {
+  text-decoration: underline;
+}
+
+/* No JS: the deep-link fallbacks are instructions, not enhancements. */
+html:not(.js) .connect-fallback { display: block; }
+
+@media (max-width: 640px) {
+  .connect-hero {
+    padding: 34px 0 24px;
+  }
+
+  .connect-panel {
+    padding: 16px 16px;
+  }
+
+  .connect-step-card {
+    padding: 16px;
+  }
+
+  .connect-cmd-body {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .connect-cmd-body code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}

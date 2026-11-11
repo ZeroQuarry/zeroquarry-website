@@ -9,6 +9,7 @@ const pages = [
   ["privacy.html", ""],
   ["terms.html", ""],
   ["platform/agents/index.html", "platform"],
+  ["connect/index.html", ""],
 ];
 
 function shellPrefix(relativePath) {
