@@ -1,5 +1,6 @@
 ---
 title: "Is Excalidraw safe? What we found in the Obsidian plugin"
+cta: "open-source"
 slug: "excalidraw-vulnerabilities"
 date: "2026-05-20"
 author: "Shane Connelly"

@@ -177,4 +177,18 @@ Posts live in `content/research/*.md`. The build skips any post whose frontmatte
 4. Add the post to the research list in `llms.txt` and to the `/research/` line in the page map above.
 5. Commit the built HTML under `research/<slug>/index.html` and the regenerated `sitemap.xml` alongside the markdown source — the built pages are what deploy.
 
+### The research post CTA
+
+Every research post carries a primary CTA in the article header, and most end with a closing CTA paragraph. **The primary CTA is the trial**: "Scan your first project for free", pointing at `https://console.zeroquarry.com/register`. The open-source signup earns its place only on posts that document a specific open-source project ZeroQuarry scanned for free (the Copas, Excalidraw, Obsidian Tasks and iShortn posts) — it converts poorly and costs support time everywhere else.
+
+To opt a post into the open-source CTA, set `cta: "open-source"` in its frontmatter. The builder then shows "Check a public project free" in the header instead. Posts without the key get the trial CTA.
+
+So a non-open-source post ends like this:
+
+```
+[Scan your first project for free](https://console.zeroquarry.com/register?utm_source=zeroquarry&utm_medium=research&utm_campaign=<slug>): 30 days, 1 private product, no credit card. If you need more than a self-serve scan, [get in touch](https://zeroquarry.com/request-scan/?utm_source=zeroquarry&utm_medium=research&utm_campaign=<slug>).
+```
+
+The campaign is the post's `slug`, not its filename — they differ on `agents-and-their-specializations.md`, whose slug is `models-capabilities`. The header button derives its campaign from the slug automatically.
+
 Unpublished drafts also exist as untracked preview directories under `research/` (built with a `noindex` meta so they stay out of the sitemap). `git add research/` sweeps those previews in; stage the published paths explicitly instead.

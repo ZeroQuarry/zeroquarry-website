@@ -119,3 +119,5 @@ The AI security debate is often framed today as a battle between attackers and g
 The practical future of AI security is not about one unconstrained model doing everything: it is about workflow orchestration.  And I actually think this extrapolates to many AI applications beyond AI security as well: that there's enormous value to be locked in orchestrating the right models with the right prompts for the right tasks at the right time.
 
 Those that understand this will be able to review *far* more code, *far* more often, for *far* less money, with *far* better signal.  Those that keep looking for a one-shot "find and fix everything" button will either run into guardrails, drown in false positives, burn too much inference budget, or all three.
+
+[Scan your first project for free](https://console.zeroquarry.com/register?utm_source=zeroquarry&utm_medium=research&utm_campaign=future-of-ai-security-is-multi-agent): 30 days, 1 private product, no credit card.

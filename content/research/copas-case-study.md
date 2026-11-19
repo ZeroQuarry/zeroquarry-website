@@ -1,5 +1,6 @@
 ---
 title: "Finding and fixing vulnerabilities in an open source Lua coroutine-dispatcher"
+cta: "open-source"
 slug: "copas-concurrency-and-tls-case-study"
 date: "2026-08-12"
 author: "Shane Connelly"

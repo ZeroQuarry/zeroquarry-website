@@ -401,6 +401,21 @@ function renderPost(post) {
     .map((item) => `<span>${escapeHtml(item)}</span>`)
     .join('\n');
 
+  // The primary CTA on every research post. Posts that document a specific
+  // open-source project keep the open-source signup; everything else points
+  // at the trial. A post opts into the open-source CTA with `cta:
+  // "open-source"` in its frontmatter.
+  const ctaCampaign = `utm_source=zeroquarry&utm_medium=research&utm_campaign=${encodeURIComponent(post.data.slug || '')}`;
+  const primaryCta = post.data.cta === 'open-source'
+    ? {
+        href: `https://console.zeroquarry.com/register/open-source?${ctaCampaign}`,
+        label: 'Check a public project free',
+      }
+    : {
+        href: `https://console.zeroquarry.com/register?${ctaCampaign}`,
+        label: 'Scan your first project for free',
+      };
+
   var disclosurePanel = '';
   if (post.data.disclosure !== false) {
     disclosurePanel = `
@@ -440,7 +455,7 @@ function renderPost(post) {
           <h1>${escapeHtml(post.data.title)}</h1>
           <p class="article-dek">${escapeHtml(post.data.description)}</p>
           <div class="article-actions">
-            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
+            <a class="btn btn-primary" href="${primaryCta.href}">${primaryCta.label} <span class="arr">-&gt;</span></a>
           </div>
         </div>
 

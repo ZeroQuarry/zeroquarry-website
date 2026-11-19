@@ -1,5 +1,6 @@
 ---
 title: "RCE via Markdown in the Obsidian Tasks Plugin"
+cta: "open-source"
 slug: "obsidian-tasks-rce"
 date: "2026-05-08"
 author: "Shane Connelly"

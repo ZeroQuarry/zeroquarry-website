@@ -90,4 +90,4 @@ While this is anecdotal based on a single repository, the experience has been la
 I'll be periodically updating this spreadsheet with the latest findings.  Check back in regularly!  If you have a particular model you want me to investigate send me an e-mail at shane@zeroquarry.com
 
 
-If you maintain an eligible public project, [ZeroQuarry is free for open source](https://zeroquarry.com/open-source/).
+[Scan your first project for free](https://console.zeroquarry.com/register?utm_source=zeroquarry&utm_medium=research&utm_campaign=models-capabilities): 30 days, 1 private product, no credit card.

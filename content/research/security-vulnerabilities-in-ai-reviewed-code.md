@@ -1,5 +1,6 @@
 ---
 title: "ZeroQuarry is finding security vulnerability chains in AI-reviewed code"
+cta: "open-source"
 slug: "security-vulnerabilities-in-ai-reviewed-code"
 date: "2026-09-01"
 author: "Shane Connelly"
