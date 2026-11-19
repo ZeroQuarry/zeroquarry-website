@@ -3430,6 +3430,35 @@ html:not(.js) .connect-chips { display: none; }
   line-height: 1.5;
 }
 
+/* Proof line: the citation for the claim in the H1, and what we do about it. */
+.connect-proof {
+  margin: 14px 0 0;
+  max-width: 92ch;
+  color: var(--ink-2);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.connect-proof a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-2);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.connect-proof a:hover {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+.connect-proof-mark {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--ink-3);
+  font-size: 11px;
+  transform: translateY(-1px);
+}
+
 .connect-flow {
   padding: 6px 0 44px;
 }

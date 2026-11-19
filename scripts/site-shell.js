@@ -21,7 +21,7 @@ const useCaseLinks = [
 ];
 
 // Keep shell behavior and styles on the same cache generation after deploys.
-const assetVersion = "20261118-research";
+const assetVersion = "20261119-proof";
 
 function linkCurrent(active, value) {
   return active === value ? ' aria-current="page"' : "";
