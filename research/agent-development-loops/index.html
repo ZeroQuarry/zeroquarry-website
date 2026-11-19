@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agentic Development Loops at ZeroQuarry | ZeroQuarry Research</title>
+<meta name="description" content="How we keep quality high when agents write most of the code: an e2e gate that runs against a real deployment, reviews by independent sub-agents, and an SDLC your agents can actually read." />
+<link rel="canonical" href="https://zeroquarry.com/research/agent-development-loops" />
+<meta property="og:title" content="Agentic Development Loops at ZeroQuarry" />
+<meta property="og:description" content="Most of the noise about agentic development is about models and harnesses. This is about the loops: an e2e gate on a real deployment, an independent sub-agent on every change, and an SDLC written where the agent will actually look." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zeroquarry.com/research/agent-development-loops" />
+<meta property="og:image" content="https://zeroquarry.com/assets/research/agent-e2e-gate.svg" />
+<meta property="og:image:width" content="760" />
+<meta property="og:image:height" content="400" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zeroquarry.com/assets/research/agent-e2e-gate.svg" />
+<link rel="icon" type="image/png" href="../../assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../index.css?v=20261118-research" />
+<link rel="stylesheet" href="../../marketing.css?v=20261118-research" />
+<link rel="stylesheet" href="../../cookie-consent.css" />
+<script src="../../cookie-consent.js" data-analytics-id="G-ZRT44MWJT1" data-oai-pixel-id="WqjLdm3BmjRHhvcd6Nnh1E" defer></script>
+<script src="../../index.js?v=20261118-research" defer></script>
+</head>
+<body>
+
+<div class="bg-flair" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-red"></div>
+</div>
+
+<header class="nav site-nav">
+  <div class="nav-inner">
+    <a href="/" class="brand" aria-label="ZeroQuarry home">
+      <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
+    </a>
+    <nav class="nav-links buyer-nav" aria-label="Primary">
+      <a href="/">Why ZeroQuarry</a>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Platform</summary>
+        <div class="nav-mega nav-mega-platform">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Platform</span>
+            <strong>What ZeroQuarry does</strong>
+            <p>Finds security problems in your product and keeps the record of what happened to each one.</p>
+            <a href="/platform">Platform overview <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/platform/agents/"><strong>For agents</strong><span>MCP, skills, and checks for your coding agents</span></a>
+            <a href="/platform/security-testing/"><strong>Security testing</strong><span>Review your source code or your running app</span></a>
+            <a href="/platform/adversarial-validation/"><strong>Adversarial validation</strong><span>Check a finding is real before it becomes work</span></a>
+            <a href="/platform/continuous-security/"><strong>Continuous security</strong><span>Review every risky change as it lands</span></a>
+            <a href="/platform/security-operations/"><strong>Security operations</strong><span>Track each finding from intake to audit</span></a>
+            <a href="/platform/remediation/"><strong>Remediation</strong><span>Turn findings into reviewed fixes</span></a>
+            <a href="/platform/private-execution/"><strong>Private execution</strong><span>Run scans inside your own network</span></a>
+            <a href="/platform/evidence-reporting/"><strong>Evidence and reporting</strong><span>Give customers and auditors the evidence</span></a>
+          </div>
+        </div>
+      </details>
+      <details class="nav-cluster" name="primary-nav">
+        <summary>Use cases</summary>
+        <div class="nav-mega nav-mega-use-cases">
+          <div class="nav-mega-intro">
+            <span class="nav-overline">Use cases</span>
+            <strong>Start from your situation</strong>
+            <p>Pick the one that matches what you are dealing with now.</p>
+            <a href="/use-cases/">Explore all use cases <span aria-hidden="true">-&gt;</span></a>
+          </div>
+          <div class="nav-mega-links">
+            <a href="/open-source/"><strong>Open source maintainers</strong><span>Work out which reports are real, and answer them</span></a>
+            <a href="/use-cases/startup-security/"><strong>Security for growing companies</strong><span>Get real coverage before you hire for it</span></a>
+            <a href="/use-cases/pr-security-review/"><strong>Pull request security review</strong><span>Review risky code while the author still remembers it</span></a>
+            <a href="/use-cases/release-security-review/"><strong>Release security review</strong><span>Check a release before you ship it</span></a>
+            <a href="/use-cases/binary-security-review/"><strong>Binary security review</strong><span>Find out what is actually inside the build</span></a>
+            <a href="/use-cases/inbound-vulnerability-reports/"><strong>Inbound vulnerability reports</strong><span>Turn a researcher's email into real work</span></a>
+            <a href="/use-cases/customer-security-reviews/"><strong>Customer and audit evidence</strong><span>Answer customer questions with current evidence</span></a>
+            <a href="/use-cases/vulnerability-disclosure/"><strong>Vulnerability disclosure</strong><span>Handle findings that come from outside</span></a>
+          </div>
+        </div>
+      </details>
+      <a href="/research/" aria-current="page">Research</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://docs.zeroquarry.com">Docs</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8Z"/></svg>
+      </button>
+<a class="btn btn-ghost" href="https://console.zeroquarry.com/login">Sign in</a>
+      <a class="btn btn-primary" href="https://console.zeroquarry.com/register">Start free trial <span class="arr">-&gt;</span></a>
+    </div>
+    <details class="mobile-nav">
+      <summary>Browse ZeroQuarry</summary>
+      <nav class="mobile-nav-panel" aria-label="Mobile primary">
+        <a href="/">Why ZeroQuarry</a>
+        <a href="/platform">Platform</a>
+        <a href="/use-cases/">Use cases</a>
+        <a href="/research/" aria-current="page">Research</a>
+        <a href="/pricing">Pricing</a>
+        <a href="https://docs.zeroquarry.com">Docs</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main>
+  <article class="research-article">
+    <header class="article-header">
+      <div class="container article-header-grid no-disclosure">
+        <div>
+          <a class="article-back" href="../">Research</a>
+          <div class="article-meta">
+            <span>Shane Connelly</span>
+<span>November 19, 2026</span>
+<span>agent-security</span>
+<span>sdlc</span>
+          </div>
+          <h1>Agentic Development Loops at ZeroQuarry</h1>
+          <p class="article-dek">How we keep quality high when agents write most of the code: an e2e gate that runs against a real deployment, reviews by independent sub-agents, and an SDLC your agents can actually read.</p>
+          <div class="article-actions">
+            <a class="btn btn-primary" href="https://console.zeroquarry.com/register/open-source">Check a public project free <span class="arr">-&gt;</span></a>
+          </div>
+        </div>
+
+        
+      </div>
+    </header>
+
+    <div class="container article-layout">
+      <aside class="article-toc" aria-label="Article sections">
+        <a href="#e2e-tests">e2e tests</a>
+<a href="#agentic-reviews">Agentic reviews</a>
+<a href="#preparing-whoever-comes-next">Preparing whoever comes next</a>
+<a href="#relationship-of-all-of-this-with-sdlc">Relationship of all of this with SDLC</a>
+<a href="#design-by-committee">Design by committee</a>
+<a href="#what-surprises-people">What surprises people</a>
+      </aside>
+
+      <div class="article-body">
+<p>I&#39;ve seen so much discourse about whether/how far agents can actually take care of &quot;company building&quot; and &quot;agentic development&quot; tasks.  There are new models coming out every week, strong but often unquantified opinions on which tools are the best/needed for agentic development.  So the argument about agentic development often starts with the model: which one writes better code and how much should you trust it? In practice, I&#39;ve found the more useful question is what happens <em>after</em> the code is written: how do you check that it works, catch what it missed, and know when to stop the loop and bring in a person?</p>
+<p>...and then there are the stories... Every week you also see stories that seem to point in different directions:</p>
+<ul>
+<li>1 company says they&#39;re shipping 10x more commits than normal</li>
+<li>A study comes out about how <a href="https://hackernoon.com/secure-code-benchmark-finds-top-coding-agents-write-secure-code-only-25percent-of-the-time">agents only write secure code 25% of the time</a></li>
+<li>Stories <a href="https://zeroquarry.com/research/mechquarry-hacked-in-two-hours/">like my own</a> which seem to confirm the previous point</li>
+<li>Studies like <a href="https://securitybrief.com.au/story/ai-coding-benchmarks-show-cheaper-models-can-be-safer">this one</a>, which claim something that feels like the opposite of the 2nd point: that more expensive models produce more vulnerabilities than cheaper models</li>
+<li>Various studies and benchmarks which show that agents are capable of producing cyber attack POCs and finding vulnerabilities in code which seems on the surface counterintuitive to many people compared to the above (if they can find vulnerabilities so well, why can they write code with vulnerabilities)</li>
+<li>Projects where a technology leader says they <a href="https://x.com/theo/status/2107789940482621795?lang=en">completely rewrote Typescript in Rust</a> over 5 months and the human didn&#39;t read a single line of code</li>
+<li>People arguing that <a href="https://www.seangoedecke.com/in-defense-of-not-understanding-your-codebase/">you can&#39;t actually understand a large codebase anyway</a></li>
+</ul>
+<p>If you&#39;re seeing these articles come out, the disparity means that you can, in many ways, infer almost anything that you want.  With pejorative terms like &quot;slop&quot; (however well deserved) pushing people into an anti-AI tune or you can choose to believe the pro-AI people, many of which seem to have aggressive arguments about model selection, thinking levels, and sometimes prompts.  My own conversations suggest that a lot of people that are interested in AI in some fashion are getting left out of any meaningful progress because the debates are so rigorous and heated on either side and ignore practical advice for getting started building with AI.</p>
+<p>This post will probably become dated quickly, but it&#39;s intended to help you get started.</p>
+<h2 id="e2e-tests">e2e tests</h2>
+<p>Probably the first thing to admit is that no person <em>or</em> AI writes perfect code, but end-to-end tests are some of the most critical you can set up if you are building with AI because it sets up something the agents can deterministically work against to prove correctness/incorrectness.</p>
+<p>In ZeroQuarry, before we ever deploy anything to prod, an e2e test on a staging server runs which:</p>
+<ol>
+<li>Registers a new account and tests the full e-mail delivery</li>
+<li>Uses a real e-mail client to ensure the e-mails are actually being delivered</li>
+<li>Deploys an intentionally vulnerable server and adds an access token that can read a private, vulnerable codebase so ZeroQuarry has something meaningful to scan</li>
+<li>Uses the API to create and delete projects and create scans. We use a cheap model for creating the scans to keep LLM costs to a pretty insignificant amount; it&#39;s meant to test e2e things work functionally. The e2e tests on scans do test for a variety of vulnerabilities to make sure there isn&#39;t a detection regression</li>
+<li>Uses the UI to click around in the app using Playwright + Chromium looking for errors and also that certain elements are present with good values to help prevent UI regressions</li>
+<li>On every page, it checks whether the documentation linked to <a href="https://docs.zeroquarry.com">https://docs.zeroquarry.com</a> is live</li>
+</ol>
+<p>None of that runs in CI. The e2e tests run against a real deployment on a test server, and they&#39;re the thing that has to be green before anything touches production. The worker image build and the gate run in parallel, and if either one fails the production steps never run. Not a restart, not a pull, not a migration.</p>
+<p><img src="/assets/research/agent-e2e-gate.svg" alt="The gate before production: the worker image build and the e2e gate both run from pushed code. If either one fails, the production steps never run." loading="lazy" decoding="async" /></p>
+<p>We&#39;ve still shipped bugs, but I&#39;d say that the e2e tests have been the biggest class of savior against shipping bugs.  It frequently catches things no unit test catches, the agents know right away when they&#39;ve broken something a user relies on.  1 thing to know about this is it does drastically increase the time of testing compared to static/unit tests.  The e2e tests regularly take an hour with the LLM-based scans, and that&#39;s on top of other CI (linting, unit tests) but if there&#39;s one thing I&#39;d encourage people developing with agents to do, it&#39;d be setting up e2e tests no matter the time.</p>
+<h2 id="agentic-reviews">Agentic reviews</h2>
+<p>If you&#39;re using agents to write code, you&#39;ll have more code to review. The first version of our workflow made individual PRs quickly, but too many errors escaped review and surfaced much later. We changed the goal: less human cleanup and better results, even if each PR takes longer.</p>
+<p>Some people that are new to agentic development are surprised to hear that you can ask an LLM to review code and it will find bugs <em>even if it&#39;s exactly the same model being asked to review its own code</em>. I know this doesn&#39;t make sense, but it follows on the general theme of LLM-as-a-judge which works well in many places.</p>
+<h3 id="regular-reviews">Regular reviews</h3>
+<p>Before we ship anything, we use a <a href="https://github.com/ZeroQuarry/SkillZ/blob/main/code-review/SKILL.md">$code-review</a> skill on a loop, but with an independent sub-agent. The idea is that once the code is written, an independent &quot;auditor&quot; (agent) is brought in without the context window history to review the code.  In order to avoid it having the context/history, it&#39;s spun up as a sub-agent with <em>just</em> the change, and told that it must return <code>MUST FIX</code>, <code>SHOULD FIX</code>, <code>CONSIDER</code> changes and also a final verdict of whether it&#39;s been approved (with or without suggestions) or needs changes.</p>
+<p>The main context window is told to spin that up as a sub agent, and continue iterating with a <code>$code-review</code> sub agent up to 3 times to fix MUST FIX and SHOULD FIX items.  Then, the PR is handed to another independent LLM to have it perform the same type of code review by calling out to another development harness over a CLI.  Most of the time, this results in a clean PR for human review.  But sometimes, as part of a review cycle, it starts becoming clear that the original implementation wasn&#39;t sound enough because we start seeing whack-a-mole fixes for example.  In those cases, the &quot;3-review hard limit&quot; makes the agent exit the loop, stop development, and report back to the human that something needs looking at.</p>
+<p>The <code>$code-review</code> skill almost always catches at least 1 significant problem that would have shipped without review, and often it detects several.</p>
+<p>This has made the work slower and more expensive in tokens, which both engineers and leaders should know <em>will</em> happen if you&#39;re doing agentic development right. A PR for a single issue used to take around 10–30 minutes, but often carried errors that would only be caught later. With the multi-round review loop, a PR now often takes 1 to 2 hours, but arrives in better shape and needs <em>much</em> less human intervention. That&#39;s a real tradeoff: we&#39;re spending more time and inference on each task to reduce the time people spend finding and correcting problems downstream.  If you value human labor time, this is often the right tradeoff, but your humans do need to avoid becoming completely complacent and still do reviews where needed.</p>
+<p>It also changes how we organize the work. We run more tasks across multiple machines and isolated worktrees so agents can make progress in parallel without colliding in the same files. That adds coordination overhead, but it lets a small team carry more work through the whole development cycle, with something closer to team-like output than a stream of fast, unfinished PRs.</p>
+<p><img src="/assets/research/agent-review-loop.svg" alt="The review loop: build, review, probe, fix, and back to build until there&#39;s no MUST FIX and no SHOULD FIX left. After 3 rounds the agent stops and hands it back to a human." loading="lazy" decoding="async" /></p>
+<h3 id="security-reviews">Security reviews</h3>
+<p>ZeroQuarry is, after all, an agentic security review product. So before we merge a PR, it goes through ZeroQuarry. It makes sense from both a reputational and dogfooding perspective (if we had a security breach or if somehow our e2e tests didn&#39;t detect a basic problem, it would be a problem for obvious reasons). But the company was started to bring secure development to people that were increasingly developing in an agentic way and also being increasingly attacked by AI agents.  ZeroQuarry supports a diff-based review and it often does find things that regular agentic code reviews don&#39;t find.  ZeroQuarry runs before we do a roll-out.</p>
+<p>If you want to make sure your own agentically-developed code is secure, have a look at <a href="https://console.zeroquarry.com/register/open-source?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=agent-development-loops">registration</a> :). The first scan of your code is on us.</p>
+<h3 id="production-monitoring-and-emergency-fixes">Production monitoring and emergency fixes</h3>
+<p>The loop we&#39;ve built doesn&#39;t stop at deployment. We also run an AI agent that checks production for major errors and investigates whether they point to a real product defect. When the evidence shows a genuine emergency, it has authority to fix the code and push an emergency patch through our rollout process. The production database remains read-only to the investigation, and the agent doesn&#39;t restart services by hand; the patch still goes through the release gate.  That agent has access to production logs, the read-only database access, and Posthog to detect frontend bugs that don&#39;t show up in the backend.</p>
+<p>For a very small team, this functions a bit like an on-call rotation: production gets watched, failures are investigated against real signals, and a clear emergency can move into a fix without waiting for someone to notice it much later. It doesn&#39;t make every anomaly an emergency or every proposed fix safe, so the agent has to distinguish expected behavior from a code defect and stop when the cause or remedy needs a human decision.</p>
+<h3 id="periodic-bigger-structural-reviews">Periodic, bigger structural reviews</h3>
+<p>An admission that this one is straight up adopted into ZeroQuarry, but as with almost every big repo, they tend to grow and have outdated bits, etc. ZeroQuarry periodically runs a <a href="https://github.com/DietrichGebert/ponytail/blob/main/skills/ponytail-audit/SKILL.md">ponytail audit</a> across the entire codebase to help keep things tidy. It&#39;s not perfect, and a lot of the time the most helpful human intervention is actually steering repository design. But having something at hand to attempt to reduce code is incredibly useful.</p>
+<h2 id="preparing-whoever-comes-next">Preparing whoever comes next</h2>
+<p>When we actually commit, we use PRs with <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> as commit messages.  Conventional commits aren&#39;t the only game in town, but they definitely make it easy for both humans and agents to quickly look at &quot;this thing should have docs,&quot; &quot;this thing should go out in a marketing announcement,&quot; and so on.</p>
+<p>I admit we don&#39;t update our docs as often as we should, but we do have the ability to and we&#39;ve even automated the screenshot capture into <a href="https://docs.zeroquarry.com">https://docs.zeroquarry.com</a> with <a href="https://github.com/ZeroQuarry/zeroquarry-docs/tree/main/scripts/screenshots">https://github.com/ZeroQuarry/zeroquarry-docs/tree/main/scripts/screenshots</a> which you&#39;re welcome to replicate and tailor to your own needs.</p>
+<p>A lot of what we&#39;ve built for work product has been &quot;how do we make sure that the next agent/employee can be productive quickly?&quot; Because if there&#39;s one thing I&#39;ve learned more than anything else in corporate software development at high-growth companies, it&#39;s really how you set up your future team for success that matters more than anything.</p>
+<h2 id="relationship-of-all-of-this-with-sdlc">Relationship of all of this with SDLC</h2>
+<p>You probably already have a software development lifecycle (SDLC) whether or not your individual engineers know it. You may have even been required to document it as part of your SOC 2 or ISO 27001 or similar compliance schemes. Those SDLCs are generally quite flexible in the sense that you can kind of say you&#39;ll do whatever you want (mostly) but auditors tend to make sure that you&#39;re doing what you say.</p>
+<p>I think one of the more underappreciated areas of agentic development with respect to compliance is making sure your agents know your SDLC. ZeroQuarry&#39;s AGENTS.md outlines specifics:</p>
+<ul>
+<li>How we use issues and how they relate to PRs and how we must have issues before a PR/commit in general</li>
+<li>The exception to the above rule if there is an emergency patch</li>
+<li>How we do trunk-based development</li>
+<li>How we use Conventional Commits and why</li>
+<li>That e2e tests run against a real deployment and never in CI, that unit tests run locally first, and that the agent should think about whether its change is on the path of an e2e test at all</li>
+<li>Which rules are enforced rather than written down: the layering guard, the pinned linter, the lockfile</li>
+</ul>
+<p>That last set matters more than it looks. An agent that knows there&#39;s a gate clicking through the real app is going to behave differently when it&#39;s writing the change than an agent that thinks CI is the whole story.</p>
+<p><img src="/assets/research/agent-sdlc-map.svg" alt="What the agent reads at each step: the issue body for the brief, AGENTS.md for branching and commits, the code-review skill for the review, and the e2e gate for what has to be true before deploy." loading="lazy" decoding="async" /></p>
+<p>You&#39;ll be able to build functional code without your agents knowing about your SDLC, but adding what you <em>want</em> to happen from an SDLC perspective into your AGENTS.md makes it so your agents won&#39;t be the cause of your next audit question.</p>
+<h2 id="design-by-committee">Design by committee</h2>
+<p>Often when we&#39;re going through initial design phases, I&#39;ll use a team of agents operating on different models to do 4 things:</p>
+<ol>
+<li>Come up with a plan</li>
+<li>Review all the other agents&#39; plans and score them as well as your own on a scale of 1-10</li>
+<li>Re-incorporate additions and re-plan</li>
+<li>Re-review one more time</li>
+</ol>
+<p>This probably sounds bonkers to a lot of readers, but it provides a lot of review of bigger items before we start development.  Asking your favorite Anthropic, OpenAI, Gemini, and Chinese models for their best approaches to a solution <em>will</em> result in different outputs. Asking them to rate each-others ideas <em>will</em> result in them coming to some consensus most of the time, and you can/should review the approaches that boil out.</p>
+<p><img src="/assets/research/agent-committee.svg" alt="Design by committee: 3 models each propose a plan, then every model rates all 3 plans including the one it wrote, the notes get folded back in, and the bundle goes to a human." loading="lazy" decoding="async" /></p>
+<p>What&#39;s really interesting is that this LLM-as-a-judge and committee design operates far faster and far more effective than many R&amp;D teams I&#39;ve worked with.</p>
+<p>What&#39;s next for us here is to start doing actual UI/UX design more by this same committee approach.  Now that most models are vision-capable, they often can identify problems/opportunities, and if you give them each a screenshot or series of them as part of a workflow and say &quot;this is a problem, how would you improve it,&quot; we&#39;ve already noticed that many are able to come up with a plan and then bounce ideas off of the others until they significantly move the needle forward.</p>
+<h2 id="what-surprises-people">What surprises people</h2>
+<p>I guess now I&#39;ll talk about what I haven&#39;t included in this post: nothing about particular models, particular coding harnesses, and limited specific prompts. Do they matter? Yes. But not nearly as much as they get airtime for new(ish) agentic developers.  Some models produce demonstrably worse code than others, but a lot of the quality comes down to &quot;thinking depth&quot; which is controlled not only by selecting a slider in your coding harness but also by forcing thinking depth in structural reviews like this.</p>
+<p>Mostly I think it&#39;s a waste of time to use local models for software development because even the amount of electricity you end up spending tends to cost more than the inference at a datacenter. There are other reasons to want local models (privacy, etc), but also many providers offer privacy <em>and</em> locations that are advantageous <em>and</em> cost benefits. The real problem is just that once you get down to the models that most people <em>can</em> run because they have the hardware for, you really do end up on the &quot;too dumb to be useful&quot; curve for almost anything beyond small scripts.</p>
+<p>Today, ZeroQuarry uses a lot of z.ai GLM 5.3, Kimi K3.1, and MiMo 2.6-pro models for day-to-day development because they&#39;re frankly dirt cheap for what you get out of them, even when you use no-logging models through OpenRouter hosted in favorable/local countries.  We use Claude primarily for more design-based tasks. For our committees, we also branch out to OpenAI, Anthropic, Gemini, and other models when we want a more complete picture.  We of course use ZeroQuarry for security scanning.</p>
+<p>If you want to see this running rather than described, the adversarial review loop and the AI-surface inventory are in <a href="/platform">the product</a>, and <a href="/research/">the research index</a> has the rest of it. If you maintain an open-source project and want to see what contained agents find in yours, <a href="https://console.zeroquarry.com/register/open-source?utm_source=zeroquarry&amp;utm_medium=research&amp;utm_campaign=agent-development-loops">the first scan is on us</a>.</p>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer buyer-footer">
+  <div class="container">
+    <div class="foot-grid buyer-foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="/" class="brand" aria-label="ZeroQuarry home">
+          <img class="wordmark wm-dark" src="/assets/wordmark.png" alt="ZeroQuarry">
+      <img class="wordmark wm-light" src="/assets/wordmark-light.png" alt="ZeroQuarry">
+        </a>
+        <p>Independent security testing and evidence for product teams.</p>
+        <a class="foot-cta" href="https://console.zeroquarry.com/register">Start free trial <span aria-hidden="true">-&gt;</span></a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Platform</h5>
+        <a href="/platform">Overview</a>
+        <a href="/platform/agents/">For agents</a>
+        <a href="/platform/security-testing/">Security testing</a>
+        <a href="/platform/adversarial-validation/">Adversarial validation</a>
+        <a href="/platform/continuous-security/">Continuous security</a>
+        <a href="/platform/security-operations/">Security operations</a>
+        <a href="/platform/remediation/">Remediation</a>
+        <a href="/platform/private-execution/">Private execution</a>
+        <a href="/platform/evidence-reporting/">Evidence and reporting</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Use cases</h5>
+        <a href="/open-source/">Open source maintainers</a>
+        <a href="/use-cases/startup-security/">Security for growing companies</a>
+        <a href="/use-cases/pr-security-review/">Pull request security review</a>
+        <a href="/use-cases/release-security-review/">Release security review</a>
+        <a href="/use-cases/binary-security-review/">Binary security review</a>
+        <a href="/use-cases/inbound-vulnerability-reports/">Inbound vulnerability reports</a>
+        <a href="/use-cases/customer-security-reviews/">Customer and audit evidence</a>
+        <a href="/use-cases/vulnerability-disclosure/">Vulnerability disclosure</a>
+      </div>
+      <div class="foot-col legal">
+        <h5>Company</h5>
+        <a href="/research/">Research</a>
+        <a href="/partners/">Security partners</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/about">About</a>
+        <a href="https://docs.zeroquarry.com">Documentation</a>
+        <a href="https://status.zeroquarry.com">Status</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>&copy; 2026 ZeroQuarry. All rights reserved.</div>
+      <div class="right">
+        <a href="https://www.linkedin.com/company/zeroquarry/">LinkedIn</a>
+        <a href="https://github.com/ZeroQuarry/">GitHub</a>
+        <span class="ok">ALL SYSTEMS OPERATIONAL</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-label', 'Enlarged diagram');
+  overlay.innerHTML = '<button class="lightbox-close" type="button">Close</button>' +
+    '<div class="lightbox-stage"><img alt="" /></div>';
+  var stageImg = overlay.querySelector('.lightbox-stage img');
+  document.querySelectorAll('.article-body img').forEach(function (img) {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function () {
+      stageImg.src = img.getAttribute('src');
+      stageImg.alt = img.alt || '';
+      overlay.classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+    });
+  });
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.documentElement.style.overflow = '';
+  }
+  overlay.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeLightbox();
+  });
+  document.body.appendChild(overlay);
+})();
+</script>
+
+</body>
+</html>

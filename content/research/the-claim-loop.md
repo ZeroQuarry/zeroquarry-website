@@ -1,18 +1,18 @@
 ---
 title: "Every finding has to survive a reviewer whose job is to reject it"
 slug: "the-claim-loop"
-date: "2026-10-28"
+date: "2026-11-10"
 author: "Shane Connelly"
 status: "Shipped"
 draft: false
 disclosure: false
-description: "Detection is a commodity; deciding is the product. ZeroQuarry runs a bounded adversarial review on every finding: a researcher agent builds the claim, an independent vendor-style reviewer tries to reject it, and the two argue until agreement or a round cap. This is why the loop works, mechanism by mechanism."
+description: "How ZeroQuarry runs an adversarial review on every finding: a researcher agent suggests a vulnerability exists, an independent vendor-style reviewer tries to reject it, and the two argue until agreement. This is how and why the loop works."
 ogTitle: "Every finding has to survive a reviewer whose job is to reject it"
 ogDescription: "A researcher agent claims, a vendor-style reviewer attacks, the claim is repaired with evidence or conceded, and the whole argument goes in the report. Why severity and confidence are scored separately, and why rejected findings are never silently deleted."
 image: "/assets/research/the-claim-loop-og.png"
 ogImageWidth: 1520
 ogImageHeight: 980
-featuredSummary: "Scanners compete on finding more. Teams drown on deciding which findings are real. ZeroQuarry's answer is a bounded adversarial loop where the reviewer's objective is to reject, confidence and severity are scored separately, and the transcript -- not just the verdict -- is the deliverable."
+featuredSummary: "Many scanners compete on finding more. Then teams drown on deciding which findings are real. ZeroQuarry's answer is an adversarial loop where the reviewer's objective is to reject, confidence and severity are scored separately, and the transcript -- not just the verdict -- is kept as a deliverable."
 tags:
   - adversarial-validation
   - evidence
@@ -21,19 +21,19 @@ tags:
 ---
 
 
-A security scanner that produces security vulnerability "findings" is table stakes in 2026. Every SAST tool, every AI code reviewer, and every pentest-gone-autonomous produces findings. A lot of talk right now is about whether one model/prompt produces some findings, and that *is* very important. But if you ask anyone who has run a triage queue, the real PITA is that their scanners produced eighty-three findings of which six are real and the engineer turns off the scanners because they're too noisy. I spent fifteen years on vulnerability triage teams at Elastic, Kong, and Vectara, and the queue was always a huge pain.
+A security scanner that produces security vulnerability "findings" is table stakes in 2026. Every SAST tool, every AI code reviewer, and every pentest-gone-autonomous produces findings. A lot of talk right now is about whether one model/prompt produces more findings, and that *is* important. But if you ask anyone who has run a triage queue, the real PITA is that their scanners produced 83 findings of which 6 are real and the engineer gives up and turns off the scanners in frustration because they're too noisy. I spent fifteen years on vulnerability triage teams at Elastic, Kong, and Vectara, and the queue was always a huge pain.
 
-So when we built ZeroQuarry, the design question I cared about most was "how does a finding earn the right to become an engineer's task." What we built was a bounded adversarial loop, and this post explains the mechanism.
+So when we built ZeroQuarry, the design question I cared about most was "how does a finding earn the right to become an engineer's task." What we built was an adversarial loop, and this post explains the mechanism of how it works.
 
 ![The claim loop: a researcher agent builds a claim with evidence; an independent vendor-style reviewer tries to reject it (needs more info, rejected); the researcher rebuts with new evidence or concedes; contested findings go back around until agreement or the account's round cap. The transcript accumulates the whole time.](/assets/research/claim-loop-cycle.svg)
 
 ## The loop
 
-Every finding starts as a claim built by a "researcher agent" -- an agent whose job is to find a vulnerability as a security researcher. It churns out: what the bug is, where it is, and the evidence -- a proof of concept, an HTTP sequence, sometimes a deployable test package. Then an independent reviewer agent takes the claim, and its objective is inverted: it actively tries to *reject* the assertion that the finding is real the way a vendor's security team would reject a bug report that doesn't reproduce.
+Every finding in ZeroQuarry starts as a claim built by a "researcher agent" -- an agent whose job is to find a vulnerability as a security researcher. It churns out: what the bug is, where it is, and the evidence -- a proof of concept, an HTTP sequence, and sometimes a deployable test package. Then an independent reviewer agent takes the claim, and its objective is inverted: it actively tries to *reject* the assertion that the finding is real the way a vendor's security team would reject a bug report that doesn't reproduce.
 
-If the reviewer is not convinced, the finding comes back as needs-more-info or rejected, and the researcher agent has two moves: repair the claim with better evidence, or concede. Repaired claims go back around and the agents continue having a discussion trying to get the other to concede or give up. (These are bounded with a per-account cap on rounds, because unbounded adversarial loops are how you burn a model budget arguing about HTTP headers. Ask me how I know.) What survives the loop is what ZeroQuarry reports. What doesn't survive is dropped with its reasons attached, never silently deleted (more on why that's a product requirement in a second).
+If the reviewer is not convinced, the finding comes back as needs-more-info or rejected, and the researcher agent has two moves: repair the claim with better evidence, or concede. Repaired claims go back around and the agents continue having a discussion trying to get the other to concede or give up. (These are bounded with a per-account cap on rounds, because unbounded adversarial loops are how you burn a model budget arguing about HTTP headers. Ask me how I know.) What survives the loop is what you actually get in a report from ZeroQuarry. What *doesn't* survive is dropped with its reasons attached, never silently deleted (more on why that's a product requirement in a second).
 
-The reviewer is not the researcher with a different system prompt. It runs as a separate stage with its own model selection per stage, it doesn't share the researcher's investigation context, and its success condition is opposite.
+The reviewer is *not* the researcher with a different system prompt. Instead, it runs as a separate stage with its own model selection per stage, it doesn't share the researcher's investigation context, and its success condition is opposite. This loop is modeled after how good pentests and product security teams actually work if they had a bug bounty: some security researcher hunts for security vulnerabilities, but bug bounties are only going to pay out the ones that actually pass muster. ZeroQuarry does the hard work of both finding the potential vulnerability surfaces and demonstrating an exploit *and* then vetting it.
 
 ## Confidence and severity are different numbers
 
@@ -49,7 +49,7 @@ Every round of the loop is recorded and visible in ZeroQuarry: which model playe
 
 ![An example of the agents in ZeroQuarry arguing over whether a "finding" is real](/assets/research/adversarial-loop.png)
 
-That record is also the product's answer to the question auditors often ask. "When was this tested, by what, and what happened to the results" is a SOC 2 conversation, a customer-mandated scan conversation, *and* an incident postmortem conversation, and it's the same artifact every time: the finding's lifecycle (candidate, validated, disputed, mitigated, retested, regression, accepted-risk, archived) with the actors and reasons attached at each step. Evidence isn't a report you generate at the end; it's the residue the loop leaves behind.
+That record is also the product's answer to a question auditors often ask. "When was this tested, by what, and what happened to the results" is a SOC 2 conversation, a customer-mandated scan conversation, *and* an incident postmortem conversation, and it's the same artifact every time: the finding's lifecycle (candidate, validated, disputed, mitigated, retested, regression, accepted-risk, archived) with the actors and reasons attached at each step. Evidence isn't a report you generate at the end; it's the residue the loop leaves behind.
 
 ![A finding's lifecycle as a stamped timeline: candidate, challenged (needs more info), rebuttal (revised, new evidence attached), validated, routed to engineering, fixed, retested, reported -- each step carrying its actor, model, and reason.](/assets/research/claim-loop-transcript.svg)
 

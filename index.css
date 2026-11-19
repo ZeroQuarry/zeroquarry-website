@@ -1621,7 +1621,7 @@ section.section { padding: 120px 0; border-top: 1px solid var(--line); position:
 }
 .article-body ul,
 .article-body ol {
-  margin: 0;
+  margin: 0 0 18px;
   padding-left: 22px;
 }
 .article-body li + li {
